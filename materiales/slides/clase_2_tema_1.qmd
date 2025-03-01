@@ -1,0 +1,116 @@
+---
+title: "Por qué R y su comunidad. La sociología y R"
+author: "Betsy Cohen"
+logo: "imgages/logo-uflo.png"
+date: "27/03/2025"
+format: 
+  revealjs: 
+    width: 1600
+    height: 900  
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+# Introducción
+
+R es un lenguaje de programación ampliamente utilizado en la comunidad académica y profesional para el análisis de datos. Su flexibilidad y su ecosistema de paquetes han permitido que se convierta en una herramienta fundamental en múltiples disciplinas, incluyendo la sociología.
+
+# ¿Por qué R?
+
+-   **Software libre y gratuito:** R es un software de *código abierto*, lo que significa que cualquier persona puede usarlo, modificarlo y distribuirlo sin costos. Esto también implicancias desde el punto de vista de la *Transparencia* permitiendo a los usuarios ver cómo funcionan los algoritmos y métodos estadísticos, garantizando transparencia y confianza en los análisis realizados.
+
+-   **Amplitud de Paquetes y Bibliotecas**: R cuenta con **CRAN**, una red extensa de paquetes desarrollados por la comunidad, que proporciona herramientas para casi cualquier tipo de análisis, desde estadística básica hasta machine learning y visualización avanzada.
+
+-   **Actualización Constante y entre pares** La comunidad activa de R continúa desarrollando y mejorando paquetes, asegurando que los usuarios tengan acceso a las últimas técnicas y metodologías en análisis de datos.
+
+-   **Amplia comunidad de usuarios:** Existen múltiples foros, grupos de discusión por temas muy específicos y conferencias dedicadas a R, facilitando el aprendizaje y la resolución de problemas.
+
+-   **Versatilidad y escalabilidad:** Permite manejar grandes volúmenes de datos, desde pequeñas encuestas hasta bases de datos masivas.
+
+-   **Paquetes especializados:** R cuenta con una vasta colección de paquetes diseñados para análisis en ciencias sociales, como `tidyverse`, `survey`, `sjPlot` y `epitools`.
+
+------------------------------------------------------------------------
+
+# La comunidad de R
+
+Uno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciativas para compartir conocimientos y fomentar la colaboración, como:
+
+-   **R-Ladies:** Promueve la diversidad de género en la comunidad de R.
+-   **ROpenSci:** Facilita herramientas abiertas para la ciencia de datos.
+-   **RStudio Community:** Espacio de aprendizaje e intercambio entre usuarios.
+
+![](images/r-comunity.png)
+
+|                                               |
+|:----------------------------------------------|
+| \# Qué significa **comunidad** en la práctica |
+
+# R y la sociología
+
+En sociología, R se ha convertido en una herramienta clave para la investigación, permitiendo el procesamiento y análisis de encuestas, datos censales y redes sociales. Algunas aplicaciones específicas incluyen:
+
+-   **Análisis de encuestas y datos de opinión pública** usando paquetes como `survey`.
+-   **Análisis de redes sociales** con `igraph`.
+-   **Procesamiento de datos censales** con `tidyCensus`.
+
+------------------------------------------------------------------------
+
+# Un ejemplo argentino 🧉: El paquete `{EPH}`
+
+Una de las experiencias más interesantes en la comunidad de R en sociología es el desarrollo del paquete `{EPH}`, que permite acceder y analizar los datos de la Encuesta Permanente de Hogares (EPH) en Argentina. Esto ha facilitado estudios sobre desigualdad, pobreza y mercado laboral.
+
+![](images/hex-eph.png){fig-align="left" width="96"}
+
+------------------------------------------------------------------------
+
+### Código de ejemplo
+
+``` r
+library(tidyverse)
+library(EPH)
+
+# Descargar datos de la EPH
+base_eph <- get_microdata(year = 2023, trimester = 3)
+
+# Visualizar estructura de los datos
+glimpse(base_eph)
+
+# Filtrar datos para analizar ingresos según género
+ingresos_genero <- base_eph %>%
+  filter(P21 > 0) %>%  # Excluir valores sin ingresos reportados
+  group_by(CH04) %>%   # Agrupar por género
+  summarise(ingreso_medio = mean(P21, na.rm = TRUE))
+
+# Visualizar los resultados
+ingresos_genero %>%
+  ggplot(aes(x = CH04, y = ingreso_medio, fill = CH04)) +
+  geom_col() +
+  labs(title = "Ingreso medio según género - EPH 2023",
+       x = "Género", y = "Ingreso medio") +
+  theme_minimal()
+```
+
+Este análisis permite explorar desigualdades de ingresos según género y otros factores socioeconómicos, brindando herramientas clave para estudios sociológicos.
+
+------------------------------------------------------------------------
+
+# Por qué RStudio
+
+**Interfaz Amigable:** RStudio proporciona una interfaz gráfica de usuario que facilita la escritura de código, la visualización de resultados y la gestión de proyectos, mejorando la productividad y la experiencia del usuario.
+
+**Herramientas de Debugging y Testing:** RStudio incluye herramientas para depuración y pruebas, facilitando el desarrollo de scripts y asegurando la precisión y eficiencia del código.
+
+------------------------------------------------------------------------
+
+# Para ir cerrando...
+
+Como vimos el uso de R en sociología permite no solo mejorar los análisis de datos, sino también fomentar la colaboración en comunidad. La comunidad de R ofrece múltiples herramientas y recursos que facilitan el aprendizaje y la implementación de técnicas avanzadas en ciencias sociales.\
+\
+La comunidad de R nos permite atravesar este proceso de conocimiento de manera colectiva y de manera transdisiplinaria.
+
+**¿Qué esperas para sumarte?**

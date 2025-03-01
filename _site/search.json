@@ -1,0 +1,187 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bienvenidos/as al Curso de Análisis de datos 1",
+    "section": "",
+    "text": "En esta página vas a encontrar todo el material para curso “Análisis de datos con R para Sociología” de la UFLO\n🛫 Arrancamos este viaje: 20/03/2025\n🛬:Aterrizamos el 3/06/2025\n📆 Todos los jueves a las 19 hs.\n💻 On Line via (campus UFLO)[https://campus.uflo.edu.ar/]\n🐱 Repositorio en GitHub",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#bienvenidao-al-viaje",
+    "href": "index.html#bienvenidao-al-viaje",
+    "title": "Bienvenidos/as al Curso de Análisis de datos 1",
+    "section": "",
+    "text": "En esta página vas a encontrar todo el material para curso “Análisis de datos con R para Sociología” de la UFLO\n🛫 Arrancamos este viaje: 20/03/2025\n🛬:Aterrizamos el 3/06/2025\n📆 Todos los jueves a las 19 hs.\n💻 On Line via (campus UFLO)[https://campus.uflo.edu.ar/]\n🐱 Repositorio en GitHub",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#por-qué-un-curso-de-análisis-de-datos-con-r-para-sociología",
+    "href": "index.html#por-qué-un-curso-de-análisis-de-datos-con-r-para-sociología",
+    "title": "Bienvenidos/as al Curso de Análisis de datos 1",
+    "section": "Por qué un curso de Análisis de datos con R para sociología",
+    "text": "Por qué un curso de Análisis de datos con R para sociología\nNuestro propósito es introducir a las personas al análisis de datos en la cual la técnica se ve atravesada por discusiones epistemológicas y éticas. Se realizará un recorrido por algunas de las herramientas y técnicas básicas de análisis de datos mediante el lenguaje R. Por último, se espera que la integración de estas herramientas y perspectivas permita comprender al campo de las ciencias sociales computacionales como un campo de estudio multidisciplinario.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#objetivos-de-aprendizaje",
+    "href": "index.html#objetivos-de-aprendizaje",
+    "title": "Bienvenidos/as al Curso de Análisis de datos 1",
+    "section": "Objetivos de aprendizaje",
+    "text": "Objetivos de aprendizaje\n\nQue te puedas acercar al fenómeno de la “ciencia de datos” como manifestaciones tecnológicas, sociales y culturales, y puedan reconocer sus discusiones epistemológicas y éticas más relevantes;\nIntroducirte a la metodología de trabajo del análisis de datos y que te familiarices con algunas herramientas y técnicas en lenguaje R;\nQue aprendas a construir gráficos, en diferentes formatos como insumos para la comunicación en investigación;\nAcercar a las ciencias sociales computacionales como un campo de estudio multidisciplinario.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#docente",
+    "href": "index.html#docente",
+    "title": "Bienvenidos/as al Curso de Análisis de datos 1",
+    "section": "Docente",
+    "text": "Docente\n\nBetsy Cohen es socióloga por la Universidad de Buenos Aires y maestranda en estadística de la Universidad Nacional de Tres de Febrero. Además, es organizadora de RLadies Buenos Aires y del Núcleo de Innovación Social.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#agradecimientos",
+    "href": "index.html#agradecimientos",
+    "title": "Bienvenidos/as al Curso de Análisis de datos 1",
+    "section": "Agradecimientos",
+    "text": "Agradecimientos",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "programa.html",
+    "href": "programa.html",
+    "title": "Programa y Cronograma 2025",
+    "section": "",
+    "text": "En esta sección vas encontrar el programa y cronograma de la materia ene el primer cuatrimestre 2025"
+  },
+  {
+    "objectID": "materiales/slides/clase_2/clase_2_tema_1.html",
+    "href": "materiales/slides/clase_2/clase_2_tema_1.html",
+    "title": "Por qué R y su comunidad. La sociología y R",
+    "section": "",
+    "text": "Introducción\nR es un lenguaje de programación ampliamente utilizado en la comunidad académica y profesional para el análisis de datos. Su flexibilidad y su ecosistema de paquetes han permitido que se convierta en una herramienta fundamental en múltiples disciplinas, incluyendo la sociología.\n\n\n\n¿Por qué R?\n\nSoftware libre y gratuito: R es un software de código abierto, lo que significa que cualquier persona puede usarlo, modificarlo y distribuirlo sin costos. Esto también implicancias desde el punto de vista de la Transparencia permitiendo a los usuarios ver cómo funcionan los algoritmos y métodos estadísticos, garantizando transparencia y confianza en los análisis realizados.\nAmplitud de Paquetes y Bibliotecas: R cuenta con CRAN, una red extensa de paquetes desarrollados por la comunidad, que proporciona herramientas para casi cualquier tipo de análisis, desde estadística básica hasta machine learning y visualización avanzada.\nActualización Constante y entre pares La comunidad activa de R continúa desarrollando y mejorando paquetes, asegurando que los usuarios tengan acceso a las últimas técnicas y metodologías en análisis de datos.\nAmplia comunidad de usuarios: Existen múltiples foros, grupos de discusión por temas muy específicos y conferencias dedicadas a R, facilitando el aprendizaje y la resolución de problemas.\nVersatilidad y escalabilidad: Permite manejar grandes volúmenes de datos, desde pequeñas encuestas hasta bases de datos masivas.\nPaquetes especializados: R cuenta con una vasta colección de paquetes diseñados para análisis en ciencias sociales, como tidyverse, survey, sjPlot y epitools.\n\n\n\n\nLa comunidad de R\nUno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciativas para compartir conocimientos y fomentar la colaboración, como:\n\nR-Ladies: Promueve la diversidad de género en la comunidad de R.\nROpenSci: Facilita herramientas abiertas para la ciencia de datos.\nRStudio Community: Espacio de aprendizaje e intercambio entre usuarios.\n\n\n\n\n\n\n\n\n# Qué significa comunidad en la práctica\n\n\n\n\n\nR y la sociología\nEn sociología, R se ha convertido en una herramienta clave para la investigación, permitiendo el procesamiento y análisis de encuestas, datos censales y redes sociales. Algunas aplicaciones específicas incluyen:\n\nAnálisis de encuestas y datos de opinión pública usando paquetes como survey.\nAnálisis de redes sociales con igraph.\nProcesamiento de datos censales con tidyCensus.\n\n\n\n\nUn ejemplo argentino 🧉: El paquete {EPH}\nUna de las experiencias más interesantes en la comunidad de R en sociología es el desarrollo del paquete {EPH}, que permite acceder y analizar los datos de la Encuesta Permanente de Hogares (EPH) en Argentina. Esto ha facilitado estudios sobre desigualdad, pobreza y mercado laboral.\n\n\n\n\n\n\n\nCódigo de ejemplo\nlibrary(tidyverse)\nlibrary(EPH)\n\n# Descargar datos de la EPH\nbase_eph &lt;- get_microdata(year = 2023, trimester = 3)\n\n# Visualizar estructura de los datos\nglimpse(base_eph)\n\n# Filtrar datos para analizar ingresos según género\ningresos_genero &lt;- base_eph %&gt;%\n  filter(P21 &gt; 0) %&gt;%  # Excluir valores sin ingresos reportados\n  group_by(CH04) %&gt;%   # Agrupar por género\n  summarise(ingreso_medio = mean(P21, na.rm = TRUE))\n\n# Visualizar los resultados\ningresos_genero %&gt;%\n  ggplot(aes(x = CH04, y = ingreso_medio, fill = CH04)) +\n  geom_col() +\n  labs(title = \"Ingreso medio según género - EPH 2023\",\n       x = \"Género\", y = \"Ingreso medio\") +\n  theme_minimal()\nEste análisis permite explorar desigualdades de ingresos según género y otros factores socioeconómicos, brindando herramientas clave para estudios sociológicos.\n\n\n\n\nPor qué RStudio\nInterfaz Amigable: RStudio proporciona una interfaz gráfica de usuario que facilita la escritura de código, la visualización de resultados y la gestión de proyectos, mejorando la productividad y la experiencia del usuario.\nHerramientas de Debugging y Testing: RStudio incluye herramientas para depuración y pruebas, facilitando el desarrollo de scripts y asegurando la precisión y eficiencia del código.\n\n\n\nPara ir cerrando…\nComo vimos el uso de R en sociología permite no solo mejorar los análisis de datos, sino también fomentar la colaboración en comunidad. La comunidad de R ofrece múltiples herramientas y recursos que facilitan el aprendizaje y la implementación de técnicas avanzadas en ciencias sociales.\n\nLa comunidad de R nos permite atravesar este proceso de conocimiento de manera colectiva y de manera transdisiplinaria.\n¿Qué esperas para sumarte?"
+  },
+  {
+    "objectID": "materiales.html",
+    "href": "materiales.html",
+    "title": "Materiales",
+    "section": "",
+    "text": "En esta sección vas a encontrar los enlaces videos y scripts de cada clase ordenadas por unidad.\nEl material del curso esta organizado en 5 unidades:\n\nUnidad 1: El análisis de datos y la Sociología.\n(Unidad 2: Introducción al análisis de datos con R y RStudio)[u2-intro-r.qmd]\nUnidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”\nUnidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto.\nUnidad 5: Recursos y experiencias de la comunidad."
+  },
+  {
+    "objectID": "u2-intro-r.html",
+    "href": "u2-intro-r.html",
+    "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
+    "section": "",
+    "text": "En esta unidad se trabajan las siguientes temáticas\n• Por qué R. R y su comunidad. La sociología y R. • Entornos, scripts y notebooks. Packages y librerías. Tipos de objetos en R. Convenciones y símbolos de R. • El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. • ETL como proceso “iterativo” de conocimiento.",
+    "crumbs": [
+      "Materiales",
+      "Unidad 2 Introducción al análisis de datos con R y RStudio"
+    ]
+  },
+  {
+    "objectID": "u2-intro-r.html#materiales-clase-1",
+    "href": "u2-intro-r.html#materiales-clase-1",
+    "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
+    "section": "Materiales Clase 1",
+    "text": "Materiales Clase 1\n\n\nSlides\n\n\nSource\n\n\nVideo\n\n\n\ntitlo del ejercicio\n\nOption 1 - UN Votes\n\n\n\n\n\n::: source\n\n\nSource\n\n\n:::\n\n\n\n\n\n::: video\n\n\nVideo\n\n\n:::\n\n\nOption 2 - COVID-19\n\n\n\n\n\n::: source\n\n\nSource\n\n\n:::\n\n\n\n\nR4DS :: Chp 2 - Introduction\nIMS :: Sec 1.1 & 1.2 - Case study & Data basics\n\n\nMeet the toolkit - Version control and collaboration**\n\nSlides\n\n\nVideo\n\n:::",
+    "crumbs": [
+      "Materiales",
+      "Unidad 2 Introducción al análisis de datos con R y RStudio"
+    ]
+  },
+  {
+    "objectID": "index_materiales.html",
+    "href": "index_materiales.html",
+    "title": "Materiales",
+    "section": "",
+    "text": "En esta sección vas a encontrar los enlaces videos y scripts de cada clase ordenadas por unidad.\nEl material del curso esta organizado en 5 unidades:\n\nUnidad 1: El análisis de datos y la Sociología.\nUnidad 2: Introducción al análisis de datos con R y RStudio\nUnidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”\nUnidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto.\nUnidad 5: Recursos y experiencias de la comunidad.",
+    "crumbs": [
+      "Materiales"
+    ]
+  },
+  {
+    "objectID": "programa_y_crono/programa.html",
+    "href": "programa_y_crono/programa.html",
+    "title": "Programa",
+    "section": "",
+    "text": "CARRERA: Licenciatura en Sociología ASIGNATURA: Análisis de datos 1 DOCENTE (s) A CARGO: Lic. Betsy Cohen; Dr. Gaston Becerra AÑO: 2024\n\nFINALIDAD Y/U OBJETIVOS La asignatura de Análisis de Datos I tiene como propósito introducir a lxs estudiantes a el análisis de datos en la cual la técnica se ve atravesada por discusiones epistemológicas y éticas. Se realizará un recorrido por algunas de las herramientas y técnicas básicas de análisis de datos mediante el lenguaje R. Por último, se espera que la integración de estas herramientas y perspectivas permita comprender al campo de las ciencias sociales computacionales como un campo de estudio transdisciplinario. Objetivos generales:\n\n\n\nQue lxs estudiantes se acerquen al fenómeno del big data y la “ciencia de datos” como manifestaciones tecnológicas, sociales y culturales, y puedan reconocer sus discusiones epistemológicas y éticas más relevantes;\nQue lxs estudiantes se introduzcan a la metodología de trabajo del análisis de datos y se familiaricen con algunas herramientas y técnicas en lenguaje R;\nQue lxs estudiantes aprendan a construir gráficos, en diferentes formatos como insumos para la comunicación en investigación;\nQue lxs estudiantes se acerquen a las ciencias sociales computacionales como un campo de estudio transdisciplinario.\n\n\n\nCONTENIDOS Unidad 1: El análisis de datos y la Sociología. Emergencia de las “ciencias de datos”. La sociología frente a las ciencias de datos y la “crisis metodológica”. La sociología y los datos. La mitología del data-mining y sus pretensiones epistemológicas.\n\nUnidad 2: Introducción al análisis de datos con R y RStudio • Por qué R. R y su comunidad. La sociología y R. • Entornos, scripts y notebooks. Packages y librerías. Tipos de objetos en R. Convenciones y símbolos de R. • El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. • ETL como proceso “iterativo” de conocimiento.\nUnidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy” Extraer, cargar, transformar • Filosofía “tidy” para estructurar y manipular datos. Tidyverse. • Transformación de datos (dplyr y sus verbos), • uniones (joins) y pivoteos. • La función across() Análisis exploratorio • Tipos de datos • Análisis exploratorio y descriptivos para datos numéricos y datos categóricos. • Uso de if_else() y case_when(). • Limpieza y normalización de datos. • Tratamiento de casos perdidos. • janitor() como complemento del universo tidyverse. • “Empoderando” los verbos de dplyr: la funcion map() de la libreria purr\nUnidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto. • Graficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos. Esquisse() como guía inicial para entender la gramática • Tablas: Gramática de tablas y tablas con GT y DT::datatable() • Mapas: tipos de mapas. Creación de mapas simples con leaflet • RMarkdown y Quarto  Reportes y Presentaciones  Tableros  Blogs y Páginas web Unidad 5: Recursos y experiencias de la comunidad. Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.\n\nACTIVIDADES y MODALIDAD\nDurante el dictado semanal se combinarán clases sincrónicas y actividades asincrónicas. Las clases asincrónicas constarán de exposiciones sintéticas sobre los contenidos de cada unidad a cargo del docente donde se plantearán debates teóricos o se realizarán demostraciones de distintas herramientas prácticas. Dichas clases estarán acompañadas del seguimiento de actividades prácticas asincrónicas que inclurán la participación en foros, la elaboración de consignas breves a partir de materiales específicos y/o guías de lectura. A su vez, estas dos modalidades asincrónicas estarán acompañadas por clases sincrónicas donde se plantearán actividades de resolución de problemas, donde se resolverán dudas y donde se procurará conocer las trayectorias y momentos del aprendizaje de lxs estudiantes.\nEVALUACION Y PROMOCIÓN La materia tendrá al menos 1 (un) examen, en el cual se espera que los estudiantes den cuenta de la comprensión de los principales debates introducidos en la asignatura respecto de la compleja relación entre las ciencias sociales y análisis de datos. A su vez, la materia también contempla la entrega de un proyecto de investigación final (grupal) que se entregará al final de la cursada y proporcionara una segunda calificación, integrando todo el contenido visto en la cursada. La materia contempla la posibilidad de promoción directa. Para ello, se requiere un 75% de asistencia a las clases o participación en actividades asincrónicas, y la obtención de un mínimo de 7 (siete) puntos en todas las instancias de evaluación. Para poder rendir el examen final se deberá haber obtenido un mínimo de 4 (cuatro) puntos en todas las instancias de evaluación. La materia prevee una instancia de recuperación para el primer examen en caso de aplazo. La regularidad de la materia dura 2 años.\nRECURSOS Para las actividades sincrónicas se requiere una sala de reunión virtual que permita grabar videos y utilizar herramientas de chat y participación. Para las actividades asincrónicas se requerirá un aula virtual que permita el armado de foros, consignas, alojar materiales y recursos.\nBIBLIOGRAFIA OBLIGATORIA y BIBLIOGRAFÍA COMPLEMENTARIA\n\nUnidad 1: Bibliografía obligatoria: Becerra, G. (2021). Los desafíos del big data para la formación sociológica. II Jornadas Institucionales de Innovación Educativa En La Universidad. Meneses Rocha, M. E. (2018). Grandes datos, grandes desafíos para las ciencias sociales. Revista Mexicana de Sociología, 80(2), 415–444. https://doi.org/10.22201/iis.01882503p.2018.2.57723 Kitchin, R. (2014). The Data Revolution: Big Data, Open Data, Data Infrastructures and Their Consequences. Sage. https://doi.org/10.4135/9781473909472 Bibliografía complementaria: boyd, D., & Crawford, K. (2012). Critical Questions for Big Data. Information, Communication & Society, 15(5), 662–679. https://doi.org/https://doi.org/10.1080/1369118X.2012.678878\nSavage, M., & Burrows, R. (2007). The coming crisis of empirical sociology. Sociology, 41(5), 885–899. https://doi.org/10.1177/0038038507080443 Unidad 2: Bibliografía obligatoria: Becerra, G., & López Alurralde, J. P. (2020a). Analisis de datos con R. En Introducción a la ciencia de datos con R: Una guía rápida para cientistas sociales. https://bookdown.org/gaston_becerra/curso-intro-r/analisis-de-datos-con-r.html Wickham, H., & Grolemund, G. (2019). Vectores. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Wickham, H., & Grolemund, G. (2019). Datos ordenados. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Bibliografía complementaria: Wickham, H., & Grolemund, G. (2019). R para ciencia de datos. https://es.r4ds.hadley.nz/ Grolemund, G. (2014). Hands-on programming with R: Write your own functions and simulations. ” O’Reilly Media, Inc.”. https://rstudio-education.github.io/hopr/ Unidad 3: Bibliografía obligatoria: Becerra, G., & López Alurralde, J. P. (2020). Entorno. En Introducción a la ciencia de datos con R: Una guía rápida para cientistas sociales. https://bookdown.org/gaston_becerra/curso-intro-r/entorno.html Wickham, H., & Grolemund, G. (2019). Transformación de datos. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Wickham, H., & Grolemund, G. (2019). Iteración. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Unidad 4: Bibliografía obligatoria: Wickham, H., & Grolemund, G. (2019). Visualización de datos. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Cuevas-Fernadez, E. Introducción a Shiny. En Workshop CDSB 2021: Flujos de trabajo con RStudio y creación de Shiny apps. https://comunidadbioinfo.github.io/cdsb2021_workflows/introducción-a-shiny.html Bibliografía complementaria: Wickham, H. (2021). Mastering shiny. O’Reilly Media, Inc. https://mastering-shiny.org Unidad 5: Bibliografía obligatoria: Becerra, G., & López Alurralde, J. P. (2020). Procesamiento de lenguaje natural y análisis de sentimiento. En Introducción a la ciencia de datos con R: Una guía rápida para cientistas sociales. https://bookdown.org/gaston_becerra/curso-intro-r/entorno.html",
+    "crumbs": [
+      "Programa y crono",
+      "Análisis de datos 1"
+    ]
+  },
+  {
+    "objectID": "index_programa.html",
+    "href": "index_programa.html",
+    "title": "Programa y Cronograma 2025",
+    "section": "",
+    "text": "En esta sección vas encontrar el programa y cronograma de la materia ene el primer cuatrimestre 2025",
+    "crumbs": [
+      "Programa y crono"
+    ]
+  },
+  {
+    "objectID": "programa_y_crono/cronograma.html",
+    "href": "programa_y_crono/cronograma.html",
+    "title": "Cronograma",
+    "section": "",
+    "text": "CARRERA: Licenciatura en Sociología ASIGNATURA: Análisis de datos I DOCENTE (s) A CARGO: Lic. Betsabé Cohen; Dr. Gastón Becerra AÑO: 2025\nClase Fecha Unidad Contenidos teóricos Coworking 1 20/03 Bienvenida y presentación de la materia Instalación de R y Rstudio. Interfaz y primeros pasos.\n2 27/03 1 Emergencia de las “ciencias de datos”. La sociología frente a las ciencias de datos y la “crisis metodológica”. La sociología y los datos. La mitología del data-mining y sus pretensiones epistemológicas. 2 Por que R y su comunidad. La sociología y R.\nEntornos, scripts y notebooks. Paquetes y librerías. Tipos de objetos en R. Convenciones y símbolos de R.\n3 03/04 1 Epistemología de datos\n2 El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. Creación de un script extrayendo datos de datos.gor.ar / sitio de tu provincia y transformación para su posterior análisis ETL como proceso “iterativo de conocimiento”.\nPresentación de consignas TP Parcial y su relación con TP Final 4 10/04 3 Filosofía “tidy” para estructurar y manipular datos. Tidyverse. Glimpse() y summary() Transformación de datos (dplyr y sus verbos), uniones (joins) y pivoteos. La funcion across() Transformación de exploración inicial. 5 17/04 Feriado Jueves Santo 6 24/04 Feriado Día de acción por la tolerancia y el respeto entre los pueblos 7 01/05 Feriado Día del Trabajo 8 08/05 3 Análisis exploratorio y descriptivos para datos numéricos y categóricos. Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. Validación y corrección de datos nulos, perdidos y outliers. 9 15/05 3 janitor() como complemento del universo tidyverse. La función map de purr.”Empoderando” los verbos de dplyr: la funcion map() de la libreria purr\n10 22/05 4 Graficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos Esquisser como herramienta de ayuda 11 29/05 4 Tablas: Gramática de Tablas paquetes GT y DT Mapas: tipos de mapas. Creación de mapas simples con leaflet Hacemos una tabla en gt con Spotify API Haciendo un mapa de coropletas 12 05/06 4 RMarkdown y Quarto Reportes y Presentaciones Tableros Tableros 13 12/06 4 Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.\n14 19/06 4 Coworking: Trabajo sobre proyecto final 15 26/06 4 Ronda de presentación de Proyectos Finales\n16 03/07 5 Cierre de la Materia entrega de notas y Tips para continuar trabajando con lo aprendido",
+    "crumbs": [
+      "Programa y crono",
+      "Análisis de datos 1 - Cronograma"
+    ]
+  },
+  {
+    "objectID": "u4-graficos.html",
+    "href": "u4-graficos.html",
+    "title": "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto",
+    "section": "",
+    "text": "Gráficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos. Esquisse() como guía inicial para entender la gramática\nTablas: Gramática de tablas y tablas con GT y DT::datatable()\nMapas: tipos de mapas. Creación de mapas simples con leaflet\nRMarkdown y Quarto\nReportes y Presentaciones\nTableros\nBlogs y Páginas web",
+    "crumbs": [
+      "Materiales",
+      "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
+    ]
+  },
+  {
+    "objectID": "u5-comunidad.html",
+    "href": "u5-comunidad.html",
+    "title": "Unidad 5: Recursos y experiencias de la comunidad.",
+    "section": "",
+    "text": "Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.",
+    "crumbs": [
+      "Materiales",
+      "u5-comunidad"
+    ]
+  },
+  {
+    "objectID": "u3-tidyverse.html",
+    "href": "u3-tidyverse.html",
+    "title": "Unidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”",
+    "section": "",
+    "text": "En esta unidad tendremos dos grandes bloques\nExtraer, cargar, transformar\n·         Filosofía “tidy” para estructurar y manipular datos. Tidyverse.\n·         Transformación de datos (dplyr y sus verbos),\n·         uniones (joins) y pivoteos.\n·         La función across()\nAnálisis exploratorio\n·         Tipos de datos\n·         Análisis exploratorio y descriptivos para datos numéricos y datos categóricos.\n·         Uso de if_else() y case_when().\n·         Limpieza y normalización de datos.\n·         Tratamiento de casos perdidos.\n·          janitor() como complemento del universo tidyverse.\n·         “Empoderando” los verbos de dplyr: la funcion map() de la libreria purr",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”"
+    ]
+  }
+]

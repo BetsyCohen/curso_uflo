@@ -1,0 +1,5 @@
+---
+title: "Unidad 5: Recursos y experiencias de la comunidad. "
+---
+
+Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.

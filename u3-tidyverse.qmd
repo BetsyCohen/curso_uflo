@@ -1,0 +1,31 @@
+---
+title: "Unidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”"
+---
+
+En esta unidad tendremos dos grandes bloques
+
+Extraer, cargar, transformar
+
+·         Filosofía "tidy" para estructurar y manipular datos. Tidyverse.
+
+·         Transformación de datos (dplyr y sus verbos),
+
+·         uniones (joins) y pivoteos.
+
+·         La función across()
+
+Análisis exploratorio
+
+·         Tipos de datos
+
+·         Análisis exploratorio y descriptivos para datos numéricos y datos categóricos.
+
+·         Uso de if_else() y case_when().
+
+·         Limpieza y normalización de datos.
+
+·         Tratamiento de casos perdidos.
+
+·          janitor() como complemento del universo tidyverse.
+
+·         "Empoderando" los verbos de dplyr: la funcion map() de la libreria purr

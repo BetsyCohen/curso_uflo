@@ -1,0 +1,15 @@
+---
+title: "Cronograma"
+---
+
+CARRERA: Licenciatura en Sociología ASIGNATURA: Análisis de datos I DOCENTE (s) A CARGO: Lic. Betsabé Cohen; Dr. Gastón Becerra AÑO: 2025
+
+Clase Fecha Unidad Contenidos teóricos Coworking 1 20/03 Bienvenida y presentación de la materia Instalación de R y Rstudio. Interfaz y primeros pasos.\
+2 27/03 1 Emergencia de las "ciencias de datos". La sociología frente a las ciencias de datos y la "crisis metodológica". La sociología y los datos. La mitología del data-mining y sus pretensiones epistemológicas. 2 Por que R y su comunidad. La sociología y R.\
+Entornos, scripts y notebooks. Paquetes y librerías. Tipos de objetos en R. Convenciones y símbolos de R.\
+3 03/04 1 Epistemología de datos\
+2 El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. Creación de un script extrayendo datos de datos.gor.ar / sitio de tu provincia y transformación para su posterior análisis ETL como proceso "iterativo de conocimiento".\
+Presentación de consignas TP Parcial y su relación con TP Final 4 10/04 3 Filosofía "tidy" para estructurar y manipular datos. Tidyverse. Glimpse() y summary() Transformación de datos (dplyr y sus verbos), uniones (joins) y pivoteos. La funcion across() Transformación de exploración inicial. 5 17/04 Feriado Jueves Santo 6 24/04 Feriado Día de acción por la tolerancia y el respeto entre los pueblos 7 01/05 Feriado Día del Trabajo 8 08/05 3 Análisis exploratorio y descriptivos para datos numéricos y categóricos. Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. Validación y corrección de datos nulos, perdidos y outliers. 9 15/05 3 janitor() como complemento del universo tidyverse. La función map de purr."Empoderando" los verbos de dplyr: la funcion map() de la libreria purr\
+10 22/05 4 Graficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos Esquisser como herramienta de ayuda 11 29/05 4 Tablas: Gramática de Tablas paquetes GT y DT Mapas: tipos de mapas. Creación de mapas simples con leaflet Hacemos una tabla en gt con Spotify API Haciendo un mapa de coropletas 12 05/06 4 RMarkdown y Quarto Reportes y Presentaciones Tableros Tableros 13 12/06 4 Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.\
+14 19/06 4 Coworking: Trabajo sobre proyecto final 15 26/06 4 Ronda de presentación de Proyectos Finales\
+16 03/07 5 Cierre de la Materia entrega de notas y Tips para continuar trabajando con lo aprendido

@@ -1,0 +1,45 @@
+project:
+  type: website
+
+website:
+  page-navigation: true
+  title: "Curso análisis de datos 1. Sociología UFLO"
+  description: "Este sitio contiene los materiales para el curso de analisis de datos con R para Sociología UFLO"
+
+
+
+  sidebar:
+    style: floating
+    search: true
+    contents:
+      - text: "Inicio"
+        href: index.qmd
+      - section: "Materiales"
+        href: index_materiales.qmd
+        contents:
+          - u2-intro-r.qmd
+          - u3-tidyverse.qmd
+          - u4-graficos.qmd
+          - u5-comunidad.qmd
+      - section: "Programa y crono"
+        href: index_programa.qmd
+        contents:
+          - programa_y_crono/programa.qmd
+          - programa_y_crono/cronograma.qmd
+
+
+format:
+  html:
+    theme:
+      light: [cosmo, style/dsbox.scss]
+      dark: [cosmo, style/dsbox.scss, style/dark.scss]
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    mainfont: "Atkinson Hyperlegible"
+    include-in-header: "style/fontawesome.html"
+
+freeze: auto
+
+editor: visual
+

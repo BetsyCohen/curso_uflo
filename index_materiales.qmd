@@ -1,0 +1,13 @@
+---
+title: "Materiales"
+---
+
+En esta sección vas a encontrar los enlaces videos y scripts de cada clase ordenadas por unidad.
+
+El material del curso esta organizado en 5 unidades:
+
+-   Unidad 1: El análisis de datos y la Sociología.
+-   Unidad 2: Introducción al análisis de datos con R y RStudio
+-   Unidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía "tidy"
+-   Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto.
+-   Unidad 5: Recursos y experiencias de la comunidad.
