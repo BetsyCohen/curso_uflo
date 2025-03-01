@@ -9,7 +9,7 @@ En este repositorio encontrarás las clases y materiales para el curso Analisis 
 
 📆 Todos los jueves a las 19 hs.
 
-💻 On Line via (campus UFLO)\[https://campus.uflo.edu.ar/\]
+💻 On Line via [campus UFLO](https://campus.uflo.edu.ar)
 
 
 ## Por qué un curso de Análisis de datos con R para sociología 🤔
