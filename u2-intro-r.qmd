@@ -8,41 +8,30 @@ En esta unidad se trabajan las siguientes temáticas
 
 ## Materiales Clase 1
 
-::: slide-deck 
-
+::: slide-deck
 ::: slides
-[Slides](materiales/slides/clase_2/clase_2_tema_1.qmd)
+[Slides](materiales/slides/clase_2_tema_1.qmd)
 :::
 
 ::: source
-
 [Source](materiales/slides/clase_2/clase_2_tema_1.qmd)
-
 :::
 
 ::: video
-
 [Video]()
-
 :::
-
 :::
 
 ::: application-exercise
-
 **titlo del ejercicio**
 
 > **Option 1 - UN Votes**
-
->
 
 > ::: source
 
 > [Source]()
 
 > :::
-
->
 
 > ::: video
 
@@ -52,36 +41,27 @@ En esta unidad se trabajan las siguientes temáticas
 
 > **Option 2 - COVID-19**
 
->
-
 > ::: source
 
 > [Source]()
 
 > :::
-
 :::
 
 ::: reading
-
 -   R4DS :: [Chp 2 - Introduction]()
 
 -   IMS :: [Sec 1.1 & 1.2 - Case study & Data basics]()
-
 :::
 
- Meet the toolkit - Version control and collaboration**
+Meet the toolkit - Version control and collaboration\*\*
 
 ::: slides
-
 [Slides]()
-
 :::
 
 ::: video
-
 [Video]()
-
 :::
 
 :::
