@@ -96,6 +96,20 @@ Una vez que cocinamos nuestros datos y tenemos resultados, queremos presentarlos
 
 **Quarto**: Es la nueva generación de R Markdown. Es más potente y flexible, permite crear no solo documentos, sino también presentaciones (como esta!), sitios web, blogs, libros y más. ¡Y no solo con R, sino también con otros lenguajes!
 
+## Proyectos 
+
+Trabajar con proyectos en RStudio hace que todo el trabajo sea más sencillo. Los proyectos crean una carpeta en nuestra PC en donde se almacenarán los archivos, tablas, scripts, y hace que todo sea más organizado.
+
+Para crear un proyecto tenés podés entrar en:
+
+-   *File*
+
+    -   *New project*
+
+Y luego poner el nombre de la carpeta.
+
+![](images/clase_2_parte_2_screenshot_new_project.png){fig-align="center"}
+
 ## ¡Ya diste tus primeros pasos! 👣
 
 Con esta introducción, ya tenes una idea general de:

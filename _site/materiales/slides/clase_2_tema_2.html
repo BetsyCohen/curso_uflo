@@ -236,7 +236,13 @@ Betsy Cohen
 <h2>Scripts: Recetas de Análisis Reutilizables 📝</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p>Retomemos este concepto fundamental: - Los <strong>scripts de R</strong> son archivos de texto plano con extensión <code>.R</code>. - Contienen una serie de comandos de R que se ejecutan en secuencia. - Son como “recetas” detalladas para realizar un análisis. - <strong>Ventajas:</strong> - <strong>Reutilizables:</strong> Podemos volver a ejecutar el mismo análisis fácilmente. - <strong>Editables:</strong> Podemos modificar y mejorar el script. - <strong>Documentados:</strong> Podemos agregar comentarios (#) para explicar el código.</p>
+<p>Retomemos este concepto fundamental:</p>
+<p>- Los <strong>scripts de R</strong> son archivos de texto plano con extensión <code>.R</code>.</p>
+<p>- Contienen una serie de comandos de R que se ejecutan en secuencia.</p>
+<p>- Son como “recetas” detalladas para realizar un análisis.</p>
+<p>- <strong>Reutilizables:</strong> Podemos volver a ejecutar el mismo análisis fácilmente. -</p>
+<p>- <strong>Editables:</strong> Podemos modificar y mejorar el script.</p>
+<p>- <strong>Documentados:</strong> Podemos agregar comentarios (#) para explicar el código. (un mensaje para tu vos del futuro)</p>
 </div><div class="column" style="width:60%;">
 <p><img data-src="images/clase_2_parte_2_screenshot_script_comments.png"></p>
 </div></div>
@@ -308,7 +314,7 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="say-my-name-ponerle-un-nombre-al-vector" class="slide level2">
+<section id="say-my-name-ponerle-un-nombre-al-vector" class="slide level2 smaller">
 <h2>Say my name: ponerle un nombre al vector</h2>
 <p>Para que podamos guardar y luego “llamar” nuestro vector vamos a necesitar ponerle un nombre. Y para ello en R utilizamos el símbolo <strong>&lt;-</strong> o también cariñosamente le decimos <strong>flechita</strong></p>
 <p>De esta manera podemos nombrar nuestro vector edades</p>
@@ -355,10 +361,11 @@ Betsy Cohen
 
 <img data-src="images/clase_2_parte_2_a_few_moments_later.jpg" class="r-stretch"></section>
 <section id="pues-a-nuestro-global-enviroment" class="slide level2">
-<h2>Pues a nuestro Global Enviroment</h2>
+<h2>Pues a nuestro Global Enviroment!</h2>
 <p>En una “sección” que llamamos <strong>“Values”</strong></p>
 <p>Ahi también podemos ver una información importante sobre nuestro vector</p>
-<p><img data-src="images/clase_2_parte_2_screenshot_vector_detail_info.png"> R nops muestra el <strong>nombre</strong> del vector (en este caso <code>edades</code>) y el tipo o <strong>clase</strong> que en este caso es <code>numeric</code>.</p>
+
+<img data-src="images/clase_2_parte_2_screenshot_vector_detail_info.png" class="r-stretch"><p>R nos muestra el <strong>nombre</strong> del vector (en este caso <code>edades</code>) y el tipo o <strong>clase</strong> que en este caso es <code>numeric</code>.</p>
 </section>
 <section id="tipos-de-vectores-no-todos-los-ingredientes-son-iguales" class="slide level2">
 <h2>Tipos de Vectores: No todos los “ingredientes” son iguales</h2>
@@ -401,7 +408,9 @@ Betsy Cohen
 </div>
 </div>
 </div>
-<h3 id="vectores-de-caracteres-texto-y-etiquetas">Vectores de Caracteres: Texto y Etiquetas 💬</h3>
+</section>
+<section id="vectores-de-caracteres-texto-y-etiquetas" class="slide level2">
+<h2>Vectores de Caracteres: Texto y Etiquetas 💬</h2>
 <p>Otro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto</p>
 <ul>
 <li>Almacenan texto, cadenas de caracteres (strings).</li>
@@ -561,16 +570,17 @@ Levels: Primario Secundario Terciario Universitario</code></pre>
 <div class="column" style="width:50%;">
 <ul>
 <li><p><strong>Por posición (índices numéricos):</strong></p>
-<p>::: {.cell}</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Traer el caso en la Primera fila, segunda columna:</span></span>
 <span id="cb25-2"><a></a>sociodata[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="cell-output cell-output-stdout">
 <pre><code>[1] 25</code></pre>
-<p>::: :::</p>
-<p>::: {.cell}</p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Traer toda la primera fila:</span></span>
 <span id="cb27-2"><a></a>sociodata[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output-display}</p>
+<div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top">
 <thead>
@@ -589,30 +599,34 @@ Levels: Primario Secundario Terciario Universitario</code></pre>
 </tbody>
 </table>
 </div>
-<p>::: :::</p>
-<p>::: {.cell}</p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Traer toda la segunda columna:</span></span>
 <span id="cb28-2"><a></a>sociodata[, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="cell-output cell-output-stdout">
 <pre><code>[1] 25 30 22 40 35</code></pre>
-<p>::: :::</p></li>
+</div>
+</div></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <ul>
 <li><p><strong>Por nombre de columna (<code>$</code>):</strong></p>
-<p>::: {.cell}</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Columna "educacion" completa:</span></span>
 <span id="cb30-2"><a></a>sociodata<span class="sc">$</span>educacion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="cell-output cell-output-stdout">
 <pre><code>[1] Universitario Secundario    Universitario Terciario     Secundario   
 Levels: Secundario Terciario Universitario</code></pre>
-<p>::: :::</p>
-<p>::: {.cell}</p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Primer elemento de la columna "nombre":</span></span>
 <span id="cb32-2"><a></a>sociodata<span class="sc">$</span>nombre[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ana"</code></pre>
-<p>::: :::</p></li>
+</div>
+</div></li>
 </ul>
 </div></div>
 </section></section>
@@ -688,18 +702,18 @@ Levels: Secundario Terciario Universitario</code></pre>
 <h2>3. Operadores de Asignación: Guardando Valores en Objetos &lt;- = -&gt;</h2>
 <ul>
 <li><p><strong><code>&lt;-</code> (Asignación “flecha”):</strong> Asigna el valor de la derecha al objeto de la izquierda. <strong>¡Es el más común y recomendado!</strong></p>
-<p>::: {.cell}</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>mi_variable <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb42-2"><a></a>nombre_data_frame <span class="ot">&lt;-</span> sociodata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p></li>
+</div></li>
 <li><p><strong><code>=</code> (Asignación “igual”):</strong> También asigna valores. Funciona similar a <code>&lt;-</code>, pero en algunos contextos puede ser menos claro.</p>
-<p>::: {.cell}</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>otra_variable <span class="ot">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p></li>
+</div></li>
 <li><p><strong><code>-&gt;</code> (Asignación “flecha derecha”):</strong> Asigna el valor de la izquierda al objeto de la derecha. Menos común, menos legible.</p>
-<p>::: {.cell}</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="st">"Hola R"</span> <span class="ot">-&gt;</span> mensaje</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p></li>
+</div></li>
 </ul>
 <p><strong>En este curso, usaremos principalmente <code>&lt;-</code> para asignaciones. ¡Es una buena práctica mantener la consistencia!</strong></p>
 </section></section>
