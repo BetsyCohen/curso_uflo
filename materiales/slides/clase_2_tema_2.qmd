@@ -1,0 +1,473 @@
+---
+title: "Entornos, Objetos y Operadores en R"
+subtitle: "Primeros pasos en R para Sociología - Clase 2"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+date: "27/03/2025"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+# Clase 2: Navegando R: Entornos, Objetos y Operadores
+
+Hoy vamos a explorar los **ladrillos fundamentales** con los que construimos análisis de datos en R:
+
+-   **RECAP: Entornos de trabajo:** Vamos a repasar Scripts, Consola, Notebooks.
+-   **Objetos:** Vectores y Data Frames.
+-   **Operadores:** Cómo "darle órdenes" a R.
+
+¡Comprender estos conceptos es clave para empezar a trabajar con datos en R!
+
+# RECAP!
+
+![](images/meme_previously_on.webp)
+
+# Entornos de Trabajo en R
+
+Cuando trabajamos en R, tenemos diferentes "espacios" o entornos para escribir y ejecutar código:
+
+-   **Scripts (.R):** Como vimos la clase pasada son archivos de texto para guardar secuencias de comandos. **Ideal para análisis reproducibles.**
+-   **Consola:** Espacio interactivo para ejecutar comandos uno a uno. **Perfecto para probar y explorar.**
+-   **Notebooks (.Rmd o .ipynb):** Documentos que combinan código, texto y resultados. **Excelente para informes y presentaciones.**
+
+## Scripts: Recetas de Análisis Reutilizables 📝 {.smaller}
+:::: {.columns}
+
+::: {.column width="40%"}
+
+Retomemos este concepto fundamental:
+-   Los **scripts de R** son archivos de texto plano con extensión `.R`.
+-   Contienen una serie de comandos de R que se ejecutan en secuencia.
+-   Son como "recetas" detalladas para realizar un análisis.
+-   **Ventajas:**
+    -   **Reutilizables:** Podemos volver a ejecutar el mismo análisis fácilmente.
+    -   **Editables:** Podemos modificar y mejorar el script.
+    -   **Documentados:** Podemos agregar comentarios (#) para explicar el código.
+
+:::
+
+::: {.column width="60%"}
+
+![](images/clase_2_parte_2_screenshot_script_comments.png)
+
+:::
+
+::::
+
+## Consola: Exploración Interactiva y Pruebas Rápidas 🧮
+
+-   La **consola de R** es un entorno interactivo.
+-   Ejecuta comandos línea por línea.
+-   Muestra los resultados inmediatamente después de cada comando.
+-   **Ideal para:**
+    -   **Experimentar:** Probar diferentes comandos y funciones.
+    -   **Cálculos rápidos:** Usar R como calculadora.
+    -   **Explorar datos:** Ver partes de un objeto, comprobar resultados intermedios.
+
+
+## Notebooks: Informes Dinámicos y Presentaciones Interactivas 📰
+
+-   Los **Notebooks** (R Markdown `.Rmd` o Quarto `.ipynb` o `.qmd`) combinan:
+    -   **Código R ejecutable:** Bloques de código que se pueden ejecutar dentro del notebook.
+    -   **Texto:** Explicaciones, interpretaciones, narrativa del análisis (en Markdown).
+    -   **Resultados:** Tablas, gráficos, figuras generadas por el código, ¡integrados en el documento!
+-   **Perfectos para:**
+    -   **Informes:** Documentar un análisis de forma clara y reproducible.
+
+    -   **Presentaciones:** Mostrar análisis interactivos y dinámicos.
+
+    -   **Aprendizaje:** Experimentar con código y ver los resultados en contexto.
+
+## Ayuda en R
+
+En el cuadrante de Output (abajo a la derecha) tenemos varias pestañas entre ella una que vamos a usar bastante la pestaña
+**help**
+Gracias al trabajo de la comunidad vas a notar que en general la documentación y ayuda de las funciones siempre te dan una descripción, detalles y ejemplos de usos.
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/clase_2_parte_2_screenshot_help_1)
+:::
+::: {.column width="50%"}
+![](images/clase_2_parte_2_screenshot_help_2)
+:::
+:::: 
+
+# Objetos en R: Los "Ingredientes" de tu Análisis
+
+En R, todo lo que creamos y manipulamos son **objetos**. Pensá en ellos como los "ingredientes" que usas en una receta de cocina:
+
+-   **Vectores:** Listas ordenadas de elementos (números, texto, etc.). Como una lista de respuestas a una pregunta de encuesta.
+-   **Data Frames:** Tablas de datos, como hojas de cálculo. ¡Donde organizamos nuestros datos sociológicos!
+
+Hoy nos vamos a centrar en **Vectores** y **Data Frames**, que son los más fundamentales.
+
+## 1. Vectores: Listas de Datos 🔢
+
+Un **vector** es una colección **ordenada** de elementos, todos del **mismo tipo**. Imagina una columna en una hoja de cálculo.
+
+**Ejemplo:** Las edades de un grupo de personas encuestadas:
+
+
+`[25, 30, 22, 40, 35]`
+
+
+
+## Creando Vectores con `c()`
+
+Usamos la función `c()` (de "combine" o "concatenar") para crear vectores:
+
+```{r}
+ c(25, 30, 22, 40, 35)
+```
+## Say my name: ponerle un nombre al vector
+
+Para que podamos guardar y luego "llamar" nuestro vector vamos a necesitar ponerle un nombre. 
+Y para ello en R utilizamos el símbolo **<-** o también cariñosamente le decimos **flechita**
+
+De esta manera podemos nombrar nuestro vector edades
+
+```{r}
+edades <- c(25, 14, 22, 40, 35)
+```
+
+y luego podemos llamarlo
+
+```{r}
+edades
+```
+Y esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente
+
+```{r}
+edades+1
+```
+
+Esta característica a en la que la operación **se ejecuta sobre cada uno de los elementos** del vector se denomina **element-wise**.
+
+Entonces si realizamos una **operación entre dos vectores** se ejecutará entre los vectores con misma ubicación.
+Por ejemplo:
+
+```{r}
+edades*2
+```
+
+```{r}
+edades-5
+```
+
+
+## Pará pará pará 
+
+![](images/clase_2_parte_2_meme_para_para_para.jpg)
+
+¿A donde van los vectores que creamos? 
+
+**Probalo** en tu consola y tu IDE de R y después volvé a esta presenta
+
+## 
+
+![](images/clase_2_parte_2_a_few_moments_later.jpg)
+
+
+## Pues a nuestro Global Enviroment 
+
+
+En una "sección" que llamamos **"Values"**
+
+Ahi también podemos ver una información importante sobre nuestro vector
+
+![](images/clase_2_parte_2_screenshot_vector_detail_info.png)
+R nops muestra el **nombre** del vector (en este caso `edades`) y el tipo o **clase** que en este caso es `numeric`.
+
+## Tipos de Vectores: No todos los "ingredientes" son iguales
+
+Los vectores en R pueden almacenar diferentes tipos de datos:
+
+:::{incremental}
+
+-   **Numéricos (o `double`):** Números con decimales. Ej: `c(25, 30.5, 22, 40, 35.8)` (edades, ingresos).
+-   **Enteros (`integer`):** Números enteros. Ej: `c(1, 2, 3, 4, 5)` (número de hijos).
+-   **Caracteres (`character`):** Texto (strings). Ej: `c("Juan", "Maria", "Pedro")` (nombres, respuestas abiertas).
+-   **Lógicos (`logical`):** Valores `TRUE` o `FALSE`. Ej: `c(TRUE, FALSE, TRUE, TRUE)` (¿votó en la última elección?).
+-   **Factores (`factor`):** Variables categóricas con niveles definidos. Ej: `factor(c("Secundario", "Universitario", "Secundario"))` (nivel educativo).
+
+:::
+
+
+## Vectores Numéricos: Cantidades y Medidas 📊
+
+-   Almacenan números, con o sin decimales, positivos o negativos.
+-   Ideales para representar variables cuantitativas: edad, ingresos, años de educación, etc.
+
+Aprovechandon nuestro vector `edades` Podriamos preguntarle a R la edad de nuestro entrevistado más joven. 
+Para eso vamos a usar la función `min()`
+
+```{r}
+min(edades)
+```
+
+::: {.callout-tip}
+
+## ¡Ahora ustedes!
+
+Creá tu vector con ingresos de hogares y realizá los siguientes cálculos usando estas funciones de R
+
+´min()´
+´mean()´
+
+¿Qué representá cada una? ¿Qué conclusiones sacarías acerca de esta muestra?
+Podes usar la ventana de **ayuda** integrada dentro de R ubicada en el panel inferior
+
+:::
+
+### Vectores de Caracteres:  Texto y Etiquetas 💬
+
+Otro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto
+
+- Almacenan texto, cadenas de caracteres (strings).
+- Útiles para nombres, categorías nominales, respuestas de encuestas abiertas.
+
+Veamos un ejemplo
+
+```{r}
+provincia <- c("CABA", "Buenos Aires","Buenos Aires","Buenos Aires","Mendoza")
+provincia
+```
+
+::: {.callout-important}
+## ¡OJO!
+Los strings no necesariamente tienen que contener letras. También pueden tener números almacenados como texto.
+Por ejemplo:
+```{r}
+ c("10", "9", "8", "10", "9")
+```
+:::
+
+### Vectores Lógicos:  Verdadero o Falso ✅ ❌
+
+- Almacenan valores lógicos: `TRUE` o `FALSE`.
+- Resultado de comparaciones, condiciones.
+- Muy útiles para filtrar datos (los vas a adorar).
+
+Por ejemplo podriamos querer saber si nuestros entrevistados estan en edad de votar
+
+```{r}
+mayores_de_16 <- edades > 16
+mayores_de_16
+```
+
+### Vectores Factor:  Categorías con Sentido 🗂️
+
+- Representan variables categóricas (nominales u ordinales).
+- Definen **niveles** o categorías posibles.
+- Ayudan a R a entender que una variable es categórica y no solo texto.
+- Importante para análisis estadísticos y gráficos.
+
+Vayamos con un clasico de la sociología
+
+```{r}
+niveles_educativos_caracter <- c("Primario","Secundario","Terciario","Universitario")
+niveles_educativos_factor <- factor(niveles_educativos_caracter)
+niveles_educativos_factor
+```
+
+Con la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()
+
+```{r}
+levels(niveles_educativos_factor)
+```
+::: {.callout-tip}
+### Characters vs Factores
+Si miras el Global enbviroment ¿qué diferencias encontras entre niveles_educativos_caracter y niveles_educativos_factor?
+:::
+
+
+## 2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️
+
+Un **data frame** es la estructura de datos **más importante** en R para análisis sociológico.
+
+- Similar a una tabla o hoja de cálculo en Excel
+- Organiza datos en **filas** (observaciones) y **columnas** (variables).
+- **Cada columna puede ser de un tipo diferente** (numérica, caracter, factor, etc.).
+
+
+### Creando Data Frames con `data.frame()`
+
+Podemos crear data frames combinando vectores:
+
+```{r}
+nombres <- c("Ana", "Pedro", "Maria", "Juan", "Sofia")
+edades <- c(25, 30, 22, 40, 35)
+nivel_edu <- factor(c("Universitario", "Secundario", "Universitario", "Terciario", "Secundario"))
+
+sociodata <- data.frame(nombre = nombres, edad = edades, educacion = nivel_edu)
+sociodata
+```
+
+##  Estructura "Tidy" de Data Frames 🧹
+
+En el "universo tidyverse" (que usaremos mucho), trabajamos con data frames **"tidy"** o "ordenados":
+
+1.  **Cada columna es una variable.** (ej: nombre, edad, educación)
+2.  **Cada fila es una observación.** (ej: cada persona encuestada)
+3.  **Cada celda contiene un único valor.** (ej: la edad de Ana es 25)
+
+¡Esta estructura facilita mucho el análisis y la manipulación de datos!
+
+!()[images/clase_2_parte_2_screenshot_tidy_shape.png]
+
+###  Seleccionando Partes de un Data Frame  ✂️
+
+Podemos acceder a partes específicas de un data frame usando corchetes `[]` o el símbolo `$`(AKA pesitos):
+
+:::: {.columns}
+::: {.column width="50%"}
+- **Por posición (índices numéricos):**
+
+    ```{r}
+    # Traer el caso en la Primera fila, segunda columna:
+    sociodata[1, 2]
+    ```
+    
+    ```{r}
+    # Traer toda la primera fila:
+    sociodata[1, ]
+    ```
+    
+    ```{r}
+    # Traer toda la segunda columna:
+    sociodata[, 2]
+    ```
+:::    
+
+::: {.column width="50%"}
+- **Por nombre de columna (`$`):**
+
+    ```{r}
+    # Columna "educacion" completa:
+    sociodata$educacion
+    ```
+
+
+    ```{r}
+    # Primer elemento de la columna "nombre":
+    sociodata$nombre[1]
+    ```
+:::
+::::
+
+# Operadores en R:  Dando Órdenes a los Datos ⚙️
+
+Los **operadores** son símbolos especiales que indican a R qué tipo de acción o cálculo debe realizar.  Son como los "verbos" en el lenguaje de R.
+
+Tenemos diferentes tipos de operadores:
+
+1.  **Aritméticos:**  Para cálculos matemáticos.
+2.  **Relacionales (o de comparación):** Para comparar valores (¿mayor que?, ¿igual a?).
+3.  **De Asignación:** Para asignar valores a objetos (¡ya los usamos con `<-`!).
+
+## 1. Operadores Aritméticos:  Cálculos con Datos ➕ ➖ ✖️ ➗
+
+- `+` Suma
+- `-` Resta
+- `*` Multiplicación
+- `/` División
+- `^` Potencia
+
+**Ejemplos con vectores numéricos:**
+
+```{r}
+edades <- c(25, 30, 22, 40, 35)
+
+# Sumar 5 años a todas las edades:
+edades + 5
+```
+
+
+
+```{r}
+# Calcular el doble de cada edad:
+edades * 2
+```
+
+
+## 2. Operadores Relacionales:  Comparando Datos  > < == !=
+
+- `>` Mayor que
+- `<` Menor que
+- `>=` Mayor o igual que
+- `<=` Menor o igual que
+- `==` Igual a (¡ojo, **dos iguales**!)
+- `!=` No igual a (distinto de)
+
+**Ejemplos con vectores:**
+
+```{r}
+edades <- c(25, 30, 22, 40, 35)
+
+# ¿Qué edades son mayores de 30?
+edades > 30
+```
+
+
+```{r}
+niveles_educativos <- c("Secundario", "Universitario", "Primario", "Universitario", "Terciario")
+
+# ¿Qué niveles educativos son "Universitario"?
+niveles_educativos == "Universitario"
+```
+
+
+## 3. Operadores de Asignación:  Guardando Valores en Objetos  <-  =  ->
+
+- **`<-` (Asignación "flecha"):**  Asigna el valor de la derecha al objeto de la izquierda.  **¡Es el más común y recomendado!**
+
+    ```{r}
+    mi_variable <- 10
+    nombre_data_frame <- sociodata
+    ```
+
+- **`=` (Asignación "igual"):**  También asigna valores.  Funciona similar a `<-`, pero en algunos contextos puede ser menos claro.
+
+    ```{r}
+    otra_variable = 20
+    ```
+
+- **`->` (Asignación "flecha derecha"):**  Asigna el valor de la izquierda al objeto de la derecha.  Menos común, menos legible.
+
+    ```{r}
+    "Hola R" -> mensaje
+    ```
+
+**En este curso, usaremos principalmente `<-` para asignaciones.  ¡Es una buena práctica mantener la consistencia!**
+
+# Resumen de la Clase 2:  ¡Pilares de R!
+
+Hoy aprendimos sobre:
+
+- **Entornos de trabajo:** Scripts, Consola, Notebooks.  Elige el adecuado para cada tarea.
+- **Objetos fundamentales:**
+    - **Vectores:**  Listas de datos del mismo tipo.
+    - **Data Frames:**  Tablas para organizar datos sociológicos.
+- **Operadores:**  Para realizar cálculos y comparaciones con nuestros datos.
+
+¡Con estos conocimientos, ya puedes empezar a crear y manipular datos en R!  En la próxima clase, ¡vamos a importar datos reales y poner en práctica todo esto!
+
+# Próxima Clase:  ¡Importando tus Datos a R! 🚀
+
+En la próxima clase, aprenderemos a:
+
+- **Importar datos desde archivos externos:**  CSV, Excel, etc.
+- **Explorar los datos importados:**  Ver su estructura, tipos de variables.
+
+
+

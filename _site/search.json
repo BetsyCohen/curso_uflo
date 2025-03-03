@@ -103,7 +103,7 @@
     "href": "u2-intro-r.html#materiales-clase-1",
     "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
     "section": "Materiales Clase 1",
-    "text": "Materiales Clase 1\n\n\nSlides\n\n\nSource\n\n\nVideo\n\n\n\ntitlo del ejercicio\n\nOption 1 - UN Votes\n\n\n::: source\n\n\nSource\n\n\n:::\n\n\n::: video\n\n\nVideo\n\n\n:::\n\n\nOption 2 - COVID-19\n\n\n::: source\n\n\nSource\n\n\n:::\n\n\n\n\nR4DS :: Chp 2 - Introduction\nIMS :: Sec 1.1 & 1.2 - Case study & Data basics\n\n\nMeet the toolkit - Version control and collaboration**\n\nSlides\n\n\nVideo\n\n:::",
+    "text": "Materiales Clase 1\n\n\nSlides\n\n\nSource\n\n\nVideo\n\n\n\ntitlo del ejercicio\n\nOption 1 - UN Votes\n\n\n\n\n\n\n\nSource\n\n\n:::\n\n\n\n\n\n\n\nVideo\n\n\n:::\n\n\nOption 2 - COVID-19\n\n\n\n\n\n\n\nSource\n\n\n:::\n\n\n\n\nR4DS :: Chp 2 - Introduction\nIMS :: Sec 1.1 & 1.2 - Case study & Data basics\n\n\nMeet the toolkit - Version control and collaboration**\n\nSlides\n\n\nVideo\n\n:::",
     "crumbs": [
       "Materiales",
       "Unidad 2 Introducción al análisis de datos con R y RStudio"
@@ -127,7 +127,7 @@
     "text": "CARRERA: Licenciatura en Sociología ASIGNATURA: Análisis de datos 1 DOCENTE (s) A CARGO: Lic. Betsy Cohen; Dr. Gaston Becerra AÑO: 2024\n\nFINALIDAD Y/U OBJETIVOS La asignatura de Análisis de Datos I tiene como propósito introducir a lxs estudiantes a el análisis de datos en la cual la técnica se ve atravesada por discusiones epistemológicas y éticas. Se realizará un recorrido por algunas de las herramientas y técnicas básicas de análisis de datos mediante el lenguaje R. Por último, se espera que la integración de estas herramientas y perspectivas permita comprender al campo de las ciencias sociales computacionales como un campo de estudio transdisciplinario. Objetivos generales:\n\n\n\nQue lxs estudiantes se acerquen al fenómeno del big data y la “ciencia de datos” como manifestaciones tecnológicas, sociales y culturales, y puedan reconocer sus discusiones epistemológicas y éticas más relevantes;\nQue lxs estudiantes se introduzcan a la metodología de trabajo del análisis de datos y se familiaricen con algunas herramientas y técnicas en lenguaje R;\nQue lxs estudiantes aprendan a construir gráficos, en diferentes formatos como insumos para la comunicación en investigación;\nQue lxs estudiantes se acerquen a las ciencias sociales computacionales como un campo de estudio transdisciplinario.\n\n\n\nCONTENIDOS Unidad 1: El análisis de datos y la Sociología. Emergencia de las “ciencias de datos”. La sociología frente a las ciencias de datos y la “crisis metodológica”. La sociología y los datos. La mitología del data-mining y sus pretensiones epistemológicas.\n\nUnidad 2: Introducción al análisis de datos con R y RStudio • Por qué R. R y su comunidad. La sociología y R. • Entornos, scripts y notebooks. Packages y librerías. Tipos de objetos en R. Convenciones y símbolos de R. • El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. • ETL como proceso “iterativo” de conocimiento.\nUnidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy” Extraer, cargar, transformar • Filosofía “tidy” para estructurar y manipular datos. Tidyverse. • Transformación de datos (dplyr y sus verbos), • uniones (joins) y pivoteos. • La función across() Análisis exploratorio • Tipos de datos • Análisis exploratorio y descriptivos para datos numéricos y datos categóricos. • Uso de if_else() y case_when(). • Limpieza y normalización de datos. • Tratamiento de casos perdidos. • janitor() como complemento del universo tidyverse. • “Empoderando” los verbos de dplyr: la funcion map() de la libreria purr\nUnidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto. • Graficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos. Esquisse() como guía inicial para entender la gramática • Tablas: Gramática de tablas y tablas con GT y DT::datatable() • Mapas: tipos de mapas. Creación de mapas simples con leaflet • RMarkdown y Quarto  Reportes y Presentaciones  Tableros  Blogs y Páginas web Unidad 5: Recursos y experiencias de la comunidad. Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.\n\nACTIVIDADES y MODALIDAD\nDurante el dictado semanal se combinarán clases sincrónicas y actividades asincrónicas. Las clases asincrónicas constarán de exposiciones sintéticas sobre los contenidos de cada unidad a cargo del docente donde se plantearán debates teóricos o se realizarán demostraciones de distintas herramientas prácticas. Dichas clases estarán acompañadas del seguimiento de actividades prácticas asincrónicas que inclurán la participación en foros, la elaboración de consignas breves a partir de materiales específicos y/o guías de lectura. A su vez, estas dos modalidades asincrónicas estarán acompañadas por clases sincrónicas donde se plantearán actividades de resolución de problemas, donde se resolverán dudas y donde se procurará conocer las trayectorias y momentos del aprendizaje de lxs estudiantes.\nEVALUACION Y PROMOCIÓN La materia tendrá al menos 1 (un) examen, en el cual se espera que los estudiantes den cuenta de la comprensión de los principales debates introducidos en la asignatura respecto de la compleja relación entre las ciencias sociales y análisis de datos. A su vez, la materia también contempla la entrega de un proyecto de investigación final (grupal) que se entregará al final de la cursada y proporcionara una segunda calificación, integrando todo el contenido visto en la cursada. La materia contempla la posibilidad de promoción directa. Para ello, se requiere un 75% de asistencia a las clases o participación en actividades asincrónicas, y la obtención de un mínimo de 7 (siete) puntos en todas las instancias de evaluación. Para poder rendir el examen final se deberá haber obtenido un mínimo de 4 (cuatro) puntos en todas las instancias de evaluación. La materia prevee una instancia de recuperación para el primer examen en caso de aplazo. La regularidad de la materia dura 2 años.\nRECURSOS Para las actividades sincrónicas se requiere una sala de reunión virtual que permita grabar videos y utilizar herramientas de chat y participación. Para las actividades asincrónicas se requerirá un aula virtual que permita el armado de foros, consignas, alojar materiales y recursos.\nBIBLIOGRAFIA OBLIGATORIA y BIBLIOGRAFÍA COMPLEMENTARIA\n\nUnidad 1: Bibliografía obligatoria: Becerra, G. (2021). Los desafíos del big data para la formación sociológica. II Jornadas Institucionales de Innovación Educativa En La Universidad. Meneses Rocha, M. E. (2018). Grandes datos, grandes desafíos para las ciencias sociales. Revista Mexicana de Sociología, 80(2), 415–444. https://doi.org/10.22201/iis.01882503p.2018.2.57723 Kitchin, R. (2014). The Data Revolution: Big Data, Open Data, Data Infrastructures and Their Consequences. Sage. https://doi.org/10.4135/9781473909472 Bibliografía complementaria: boyd, D., & Crawford, K. (2012). Critical Questions for Big Data. Information, Communication & Society, 15(5), 662–679. https://doi.org/https://doi.org/10.1080/1369118X.2012.678878\nSavage, M., & Burrows, R. (2007). The coming crisis of empirical sociology. Sociology, 41(5), 885–899. https://doi.org/10.1177/0038038507080443 Unidad 2: Bibliografía obligatoria: Becerra, G., & López Alurralde, J. P. (2020a). Analisis de datos con R. En Introducción a la ciencia de datos con R: Una guía rápida para cientistas sociales. https://bookdown.org/gaston_becerra/curso-intro-r/analisis-de-datos-con-r.html Wickham, H., & Grolemund, G. (2019). Vectores. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Wickham, H., & Grolemund, G. (2019). Datos ordenados. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Bibliografía complementaria: Wickham, H., & Grolemund, G. (2019). R para ciencia de datos. https://es.r4ds.hadley.nz/ Grolemund, G. (2014). Hands-on programming with R: Write your own functions and simulations. ” O’Reilly Media, Inc.”. https://rstudio-education.github.io/hopr/ Unidad 3: Bibliografía obligatoria: Becerra, G., & López Alurralde, J. P. (2020). Entorno. En Introducción a la ciencia de datos con R: Una guía rápida para cientistas sociales. https://bookdown.org/gaston_becerra/curso-intro-r/entorno.html Wickham, H., & Grolemund, G. (2019). Transformación de datos. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Wickham, H., & Grolemund, G. (2019). Iteración. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Unidad 4: Bibliografía obligatoria: Wickham, H., & Grolemund, G. (2019). Visualización de datos. En R para ciencia de datos. https://es.r4ds.hadley.nz/ Cuevas-Fernadez, E. Introducción a Shiny. En Workshop CDSB 2021: Flujos de trabajo con RStudio y creación de Shiny apps. https://comunidadbioinfo.github.io/cdsb2021_workflows/introducción-a-shiny.html Bibliografía complementaria: Wickham, H. (2021). Mastering shiny. O’Reilly Media, Inc. https://mastering-shiny.org Unidad 5: Bibliografía obligatoria: Becerra, G., & López Alurralde, J. P. (2020). Procesamiento de lenguaje natural y análisis de sentimiento. En Introducción a la ciencia de datos con R: Una guía rápida para cientistas sociales. https://bookdown.org/gaston_becerra/curso-intro-r/entorno.html",
     "crumbs": [
       "Programa y crono",
-      "Análisis de datos 1"
+      "Programa"
     ]
   },
   {
@@ -148,7 +148,7 @@
     "text": "CARRERA: Licenciatura en Sociología ASIGNATURA: Análisis de datos I DOCENTE (s) A CARGO: Lic. Betsabé Cohen; Dr. Gastón Becerra AÑO: 2025\nClase Fecha Unidad Contenidos teóricos Coworking 1 20/03 Bienvenida y presentación de la materia Instalación de R y Rstudio. Interfaz y primeros pasos.\n2 27/03 1 Emergencia de las “ciencias de datos”. La sociología frente a las ciencias de datos y la “crisis metodológica”. La sociología y los datos. La mitología del data-mining y sus pretensiones epistemológicas. 2 Por que R y su comunidad. La sociología y R.\nEntornos, scripts y notebooks. Paquetes y librerías. Tipos de objetos en R. Convenciones y símbolos de R.\n3 03/04 1 Epistemología de datos\n2 El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. Creación de un script extrayendo datos de datos.gor.ar / sitio de tu provincia y transformación para su posterior análisis ETL como proceso “iterativo de conocimiento”.\nPresentación de consignas TP Parcial y su relación con TP Final 4 10/04 3 Filosofía “tidy” para estructurar y manipular datos. Tidyverse. Glimpse() y summary() Transformación de datos (dplyr y sus verbos), uniones (joins) y pivoteos. La funcion across() Transformación de exploración inicial. 5 17/04 Feriado Jueves Santo 6 24/04 Feriado Día de acción por la tolerancia y el respeto entre los pueblos 7 01/05 Feriado Día del Trabajo 8 08/05 3 Análisis exploratorio y descriptivos para datos numéricos y categóricos. Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. Validación y corrección de datos nulos, perdidos y outliers. 9 15/05 3 janitor() como complemento del universo tidyverse. La función map de purr.”Empoderando” los verbos de dplyr: la funcion map() de la libreria purr\n10 22/05 4 Graficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos Esquisser como herramienta de ayuda 11 29/05 4 Tablas: Gramática de Tablas paquetes GT y DT Mapas: tipos de mapas. Creación de mapas simples con leaflet Hacemos una tabla en gt con Spotify API Haciendo un mapa de coropletas 12 05/06 4 RMarkdown y Quarto Reportes y Presentaciones Tableros Tableros 13 12/06 4 Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.\n14 19/06 4 Coworking: Trabajo sobre proyecto final 15 26/06 4 Ronda de presentación de Proyectos Finales\n16 03/07 5 Cierre de la Materia entrega de notas y Tips para continuar trabajando con lo aprendido",
     "crumbs": [
       "Programa y crono",
-      "Análisis de datos 1 - Cronograma"
+      "Cronograma"
     ]
   },
   {
@@ -170,7 +170,7 @@
     "text": "Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.",
     "crumbs": [
       "Materiales",
-      "u5-comunidad"
+      "Unidad 5: Recursos y experiencias de la comunidad."
     ]
   },
   {
@@ -183,5 +183,194 @@
       "Materiales",
       "Unidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”"
     ]
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#los-cajones-de-rstudio",
+    "href": "materiales/slides/clase_1_parte_2.html#los-cajones-de-rstudio",
+    "title": "La interfaz de RStudio.",
+    "section": "Los “cajones” de RStudio:",
+    "text": "Los “cajones” de RStudio:\n\n\nEditor de scripts (Fuente): Es como tu recetario 📒. Aquá escribis y guardas tus “recetas” de análisis de datos, es decir, tus scripts de R. Podes escribir varias líneas de código, guardarlas y ejecutarlas cuando quieras.\nConsola: Es como la cocina 🔥 o la mesada de trabajo. Aquí podes ejecutar comandos de R uno por uno, probar cosas rápidamente, ver resultados inmediatos. Es interactiva.\nEntorno Global (AKA el Environment): Es como tu alacena 🧺. Aquí se almacenan todos los “ingredientes” que estás usando en tu análisis: tus datos importados, los objetos que creas, las funciones, etc. Podes ver qué tienes “guardado” y cómo se llaman.\nVisor de archivos, gráficos, paquetes, ayuda (Pestañas abajo a la derecha): Son como utensilios y electrodomésticos varios 🍽️. Te permiten ver tus archivos en la computadora, visualizar gráficos que creas, administrar los paquetes de R que tienes instalados, acceder a la ayuda y documentación, etc.\n\n[Image of Cocina con diferentes utensilios y alimentos representados como datos y gráficos]"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#a-cocinar-primeros-pasos-en-la-cocina-rstudio",
+    "href": "materiales/slides/clase_1_parte_2.html#a-cocinar-primeros-pasos-en-la-cocina-rstudio",
+    "title": "La interfaz de RStudio.",
+    "section": "¡A cocinar! Primeros pasos en la “cocina” RStudio",
+    "text": "¡A cocinar! Primeros pasos en la “cocina” RStudio\nAhora que conocemos nuestra “cocina de datos”, vamos a dar los primeros pasos:"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#la-consola-calculadora-y-probador-rápido",
+    "href": "materiales/slides/clase_1_parte_2.html#la-consola-calculadora-y-probador-rápido",
+    "title": "La interfaz de RStudio.",
+    "section": "1. La consola: calculadora y probador rápido 🧮",
+    "text": "1. La consola: calculadora y probador rápido 🧮\nLa consola es tu espacio interactivo. Podes usar R como una calculadora directamente por ejemplo probemos copiar este código a nuestra consola:\n1 + 1\n2 * 3\nTambién podes probar comandos más complejos y ver el resultado al instante. &gt; Probá un par de ejemplos en casa y los vemos juntos en clase!"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#scripts-guardando-nuestras-recetas",
+    "href": "materiales/slides/clase_1_parte_2.html#scripts-guardando-nuestras-recetas",
+    "title": "La interfaz de RStudio.",
+    "section": "2. Scripts: Guardando nuestras recetas 📝",
+    "text": "2. Scripts: Guardando nuestras recetas 📝\nEscribir comandos directamente en la consola es útil para probar, pero para un análisis más serio, necesitamos scripts.\nUn script de R es un archivo de texto plano (con extensión .R) donde guardas una serie de comandos de R.\nEs como guardar tu receta en un archivo para poder repetirla o modificarla después.\nEn RStudio, abris un nuevo script desde\nArchivo &gt; Nuevo Archivo &gt; Script de R.\n\n\n\nclase_1_parte_2_screenshot_r_open_file\n\n\n\n\n\n\n\n\nNote\n\n\n\n¡Buenas prácticas!\nComenta tus scripts (usando #) para recordar qué hace cada parte del código. Guarda tus scripts con nombres descriptivos (ej: analisis_encuesta_2024.R)."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#markdown-r-markdown-y-quarto-presentando-nuestros-platos",
+    "href": "materiales/slides/clase_1_parte_2.html#markdown-r-markdown-y-quarto-presentando-nuestros-platos",
+    "title": "La interfaz de RStudio.",
+    "section": "3. Markdown, R Markdown y Quarto: Presentando nuestros platos 🍽️",
+    "text": "3. Markdown, R Markdown y Quarto: Presentando nuestros platos 🍽️\nUna vez que cocinamos nuestros datos y tenemos resultados, queremos presentarlos de forma clara y profesional. Aquí entran en juego herramientas para crear documentos:\nMarkdown: Es un lenguaje de marcado ligero para escribir texto de forma sencilla y con formato (títulos, listas, links, imágenes, etc.). ¡Como escribir en negrita con texto o en itálica con texto!\nR Markdown: Es una extensión de Markdown que ¡entiende código de R!. Podes mezclar texto en Markdown con bloques de código de R que se ejecutan y muestran los resultados (tablas, gráficos, etc.) ¡Ideal para informes dinámicos!\nQuarto: Es la nueva generación de R Markdown. Es más potente y flexible, permite crear no solo documentos, sino también presentaciones (como esta!), sitios web, blogs, libros y más. ¡Y no solo con R, sino también con otros lenguajes!"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#ya-diste-tus-primeros-pasos",
+    "href": "materiales/slides/clase_1_parte_2.html#ya-diste-tus-primeros-pasos",
+    "title": "La interfaz de RStudio.",
+    "section": "¡Ya diste tus primeros pasos! 👣",
+    "text": "¡Ya diste tus primeros pasos! 👣\nCon esta introducción, ya tenes una idea general de:\n\n\nLa diferencia entre R y RStudio.\nLos componentes principales de la interfaz de RStudio (tu “cocina de datos”).\nCómo usar la consola como calculadora.\nQué son los scripts y por qué son importantes.\nLas herramientas para presentar tus resultados (¡Quarto!)."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#section",
+    "href": "materiales/slides/clase_1_parte_2.html#section",
+    "title": "La interfaz de RStudio.",
+    "section": "",
+    "text": "¡Ahora es momento de explorar, practicar y empezar a cocinar datos sociológicos! En la próxima clase, vamos a empezar a trabajar con datos reales en RStudio. ¡Prepárense para ensuciarte las manos (digitalmente) con los datos!"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#tenemos-4-grandes-areas",
+    "href": "materiales/slides/clase_1_parte_2.html#tenemos-4-grandes-areas",
+    "title": "La interfaz de RStudio.",
+    "section": "Tenemos 4 grandes areas",
+    "text": "Tenemos 4 grandes areas\nEditor de scripts (Fuente): Es como tu recetario 📒. Aquá escribis y guardas tus “recetas” de análisis de datos, es decir, tus scripts de R. Podes escribir varias líneas de código, guardarlas y ejecutarlas cuando quieras.\n\nConsola: Es como la cocina 🔥 o la mesada de trabajo. Aquí podes ejecutar comandos de R uno por uno, probar cosas rápidamente, ver resultados inmediatos. Es interactiva.\nEntorno Global (AKA el Environment): Es como tu alacena 🧺. Aquí se almacenan todos los “ingredientes” que estás usando en tu análisis: tus datos importados, los objetos que creas, las funciones, etc. Podes ver qué tienes “guardado” y cómo se llaman.\nVisor de archivos, gráficos, paquetes, ayuda (Pestañas abajo a la derecha): Son como utensilios y electrodomésticos varios 🍽️. Te permiten ver tus archivos en la computadora, visualizar gráficos que creas, administrar los paquetes de R que tienes instalados, acceder a la ayuda y documentación, etc."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html#its-a-wrap",
+    "href": "materiales/slides/clase_1_parte_2.html#its-a-wrap",
+    "title": "La interfaz de RStudio.",
+    "section": "It’s a wrap",
+    "text": "It’s a wrap\n¡Ahora es momento de explorar, practicar y empezar a cocinar datos sociológicos! En la próxima clase, vamos a empezar a trabajar con datos reales en RStudio. ¡Prepárense para ensuciarte las manos (digitalmente) con los datos!"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#scripts-recetas-de-análisis-reutilizables",
+    "href": "materiales/slides/clase_2_tema_2.html#scripts-recetas-de-análisis-reutilizables",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Scripts: Recetas de Análisis Reutilizables 📝",
+    "text": "Scripts: Recetas de Análisis Reutilizables 📝\n\n\nRetomemos este concepto fundamental: - Los scripts de R son archivos de texto plano con extensión .R. - Contienen una serie de comandos de R que se ejecutan en secuencia. - Son como “recetas” detalladas para realizar un análisis. - Ventajas: - Reutilizables: Podemos volver a ejecutar el mismo análisis fácilmente. - Editables: Podemos modificar y mejorar el script. - Documentados: Podemos agregar comentarios (#) para explicar el código."
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#consola-exploración-interactiva-y-pruebas-rápidas",
+    "href": "materiales/slides/clase_2_tema_2.html#consola-exploración-interactiva-y-pruebas-rápidas",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Consola: Exploración Interactiva y Pruebas Rápidas 🧮",
+    "text": "Consola: Exploración Interactiva y Pruebas Rápidas 🧮\n\nLa consola de R es un entorno interactivo.\nEjecuta comandos línea por línea.\nMuestra los resultados inmediatamente después de cada comando.\nIdeal para:\n\nExperimentar: Probar diferentes comandos y funciones.\nCálculos rápidos: Usar R como calculadora.\nExplorar datos: Ver partes de un objeto, comprobar resultados intermedios."
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#notebooks-informes-dinámicos-y-presentaciones-interactivas",
+    "href": "materiales/slides/clase_2_tema_2.html#notebooks-informes-dinámicos-y-presentaciones-interactivas",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Notebooks: Informes Dinámicos y Presentaciones Interactivas 📰",
+    "text": "Notebooks: Informes Dinámicos y Presentaciones Interactivas 📰\n\nLos Notebooks (R Markdown .Rmd o Quarto .ipynb o .qmd) combinan:\n\nCódigo R ejecutable: Bloques de código que se pueden ejecutar dentro del notebook.\nTexto: Explicaciones, interpretaciones, narrativa del análisis (en Markdown).\nResultados: Tablas, gráficos, figuras generadas por el código, ¡integrados en el documento!\n\nPerfectos para:\n\nInformes: Documentar un análisis de forma clara y reproducible.\nPresentaciones: Mostrar análisis interactivos y dinámicos.\nAprendizaje: Experimentar con código y ver los resultados en contexto."
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#vectores-listas-de-datos",
+    "href": "materiales/slides/clase_2_tema_2.html#vectores-listas-de-datos",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "1. Vectores: Listas de Datos 🔢",
+    "text": "1. Vectores: Listas de Datos 🔢\nUn vector es una colección ordenada de elementos, todos del mismo tipo. Imagina una columna en una hoja de cálculo.\nEjemplo: Las edades de un grupo de personas encuestadas:\n[25, 30, 22, 40, 35]"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#ayuda-en-r",
+    "href": "materiales/slides/clase_2_tema_2.html#ayuda-en-r",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Ayuda en R",
+    "text": "Ayuda en R\nEn el cuadrante de Output (abajo a la derecha) tenemos varias pestañas entre ella una que vamos a usar bastante la pestaña help Gracias al trabajo de la comunidad vas a notar que en general la documentación y ayuda de las funciones siempre te dan una descripción, detalles y ejemplos de usos."
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#creando-vectores-con-c",
+    "href": "materiales/slides/clase_2_tema_2.html#creando-vectores-con-c",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Creando Vectores con c()",
+    "text": "Creando Vectores con c()\nUsamos la función c() (de “combine” o “concatenar”) para crear vectores:\n\n c(25, 30, 22, 40, 35)\n\n[1] 25 30 22 40 35"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#say-my-name-ponerle-un-nombre-al-vector",
+    "href": "materiales/slides/clase_2_tema_2.html#say-my-name-ponerle-un-nombre-al-vector",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Say my name: ponerle un nombre al vector",
+    "text": "Say my name: ponerle un nombre al vector\nPara que podamos guardar y luego “llamar” nuestro vector vamos a necesitar ponerle un nombre. Y para ello en R utilizamos el símbolo &lt;- o también cariñosamente le decimos flechita\nDe esta manera podemos nombrar nuestro vector edades\n\nedades &lt;- c(25, 14, 22, 40, 35)\n\ny luego podemos llamarlo\n\nedades\n\n[1] 25 14 22 40 35\n\n\nY esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente\n\nedades+1\n\n[1] 26 15 23 41 36\n\n\nEsta característica a en la que la operación se ejecuta sobre cada uno de los elementos del vector se denomina element-wise.\nEntonces si realizamos una operación entre dos vectores se ejecutará entre los vectores con misma ubicación. Por ejemplo:\n\nedades*2\n\n[1] 50 28 44 80 70\n\n\n\nedades-5\n\n[1] 20  9 17 35 30"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#pará-pará-pará",
+    "href": "materiales/slides/clase_2_tema_2.html#pará-pará-pará",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Pará pará pará",
+    "text": "Pará pará pará\n\n¿A donde van los vectores que creamos?\nProbalo en tu consola y tu IDE de R y después volvé a esta presenta"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#pues-a-nuestro-global-enviroment",
+    "href": "materiales/slides/clase_2_tema_2.html#pues-a-nuestro-global-enviroment",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Pues a nuestro Global Enviroment",
+    "text": "Pues a nuestro Global Enviroment\nEn una “sección” que llamamos “Values”\nAhi también podemos ver una información importante sobre nuestro vector\n R nops muestra el nombre del vector (en este caso edades) y el tipo o clase que en este caso es numeric."
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#tipos-de-vectores-no-todos-los-ingredientes-son-iguales",
+    "href": "materiales/slides/clase_2_tema_2.html#tipos-de-vectores-no-todos-los-ingredientes-son-iguales",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Tipos de Vectores: No todos los “ingredientes” son iguales",
+    "text": "Tipos de Vectores: No todos los “ingredientes” son iguales\nLos vectores en R pueden almacenar diferentes tipos de datos:\n\n\nNuméricos (o double): Números con decimales. Ej: c(25, 30.5, 22, 40, 35.8) (edades, ingresos).\nEnteros (integer): Números enteros. Ej: c(1, 2, 3, 4, 5) (número de hijos).\nCaracteres (character): Texto (strings). Ej: c(\"Juan\", \"Maria\", \"Pedro\") (nombres, respuestas abiertas).\nLógicos (logical): Valores TRUE o FALSE. Ej: c(TRUE, FALSE, TRUE, TRUE) (¿votó en la última elección?).\nFactores (factor): Variables categóricas con niveles definidos. Ej: factor(c(\"Secundario\", \"Universitario\", \"Secundario\")) (nivel educativo)."
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#vectores-numéricos-cantidades-y-medidas",
+    "href": "materiales/slides/clase_2_tema_2.html#vectores-numéricos-cantidades-y-medidas",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Vectores Numéricos: Cantidades y Medidas 📊",
+    "text": "Vectores Numéricos: Cantidades y Medidas 📊\n\nAlmacenan números, con o sin decimales, positivos o negativos.\nIdeales para representar variables cuantitativas: edad, ingresos, años de educación, etc.\n\nAprovechandon nuestro vector edades Podriamos preguntarle a R la edad de nuestro entrevistado más joven. Para eso vamos a usar la función min()\n\nmin(edades)\n\n[1] 14\n\n\n\n\n\n\n\n\n¡Ahora ustedes!\n\n\nCreá tu vector con ingresos de hogares y realizá los siguientes cálculos usando estas funciones de R\n´min()´ ´mean()´\n¿Qué representá cada una? ¿Qué conclusiones sacarías acerca de esta muestra? Podes usar la ventana de ayuda integrada dentro de R ubicada en el panel inferior\n\n\n\nVectores de Caracteres: Texto y Etiquetas 💬\nOtro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto\n\nAlmacenan texto, cadenas de caracteres (strings).\nÚtiles para nombres, categorías nominales, respuestas de encuestas abiertas.\n\nVeamos un ejemplo\n\nprovincia &lt;- c(\"CABA\", \"Buenos Aires\",\"Buenos Aires\",\"Buenos Aires\",\"Mendoza\")\nprovincia\n\n[1] \"CABA\"         \"Buenos Aires\" \"Buenos Aires\" \"Buenos Aires\" \"Mendoza\"     \n\n\n\n\n\n\n\n\n¡OJO!\n\n\nLos strings no necesariamente tienen que contener letras. También pueden tener números almacenados como texto. Por ejemplo:\n\n c(\"10\", \"9\", \"8\", \"10\", \"9\")\n\n[1] \"10\" \"9\"  \"8\"  \"10\" \"9\" \n\n\n\n\n\nVectores Lógicos: Verdadero o Falso ✅ ❌\n\nAlmacenan valores lógicos: TRUE o FALSE.\nResultado de comparaciones, condiciones.\nMuy útiles para filtrar datos (los vas a adorar).\n\nPor ejemplo podriamos querer saber si nuestros entrevistados estan en edad de votar\n\nmayores_de_16 &lt;- edades &gt; 16\nmayores_de_16\n\n[1]  TRUE FALSE  TRUE  TRUE  TRUE\n\n\nVectores Factor: Categorías con Sentido 🗂️\n\nRepresentan variables categóricas (nominales u ordinales).\nDefinen niveles o categorías posibles.\nAyudan a R a entender que una variable es categórica y no solo texto.\nImportante para análisis estadísticos y gráficos.\n\nVayamos con un clasico de la sociología\n\nniveles_educativos_caracter &lt;- c(\"Primario\",\"Secundario\",\"Terciario\",\"Universitario\")\nniveles_educativos_factor &lt;- factor(niveles_educativos_caracter)\nniveles_educativos_factor\n\n[1] Primario      Secundario    Terciario     Universitario\nLevels: Primario Secundario Terciario Universitario\n\n\nCon la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()\n\nlevels(niveles_educativos_factor)\n\n[1] \"Primario\"      \"Secundario\"    \"Terciario\"     \"Universitario\"\n\n\n\n\n\n\n\n\nCharacters vs Factores\n\n\nSi miras el Global enbviroment ¿qué diferencias encontras entre niveles_educativos_caracter y niveles_educativos_factor?"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#data-frames-los-vectores-se-unen-porque-esa-es-la-ley-primera",
+    "href": "materiales/slides/clase_2_tema_2.html#data-frames-los-vectores-se-unen-porque-esa-es-la-ley-primera",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️",
+    "text": "2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️\nUn data frame es la estructura de datos más importante en R para análisis sociológico.\n\nSimilar a una tabla o hoja de cálculo en Excel\nOrganiza datos en filas (observaciones) y columnas (variables).\nCada columna puede ser de un tipo diferente (numérica, caracter, factor, etc.).\n\nCreando Data Frames con data.frame()\nPodemos crear data frames combinando vectores:\n\nnombres &lt;- c(\"Ana\", \"Pedro\", \"Maria\", \"Juan\", \"Sofia\")\nedades &lt;- c(25, 30, 22, 40, 35)\nnivel_edu &lt;- factor(c(\"Universitario\", \"Secundario\", \"Universitario\", \"Terciario\", \"Secundario\"))\n\nsociodata &lt;- data.frame(nombre = nombres, edad = edades, educacion = nivel_edu)\nsociodata\n\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\nPedro\n30\nSecundario\n\n\nMaria\n22\nUniversitario\n\n\nJuan\n40\nTerciario\n\n\nSofia\n35\nSecundario"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#estructura-tidy-de-data-frames",
+    "href": "materiales/slides/clase_2_tema_2.html#estructura-tidy-de-data-frames",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Estructura “Tidy” de Data Frames 🧹",
+    "text": "Estructura “Tidy” de Data Frames 🧹\nEn el “universo tidyverse” (que usaremos mucho), trabajamos con data frames “tidy” o “ordenados”:\n\nCada columna es una variable. (ej: nombre, edad, educación)\nCada fila es una observación. (ej: cada persona encuestada)\nCada celda contiene un único valor. (ej: la edad de Ana es 25)\n\n¡Esta estructura facilita mucho el análisis y la manipulación de datos!\n!()[images/clase_2_parte_2_screenshot_tidy_shape.png]\nSeleccionando Partes de un Data Frame ✂️\nPodemos acceder a partes específicas de un data frame usando corchetes [] o el símbolo $(AKA pesitos):\n\n\n\nPor posición (índices numéricos):\n::: {.cell}\n# Traer el caso en la Primera fila, segunda columna:\nsociodata[1, 2]\n::: {.cell-output .cell-output-stdout}\n[1] 25\n::: :::\n::: {.cell}\n# Traer toda la primera fila:\nsociodata[1, ]\n::: {.cell-output-display}\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\n\n\n::: :::\n::: {.cell}\n# Traer toda la segunda columna:\nsociodata[, 2]\n::: {.cell-output .cell-output-stdout}\n[1] 25 30 22 40 35\n::: :::\n\n\n\nPor nombre de columna ($):\n::: {.cell}\n# Columna \"educacion\" completa:\nsociodata$educacion\n::: {.cell-output .cell-output-stdout}\n[1] Universitario Secundario    Universitario Terciario     Secundario   \nLevels: Secundario Terciario Universitario\n::: :::\n::: {.cell}\n# Primer elemento de la columna \"nombre\":\nsociodata$nombre[1]\n::: {.cell-output .cell-output-stdout}\n[1] \"Ana\"\n::: :::"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#operadores-aritméticos-cálculos-con-datos",
+    "href": "materiales/slides/clase_2_tema_2.html#operadores-aritméticos-cálculos-con-datos",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗",
+    "text": "1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗\n\n+ Suma\n- Resta\n* Multiplicación\n/ División\n^ Potencia\n\nEjemplos con vectores numéricos:\n\nedades &lt;- c(25, 30, 22, 40, 35)\n\n# Sumar 5 años a todas las edades:\nedades + 5\n\n[1] 30 35 27 45 40\n\n\n\n# Calcular el doble de cada edad:\nedades * 2\n\n[1] 50 60 44 80 70"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#operadores-relacionales-comparando-datos",
+    "href": "materiales/slides/clase_2_tema_2.html#operadores-relacionales-comparando-datos",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "2. Operadores Relacionales: Comparando Datos > < == !=",
+    "text": "2. Operadores Relacionales: Comparando Datos &gt; &lt; == !=\n\n&gt; Mayor que\n&lt; Menor que\n&gt;= Mayor o igual que\n&lt;= Menor o igual que\n== Igual a (¡ojo, dos iguales!)\n!= No igual a (distinto de)\n\nEjemplos con vectores:\n\nedades &lt;- c(25, 30, 22, 40, 35)\n\n# ¿Qué edades son mayores de 30?\nedades &gt; 30\n\n[1] FALSE FALSE FALSE  TRUE  TRUE\n\n\n\nniveles_educativos &lt;- c(\"Secundario\", \"Universitario\", \"Primario\", \"Universitario\", \"Terciario\")\n\n# ¿Qué niveles educativos son \"Universitario\"?\nniveles_educativos == \"Universitario\"\n\n[1] FALSE  TRUE FALSE  TRUE FALSE"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#operadores-de-asignación-guardando-valores-en-objetos----",
+    "href": "materiales/slides/clase_2_tema_2.html#operadores-de-asignación-guardando-valores-en-objetos----",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "3. Operadores de Asignación: Guardando Valores en Objetos <- = ->",
+    "text": "3. Operadores de Asignación: Guardando Valores en Objetos &lt;- = -&gt;\n\n&lt;- (Asignación “flecha”): Asigna el valor de la derecha al objeto de la izquierda. ¡Es el más común y recomendado!\n::: {.cell}\nmi_variable &lt;- 10\nnombre_data_frame &lt;- sociodata\n:::\n= (Asignación “igual”): También asigna valores. Funciona similar a &lt;-, pero en algunos contextos puede ser menos claro.\n::: {.cell}\notra_variable = 20\n:::\n-&gt; (Asignación “flecha derecha”): Asigna el valor de la izquierda al objeto de la derecha. Menos común, menos legible.\n::: {.cell}\n\"Hola R\" -&gt; mensaje\n:::\n\nEn este curso, usaremos principalmente &lt;- para asignaciones. ¡Es una buena práctica mantener la consistencia!"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_1.html",
+    "href": "materiales/slides/clase_2_tema_1.html",
+    "title": "Por qué R y su comunidad. La sociología y R",
+    "section": "",
+    "text": "Introducción\nR es un lenguaje de programación ampliamente utilizado en la comunidad académica y profesional para el análisis de datos. Su flexibilidad y su ecosistema de paquetes han permitido que se convierta en una herramienta fundamental en múltiples disciplinas, incluyendo la sociología.\n\n\n¿Por qué R?\n\nSoftware libre y gratuito: R es un software de código abierto, lo que significa que cualquier persona puede usarlo, modificarlo y distribuirlo sin costos. Esto también implicancias desde el punto de vista de la Transparencia permitiendo a los usuarios ver cómo funcionan los algoritmos y métodos estadísticos, garantizando transparencia y confianza en los análisis realizados.\nAmplitud de Paquetes y Bibliotecas: R cuenta con CRAN, una red extensa de paquetes desarrollados por la comunidad, que proporciona herramientas para casi cualquier tipo de análisis, desde estadística básica hasta machine learning y visualización avanzada.\nActualización Constante y entre pares La comunidad activa de R continúa desarrollando y mejorando paquetes, asegurando que los usuarios tengan acceso a las últimas técnicas y metodologías en análisis de datos.\nAmplia comunidad de usuarios: Existen múltiples foros, grupos de discusión por temas muy específicos y conferencias dedicadas a R, facilitando el aprendizaje y la resolución de problemas.\nVersatilidad y escalabilidad: Permite manejar grandes volúmenes de datos, desde pequeñas encuestas hasta bases de datos masivas.\nPaquetes especializados: R cuenta con una vasta colección de paquetes diseñados para análisis en ciencias sociales, como tidyverse, survey, sjPlot y epitools.\n\n\n\n\nLa comunidad de R\nUno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciativas para compartir conocimientos y fomentar la colaboración, como:\n\nR-Ladies: Promueve la diversidad de género en la comunidad de R.\nROpenSci: Facilita herramientas abiertas para la ciencia de datos.\nRStudio Community: Espacio de aprendizaje e intercambio entre usuarios.\n\n\n\n\n\n# Qué significa comunidad en la práctica\n\n\n\n\n\nR y la sociología\nEn sociología, R se ha convertido en una herramienta clave para la investigación, permitiendo el procesamiento y análisis de encuestas, datos censales y redes sociales. Algunas aplicaciones específicas incluyen:\n\nAnálisis de encuestas y datos de opinión pública usando paquetes como survey.\nAnálisis de redes sociales con igraph.\nProcesamiento de datos censales con tidyCensus.\n\n\n\n\nUn ejemplo argentino 🧉: El paquete {EPH}\nUna de las experiencias más interesantes en la comunidad de R en sociología es el desarrollo del paquete {EPH}, que permite acceder y analizar los datos de la Encuesta Permanente de Hogares (EPH) en Argentina. Esto ha facilitado estudios sobre desigualdad, pobreza y mercado laboral.\n\n\n\n\n\n\n\nCódigo de ejemplo\nlibrary(tidyverse)\nlibrary(EPH)\n\n# Descargar datos de la EPH\nbase_eph &lt;- get_microdata(year = 2023, trimester = 3)\n\n# Visualizar estructura de los datos\nglimpse(base_eph)\n\n# Filtrar datos para analizar ingresos según género\ningresos_genero &lt;- base_eph %&gt;%\n  filter(P21 &gt; 0) %&gt;%  # Excluir valores sin ingresos reportados\n  group_by(CH04) %&gt;%   # Agrupar por género\n  summarise(ingreso_medio = mean(P21, na.rm = TRUE))\n\n# Visualizar los resultados\ningresos_genero %&gt;%\n  ggplot(aes(x = CH04, y = ingreso_medio, fill = CH04)) +\n  geom_col() +\n  labs(title = \"Ingreso medio según género - EPH 2023\",\n       x = \"Género\", y = \"Ingreso medio\") +\n  theme_minimal()\nEste análisis permite explorar desigualdades de ingresos según género y otros factores socioeconómicos, brindando herramientas clave para estudios sociológicos.\n\n\n\n\nPor qué RStudio\nInterfaz Amigable: RStudio proporciona una interfaz gráfica de usuario que facilita la escritura de código, la visualización de resultados y la gestión de proyectos, mejorando la productividad y la experiencia del usuario.\nHerramientas de Debugging y Testing: RStudio incluye herramientas para depuración y pruebas, facilitando el desarrollo de scripts y asegurando la precisión y eficiencia del código.\n\n\n\nPara ir cerrando…\nComo vimos el uso de R en sociología permite no solo mejorar los análisis de datos, sino también fomentar la colaboración en comunidad. La comunidad de R ofrece múltiples herramientas y recursos que facilitan el aprendizaje y la implementación de técnicas avanzadas en ciencias sociales.\n\nLa comunidad de R nos permite atravesar este proceso de conocimiento de manera colectiva y de manera transdisiplinaria.\n¿Qué esperas para sumarte?"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_2.html",
+    "href": "materiales/slides/clase_1_parte_2.html",
+    "title": "La interfaz de RStudio.",
+    "section": "",
+    "text": "A veces podemos confundirnos un poco al principio con R y RStudio, ¡pero no te preocupes! Pensalo de esta manera:\n\nR es el motor del coche 🚗: Es el lenguaje de programación en sí mismo, la potencia que hace todo el trabajo pesado, los cálculos, el análisis.\nRStudio es el tablero de control dashboard 🎛️ del coche: Es la interfaz que hace que sea mucho más fácil y amigable trabajar con R. Nos da las herramientas organizadas, botones, pantallas, todo en un solo lugar para que la experiencia sea más cómoda y eficiente.\n\n\n\n\nEn resumen: Necesitas tener R instalado (el motor) para que RStudio (el tablero) funcione. RStudio usa R para todo."
   }
 ]
