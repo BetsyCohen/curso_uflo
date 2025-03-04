@@ -1,0 +1,161 @@
+---
+title: "Flujo de trabajo con datos en R"
+subtitle: "Análisis de Datos 1"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+date: "10/04/2025"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+# Objetivos de hoy
+
+En la clase de hoy, vamos a cubrir dos aspectos esenciales para cualquier proyecto de análisis de datos:
+
+1.  **Flujo de Trabajo:** Entender los pasos generales que seguimos desde que tenemos una pregunta de investigación hasta que comunicamos resultados.
+2.  **Importación de Datos desde Excel:** Aprender a traer datos a R desde archivos Excel, tanto online como locales.
+
+En todo ello vamos a usar paquetes de la liubreria **tidyverse** y vamos gestionarlo siguiendo buenas prácticas usando **Proyectos de R y el paquete `here()`**
+
+# Flujo de Trabajo en un Proyecto de Análisis de Datos 📊
+
+Un flujo de trabajo bien definido nos ayuda a:
+
+-   **Organizar** nuestro proyecto.
+-   **Ser más eficientes** y evitar errores.
+-   **Garantizar la reproducibilidad** de nuestro análisis.
+-   **Comunicar** nuestros resultados de forma clara.
+
+## Uso de Proyectos de R para Organizar tu Trabajo 🗂️
+
+Antes de empezar a importar datos, recordemos **por qué es fundamental trabajar con Proyectos de R**:
+
+-   **Organización:** Un proyecto de R crea una carpeta dedicada para todos los archivos de tu análisis: scripts, datos, documentos, etc. ¡Todo en un solo lugar!
+-   **Rutas relativas:** Dentro de un proyecto, puedes usar rutas relativas para acceder a tus archivos, lo que hace que tu código sea **más portable y reproducible**.
+-   **Entorno de trabajo aislado:** Cada proyecto tiene su propio entorno, evitando conflictos entre diferentes análisis.
+-   **Facilita la colaboración:** Compartir un proyecto de R con otros es mucho más sencillo que compartir archivos sueltos.
+
+**Buenas Prácticas** !()\[images/meme_buenas_practicas.png\] Siempre empezá creando un Proyecto de R antes de empezar a analizar datos
+
+## Bajamos el Archivo y lo guardamos en el proyecto 📂
+
+Vamos a trabajar con los datos de la Encuesta Nacional de Consumos Culturales 2022-2023 realizada desde el Sistema de Información Nacional de Cultura Argentina (SiNCA)
+
+Vamos directamente al [portal de datos abiertos de Cultura](https://www.datos.gob.ar/dataset/cultura-encuesta-nacional-consumos-culturales) vamos a buscar el archivo **Encuesta Nacional de Consumos Culturales 2022-2023** y solo hacer clic en el botón de descargar.
+
+Vamos a guardar el archivo csv en una carpeta **DENTRO** de **nuestro proyecto**
+
+**Buenas Prácticas** !()\[images/meme_buenas_practicas.png\] Siempre es una buena idea no revolear el archivo por cualquier lado sino DENTRO del proyecto que ya creamos.
+
+## Leer el archivo (la forma desprolija)
+
+Una opción sería usar la función read_csv usando tooooda la ruta de nuestra compu, algo asi como
+
+`read.csv(C:/Users/TuUsuario/Documentos/MiProyecto/data/base-datos-encc-2022-2023.csv)`
+
+¿Funcionaría? sí,
+
+¿Es lo más recomendable si vamos a trabajar desde distintas compus o con otras personas que van a compartir el archivo con nosotros? adivinaste: no.
+
+## Para ello es que existe una hermosa librería llamada `here()`
+
+!()\[images/clase_3_tema_1_here.png\]
+
+## Librería`here()` para Rutas de Archivos Inteligentes 📍
+
+Para trabajar con rutas relativas de forma aún más fácil y robusta dentro de un Proyecto de R, vamos a usar el paquete **`here()`**.
+
+**¿Qué hace `here()`?**
+
+-   Te ayuda a construir rutas de archivos **relativas a la raíz de tu Proyecto de R**.
+-   **No importa dónde abras o ejecutes tu script**, `here()` siempre encontrará los archivos correctamente, ¡siempre que estén dentro de la estructura de tu proyecto!
+
+## Instalando y cargando `here()`:\*\*
+
+Como siempre vamos a instalar la librería con la función `install.packages()` **una vez:**
+
+```{r eval=FALSE}
+install.packages("here")
+```
+
+Y la vamos a **cargar al inicio de tu script, notebook, o Quarto file:**
+
+```{r}
+library(here)
+```
+
+## Usando `here()` para la Ruta al Archivo Local
+
+Ahora, en lugar de escribir la ruta completa "C:/Users/TuUsuario/Documentos/MiProyecto/data/base-datos-encc-2022-2023.csv" (que no es portable), vamos a usar `here()` para construir la ruta de forma relativa a la raíz del proyecto. En mi caso el archivo lo descargue dentro de los materiales de este curso en una carpeta que llame datasets por lo que mi código usando here() será:
+
+```{r}
+library(here)
+
+ruta_archivo_local <- here("materiales/datasets", "base-datos-encc-2022-2023.csv")
+ruta_archivo_local # Para ver la ruta que construye here()
+
+encuesta <- read.csv(ruta_archivo_local)
+encuesta
+```
+
+## ¿Qué hicimos hasta acá?
+
+-   `ruta_archivo_local <- here("datasets", "base-datos-encc-2022-2023.csv")`: `here("datasets", "base-datos-encc-2022-2023.csv")` construye la ruta al archivo. `here()` asume que la carpeta "datasets" está dentro de la raíz de tu proyecto, y "base-datos-encc-2022-2023.csv" dentro de "datasets".
+
+-   `ruta_archivo_local`: Imprimimos la variable `ruta_archivo_local` para ver qué ruta completa construyó `here()`. Esto es útil para verificar que la ruta sea correcta.
+
+-   `read.csv(ruta_archivo_local)`: Leemos el archivo csv usando la ruta construida por `here()`.
+
+## Por qué me conviene usar `here()`
+
+-   **Portabilidad:** El código funcionará en cualquier computadora, siempre que el archivo "Encuestas ATTTA.xlsx" esté en la carpeta "data" dentro del proyecto.
+
+-   **Legibilidad:** `here("data", "base-datos-encc-2022-2023.csv")` es mucho más claro y fácil de entender que una ruta completa "C:/...".
+
+-   **Mantenibilidad:** Si cambias la estructura de carpetas de tu proyecto, solo necesitas ajustar la llamada a `here()`, no todas las rutas en tu código.
+
+## 2. Importar el csv Directamente desde la URL (Online) 🌐
+
+"Pero Betsy, ¿para qué me voy a bajar el archivo si ya está on line?"
+
+Podemos leer el archivo csv **directamente desde la URL de GitHub** usando `read.csv()` y la **URL del archivo**.
+
+## Paso 1: obtener la URL del archivo:\*\*
+
+1.  Vamos nuevamente al portal de datos pero esta vez en vez de hacer clic en Descacar con el botón izquierdo del mouse lo hacemos con el botón derecho lo cual nos va abrir un desplegable que nos permite copiar la URL de descarga. en este caso: *"https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/b635d1fc-2161-4901-a21d-7f93d56d99a4/download/base-datos-encc-2022-2023.csv"*
+2.  Copiamos la URL y vamos a R
+3.  La url vamos a asignarsela a un valor dentro de nuestro Global Enviromenent usanbdo el símbolo **\<-** y poniendo la URL entre comillas:
+
+```{r}
+url_encuesta <- "https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/b635d1fc-2161-4901-a21d-7f93d56d99a4/download/base-datos-encc-2022-2023.csv"
+```
+
+## Paso 2: cargar la base
+
+```{r}
+encuesta_version_directo_online <- read.csv(url_encuesta)
+encuesta_version_directo_online
+```
+
+## ¡Datos Importados Exitosamente!
+
+Ya sea que importes el archivo **directamente desde la URL de GitHub (online)** o **desde un archivo local** usando `here()`, ahora tienes los datos en R como data frames.
+
+¡Están listos para empezar a explorarlos y analizarlos con las herramientas tidyverse!
+
+# Próximos Pasos: Exploración Inicial de la encuesta de consumos culturales 🔍
+
+En la próxima clase, vamos a comenzar a trabajar con la encuesta de consumos culturales. Veremos cómo:
+
+-   Inspeccionar la estructura del data frame (`glimpse()`, `str()`).
+-   Ver las primeras y últimas filas (`head()`, `tail()`).
+-   Obtener resúmenes estadísticos básicos (`summary()`).

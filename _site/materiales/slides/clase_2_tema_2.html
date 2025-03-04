@@ -283,9 +283,9 @@ Betsy Cohen
 <p>En el cuadrante de Output (abajo a la derecha) tenemos varias pestañas entre ella una que vamos a usar bastante la pestaña <strong>help</strong> Gracias al trabajo de la comunidad vas a notar que en general la documentación y ayuda de las funciones siempre te dan una descripción, detalles y ejemplos de usos.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img data-src="images/clase_2_parte_2_screenshot_help_1.png"></p>
+<p><img data-src="images/clase_2_parte_2_screenshot_help_1.png" style="width:60.0%"></p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/clase_2_parte_2_screenshot_help_2.png"></p>
+<p><img data-src="images/clase_2_parte_2_screenshot_help_2.png" style="width:60.0%"></p>
 </div></div>
 </section></section>
 <section>
@@ -328,6 +328,9 @@ Betsy Cohen
 <pre><code>[1] 25 14 22 40 35</code></pre>
 </div>
 </div>
+</section>
+<section id="say-my-name-ponerle-un-nombre-al-vector-1" class="slide level2 smaller">
+<h2>Say my name: ponerle un nombre al vector</h2>
 <p>Y esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>edades<span class="sc">+</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -353,13 +356,13 @@ Betsy Cohen
 <section id="pará-pará-pará" class="slide level2">
 <h2>Pará pará pará</h2>
 
-<img data-src="images/clase_2_parte_2_meme_para_para_para.jpg" class="r-stretch"><p>¿A donde van los vectores que creamos?</p>
+<img data-src="images/clase_2_parte_2_meme_para_para_para.jpg" class="quarto-figure quarto-figure-center r-stretch"><p><strong>¿Dónde están los vectores que creamos?</strong></p>
 <p><strong>Probalo</strong> en tu consola y tu IDE de R y después volvé a esta presenta</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-
-<img data-src="images/clase_2_parte_2_a_few_moments_later.jpg" class="r-stretch"></section>
+<p><img data-src="images/clase_2_parte_2_a_few_moments_later.jpg" style="width:100.0%;height:100.0%"></p>
+</section>
 <section id="pues-a-nuestro-global-enviroment" class="slide level2">
 <h2>Pues a nuestro Global Enviroment!</h2>
 <p>En una “sección” que llamamos <strong>“Values”</strong></p>
@@ -380,8 +383,8 @@ Betsy Cohen
 </ul>
 </div>
 </section>
-<section id="vectores-numéricos-cantidades-y-medidas" class="slide level2">
-<h2>Vectores Numéricos: Cantidades y Medidas 📊</h2>
+<section id="numéricos-cantidades-y-medidas" class="slide level2">
+<h2>Numéricos: Cantidades y Medidas 📊</h2>
 <ul>
 <li>Almacenan números, con o sin decimales, positivos o negativos.</li>
 <li>Ideales para representar variables cuantitativas: edad, ingresos, años de educación, etc.</li>
@@ -409,8 +412,8 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="vectores-de-caracteres-texto-y-etiquetas" class="slide level2">
-<h2>Vectores de Caracteres: Texto y Etiquetas 💬</h2>
+<section id="caracteres-texto-y-etiquetas" class="slide level2">
+<h2>Caracteres: Texto y Etiquetas 💬</h2>
 <p>Otro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto</p>
 <ul>
 <li>Almacenan texto, cadenas de caracteres (strings).</li>
@@ -443,7 +446,9 @@ Betsy Cohen
 </div>
 </div>
 </div>
-<h3 id="vectores-lógicos-verdadero-o-falso">Vectores Lógicos: Verdadero o Falso ✅ ❌</h3>
+</section>
+<section id="lógicos-verdadero-o-falso" class="slide level2">
+<h2>Lógicos: Verdadero o Falso ✅ ❌</h2>
 <ul>
 <li>Almacenan valores lógicos: <code>TRUE</code> o <code>FALSE</code>.</li>
 <li>Resultado de comparaciones, condiciones.</li>
@@ -457,7 +462,11 @@ Betsy Cohen
 <pre><code>[1]  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
 </div>
-<h3 id="vectores-factor-categorías-con-sentido">Vectores Factor: Categorías con Sentido 🗂️</h3>
+</section>
+<section id="factores-categorías-con-sentido" class="slide level2 smaller">
+<h2>Factores: Categorías con Sentido</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
 <li>Representan variables categóricas (nominales u ordinales).</li>
 <li>Definen <strong>niveles</strong> o categorías posibles.</li>
@@ -474,13 +483,15 @@ Betsy Cohen
 Levels: Primario Secundario Terciario Universitario</code></pre>
 </div>
 </div>
-<p>Con la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()</p>
+</div><div class="column" style="width:50%;">
+<p>Con la función <code>factor()</code> nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion <code>levels()</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">levels</span>(niveles_educativos_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Primario"      "Secundario"    "Terciario"     "Universitario"</code></pre>
 </div>
 </div>
+</div></div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -490,7 +501,7 @@ Levels: Primario Secundario Terciario Universitario</code></pre>
 <p><strong>Characters vs Factores</strong></p>
 </div>
 <div class="callout-content">
-<p>Si miras el Global enbviroment ¿qué diferencias encontras entre niveles_educativos_caracter y niveles_educativos_factor?</p>
+<p>Si miras el <strong>Global enbviroment</strong> ¿qué diferencias encontras entre los vectores niveles_educativos_caracter y niveles_educativos_factor?</p>
 </div>
 </div>
 </div>
@@ -503,15 +514,24 @@ Levels: Primario Secundario Terciario Universitario</code></pre>
 <li>Organiza datos en <strong>filas</strong> (observaciones) y <strong>columnas</strong> (variables).</li>
 <li><strong>Cada columna puede ser de un tipo diferente</strong> (numérica, caracter, factor, etc.).</li>
 </ul>
-<h3 id="creando-data-frames-con-data.frame">Creando Data Frames con <code>data.frame()</code></h3>
-<p>Podemos crear data frames combinando vectores:</p>
+</section>
+<section id="creando-data-frames" class="slide level2 smaller">
+<h2>Creando Data Frames</h2>
+<p>Podemos crear data frames con la función <code>data.frame()</code> a partir de estos vectores:</p>
+<p>Supongamos que tenemos tres vectores chacarcter, otro numerico y otro factorial</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>nombres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ana"</span>, <span class="st">"Pedro"</span>, <span class="st">"Maria"</span>, <span class="st">"Juan"</span>, <span class="st">"Sofia"</span>)</span>
 <span id="cb24-2"><a></a>edades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">40</span>, <span class="dv">35</span>)</span>
-<span id="cb24-3"><a></a>nivel_edu <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Universitario"</span>, <span class="st">"Secundario"</span>, <span class="st">"Universitario"</span>, <span class="st">"Terciario"</span>, <span class="st">"Secundario"</span>))</span>
-<span id="cb24-4"><a></a></span>
-<span id="cb24-5"><a></a>sociodata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nombre =</span> nombres, <span class="at">edad =</span> edades, <span class="at">educacion =</span> nivel_edu)</span>
-<span id="cb24-6"><a></a>sociodata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a></a>nivel_edu <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Universitario"</span>, <span class="st">"Secundario"</span>, <span class="st">"Universitario"</span>, <span class="st">"Terciario"</span>, <span class="st">"Secundario"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Usando <code>data.frame()</code> Nombramos a cada una de las variables indicando el nombre es la columna = nombre_del_vector</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>sociodata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-2"><a></a>  <span class="at">nombre =</span> nombres, </span>
+<span id="cb25-3"><a></a>  <span class="at">edad =</span> edades, </span>
+<span id="cb25-4"><a></a>  <span class="at">educacion =</span> nivel_edu)</span>
+<span id="cb25-5"><a></a></span>
+<span id="cb25-6"><a></a>sociodata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top">
@@ -563,21 +583,16 @@ Levels: Primario Secundario Terciario Universitario</code></pre>
 <li><strong>Cada celda contiene un único valor.</strong> (ej: la edad de Ana es 25)</li>
 </ol>
 <p>¡Esta estructura facilita mucho el análisis y la manipulación de datos!</p>
-<p>!()[images/clase_2_parte_2_screenshot_tidy_shape.png]</p>
-<h3 id="seleccionando-partes-de-un-data-frame">Seleccionando Partes de un Data Frame ✂️</h3>
-<p>Podemos acceder a partes específicas de un data frame usando corchetes <code>[]</code> o el símbolo <code>$</code>(AKA pesitos):</p>
+
+<img data-src="images/clase_2_parte_2_screenshot_tidy_shape.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="seleccionando-partes-de-un-data-frame" class="slide level2 smaller">
+<h2>Seleccionando Partes de un Data Frame ✂️</h2>
+<p>Podemos acceder a partes específicas de un data frame usando corchetes <code>[]</code> o el símbolo <code>$</code> (también le decimos “pesitos”):</p>
 <div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><p><strong>Por posición (índices numéricos):</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Traer el caso en la Primera fila, segunda columna:</span></span>
-<span id="cb25-2"><a></a>sociodata[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 25</code></pre>
-</div>
-</div>
-<div class="cell">
+<p>:::{.column width = ‘50%’} - <strong>Por posición (índices numéricos):</strong></p><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb26-2"><a></a><span class="in"># Traer el caso en la Primera fila, segunda columna:</span></span>
+<span id="cb26-3"><a></a><span class="in">sociodata[1, 2]</span></span>
+<span id="cb26-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Traer toda la primera fila:</span></span>
 <span id="cb27-2"><a></a>sociodata[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -600,35 +615,27 @@ Levels: Primario Secundario Terciario Universitario</code></pre>
 </table>
 </div>
 </div>
-</div>
-<div class="cell">
+</div><div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Traer toda la segunda columna:</span></span>
 <span id="cb28-2"><a></a>sociodata[, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25 30 22 40 35</code></pre>
 </div>
-</div></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<ul>
-<li><p><strong>Por nombre de columna (<code>$</code>):</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Columna "educacion" completa:</span></span>
-<span id="cb30-2"><a></a>sociodata<span class="sc">$</span>educacion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Universitario Secundario    Universitario Terciario     Secundario   
-Levels: Secundario Terciario Universitario</code></pre>
 </div>
 </div>
+<p>:::{.column width = “50%”} - <strong>Por nombre de columna (<code>$</code>):</strong></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb30-2"><a></a><span class="in"># Columna "educacion" completa:</span></span>
+<span id="cb30-3"><a></a><span class="in">sociodata$educacion</span></span>
+<span id="cb30-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Primer elemento de la columna "nombre":</span></span>
-<span id="cb32-2"><a></a>sociodata<span class="sc">$</span>nombre[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Primer elemento de la columna "nombre":</span></span>
+<span id="cb31-2"><a></a>sociodata<span class="sc">$</span>nombre[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ana"</code></pre>
 </div>
-</div></li>
-</ul>
-</div></div>
+</div>
+<p>::: ::::</p>
 </section></section>
 <section>
 <section id="operadores-en-r-dando-órdenes-a-los-datos" class="title-slide slide level1 center">
@@ -641,7 +648,7 @@ Levels: Secundario Terciario Universitario</code></pre>
 <li><strong>De Asignación:</strong> Para asignar valores a objetos (¡ya los usamos con <code>&lt;-</code>!).</li>
 </ol>
 </section>
-<section id="operadores-aritméticos-cálculos-con-datos" class="slide level2">
+<section id="operadores-aritméticos-cálculos-con-datos" class="slide level2 smaller">
 <h2>1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗</h2>
 <ul>
 <li><code>+</code> Suma</li>
@@ -650,26 +657,26 @@ Levels: Secundario Terciario Universitario</code></pre>
 <li><code>/</code> División</li>
 <li><code>^</code> Potencia</li>
 </ul>
-<p><strong>Ejemplos con vectores numéricos:</strong></p>
+<p><strong>Por ejemplo:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>edades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">40</span>, <span class="dv">35</span>)</span>
-<span id="cb34-2"><a></a></span>
-<span id="cb34-3"><a></a><span class="co"># Sumar 5 años a todas las edades:</span></span>
-<span id="cb34-4"><a></a>edades <span class="sc">+</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>edades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">40</span>, <span class="dv">35</span>)</span>
+<span id="cb33-2"><a></a></span>
+<span id="cb33-3"><a></a><span class="co"># Sumar 5 años a todas las edades:</span></span>
+<span id="cb33-4"><a></a>edades <span class="sc">+</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 30 35 27 45 40</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># Calcular el doble de cada edad:</span></span>
-<span id="cb36-2"><a></a>edades <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># Calcular el doble de cada edad:</span></span>
+<span id="cb35-2"><a></a>edades <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50 60 44 80 70</code></pre>
 </div>
 </div>
 </section>
-<section id="operadores-relacionales-comparando-datos" class="slide level2">
-<h2>2. Operadores Relacionales: Comparando Datos &gt; &lt; == !=</h2>
+<section id="operadores-relacionales" class="slide level2 smaller">
+<h2>2. Operadores Relacionales</h2>
 <ul>
 <li><code>&gt;</code> Mayor que</li>
 <li><code>&lt;</code> Menor que</li>
@@ -680,44 +687,44 @@ Levels: Secundario Terciario Universitario</code></pre>
 </ul>
 <p><strong>Ejemplos con vectores:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>edades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">40</span>, <span class="dv">35</span>)</span>
-<span id="cb38-2"><a></a></span>
-<span id="cb38-3"><a></a><span class="co"># ¿Qué edades son mayores de 30?</span></span>
-<span id="cb38-4"><a></a>edades <span class="sc">&gt;</span> <span class="dv">30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>edades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">40</span>, <span class="dv">35</span>)</span>
+<span id="cb37-2"><a></a></span>
+<span id="cb37-3"><a></a><span class="co"># ¿Qué edades son mayores de 30?</span></span>
+<span id="cb37-4"><a></a>edades <span class="sc">&gt;</span> <span class="dv">30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE FALSE  TRUE  TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>niveles_educativos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Secundario"</span>, <span class="st">"Universitario"</span>, <span class="st">"Primario"</span>, <span class="st">"Universitario"</span>, <span class="st">"Terciario"</span>)</span>
-<span id="cb40-2"><a></a></span>
-<span id="cb40-3"><a></a><span class="co"># ¿Qué niveles educativos son "Universitario"?</span></span>
-<span id="cb40-4"><a></a>niveles_educativos <span class="sc">==</span> <span class="st">"Universitario"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>niveles_educativos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Secundario"</span>, <span class="st">"Universitario"</span>, <span class="st">"Primario"</span>, <span class="st">"Universitario"</span>, <span class="st">"Terciario"</span>)</span>
+<span id="cb39-2"><a></a></span>
+<span id="cb39-3"><a></a><span class="co"># ¿Qué niveles educativos son "Universitario"?</span></span>
+<span id="cb39-4"><a></a>niveles_educativos <span class="sc">==</span> <span class="st">"Universitario"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE FALSE  TRUE FALSE</code></pre>
 </div>
 </div>
 </section>
-<section id="operadores-de-asignación-guardando-valores-en-objetos----" class="slide level2">
-<h2>3. Operadores de Asignación: Guardando Valores en Objetos &lt;- = -&gt;</h2>
+<section id="operadores-de-asignación" class="slide level2 smaller">
+<h2>3. Operadores de Asignación</h2>
 <ul>
-<li><p><strong><code>&lt;-</code> (Asignación “flecha”):</strong> Asigna el valor de la derecha al objeto de la izquierda. <strong>¡Es el más común y recomendado!</strong></p>
+<li><p><strong><code>&lt;-</code> (Asignación “flechita”):</strong> Asigna el valor de la derecha al objeto de la izquierda. <strong>¡Es el más común y recomendado!</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>mi_variable <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb42-2"><a></a>nombre_data_frame <span class="ot">&lt;-</span> sociodata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>mi_variable <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb41-2"><a></a>nombre_data_frame <span class="ot">&lt;-</span> sociodata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p><strong><code>=</code> (Asignación “igual”):</strong> También asigna valores. Funciona similar a <code>&lt;-</code>, pero en algunos contextos puede ser menos claro.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>otra_variable <span class="ot">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>otra_variable <span class="ot">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p><strong><code>-&gt;</code> (Asignación “flecha derecha”):</strong> Asigna el valor de la izquierda al objeto de la derecha. Menos común, menos legible.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="st">"Hola R"</span> <span class="ot">-&gt;</span> mensaje</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="st">"Hola R"</span> <span class="ot">-&gt;</span> mensaje</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul>
 <p><strong>En este curso, usaremos principalmente <code>&lt;-</code> para asignaciones. ¡Es una buena práctica mantener la consistencia!</strong></p>
 </section></section>
-<section id="resumen-de-la-clase-2-pilares-de-r" class="title-slide slide level1 center">
+<section id="resumen-de-la-clase-2-pilares-de-r" class="title-slide slide level1 smaller center">
 <h1>Resumen de la Clase 2: ¡Pilares de R!</h1>
 <p>Hoy aprendimos sobre:</p>
 <ul>

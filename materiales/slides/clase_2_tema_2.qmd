@@ -92,11 +92,11 @@ En el cuadrante de Output (abajo a la derecha) tenemos varias pestañas entre el
 
 ::::: columns
 ::: {.column width="50%"}
-![](images/clase_2_parte_2_screenshot_help_1)
+![](images/clase_2_parte_2_screenshot_help_1){width="60%"}
 :::
 
 ::: {.column width="50%"}
-![](images/clase_2_parte_2_screenshot_help_2)
+![](images/clase_2_parte_2_screenshot_help_2){width="60%"}
 :::
 :::::
 
@@ -141,6 +141,8 @@ y luego podemos llamarlo
 edades
 ```
 
+## Say my name: ponerle un nombre al vector {.smaller}
+
 Y esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente
 
 ```{r}
@@ -161,15 +163,15 @@ edades-5
 
 ## Pará pará pará
 
-![](images/clase_2_parte_2_meme_para_para_para.jpg)
+![](images/clase_2_parte_2_meme_para_para_para.jpg){fig-align="center"}
 
-¿A donde van los vectores que creamos?
+**¿Dónde están los vectores que creamos?**
 
 **Probalo** en tu consola y tu IDE de R y después volvé a esta presenta
 
 ## 
 
-![](images/clase_2_parte_2_a_few_moments_later.jpg)
+![](images/clase_2_parte_2_a_few_moments_later.jpg){width="100%" height="100%"}
 
 ## Pues a nuestro Global Enviroment!
 
@@ -177,7 +179,7 @@ En una "sección" que llamamos **"Values"**
 
 Ahi también podemos ver una información importante sobre nuestro vector
 
-![](images/clase_2_parte_2_screenshot_vector_detail_info.png) 
+![](images/clase_2_parte_2_screenshot_vector_detail_info.png)
 
 R nos muestra el **nombre** del vector (en este caso `edades`) y el tipo o **clase** que en este caso es `numeric`.
 
@@ -193,7 +195,7 @@ Los vectores en R pueden almacenar diferentes tipos de datos:
 -   **Factores (`factor`):** Variables categóricas con niveles definidos. Ej: `factor(c("Secundario", "Universitario", "Secundario"))` (nivel educativo).
 :::
 
-## Vectores Numéricos: Cantidades y Medidas 📊
+## Numéricos: Cantidades y Medidas 📊
 
 -   Almacenan números, con o sin decimales, positivos o negativos.
 -   Ideales para representar variables cuantitativas: edad, ingresos, años de educación, etc.
@@ -214,7 +216,7 @@ Creá tu vector con ingresos de hogares y realizá los siguientes cálculos usan
 ¿Qué representá cada una? ¿Qué conclusiones sacarías acerca de esta muestra? Podes usar la ventana de **ayuda** integrada dentro de R ubicada en el panel inferior
 :::
 
-## Vectores de Caracteres: Texto y Etiquetas 💬
+## Caracteres: Texto y Etiquetas 💬
 
 Otro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto
 
@@ -238,7 +240,7 @@ Los strings no necesariamente tienen que contener letras. También pueden tener 
 ```
 :::
 
-## Vectores Lógicos: Verdadero o Falso ✅ ❌
+## Lógicos: Verdadero o Falso ✅ ❌
 
 -   Almacenan valores lógicos: `TRUE` o `FALSE`.
 -   Resultado de comparaciones, condiciones.
@@ -251,8 +253,10 @@ mayores_de_16 <- edades > 16
 mayores_de_16
 ```
 
-## Vectores Factor: Categorías con Sentido 🗂️
+## Factores: Categorías con Sentido {.smaller}
 
+::::: columns
+::: {.column width="50%"}
 -   Representan variables categóricas (nominales u ordinales).
 -   Definen **niveles** o categorías posibles.
 -   Ayudan a R a entender que una variable es categórica y no solo texto.
@@ -265,17 +269,21 @@ niveles_educativos_caracter <- c("Primario","Secundario","Terciario","Universita
 niveles_educativos_factor <- factor(niveles_educativos_caracter)
 niveles_educativos_factor
 ```
+:::
 
-Con la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()
+::: {.column width="50%"}
+Con la función `factor()` nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion `levels()`
 
 ```{r}
 levels(niveles_educativos_factor)
 ```
+:::
+:::::
 
 ::: callout-tip
 ### Characters vs Factores
 
-Si miras el Global enbviroment ¿qué diferencias encontras entre niveles_educativos_caracter y niveles_educativos_factor?
+Si miras el **Global enbviroment** ¿qué diferencias encontras entre los vectores niveles_educativos_caracter y niveles_educativos_factor?
 :::
 
 ## 2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️
@@ -286,16 +294,26 @@ Un **data frame** es la estructura de datos **más importante** en R para análi
 -   Organiza datos en **filas** (observaciones) y **columnas** (variables).
 -   **Cada columna puede ser de un tipo diferente** (numérica, caracter, factor, etc.).
 
-### Creando Data Frames con `data.frame()`
+## Creando Data Frames {.smaller}
 
-Podemos crear data frames combinando vectores:
+Podemos crear data frames con la función `data.frame()` a partir de estos vectores:
+
+Supongamos que tenemos tres vectores chacarcter, otro numerico y otro factorial
 
 ```{r}
 nombres <- c("Ana", "Pedro", "Maria", "Juan", "Sofia")
 edades <- c(25, 30, 22, 40, 35)
 nivel_edu <- factor(c("Universitario", "Secundario", "Universitario", "Terciario", "Secundario"))
+```
 
-sociodata <- data.frame(nombre = nombres, edad = edades, educacion = nivel_edu)
+Usando `data.frame()` Nombramos a cada una de las variables indicando el nombre es la columna = nombre_del_vector
+
+```{r}
+sociodata <- data.frame(
+  nombre = nombres, 
+  edad = edades, 
+  educacion = nivel_edu)
+
 sociodata
 ```
 
@@ -309,46 +327,45 @@ En el "universo tidyverse" (que usaremos mucho), trabajamos con data frames **"t
 
 ¡Esta estructura facilita mucho el análisis y la manipulación de datos!
 
-!()\[images/clase_2_parte_2_screenshot_tidy_shape.png\]
+![](images/clase_2_parte_2_screenshot_tidy_shape.png){fig-align="center"}
 
-### Seleccionando Partes de un Data Frame ✂️
+## Seleccionando Partes de un Data Frame ✂️ {.smaller}
 
-Podemos acceder a partes específicas de un data frame usando corchetes `[]` o el símbolo `$`(AKA pesitos):
+Podemos acceder a partes específicas de un data frame usando corchetes `[]` o el símbolo `$` (también le decimos "pesitos"):
 
-::::: columns
-::: {.column width="50%"}
--   **Por posición (índices numéricos):**
+::: columns
+:::{.column width = '50%'} - **Por posición (índices numéricos):**
 
-    ```{r}
-    # Traer el caso en la Primera fila, segunda columna:
-    sociodata[1, 2]
-    ```
+```{{r}}
+# Traer el caso en la Primera fila, segunda columna:
+sociodata[1, 2]
+```
 
-    ```{r}
-    # Traer toda la primera fila:
-    sociodata[1, ]
-    ```
+```{r}
+# Traer toda la primera fila:
+sociodata[1, ]
+```
 
-    ```{r}
-    # Traer toda la segunda columna:
-    sociodata[, 2]
-    ```
+```{r}
+# Traer toda la segunda columna:
+sociodata[, 2]
+```
 :::
 
-::: {.column width="50%"}
--   **Por nombre de columna (`$`):**
+:::{.column width = "50%"} - **Por nombre de columna (`$`):**
 
-    ```{r}
-    # Columna "educacion" completa:
-    sociodata$educacion
-    ```
+```{{r}}
+# Columna "educacion" completa:
+sociodata$educacion
+```
 
-    ```{r}
-    # Primer elemento de la columna "nombre":
-    sociodata$nombre[1]
-    ```
-:::
-:::::
+```{r}
+# Primer elemento de la columna "nombre":
+sociodata$nombre[1]
+```
+
+::: 
+::::
 
 # Operadores en R: Dando Órdenes a los Datos ⚙️
 
@@ -360,7 +377,7 @@ Tenemos diferentes tipos de operadores:
 2.  **Relacionales (o de comparación):** Para comparar valores (¿mayor que?, ¿igual a?).
 3.  **De Asignación:** Para asignar valores a objetos (¡ya los usamos con `<-`!).
 
-## 1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗
+## 1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗ {.smaller}
 
 -   `+` Suma
 -   `-` Resta
@@ -368,7 +385,7 @@ Tenemos diferentes tipos de operadores:
 -   `/` División
 -   `^` Potencia
 
-**Ejemplos con vectores numéricos:**
+**Por ejemplo:**
 
 ```{r}
 edades <- c(25, 30, 22, 40, 35)
@@ -382,7 +399,7 @@ edades + 5
 edades * 2
 ```
 
-## 2. Operadores Relacionales: Comparando Datos \> \< == !=
+## 2. Operadores Relacionales {.smaller}
 
 -   `>` Mayor que
 -   `<` Menor que
@@ -407,9 +424,9 @@ niveles_educativos <- c("Secundario", "Universitario", "Primario", "Universitari
 niveles_educativos == "Universitario"
 ```
 
-## 3. Operadores de Asignación: Guardando Valores en Objetos \<- = -\>
+## 3. Operadores de Asignación {.smaller}
 
--   **`<-` (Asignación "flecha"):** Asigna el valor de la derecha al objeto de la izquierda. **¡Es el más común y recomendado!**
+-   **`<-` (Asignación "flechita"):** Asigna el valor de la derecha al objeto de la izquierda. **¡Es el más común y recomendado!**
 
     ```{r}
     mi_variable <- 10
@@ -430,7 +447,7 @@ niveles_educativos == "Universitario"
 
 **En este curso, usaremos principalmente `<-` para asignaciones. ¡Es una buena práctica mantener la consistencia!**
 
-# Resumen de la Clase 2: ¡Pilares de R!
+# Resumen de la Clase 2: ¡Pilares de R! {.smaller}
 
 Hoy aprendimos sobre:
 

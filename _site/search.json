@@ -294,14 +294,14 @@
     "href": "materiales/slides/clase_2_tema_2.html#say-my-name-ponerle-un-nombre-al-vector",
     "title": "Entornos, Objetos y Operadores en R",
     "section": "Say my name: ponerle un nombre al vector",
-    "text": "Say my name: ponerle un nombre al vector\nPara que podamos guardar y luego “llamar” nuestro vector vamos a necesitar ponerle un nombre. Y para ello en R utilizamos el símbolo &lt;- o también cariñosamente le decimos flechita\nDe esta manera podemos nombrar nuestro vector edades\n\nedades &lt;- c(25, 14, 22, 40, 35)\n\ny luego podemos llamarlo\n\nedades\n\n[1] 25 14 22 40 35\n\n\nY esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente\n\nedades+1\n\n[1] 26 15 23 41 36\n\n\nEsta característica a en la que la operación se ejecuta sobre cada uno de los elementos del vector se denomina element-wise.\nEntonces si realizamos una operación entre dos vectores se ejecutará entre los vectores con misma ubicación. Por ejemplo:\n\nedades*2\n\n[1] 50 28 44 80 70\n\n\n\nedades-5\n\n[1] 20  9 17 35 30"
+    "text": "Say my name: ponerle un nombre al vector\nPara que podamos guardar y luego “llamar” nuestro vector vamos a necesitar ponerle un nombre. Y para ello en R utilizamos el símbolo &lt;- o también cariñosamente le decimos flechita\nDe esta manera podemos nombrar nuestro vector edades\n\nedades &lt;- c(25, 14, 22, 40, 35)\n\ny luego podemos llamarlo\n\nedades\n\n[1] 25 14 22 40 35"
   },
   {
     "objectID": "materiales/slides/clase_2_tema_2.html#pará-pará-pará",
     "href": "materiales/slides/clase_2_tema_2.html#pará-pará-pará",
     "title": "Entornos, Objetos y Operadores en R",
     "section": "Pará pará pará",
-    "text": "Pará pará pará\n\n¿A donde van los vectores que creamos?\nProbalo en tu consola y tu IDE de R y después volvé a esta presenta"
+    "text": "Pará pará pará\n\n¿Dónde están los vectores que creamos?\nProbalo en tu consola y tu IDE de R y después volvé a esta presenta"
   },
   {
     "objectID": "materiales/slides/clase_2_tema_2.html#pues-a-nuestro-global-enviroment",
@@ -329,21 +329,21 @@
     "href": "materiales/slides/clase_2_tema_2.html#data-frames-los-vectores-se-unen-porque-esa-es-la-ley-primera",
     "title": "Entornos, Objetos y Operadores en R",
     "section": "2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️",
-    "text": "2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️\nUn data frame es la estructura de datos más importante en R para análisis sociológico.\n\nSimilar a una tabla o hoja de cálculo en Excel\nOrganiza datos en filas (observaciones) y columnas (variables).\nCada columna puede ser de un tipo diferente (numérica, caracter, factor, etc.).\n\nCreando Data Frames con data.frame()\nPodemos crear data frames combinando vectores:\n\nnombres &lt;- c(\"Ana\", \"Pedro\", \"Maria\", \"Juan\", \"Sofia\")\nedades &lt;- c(25, 30, 22, 40, 35)\nnivel_edu &lt;- factor(c(\"Universitario\", \"Secundario\", \"Universitario\", \"Terciario\", \"Secundario\"))\n\nsociodata &lt;- data.frame(nombre = nombres, edad = edades, educacion = nivel_edu)\nsociodata\n\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\nPedro\n30\nSecundario\n\n\nMaria\n22\nUniversitario\n\n\nJuan\n40\nTerciario\n\n\nSofia\n35\nSecundario"
+    "text": "2. Data Frames: los vectores se unen porque esa es la ley primera 🗃️\nUn data frame es la estructura de datos más importante en R para análisis sociológico.\n\nSimilar a una tabla o hoja de cálculo en Excel\nOrganiza datos en filas (observaciones) y columnas (variables).\nCada columna puede ser de un tipo diferente (numérica, caracter, factor, etc.)."
   },
   {
     "objectID": "materiales/slides/clase_2_tema_2.html#estructura-tidy-de-data-frames",
     "href": "materiales/slides/clase_2_tema_2.html#estructura-tidy-de-data-frames",
     "title": "Entornos, Objetos y Operadores en R",
     "section": "Estructura “Tidy” de Data Frames 🧹",
-    "text": "Estructura “Tidy” de Data Frames 🧹\nEn el “universo tidyverse” (que usaremos mucho), trabajamos con data frames “tidy” o “ordenados”:\n\nCada columna es una variable. (ej: nombre, edad, educación)\nCada fila es una observación. (ej: cada persona encuestada)\nCada celda contiene un único valor. (ej: la edad de Ana es 25)\n\n¡Esta estructura facilita mucho el análisis y la manipulación de datos!\n!()[images/clase_2_parte_2_screenshot_tidy_shape.png]\nSeleccionando Partes de un Data Frame ✂️\nPodemos acceder a partes específicas de un data frame usando corchetes [] o el símbolo $(AKA pesitos):\n\n\n\nPor posición (índices numéricos):\n\n# Traer el caso en la Primera fila, segunda columna:\nsociodata[1, 2]\n\n[1] 25\n\n\n\n# Traer toda la primera fila:\nsociodata[1, ]\n\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\n\n\n\n\n\n# Traer toda la segunda columna:\nsociodata[, 2]\n\n[1] 25 30 22 40 35\n\n\n\n\n\nPor nombre de columna ($):\n\n# Columna \"educacion\" completa:\nsociodata$educacion\n\n[1] Universitario Secundario    Universitario Terciario     Secundario   \nLevels: Secundario Terciario Universitario\n\n\n\n# Primer elemento de la columna \"nombre\":\nsociodata$nombre[1]\n\n[1] \"Ana\""
+    "text": "Estructura “Tidy” de Data Frames 🧹\nEn el “universo tidyverse” (que usaremos mucho), trabajamos con data frames “tidy” o “ordenados”:\n\nCada columna es una variable. (ej: nombre, edad, educación)\nCada fila es una observación. (ej: cada persona encuestada)\nCada celda contiene un único valor. (ej: la edad de Ana es 25)\n\n¡Esta estructura facilita mucho el análisis y la manipulación de datos!"
   },
   {
     "objectID": "materiales/slides/clase_2_tema_2.html#operadores-aritméticos-cálculos-con-datos",
     "href": "materiales/slides/clase_2_tema_2.html#operadores-aritméticos-cálculos-con-datos",
     "title": "Entornos, Objetos y Operadores en R",
     "section": "1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗",
-    "text": "1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗\n\n+ Suma\n- Resta\n* Multiplicación\n/ División\n^ Potencia\n\nEjemplos con vectores numéricos:\n\nedades &lt;- c(25, 30, 22, 40, 35)\n\n# Sumar 5 años a todas las edades:\nedades + 5\n\n[1] 30 35 27 45 40\n\n\n\n# Calcular el doble de cada edad:\nedades * 2\n\n[1] 50 60 44 80 70"
+    "text": "1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗\n\n+ Suma\n- Resta\n* Multiplicación\n/ División\n^ Potencia\n\nPor ejemplo:\n\nedades &lt;- c(25, 30, 22, 40, 35)\n\n# Sumar 5 años a todas las edades:\nedades + 5\n\n[1] 30 35 27 45 40\n\n\n\n# Calcular el doble de cada edad:\nedades * 2\n\n[1] 50 60 44 80 70"
   },
   {
     "objectID": "materiales/slides/clase_2_tema_2.html#operadores-relacionales-comparando-datos",
@@ -385,6 +385,104 @@
     "href": "materiales/slides/clase_2_tema_2.html#vectores-de-caracteres-texto-y-etiquetas",
     "title": "Entornos, Objetos y Operadores en R",
     "section": "Vectores de Caracteres: Texto y Etiquetas 💬",
-    "text": "Vectores de Caracteres: Texto y Etiquetas 💬\nOtro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto\n\nAlmacenan texto, cadenas de caracteres (strings).\nÚtiles para nombres, categorías nominales, respuestas de encuestas abiertas.\n\nVeamos un ejemplo\n\nprovincia &lt;- c(\"CABA\", \"Buenos Aires\",\"Buenos Aires\",\"Buenos Aires\",\"Mendoza\")\nprovincia\n\n[1] \"CABA\"         \"Buenos Aires\" \"Buenos Aires\" \"Buenos Aires\" \"Mendoza\"     \n\n\n\n\n\n\n\n\n¡OJO!\n\n\nLos strings no necesariamente tienen que contener letras. También pueden tener números almacenados como texto. Por ejemplo:\n\n c(\"10\", \"9\", \"8\", \"10\", \"9\")\n\n[1] \"10\" \"9\"  \"8\"  \"10\" \"9\" \n\n\n\n\n\nVectores Lógicos: Verdadero o Falso ✅ ❌\n\nAlmacenan valores lógicos: TRUE o FALSE.\nResultado de comparaciones, condiciones.\nMuy útiles para filtrar datos (los vas a adorar).\n\nPor ejemplo podriamos querer saber si nuestros entrevistados estan en edad de votar\n\nmayores_de_16 &lt;- edades &gt; 16\nmayores_de_16\n\n[1]  TRUE FALSE  TRUE  TRUE  TRUE\n\n\nVectores Factor: Categorías con Sentido 🗂️\n\nRepresentan variables categóricas (nominales u ordinales).\nDefinen niveles o categorías posibles.\nAyudan a R a entender que una variable es categórica y no solo texto.\nImportante para análisis estadísticos y gráficos.\n\nVayamos con un clasico de la sociología\n\nniveles_educativos_caracter &lt;- c(\"Primario\",\"Secundario\",\"Terciario\",\"Universitario\")\nniveles_educativos_factor &lt;- factor(niveles_educativos_caracter)\nniveles_educativos_factor\n\n[1] Primario      Secundario    Terciario     Universitario\nLevels: Primario Secundario Terciario Universitario\n\n\nCon la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()\n\nlevels(niveles_educativos_factor)\n\n[1] \"Primario\"      \"Secundario\"    \"Terciario\"     \"Universitario\"\n\n\n\n\n\n\n\n\nCharacters vs Factores\n\n\nSi miras el Global enbviroment ¿qué diferencias encontras entre niveles_educativos_caracter y niveles_educativos_factor?"
+    "text": "Vectores de Caracteres: Texto y Etiquetas 💬\nOtro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto\n\nAlmacenan texto, cadenas de caracteres (strings).\nÚtiles para nombres, categorías nominales, respuestas de encuestas abiertas.\n\nVeamos un ejemplo\n\nprovincia &lt;- c(\"CABA\", \"Buenos Aires\",\"Buenos Aires\",\"Buenos Aires\",\"Mendoza\")\nprovincia\n\n[1] \"CABA\"         \"Buenos Aires\" \"Buenos Aires\" \"Buenos Aires\" \"Mendoza\"     \n\n\n\n\n\n\n\n\n¡OJO!\n\n\nLos strings no necesariamente tienen que contener letras. También pueden tener números almacenados como texto. Por ejemplo:\n\n c(\"10\", \"9\", \"8\", \"10\", \"9\")\n\n[1] \"10\" \"9\"  \"8\"  \"10\" \"9\""
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#vectores-lógicos-verdadero-o-falso",
+    "href": "materiales/slides/clase_2_tema_2.html#vectores-lógicos-verdadero-o-falso",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Vectores Lógicos: Verdadero o Falso ✅ ❌",
+    "text": "Vectores Lógicos: Verdadero o Falso ✅ ❌\n\nAlmacenan valores lógicos: TRUE o FALSE.\nResultado de comparaciones, condiciones.\nMuy útiles para filtrar datos (los vas a adorar).\n\nPor ejemplo podriamos querer saber si nuestros entrevistados estan en edad de votar\n\nmayores_de_16 &lt;- edades &gt; 16\nmayores_de_16\n\n[1]  TRUE FALSE  TRUE  TRUE  TRUE"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#vectores-factor-categorías-con-sentido",
+    "href": "materiales/slides/clase_2_tema_2.html#vectores-factor-categorías-con-sentido",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Vectores Factor: Categorías con Sentido 🗂️",
+    "text": "Vectores Factor: Categorías con Sentido 🗂️\n\nRepresentan variables categóricas (nominales u ordinales).\nDefinen niveles o categorías posibles.\nAyudan a R a entender que una variable es categórica y no solo texto.\nImportante para análisis estadísticos y gráficos.\n\nVayamos con un clasico de la sociología\n\nniveles_educativos_caracter &lt;- c(\"Primario\",\"Secundario\",\"Terciario\",\"Universitario\")\nniveles_educativos_factor &lt;- factor(niveles_educativos_caracter)\nniveles_educativos_factor\n\n[1] Primario      Secundario    Terciario     Universitario\nLevels: Primario Secundario Terciario Universitario\n\n\nCon la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()\n\nlevels(niveles_educativos_factor)\n\n[1] \"Primario\"      \"Secundario\"    \"Terciario\"     \"Universitario\"\n\n\n\n\n\n\n\n\nCharacters vs Factores\n\n\nSi miras el Global enbviroment ¿qué diferencias encontras entre niveles_educativos_caracter y niveles_educativos_factor?"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#say-my-name-ponerle-un-nombre-al-vector-1",
+    "href": "materiales/slides/clase_2_tema_2.html#say-my-name-ponerle-un-nombre-al-vector-1",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Say my name: ponerle un nombre al vector",
+    "text": "Say my name: ponerle un nombre al vector\nY esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente\n\nedades+1\n\n[1] 26 15 23 41 36\n\n\nEsta característica a en la que la operación se ejecuta sobre cada uno de los elementos del vector se denomina element-wise.\nEntonces si realizamos una operación entre dos vectores se ejecutará entre los vectores con misma ubicación. Por ejemplo:\n\nedades*2\n\n[1] 50 28 44 80 70\n\n\n\nedades-5\n\n[1] 20  9 17 35 30"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#background-image-imagesclase_2_parte_2_a_few_moments_later.jpg",
+    "href": "materiales/slides/clase_2_tema_2.html#background-image-imagesclase_2_parte_2_a_few_moments_later.jpg",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "{background-image = images/clase_2_parte_2_a_few_moments_later.jpg }",
+    "text": "{background-image = images/clase_2_parte_2_a_few_moments_later.jpg }"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#numéricos-cantidades-y-medidas",
+    "href": "materiales/slides/clase_2_tema_2.html#numéricos-cantidades-y-medidas",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Numéricos: Cantidades y Medidas 📊",
+    "text": "Numéricos: Cantidades y Medidas 📊\n\nAlmacenan números, con o sin decimales, positivos o negativos.\nIdeales para representar variables cuantitativas: edad, ingresos, años de educación, etc.\n\nAprovechandon nuestro vector edades Podriamos preguntarle a R la edad de nuestro entrevistado más joven. Para eso vamos a usar la función min()\n\nmin(edades)\n\n[1] 14\n\n\n\n\n\n\n\n\n¡Ahora ustedes!\n\n\nCreá tu vector con ingresos de hogares y realizá los siguientes cálculos usando estas funciones de R\n´min()´ ´mean()´\n¿Qué representá cada una? ¿Qué conclusiones sacarías acerca de esta muestra? Podes usar la ventana de ayuda integrada dentro de R ubicada en el panel inferior"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#caracteres-texto-y-etiquetas",
+    "href": "materiales/slides/clase_2_tema_2.html#caracteres-texto-y-etiquetas",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Caracteres: Texto y Etiquetas 💬",
+    "text": "Caracteres: Texto y Etiquetas 💬\nOtro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto\n\nAlmacenan texto, cadenas de caracteres (strings).\nÚtiles para nombres, categorías nominales, respuestas de encuestas abiertas.\n\nVeamos un ejemplo\n\nprovincia &lt;- c(\"CABA\", \"Buenos Aires\",\"Buenos Aires\",\"Buenos Aires\",\"Mendoza\")\nprovincia\n\n[1] \"CABA\"         \"Buenos Aires\" \"Buenos Aires\" \"Buenos Aires\" \"Mendoza\"     \n\n\n\n\n\n\n\n\n¡OJO!\n\n\nLos strings no necesariamente tienen que contener letras. También pueden tener números almacenados como texto. Por ejemplo:\n\n c(\"10\", \"9\", \"8\", \"10\", \"9\")\n\n[1] \"10\" \"9\"  \"8\"  \"10\" \"9\""
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#lógicos-verdadero-o-falso",
+    "href": "materiales/slides/clase_2_tema_2.html#lógicos-verdadero-o-falso",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Lógicos: Verdadero o Falso ✅ ❌",
+    "text": "Lógicos: Verdadero o Falso ✅ ❌\n\nAlmacenan valores lógicos: TRUE o FALSE.\nResultado de comparaciones, condiciones.\nMuy útiles para filtrar datos (los vas a adorar).\n\nPor ejemplo podriamos querer saber si nuestros entrevistados estan en edad de votar\n\nmayores_de_16 &lt;- edades &gt; 16\nmayores_de_16\n\n[1]  TRUE FALSE  TRUE  TRUE  TRUE"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#factores-categorías-con-sentido",
+    "href": "materiales/slides/clase_2_tema_2.html#factores-categorías-con-sentido",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Factores: Categorías con Sentido",
+    "text": "Factores: Categorías con Sentido\n\n\n\nRepresentan variables categóricas (nominales u ordinales).\nDefinen niveles o categorías posibles.\nAyudan a R a entender que una variable es categórica y no solo texto.\nImportante para análisis estadísticos y gráficos.\n\nVayamos con un clasico de la sociología\n\nniveles_educativos_caracter &lt;- c(\"Primario\",\"Secundario\",\"Terciario\",\"Universitario\")\nniveles_educativos_factor &lt;- factor(niveles_educativos_caracter)\nniveles_educativos_factor\n\n[1] Primario      Secundario    Terciario     Universitario\nLevels: Primario Secundario Terciario Universitario\n\n\n\nCon la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()\n\nlevels(niveles_educativos_factor)\n\n[1] \"Primario\"      \"Secundario\"    \"Terciario\"     \"Universitario\"\n\n\n\n\n\n\n\n\n\nCharacters vs Factores\n\n\nSi miras el Global enbviroment ¿qué diferencias encontras entre los vectores niveles_educativos_caracter y niveles_educativos_factor?"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#creando-data-frames-con-data.frame",
+    "href": "materiales/slides/clase_2_tema_2.html#creando-data-frames-con-data.frame",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Creando Data Frames con data.frame()",
+    "text": "Creando Data Frames con data.frame()\n\n\nPodemos crear data frames con la función data.frame() a partir de estos vectores:\nSupongamos que tenemos tres vectores chacarcter, otro numerico y otro factorial\n\nnombres &lt;- c(\"Ana\", \"Pedro\", \"Maria\", \"Juan\", \"Sofia\")\nedades &lt;- c(25, 30, 22, 40, 35)\nnivel_edu &lt;- factor(c(\"Universitario\", \"Secundario\", \"Universitario\", \"Terciario\", \"Secundario\"))\n\n\nUsando data.frame() Nombramos a cada una de las variables indicando el nombre es la columna = nombre_del_vector\n\nsociodata &lt;- data.frame(\n  nombre = nombres, \n  edad = edades, \n  educacion = nivel_edu)\n\nsociodata\n\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\nPedro\n30\nSecundario\n\n\nMaria\n22\nUniversitario\n\n\nJuan\n40\nTerciario\n\n\nSofia\n35\nSecundario"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#factores-categorías-con-sentido-.smaller",
+    "href": "materiales/slides/clase_2_tema_2.html#factores-categorías-con-sentido-.smaller",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Factores: Categorías con Sentido 🗂{️.smaller}",
+    "text": "Factores: Categorías con Sentido 🗂{️.smaller}\n\n\n\nRepresentan variables categóricas (nominales u ordinales).\nDefinen niveles o categorías posibles.\nAyudan a R a entender que una variable es categórica y no solo texto.\nImportante para análisis estadísticos y gráficos.\n\nVayamos con un clasico de la sociología\n\nniveles_educativos_caracter &lt;- c(\"Primario\",\"Secundario\",\"Terciario\",\"Universitario\")\nniveles_educativos_factor &lt;- factor(niveles_educativos_caracter)\nniveles_educativos_factor\n\n[1] Primario      Secundario    Terciario     Universitario\nLevels: Primario Secundario Terciario Universitario\n\n\n\nCon la función factor() nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion levels()\n\nlevels(niveles_educativos_factor)\n\n[1] \"Primario\"      \"Secundario\"    \"Terciario\"     \"Universitario\"\n\n\n\n\n\n\n\n\n\nCharacters vs Factores\n\n\nSi miras el Global enbviroment ¿qué diferencias encontras entre los vectores niveles_educativos_caracter y niveles_educativos_factor?"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#creando-data-frames",
+    "href": "materiales/slides/clase_2_tema_2.html#creando-data-frames",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Creando Data Frames",
+    "text": "Creando Data Frames\nPodemos crear data frames con la función data.frame() a partir de estos vectores:\nSupongamos que tenemos tres vectores chacarcter, otro numerico y otro factorial\n\nnombres &lt;- c(\"Ana\", \"Pedro\", \"Maria\", \"Juan\", \"Sofia\")\nedades &lt;- c(25, 30, 22, 40, 35)\nnivel_edu &lt;- factor(c(\"Universitario\", \"Secundario\", \"Universitario\", \"Terciario\", \"Secundario\"))\n\nUsando data.frame() Nombramos a cada una de las variables indicando el nombre es la columna = nombre_del_vector\n\nsociodata &lt;- data.frame(\n  nombre = nombres, \n  edad = edades, \n  educacion = nivel_edu)\n\nsociodata\n\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\nPedro\n30\nSecundario\n\n\nMaria\n22\nUniversitario\n\n\nJuan\n40\nTerciario\n\n\nSofia\n35\nSecundario"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#seleccionando-partes-de-un-data-frame",
+    "href": "materiales/slides/clase_2_tema_2.html#seleccionando-partes-de-un-data-frame",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "Seleccionando Partes de un Data Frame ✂️",
+    "text": "Seleccionando Partes de un Data Frame ✂️\nPodemos acceder a partes específicas de un data frame usando corchetes [] o el símbolo $ (también le decimos “pesitos”):\n\n:::{.column width = ‘50%’} - Por posición (índices numéricos):```{r}\n# Traer el caso en la Primera fila, segunda columna:\nsociodata[1, 2]\n```\n# Traer toda la primera fila:\nsociodata[1, ]\n\n\n\n\n\nnombre\nedad\neducacion\n\n\n\n\nAna\n25\nUniversitario\n\n\n\n\n\n\n# Traer toda la segunda columna:\nsociodata[, 2]\n\n[1] 25 30 22 40 35\n\n\n\n:::{.column width = “50%”} - Por nombre de columna ($):\n```{r}\n# Columna \"educacion\" completa:\nsociodata$educacion\n```\n\n# Primer elemento de la columna \"nombre\":\nsociodata$nombre[1]\n\n[1] \"Ana\"\n\n\n::: ::::"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#operadores-relacionales",
+    "href": "materiales/slides/clase_2_tema_2.html#operadores-relacionales",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "2. Operadores Relacionales",
+    "text": "2. Operadores Relacionales\n\n&gt; Mayor que\n&lt; Menor que\n&gt;= Mayor o igual que\n&lt;= Menor o igual que\n== Igual a (¡ojo, dos iguales!)\n!= No igual a (distinto de)\n\nEjemplos con vectores:\n\nedades &lt;- c(25, 30, 22, 40, 35)\n\n# ¿Qué edades son mayores de 30?\nedades &gt; 30\n\n[1] FALSE FALSE FALSE  TRUE  TRUE\n\n\n\nniveles_educativos &lt;- c(\"Secundario\", \"Universitario\", \"Primario\", \"Universitario\", \"Terciario\")\n\n# ¿Qué niveles educativos son \"Universitario\"?\nniveles_educativos == \"Universitario\"\n\n[1] FALSE  TRUE FALSE  TRUE FALSE"
+  },
+  {
+    "objectID": "materiales/slides/clase_2_tema_2.html#operadores-de-asignación",
+    "href": "materiales/slides/clase_2_tema_2.html#operadores-de-asignación",
+    "title": "Entornos, Objetos y Operadores en R",
+    "section": "3. Operadores de Asignación",
+    "text": "3. Operadores de Asignación\n\n&lt;- (Asignación “flechita”): Asigna el valor de la derecha al objeto de la izquierda. ¡Es el más común y recomendado!\n\nmi_variable &lt;- 10\nnombre_data_frame &lt;- sociodata\n\n= (Asignación “igual”): También asigna valores. Funciona similar a &lt;-, pero en algunos contextos puede ser menos claro.\n\notra_variable = 20\n\n-&gt; (Asignación “flecha derecha”): Asigna el valor de la izquierda al objeto de la derecha. Menos común, menos legible.\n\n\"Hola R\" -&gt; mensaje\n\n\nEn este curso, usaremos principalmente &lt;- para asignaciones. ¡Es una buena práctica mantener la consistencia!"
   }
 ]
