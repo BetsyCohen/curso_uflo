@@ -1,0 +1,187 @@
+---
+title: "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos"
+subtitle: "Análisis de Datos 1"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+date: "10/04/2025"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+
+# El tidyverso: la frontera final
+
+En la clase de hoy, nos sumergirnos en el universo de **`tidyverse`**, un conjunto de paquetes de R esencial para el análisis de datos. Cuando esta clase termine no solo vamos a poder importar datos de las distintas fuentes y hacer una exploración general, sino también emepzar a manipular y encadenar operaciones entre sí.
+
+
+
+## ¿Qué es el Tidyverse? 🤔
+
+El `tidyverse` no es solo un paquete de R, ¡es una **colección de paquetes** diseñados para trabajar juntos de forma armoniosa en el análisis de datos!  Piensen en él como un **"universo" o "ecosistema" de herramientas**.
+
+
+**Características Clave del Tidyverse:**
+
+-   **Filosofía "Tidy Data"**:  Organización de datos de forma consistente y fácil de usar (datos "ordenados").
+-   **Sintaxis Consistente y Verbosa**:  Funciones con nombres claros (verbos) que hacen tareas específicas. Código fácil de leer y entender.
+-   **Diseñado para el Flujo de Trabajo de Data Science**:  Paquetes para cada etapa del análisis: importación, limpieza, transformación, visualización, modelado, comunicación.
+-   **Énfasis en la Legibilidad y la Reproducibilidad**:  Código más fácil de escribir, leer, mantener y compartir.
+-   **Comunidad Activa y Documentación Exhaustiva**:  Gran apoyo y recursos para aprender y resolver problemas.
+
+## Un flujo de trabajo ordenado o tidy tiene fases que iteran entre sí {.smaller}
+
+![](images/FlujoETL.png)
+
+## Tiudyverse propone uno o varios paquetes que conservando una lógica similar responden a cada una de estas etapas {.smaller}
+
+![](images/FlujoETLTidyverse.png)
+
+## Paquetes Core del Tidyverse: ¡Los 8 Magníficos! ✨
+
+Aunque el `tidyverse` incluye muchos paquetes, hay **8 paquetes "centrales"** que son los más esenciales y que se cargan automáticamente al cargar `tidyverse` con `library(tidyverse)`:
+
+![](https://standard-deviator.com/workshop/cpa_2020_data_cleaning_tidyverse/slides/images/core_hex_stickers.png)
+
+1.  **`ggplot2`**:  ¡Para visualizaciones de datos impresionantes y personalizables! (Gráficos)
+2.  **`dplyr`**:  ¡Para manipulación y transformación de datos! (Verbos: `filter`, `select`, `mutate`, `arrange`, `summarize`, `group_by`)
+3.  **`tidyr`**:  ¡Para "ordenar" tus datos y organizarlos en formato "tidy"! (Funciones para "tidy data": `pivot_longer`, `pivot_wider`, `separate`, `unite`)
+4.  **`readr`**:  ¡Para importar datos de forma rápida y eficiente! (Funciones: `read_csv`, `read_tsv`, `read_delim`, etc. -  **Alternativa a `read.csv` y funciones base de R** )
+5.  **`purrr`**:  ¡Para programación funcional y trabajar con listas de forma elegante! (Iteración y funciones para listas)
+6.  **`tibble`**:  ¡Para crear data frames modernos y mejorados! (**Alternativa a los data frames base de R**, más "amigables" y consistentes)
+7.  **`stringr`**:  ¡Para manipulación de cadenas de texto (strings)! (Funciones para trabajar con texto)
+8.  **`forcats`**:  ¡Para trabajar con variables categóricas (factores)! (Funciones para manipular factores)
+
+**¡Y muchos más paquetes útiles en el "universo" Tidyverse!** (como `readxl`, `lubridate`, `httr`, `rvest`, etc.)
+
+## Instalando y Cargando el Tidyverse 📦
+
+**Instalar el Tidyverse (solo la primera vez):**
+
+```{r eval=FALSE}
+install.packages("tidyverse")
+```
+
+Esto instalará el paquete **`tidyverse`**, que a su vez **instala automáticamente los 8 paquetes core** (y algunos otros recomendados).
+
+**Cargar el Tidyverse (al inicio de cada sesión de R):**
+
+```{r}
+library(tidyverse)
+```
+
+Al cargar `tidyverse` con `library(tidyverse)`,  **se cargan automáticamente los 8 paquetes core en tu sesión de R**.  ¡Listos para usar!
+
+## Los Pipes `%>%`:  ¡La Tubería Mágica! 🪄
+
+Uno de los **elementos más distintivos y poderosos del `tidyverse`** son los **pipes** u "operador tubería":  `%>%`
+
+![]("https://magrittr.tidyverse.org/logo.png")
+
+**¿Qué hacen los pipes `%>%`?**
+
+-   **Conectan operaciones en secuencia (de izquierda a derecha, de arriba a abajo).**
+-   **Toman el resultado de la operación de la izquierda y lo "envían" como *primer argumento* a la función de la derecha.**
+-   **Permiten escribir código de forma más lineal, clara y fácil de leer**, especialmente para secuencias largas de transformaciones de datos.
+-   **Evitan crear variables intermedias innecesarias**, haciendo el código más conciso y limpio.
+
+## Pipe es como decirle "Y después"
+
+![](https://www.rforecology.com/pipes_image0.png)
+## Puede ser que en algunas bibliografías y documentaciones encuentres otro "modelo" de pipe
+
+![](https://kpress.dev/blog/2022-06-19-replacing-the-magrittr-pipe-with-native-r-pipe/featured.png)
+
+
+## Sintaxis Básica del Pipe `%>%`
+
+```{r}
+
+```
+
+**Ejemplo SIN Pipes (código anidado, difícil de leer):**
+
+```r
+# Código SIN pipes (anidado y difícil de leer)
+resultado_final <- funcion3(funcion2(funcion1(datos_iniciales), arg2_funcion2), arg3_funcion3)
+```
+
+**Ejemplo CON Pipes (código lineal y legible):**
+
+```r
+# Código CON pipes (lineal y fácil de leer)
+resultado_final <- datos_iniciales %>%
+  funcion1(argumentos_funcion1) %>%
+  funcion2(argumentos_funcion2) %>%
+  funcion3(argumentos_funcion3)
+```
+
+**¡Con pipes, lees el código como si fuera una receta o un flujo de pasos!  "Toma los `datos_iniciales`, *luego* aplica `funcion1`, *luego* aplica `funcion2`, *luego* aplica `funcion3`, y guarda el resultado en `resultado_final`."**
+
+# Un Paquete para Cada Etapa del Flujo de Trabajo 🛠️
+
+El Tidyverse está diseñado para **cubrir de manera integral las diferentes etapas del flujo de trabajo de análisis de datos**:
+
+[Image of a circular diagram representing the data analysis workflow stages, with Tidyverse packages associated with each stage: Import (readr, readxl), Tidy (tidyr), Transform (dplyr), Visualize (ggplot2), Model (modelr), Communicate (rmarkdown), and general packages (purrr, stringr, forcats, tibble)]
+
+-   **Importación de Datos**:  `readr`, `readxl` (y otros paquetes para diferentes formatos)
+-   **"Tidy" de Datos (Organización)**:  `tidyr`
+-   **Transformación de Datos**:  `dplyr`
+-   **Visualización de Datos**:  `ggplot2`
+-   **Modelado de Datos**:  `modelr` (y otros paquetes de modelado tidy, como `broom`)
+-   **Comunicación de Resultados**:  `rmarkdown` (y Quarto, construido sobre `rmarkdown`)
+
+**Paquetes "Generales" que atraviesan todo el flujo:**
+
+-   `purrr` (programación funcional)
+-   `stringr` (texto)
+-   `forcats` (factores)
+-   `tibble` (data frames)
+
+**Esta organización por paquetes facilita:**
+
+-   **Encontrar las herramientas adecuadas para cada tarea.**
+-   **Aprender y dominar el flujo de trabajo de análisis de datos de forma progresiva.**
+-   **Combinar herramientas de diferentes paquetes de forma consistente y eficiente** (¡gracias a los pipes!).
+
+# Verbos Básicos del Tidyverse:  ¡Acciones con Datos! 🎬
+
+Dentro del `tidyverse`, especialmente en el paquete **`dplyr`** (para transformación de datos),  vamos a trabajar mucho con **"verbos"**.  Los verbos del tidyverse son **funciones que hacen acciones específicas con nuestros data frames**.
+
+**Los 5 Verbos Esenciales de `dplyr` (¡y algunos extras importantes!):**
+
+[Image of a table or grid listing dplyr verbs with their descriptions and icons/visual representations: select (column selection icon), filter (funnel/filter icon), mutate (plus/add icon), arrange (sorting arrows icon), summarize (sigma/summation icon), group_by (grouping icon), and potentially others like rename, distinct, etc.]
+
+1.  **`select()`**:  **SELECCIONAR** columnas.  Elige las columnas que quieres mantener, descarta las que no necesitas.  ¡Enfócate en lo importante!
+2.  **`filter()`**:  **FILTRAR** filas.  Elige las filas que cumplen con ciertas condiciones. ¡Quedate solo con las observaciones que te interesan!
+3.  **`mutate()`**:  **MUTAR** o crear nuevas columnas.  Calcula nuevas variables a partir de las existentes.  ¡Enriquece tus datos!
+4.  **`arrange()`**:  **ORDENAR** filas.  Reordena las filas según los valores de una o más columnas.  ¡Pon orden en tus datos!
+5.  **`summarize()` (o `summarise()`):**  **RESUMIR** datos.  Calcula estadísticos resumen (medias, medianas, conteos, etc.) para grupos de datos.  ¡Obtén información clave!
+6.  **`group_by()`**:  **AGRUPAR** filas.  Divide tu data frame en grupos según los valores de una o más columnas.  ¡Analiza por subgrupos!
+7.  **`rename()`**:  **RENOMBRAR** columnas.  Cambia los nombres de las columnas para que sean más claros o consistentes.
+8.  **`distinct()`**:  **VALORES ÚNICOS**.  Filtra filas para mantener solo las filas distintas (únicas) basadas en una o más columnas.
+
+**¡Estos verbos son como los "ladrillos" fundamentales para construir transformaciones de datos complejas en el tidyverse!  Los usaremos muchísimo.**
+
+---
+
+# Próximos Pasos:  ¡Manos a la Obra con el Tidyverse! 💪
+
+En la próxima clase (¡la siguiente a esta!), vamos a **empezar a usar estos verbos del `tidyverse` en la práctica** con nuestros datos de encuestas ATTTA (o cualquier otro dataset que elijamos).
+
+Vamos a aprender a:
+
+-   **Seleccionar columnas** con `select()`.
+-   **Filtrar filas** con `filter()`.
+-   **Crear nuevas variables** con `mutate()`.
+-   ¡Y combinar estos verbos con los **pipes `%>%`** para crear flujos de trabajo de análisis de datos limpios y eficientes!
+
+¡Prepárense para **transformar sus datos con el poder del `tidyverse`**!

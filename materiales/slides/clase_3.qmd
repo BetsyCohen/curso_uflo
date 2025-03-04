@@ -164,9 +164,9 @@ Ya sea que importes el archivo **directamente desde la URL de GitHub (online)** 
 
 ¡Están listos para empezar a explorarlos y analizarlos con las herramientas tidyverse!
 
-# 3. Exploración inicial de datos: Primer Vistazo 👀{.smaller}
+# 3. Exploración inicial de datos: Primer Vistazo 👀 {.smaller}
 
-Después de importar nuestros datos, lo primero que debemos hacer es **explorarlos para entender su estructura y contenido**.  Esto nos ayudará a:
+Después de importar nuestros datos, lo primero que debemos hacer es **explorarlos para entender su estructura y contenido**. Esto nos ayudará a:
 
 -   **Verificar que la importación fue exitosa** y que los datos se cargaron correctamente.
 -   **Identificar el tipo de datos** de cada columna (numérico, texto, fechas, etc.).
@@ -177,16 +177,17 @@ Vamos a ver algunas funciones esenciales para esta exploración inicial.
 
 Como ejemplo vamos a estar usando un dataset de jugeuete que se llama **iris** (por una cuestión de espacio en esta presentación), pero en clase vamos a estar trabajando con la encuesta que hemos cargado.
 
-## `glimpse()` y `str()`:  Radiografía de la Estructura 🦴
+## `glimpse()` y `str()`: Radiografía de la Estructura 🦴
 
 Las funciones `glimpse()` (del paquete `dplyr`, parte del `tidyverse`) y `str()` (de R base) nos dan una **visión general de la estructura de nuestro data frame:**
 
--   **`glimpse(nombre_dataframe)`**:  Muestra las **columnas en filas**, indicando el **tipo de dato** de cada columna y las **primeras observaciones** de cada una.  Es muy útil para data frames anchos (con muchas columnas) porque es más fácil de leer horizontalmente.
+-   **`glimpse(nombre_dataframe)`**: Muestra las **columnas en filas**, indicando el **tipo de dato** de cada columna y las **primeras observaciones** de cada una. Es muy útil para data frames anchos (con muchas columnas) porque es más fácil de leer horizontalmente.
 
--   **`str(nombre_dataframe)`**:  Muestra la **estructura interna** del objeto R (en este caso, un data frame).  Indica el **tipo de dato** de cada columna y también muestra **algunas observaciones**, pero de forma vertical.  Es más detallada que `glimpse()` en cuanto a información interna, pero puede ser menos legible para data frames muy anchos.
+-   **`str(nombre_dataframe)`**: Muestra la **estructura interna** del objeto R (en este caso, un data frame). Indica el **tipo de dato** de cada columna y también muestra **algunas observaciones**, pero de forma vertical. Es más detallada que `glimpse()` en cuanto a información interna, pero puede ser menos legible para data frames muy anchos.
 
-## `glimpse()` y `str()`:  Radiografía de la Estructura 🦴
-::::{.columns}
+## `glimpse()` y `str()`: Radiografía de la Estructura 🦴
+
+::: columns
 :::{.column width = "50%"}
 
 ```{r}
@@ -197,67 +198,75 @@ glimpse(iris)
 :::
 
 :::{.column width = "50%"}
+
 ```{r}
 str(iris)
 ```
-:::
-::::
+
+::: ::::
 
 ## head() y tail(): Primeras y Últimas Filas ⏫ ⏬
 
 Las funciones head() y tail() nos permiten ver las primeras y últimas filas de nuestro data frame, respectivamente:
 
-- **head(nombre_dataframe, n = X):** Muestra las primeras X filas del data frame (por defecto, n = 6 si no se especifica).  Útil para ver un vistazo inicial de los datos.
+-   **head(nombre_dataframe, n = X):** Muestra las primeras X filas del data frame (por defecto, n = 6 si no se especifica). Útil para ver un vistazo inicial de los datos.
 
-- **tail(nombre_dataframe, n = X):**  Muestra las últimas X filas del data frame (por defecto, n = 6).  Puede ser útil para verificar si hay algún problema al final del archivo o simplemente para inspeccionar las últimas observaciones.
+-   **tail(nombre_dataframe, n = X):** Muestra las últimas X filas del data frame (por defecto, n = 6). Puede ser útil para verificar si hay algún problema al final del archivo o simplemente para inspeccionar las últimas observaciones.
 
 ## head() y tail(): Primeras y Últimas Filas ⏫ ⏬
 
-::::{.columns}
+::: columns
 :::{.column width = "50%"}
+
 ```{r}
 head(iris)
 ```
 :::
+
 :::{.column width = "50%"}
+
 ```{r}
 tail(iris)
 ```
-:::
-::::
+
+::: ::::
 
 ## summary(): Un resumen Estadístico Básico 📊
+
 La función summary() nos proporciona un resumen estadístico básico de cada columna de nuestro data frame:
 
 summary(nombre_dataframe): Calcula y muestra diferentes estadísticos descriptivos según el tipo de dato de cada columna:
 
-- Para columnas numéricas: Mínimo, Primer Cuartil, Mediana, Media, Tercer Cuartil, Máximo.
+-   Para columnas numéricas: Mínimo, Primer Cuartil, Mediana, Media, Tercer Cuartil, Máximo.
 
-- Para columnas de texto (factor o character): Cantidad de observaciones, clase (tipo de dato), y hasta los valores y frecuencias más comunes (si son pocos valores únicos).
+-   Para columnas de texto (factor o character): Cantidad de observaciones, clase (tipo de dato), y hasta los valores y frecuencias más comunes (si son pocos valores únicos).
 
-- Para columnas lógicas (TRUE/FALSE): TRUE, FALSE y NA's (valores faltantes). 
+-   Para columnas lógicas (TRUE/FALSE): TRUE, FALSE y NA's (valores faltantes).
 
 ## summary(): Un resumen Estadístico Básico 📊
 
 ```{r}
 summary(iris)
 ```
+
 ## summary(): Un resumen Estadístico Básico 📊
+
 O puedo por ejemplo seleccionar una sola columna y ver los estadísticos de resumen.
 
 ```{r}
 summary(iris$Sepal.Length)
 ```
 
-::: {.callout-note}
+::: callout-note
 ### ¿Qué nos dice summary?
-Usando la encuesta que descargamos elegi algunas de las columnas e interpretá los datos que te brinda summary. 
-Vamos a compartir nuestras conclusiones en clase
+
+Usando la encuesta que descargamos elegi algunas de las columnas e interpretá los datos que te brinda summary. Vamos a compartir nuestras conclusiones en clase
 :::
 
 ## Exploración Inicial: ¡Primeros Pasos Sólidos! 💪
+
 Con las funciones glimpse(), str(), head(), tail() y summary(), ya tienes herramientas poderosas para dar un primer vistazo efectivo a tus datos justo después de importarlos.
 
-En las próximas clases, profundizaremos en las siguientes etapas del flujo de trabajo en el universo de **Tidyverse**:  ETL (limpieza y transformación de datos) y EDA (análisis exploratorio), donde usaremos muchas más funciones del tidyverse para preparar y analizar nuestros datos en detalle.
+En las próximas clases, profundizaremos en las siguientes etapas del flujo de trabajo en el universo de **Tidyverse**: ETL (limpieza y transformación de datos) y EDA (análisis exploratorio), donde usaremos muchas más funciones del tidyverse para preparar y analizar nuestros datos en detalle.
 
 ¡Pero por ahora, ya diste los primeros pasos fundamentales para trabajar con datos en R! ¡Felicitaciones!
