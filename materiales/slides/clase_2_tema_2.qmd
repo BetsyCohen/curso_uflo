@@ -1,6 +1,6 @@
 ---
 title: "Entornos, Objetos y Operadores en R"
-subtitle: "Primeros pasos en R para Sociología - Clase 2"
+subtitle: "Análisis de Datos 1"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
 date: "27/03/2025"
@@ -364,10 +364,7 @@ sociodata$educacion
 sociodata$nombre[1]
 ```
 
-::: 
-::::
-
-# Operadores en R: Dando Órdenes a los Datos ⚙️
+::: :::: \# Operadores en R: Dando Órdenes a los Datos ⚙️
 
 Los **operadores** son símbolos especiales que indican a R qué tipo de acción o cálculo debe realizar. Son como los "verbos" en el lenguaje de R.
 
@@ -464,4 +461,4 @@ Hoy aprendimos sobre:
 En la próxima clase, aprenderemos a:
 
 -   **Importar datos desde archivos externos:** CSV, Excel, etc.
--   **Explorar los datos importados:** Ver su estructura, tipos de variables.
+-   **Explorar los datos importados:** Ver su estructura, tipos de variables. :::

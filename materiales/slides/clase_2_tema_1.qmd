@@ -1,7 +1,8 @@
 ---
 title: "Por qué R y su comunidad. La sociología y R"
+subtitle: "Análisis de Datos 1"
 author: "Betsy Cohen"
-logo: "imgages/logo-uflo.png"
+logo: "images/logo-uflo.png"
 date: "27/03/2025"
 format: 
   revealjs: 
@@ -20,7 +21,7 @@ df-print: kable
 
 R es un lenguaje de programación ampliamente utilizado en la comunidad académica y profesional para el análisis de datos. Su flexibilidad y su ecosistema de paquetes han permitido que se convierta en una herramienta fundamental en múltiples disciplinas, incluyendo la sociología.
 
-# ¿Por qué R?
+# ¿Por qué R? {.smaller}
 
 -   **Software libre y gratuito:** R es un software de *código abierto*, lo que significa que cualquier persona puede usarlo, modificarlo y distribuirlo sin costos. Esto también implicancias desde el punto de vista de la *Transparencia* permitiendo a los usuarios ver cómo funcionan los algoritmos y métodos estadísticos, garantizando transparencia y confianza en los análisis realizados.
 
@@ -34,9 +35,8 @@ R es un lenguaje de programación ampliamente utilizado en la comunidad académi
 
 -   **Paquetes especializados:** R cuenta con una vasta colección de paquetes diseñados para análisis en ciencias sociales, como `tidyverse`, `survey`, `sjPlot` y `epitools`.
 
-------------------------------------------------------------------------
 
-# La comunidad de R
+## La comunidad de R
 
 Uno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciativas para compartir conocimientos y fomentar la colaboración, como:
 
@@ -46,11 +46,8 @@ Uno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciat
 
 ![](images/r-comunity.png)
 
-|                                               |
-|:----------------------------------------------|
-| \# Qué significa **comunidad** en la práctica |
 
-# R y la sociología
+## Qué significa **comunidad** en la práctica 
 
 En sociología, R se ha convertido en una herramienta clave para la investigación, permitiendo el procesamiento y análisis de encuestas, datos censales y redes sociales. Algunas aplicaciones específicas incluyen:
 
@@ -58,17 +55,15 @@ En sociología, R se ha convertido en una herramienta clave para la investigaci�
 -   **Análisis de redes sociales** con `igraph`.
 -   **Procesamiento de datos censales** con `tidyCensus`.
 
-------------------------------------------------------------------------
 
-# Un ejemplo argentino 🧉: El paquete `{EPH}`
+## Un ejemplo argentino 🧉: El paquete `{EPH}`
 
 Una de las experiencias más interesantes en la comunidad de R en sociología es el desarrollo del paquete `{EPH}`, que permite acceder y analizar los datos de la Encuesta Permanente de Hogares (EPH) en Argentina. Esto ha facilitado estudios sobre desigualdad, pobreza y mercado laboral.
 
 ![](images/hex-eph.png){fig-align="left" width="96"}
 
-------------------------------------------------------------------------
 
-### Código de ejemplo
+## Código de ejemplo EPH
 
 ``` r
 library(tidyverse)
@@ -97,17 +92,13 @@ ingresos_genero %>%
 
 Este análisis permite explorar desigualdades de ingresos según género y otros factores socioeconómicos, brindando herramientas clave para estudios sociológicos.
 
-------------------------------------------------------------------------
-
-# Por qué RStudio
+## Por qué RStudio
 
 **Interfaz Amigable:** RStudio proporciona una interfaz gráfica de usuario que facilita la escritura de código, la visualización de resultados y la gestión de proyectos, mejorando la productividad y la experiencia del usuario.
 
 **Herramientas de Debugging y Testing:** RStudio incluye herramientas para depuración y pruebas, facilitando el desarrollo de scripts y asegurando la precisión y eficiencia del código.
 
-------------------------------------------------------------------------
-
-# Para ir cerrando...
+## Para ir cerrando...
 
 Como vimos el uso de R en sociología permite no solo mejorar los análisis de datos, sino también fomentar la colaboración en comunidad. La comunidad de R ofrece múltiples herramientas y recursos que facilitan el aprendizaje y la implementación de técnicas avanzadas en ciencias sociales.\
 \
