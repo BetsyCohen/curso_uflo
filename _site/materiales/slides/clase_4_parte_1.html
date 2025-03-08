@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-3e476e15ae565c222d94875412ae43a1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
+
+  <meta name="author" content="Betsy Cohen">
+  <meta name="dcterms.date" content="2025-10-04">
+  <title>Curso análisis de datos 1. Sociología UFLO – Introducción al Tidyverse: El Universo de Herramientas para transformación de datos</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-95b1ebff318a5081d00fa8241d3da410.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introducción al Tidyverse: El Universo de Herramientas para transformación de datos</h1>
+  <p class="subtitle">Análisis de Datos 1</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Betsy Cohen 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-10-04</p>
+</section>
+<section>
+<section id="el-tidyverso-la-frontera-final" class="title-slide slide level1 center">
+<h1>El tidyverso: la frontera final</h1>
+<p>En la clase de hoy, nos sumergirnos en el universo de <strong><code>tidyverse</code></strong>, un conjunto de paquetes de R esencial para el análisis de datos. Cuando esta clase termine no solo vamos a poder importar datos de las distintas fuentes y hacer una exploración general, sino también emepzar a manipular y encadenar operaciones entre sí.</p>
+</section>
+<section id="qué-es-tidyverse" class="slide level2 smaller">
+<h2>¿Qué es Tidyverse? 🤔</h2>
+<p>El <code>tidyverse</code> no es solo un paquete de R, ¡es una <strong>colección de paquetes</strong> diseñados para trabajar juntos de forma armoniosa en el análisis de datos! Piensen en él como un <strong>“universo” o “ecosistema” de herramientas</strong>.</p>
+<p><strong>Características Clave del Tidyverse:</strong></p>
+<ul>
+<li><strong>Filosofía “Tidy Data”</strong>: Organización de datos de forma consistente y fácil de usar (datos “ordenados”).</li>
+<li><strong>Sintaxis Consistente y Verbosa</strong>: Funciones con nombres claros (verbos) que hacen tareas específicas. Código fácil de leer y entender.</li>
+<li><strong>Diseñado para el Flujo de Trabajo de Data Science</strong>: Paquetes para cada etapa del análisis: importación, limpieza, transformación, visualización, modelado, comunicación.</li>
+<li><strong>Énfasis en la Legibilidad y la Reproducibilidad</strong>: Código más fácil de escribir, leer, mantener y compartir.</li>
+<li><strong>Comunidad Activa y Documentación Exhaustiva</strong>: Gran apoyo y recursos para aprender y resolver problemas.</li>
+</ul>
+</section>
+<section id="un-flujo-de-trabajo-ordenado-o-tidy-tiene-fases-que-iteran-entre-sí" class="slide level2 smaller">
+<h2>Un flujo de trabajo ordenado o tidy tiene fases que iteran entre sí</h2>
+
+<img data-src="images/FlujoETL.png" class="r-stretch"></section>
+<section id="tidyverse-propone-uno-o-varios-paquetes-que-conservando-una-lógica-similar-responden-a-cada-una-de-estas-etapas" class="slide level2 smaller">
+<h2>Tidyverse propone uno o varios paquetes que conservando una lógica similar responden a cada una de estas etapas</h2>
+
+<img data-src="images/FlujoETLTidyverse.png" class="r-stretch"></section>
+<section id="paquetes-principales-de-tidyverse-los-8-magníficos" class="slide level2 smaller">
+<h2>Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨</h2>
+<p>Aunque <code>tidyverse</code> incluye muchos paquetes, hay <strong>8 paquetes “centrales”</strong> que son los más esenciales y que se cargan automáticamente al cargar <code>tidyverse</code> con <code>library(tidyverse)</code>:</p>
+
+<img data-src="images/tidyverse_hex_core_packages.png" width="655" class="r-stretch"></section>
+<section id="paquetes-principales-de-tidyverse-los-8-magníficos-1" class="slide level2 smaller">
+<h2>Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨</h2>
+<ol type="1">
+<li><strong><code>ggplot2</code></strong>: ¡Para visualizaciones de datos impresionantes y personalizables!</li>
+<li><strong><code>dplyr</code></strong>: ¡Para manipulación y transformación de datos! (Verbos: <code>filter</code>, <code>select</code>, <code>mutate</code>, <code>arrange</code>, <code>summarize</code>, <code>group_by</code>)</li>
+<li><strong><code>tidyr</code></strong>: ¡Para “ordenar” tus datos y organizarlos en formato “tidy”!</li>
+<li><strong><code>readr</code></strong>: Para importar datos de forma rápida y eficiente (Funciones: <code>read_csv</code>, <code>read_tsv</code>, <code>read_delim</code>, etc. - <strong>Alternativa a <code>read.csv</code> y funciones base de R</strong> )</li>
+<li><strong><code>purrr</code></strong>: ¡Para programación funcional y trabajar con listas de forma elegante!</li>
+<li><strong><code>tibble</code></strong>: ¡Para crear data frames modernos y mejorados! (<strong>Alternativa a los data frames base de R</strong>, más “amigables” y consistentes)</li>
+<li><strong><code>stringr</code></strong>: ¡Para manipulación de cadenas de texto (strings)!</li>
+<li><strong><code>forcats</code></strong>: ¡Para trabajar con variables categóricas (factores)!</li>
+</ol>
+<p><strong>¡Y muchos más paquetes útiles en el “universo” Tidyverse!</strong> (como <code>readxl</code>, <code>lubridate</code>, <code>httr</code>, <code>rvest</code>, etc.)</p>
+</section>
+<section id="instalando-y-cargando-el-tidyverse" class="slide level2">
+<h2>Instalando y Cargando el Tidyverse 📦</h2>
+<p><strong>Instalar Tidyverse (solo la primera vez):</strong></p>
+<p>Para instalar cualquier librería siempre usamos la función <code>install.packages()</code> por lo que si aún no lo hiciste deberas escribir:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Y cada vez que querramos usar el proyecto deberemos cargarlo <em>al inicio de cada sesión de R:</em> escribiendo <code>library()</code> y el nombre de la librería</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Y así cuando cargamos <code>tidyverse</code> , <strong>se cargan automáticamente los paquetes que este contiene</strong>. ¡Listos para usar!</p>
+</section>
+<section id="cargar-los-datos" class="slide level2">
+<h2>Cargar los datos</h2>
+<p>Vamos a trabajar con la <a href="https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales">serie histórica de Encuesta Nacional de Consumos Culturales</a> que representa las olas 2013,2017 y 2022 de este estudio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># creamos el vector con la url</span></span>
+<span id="cb3-2"><a></a>encc_serie_hist_url <span class="ot">&lt;-</span> <span class="st">"https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/d9570d16-f5d1-4d18-8145-3372eafb97af/download/encc-serie-historica.csv"</span>  </span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a><span class="co"># lo asignamos a un objeto tabla con la función read.csv</span></span>
+<span id="cb3-5"><a></a>encc_serie_hist <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(encc_serie_hist_url)</span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a><span class="co"># vemos los primeros 3 casos</span></span>
+<span id="cb3-8"><a></a><span class="fu">head</span>(encc_serie_hist,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 2%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 2%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 2%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 2%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 2%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 0%">
+<col style="width: 1%">
+<col style="width: 1%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ID</th>
+<th style="text-align: right;">EXPANSOR</th>
+<th style="text-align: left;">NSE_3</th>
+<th style="text-align: right;">EDICION</th>
+<th style="text-align: left;">GRUPOS_EDAD</th>
+<th style="text-align: right;">EDAD</th>
+<th style="text-align: left;">NSE_SOCIOE</th>
+<th style="text-align: left;">GENERO</th>
+<th style="text-align: left;">REGION</th>
+<th style="text-align: left;">PROVINCIA</th>
+<th style="text-align: left;">TV1</th>
+<th style="text-align: left;">TV2</th>
+<th style="text-align: left;">TV3_1</th>
+<th style="text-align: left;">TV3_2</th>
+<th style="text-align: left;">TV3_3</th>
+<th style="text-align: left;">TV3_4</th>
+<th style="text-align: left;">TV3_5</th>
+<th style="text-align: left;">TV3_6</th>
+<th style="text-align: left;">TV5_1</th>
+<th style="text-align: left;">TV5_2</th>
+<th style="text-align: left;">TV5_3</th>
+<th style="text-align: left;">TV5_4</th>
+<th style="text-align: left;">TV6.1</th>
+<th style="text-align: left;">TV6.2</th>
+<th style="text-align: left;">TV8.1</th>
+<th style="text-align: left;">TV8.2</th>
+<th style="text-align: left;">TV8.3</th>
+<th style="text-align: right;">TV8.4</th>
+<th style="text-align: right;">TV8.5</th>
+<th style="text-align: left;">CINE1</th>
+<th style="text-align: left;">CINE2</th>
+<th style="text-align: left;">CINE3</th>
+<th style="text-align: right;">CINE4</th>
+<th style="text-align: right;">CINE5</th>
+<th style="text-align: left;">NOTI1</th>
+<th style="text-align: left;">NOTI2</th>
+<th style="text-align: left;">NOTI3.1</th>
+<th style="text-align: right;">NOTI5</th>
+<th style="text-align: left;">NOTI8</th>
+<th style="text-align: right;">NOTI10</th>
+<th style="text-align: left;">LIBRO1</th>
+<th style="text-align: left;">LIBRO2</th>
+<th style="text-align: left;">LIBRO3.1</th>
+<th style="text-align: left;">LIBRO3.2</th>
+<th style="text-align: left;">LIBRO4_1</th>
+<th style="text-align: left;">LIBRO4_2</th>
+<th style="text-align: left;">LIBRO4_3</th>
+<th style="text-align: left;">LIBRO4_4</th>
+<th style="text-align: right;">LIBRO5</th>
+<th style="text-align: right;">LIBRO6</th>
+<th style="text-align: right;">LIBRO9</th>
+<th style="text-align: right;">LIBRO13</th>
+<th style="text-align: left;">RADIO1</th>
+<th style="text-align: left;">RADIO2</th>
+<th style="text-align: left;">RADIO3</th>
+<th style="text-align: left;">RADIO5_1</th>
+<th style="text-align: left;">RADIO5_2</th>
+<th style="text-align: left;">RADIO5_3</th>
+<th style="text-align: left;">RADIO5_4</th>
+<th style="text-align: left;">RADIO5_5</th>
+<th style="text-align: left;">MUSICA1</th>
+<th style="text-align: left;">MUSICA2</th>
+<th style="text-align: left;">MUSICA3</th>
+<th style="text-align: left;">MUSICA7_1</th>
+<th style="text-align: left;">MUSICA7_2</th>
+<th style="text-align: left;">MUSICA7_3</th>
+<th style="text-align: left;">MUSICA7_4</th>
+<th style="text-align: left;">MUSICA7_5</th>
+<th style="text-align: left;">MUSICA7_6</th>
+<th style="text-align: left;">MUSICA7_7</th>
+<th style="text-align: left;">MUSICA7_8</th>
+<th style="text-align: left;">MUSICA7_9</th>
+<th style="text-align: left;">MUSICA9</th>
+<th style="text-align: left;">MUSICA10</th>
+<th style="text-align: left;">MUSICA11</th>
+<th style="text-align: right;">MUSICA12</th>
+<th style="text-align: right;">MUSICA13</th>
+<th style="text-align: left;">MUSICA15</th>
+<th style="text-align: left;">VJ1</th>
+<th style="text-align: left;">VJ2</th>
+<th style="text-align: left;">VJ3_1</th>
+<th style="text-align: left;">VJ3_2</th>
+<th style="text-align: left;">VJ3_3</th>
+<th style="text-align: left;">VJ3_4</th>
+<th style="text-align: left;">VJ3_5</th>
+<th style="text-align: left;">VJ3_6</th>
+<th style="text-align: right;">VJ7</th>
+<th style="text-align: left;">TEATRO1</th>
+<th style="text-align: left;">TEATRO3</th>
+<th style="text-align: right;">TEATRO4</th>
+<th style="text-align: left;">PAT1</th>
+<th style="text-align: left;">PAT4</th>
+<th style="text-align: left;">PAT5_1</th>
+<th style="text-align: left;">PAT5_2</th>
+<th style="text-align: left;">PAT5_3</th>
+<th style="text-align: left;">PAT5_4</th>
+<th style="text-align: left;">PAT5_5</th>
+<th style="text-align: left;">PAT5_6</th>
+<th style="text-align: left;">PAT7.1</th>
+<th style="text-align: left;">PAT7.2</th>
+<th style="text-align: left;">PAT7.3</th>
+<th style="text-align: left;">PAT7.4</th>
+<th style="text-align: left;">PAT7.5</th>
+<th style="text-align: left;">PAT7.6</th>
+<th style="text-align: left;">PAT7.7</th>
+<th style="text-align: left;">PAT7.8</th>
+<th style="text-align: left;">PAT7.9</th>
+<th style="text-align: left;">PAT7.10</th>
+<th style="text-align: left;">PAT7.11</th>
+<th style="text-align: left;">PAT7.12</th>
+<th style="text-align: left;">PAT7.14</th>
+<th style="text-align: left;">PAT7.15</th>
+<th style="text-align: left;">PAT7.16</th>
+<th style="text-align: left;">PAT7.19</th>
+<th style="text-align: left;">INT1</th>
+<th style="text-align: left;">INT2</th>
+<th style="text-align: left;">INT3</th>
+<th style="text-align: left;">INT4</th>
+<th style="text-align: left;">INT5</th>
+<th style="text-align: left;">INT6_1</th>
+<th style="text-align: left;">INT6_2</th>
+<th style="text-align: left;">INT6_3</th>
+<th style="text-align: left;">INT6_4</th>
+<th style="text-align: left;">INT6_5</th>
+<th style="text-align: left;">INT6_6</th>
+<th style="text-align: left;">INT6_7</th>
+<th style="text-align: left;">INT7.1</th>
+<th style="text-align: left;">INT7.2</th>
+<th style="text-align: left;">INT7.3</th>
+<th style="text-align: left;">INT7.4</th>
+<th style="text-align: left;">INT7.5</th>
+<th style="text-align: left;">INT7.6</th>
+<th style="text-align: right;">INT8</th>
+<th style="text-align: right;">INT9</th>
+<th style="text-align: right;">INT10</th>
+<th style="text-align: left;">COMUN4</th>
+<th style="text-align: right;">SOC2</th>
+<th style="text-align: left;">SOC13.1</th>
+<th style="text-align: left;">SOC13.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10011</td>
+<td style="text-align: left;">C2+C3</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: left;">13 A 17 ANIOS</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">C3</td>
+<td style="text-align: left;">MUJER</td>
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">CORDOBA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">TODOS O CASI TODAS LOS MESES</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">LE ABURREN/ SE DUERME</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NS NC</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">TODOS O CASI TODAS LAS SEMANAS</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">TODOS O CASI TODOS LOS DIAS</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">SECUNDARIOS INCOMPLETOS</td>
+<td style="text-align: left;">SECUNDARIOS COMPLETOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">12572</td>
+<td style="text-align: left;">C2+C3</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: left;">50 A 64 ANIOS</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">C3</td>
+<td style="text-align: left;">MUJER</td>
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">CORDOBA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NS NC</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ALGUNAS VECES AL MES</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">MOTIVOS ECONOMICOS</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ALGUNAS VECES A LA SEMANA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">MOTIVOS ECONOMICOS</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SECUNDARIOS COMPLETOS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9911</td>
+<td style="text-align: left;">C2+C3</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: left;">30 A 49 ANIOS</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">C3</td>
+<td style="text-align: left;">VARON</td>
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">CORDOBA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NS NC</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">TODOS O CASI TODOS LOS DIAS</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NS NC</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO LE GUSTA/ INTERESA LA RADIO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">TODOS O CASI TODOS LOS DIAS</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ALGUNAS VECES AL ANIO O MENOS</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HACE MAS DE UN ANIO</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">ENTRE 1 Y 12 MESES</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SI</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;">NUNCA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">TERCIARIOS INCOMPLETOS</td>
+<td style="text-align: left;">PRIMARIOS COMPLETOS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="dplyr-el-domador-de-datos" class="title-slide slide level1 center">
+<h1>dplyr: el “domador” de datos</h1>
+<p>El paquete dplyr es uno de los paquetes embebidos dentro del paquete tidyverse: un conjunto de paquetes destinados a la limpieza y manipulación de datos y que se convirtió en un estándar en la práctica de la limpieza y manipulación de datos en R.</p>
+
+<img data-src="https://asterhu.com/post/2023-05-11-coalesce-join-in-R/dplyr.png" class="quarto-figure quarto-figure-center r-stretch" width="241"></section>
+<section id="verbos-básicos-del-tidyverse-acciones-con-datos" class="slide level2">
+<h2>Verbos Básicos del Tidyverse: ¡Acciones con Datos! 🎬</h2>
+<p>Dentro del <code>tidyverse</code>, especialmente en el paquete <strong><code>dplyr</code></strong> vamos a trabajar mucho con:</p>
+<ul>
+<li><strong><code>select()</code></strong>: Selecciona las <strong>columnas</strong> que necesitas.</li>
+<li><strong><code>filter()</code></strong>: Filas las <strong>filas</strong> u observaciones que cumplen con ciertas condiciones.</li>
+<li><strong><code>mutate()</code></strong>: Crear nuevas columnas a partir de las existentes.</li>
+<li><strong><code>group_by()</code></strong>: agrupar filas según los valores de una o más columnas.</li>
+<li><strong><code>summarize()</code></strong>: Resume o hace un cálculo para los datos que agrupamos.</li>
+<li><strong><code>arrange()</code></strong>: Ordenar <strong>filas</strong> según los valores de una o más columnas.</li>
+</ul>
+</section>
+<section id="como-por-un-tubo-los-pipes" class="slide level2">
+<h2>Como por un tubo: Los Pipes <code>%&gt;%</code></h2>
+<p>Todos estos verbos se van a ir encadenando por una especie de tubo o <strong>pipes</strong> que representamos con <code>%&gt;%</code> (Ctrl+may+M)</p>
+
+<img data-src="https://magrittr.tidyverse.org/logo.png" class="quarto-figure quarto-figure-center r-stretch" width="102"><p><strong>¿Qué hacen los pipes <code>%&gt;%</code>?</strong></p>
+<ul>
+<li><strong>Conectan</strong> operaciones en secuencia (de izquierda a derecha, de arriba a abajo).</li>
+<li><strong>Toman el resultado de la operación de la izquierda y lo “envían”</strong> como <em>primer argumento</em> a la función de la derecha.</li>
+<li>Permiten escribir código de forma más lineal, clara y fácil de leer, especialmente para secuencias largas de transformaciones de datos.</li>
+<li>Evitan crear variables intermedias innecesarias, haciendo el código más conciso y limpio.</li>
+</ul>
+</section>
+<section id="pipe-es-como-decirle-y-después" class="slide level2">
+<h2>Pipe es como decirle “Y después”</h2>
+
+<img data-src="https://www.rforecology.com/pipes_image0.png" class="r-stretch"></section>
+<section id="puede-ser-que-en-alguna-documentación-o-libro-encuentres-otro-modelo-de-pipe" class="slide level2 smaller">
+<h2>Puede ser que en alguna documentación o libro encuentres otro “modelo” de pipe</h2>
+<p>Esto se debe a que una versión de pipe es nativa y la otra no. Pero a los fines de lo que necesitas saber hasta ahora tienen la misma función.</p>
+
+<img data-src="https://kpress.dev/blog/2022-06-19-replacing-the-magrittr-pipe-with-native-r-pipe/featured.png" class="quarto-figure quarto-figure-center r-stretch" width="185"></section>
+<section id="arranquemos-por-llamar-a-tidyverse" class="slide level2 smaller">
+<h2>Arranquemos por llamar a tidyverse 📢</h2>
+<p>La primera vez que llamamos a tidyverse nos da un mensaje de advertencia, en donde nos pone al tanto de los paquetes que nos está trayendo y algunos conflictos entre funciones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>El que avisa no traiciona</strong></p>
+</div>
+<div class="callout-content">
+<p>Tidyverse nos informa que pueden existir conflictos entre algunas de sus funciones. Esto se debe a que inicialmente su desarrollo se realizó de manera separada y por lo tanto las funciones tienen el mismo nombre. Para evitar problemas podes usar el nombre del paquete dos puntos y el nombre de la función.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="seleccionando-columnas-con-select" class="slide level2">
+<h2>1. Seleccionando <strong>columnas</strong> con <code>select()</code></h2>
+<p>Hasta ahora habíamos visto que podíamos llamar a una columna en particular con el signo $ o con [,columna_seleccionada]</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># traigo los primeros casos de la columna NSE_SOCIOE</span></span>
+<span id="cb5-2"><a></a><span class="fu">head</span>(encc_serie_hist<span class="sc">$</span>NSE_SOCIOE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C3"  "C3"  "C3"  "D2E" "C3"  "C3" </code></pre>
+</div>
+</div>
+<p>la función <code>select()</code> me permite hacer esto con muchas columnas. Veamos este ejemplo en el que charlamos usando verbos y el pipe (y después)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>encc_serie_hist <span class="sc">|&gt;</span> <span class="co"># toma la tabla encc_series_hist y después...</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">select</span>(ID,EDICION,EDAD,GRUPOS_EDAD) <span class="sc">|&gt;</span> <span class="co"># selecciona las columnas que te indico, y después</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">head</span>() <span class="co"># selecciona los primeros 5 casos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">ID</th>
+<th style="text-align: right;">EDICION</th>
+<th style="text-align: right;">EDAD</th>
+<th style="text-align: left;">GRUPOS_EDAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">13 A 17 ANIOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">50 A 64 ANIOS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">30 A 49 ANIOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">30 A 49 ANIOS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">65 ANIOS Y MAS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">18 A 29 ANIOS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="filtrando-filas-con-filter" class="slide level2">
+<h2>2. Filtrando <strong>filas</strong> con <code>filter()</code></h2>
+<p>Con filter vamos filtrar las observaciones que cumplan determiada condición.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>encc_serie_hist <span class="sc">|&gt;</span> <span class="co"># toma la tabla encc_series_hist y después...</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">select</span>(ID,EDICION,EDAD,GRUPOS_EDAD) <span class="sc">|&gt;</span> <span class="co"># selecciona las columnas que te indico, y después</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">filter</span>(EDICION <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span>  <span class="co"># traeme solamente los casos de la edición 2022 y después</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">tail</span>() <span class="co"># # selecciona los últimos 5 casos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">ID</th>
+<th style="text-align: right;">EDICION</th>
+<th style="text-align: right;">EDAD</th>
+<th style="text-align: left;">GRUPOS_EDAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">3375</td>
+<td style="text-align: right;">9749</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">30 A 49 ANIOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3376</td>
+<td style="text-align: right;">9750</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">18 A 29 ANIOS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3377</td>
+<td style="text-align: right;">9751</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">65 ANIOS Y MAS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3378</td>
+<td style="text-align: right;">9752</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">30 A 49 ANIOS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3379</td>
+<td style="text-align: right;">9753</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">18 A 29 ANIOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3380</td>
+<td style="text-align: right;">9754</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">18 A 29 ANIOS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="crear-columnas-nuevas-con-mutate" class="slide level2">
+<h2>3. Crear columnas nuevas con <code>mutate()</code></h2>
+<p>Supongamos que quisiera saber la edad de todos los entrevistados al dia de hoy</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>encc_serie_hist <span class="sc">|&gt;</span> <span class="co"># toma la tabla encc_series_hist y después...</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">select</span>(ID,EDICION,EDAD,GRUPOS_EDAD) <span class="sc">|&gt;</span> <span class="co"># selecciona las columnas que te indico, y después</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">filter</span>(EDICION <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span>  <span class="co"># traeme solamente los casos de la edición 2022 y después</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">mutate</span>(<span class="at">edad_2025 =</span> EDAD<span class="sc">+</span><span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="co"># crea una nueva columna (edad_2025) que es igual a edad+3 y después</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="co"># crea una muestra de 4 casos </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">ID</th>
+<th style="text-align: right;">EDICION</th>
+<th style="text-align: right;">EDAD</th>
+<th style="text-align: left;">GRUPOS_EDAD</th>
+<th style="text-align: right;">edad_2025</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">9669</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">50 A 64 ANIOS</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9415</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">13 A 17 ANIOS</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6514</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">18 A 29 ANIOS</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7639</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">65 ANIOS Y MAS</td>
+<td style="text-align: right;">68</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="summarise-y-group_by" class="slide level2">
+<h2>4.<code>summarise()</code> y <code>group_by()</code></h2>
+<p>Al pricipio summarise y group_by pueden resultarnos un poco contra intutivos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>encc_serie_hist <span class="sc">|&gt;</span> <span class="co"># toma la tabla encc_series_hist y después...</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">select</span>(ID,EDICION,EDAD,GRUPOS_EDAD) <span class="sc">|&gt;</span> <span class="co"># selecciona las columnas que te indico, y después</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">filter</span>(EDICION <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span>  <span class="co"># traeme solamente los casos de la edición 2022 y después</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">mutate</span>(<span class="at">edad_2025 =</span> EDAD<span class="sc">+</span><span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="co"># crea una nueva columna (edad_2025) que es igual a edad+3 y después</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">group_by</span>(GRUPOS_EDAD) <span class="sc">|&gt;</span> <span class="co">#</span></span>
+<span id="cb10-6"><a></a>  <span class="fu">summarise</span>(<span class="at">edad_promedio =</span> <span class="fu">mean</span>(EDAD),</span>
+<span id="cb10-7"><a></a>            <span class="at">edad_promedio_2025 =</span> <span class="fu">mean</span>(edad_2025))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">GRUPOS_EDAD</th>
+<th style="text-align: right;">edad_promedio</th>
+<th style="text-align: right;">edad_promedio_2025</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">13 A 17 ANIOS</td>
+<td style="text-align: right;">15.23645</td>
+<td style="text-align: right;">18.23645</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18 A 29 ANIOS</td>
+<td style="text-align: right;">23.85043</td>
+<td style="text-align: right;">26.85043</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">30 A 49 ANIOS</td>
+<td style="text-align: right;">39.43268</td>
+<td style="text-align: right;">42.43268</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">50 A 64 ANIOS</td>
+<td style="text-align: right;">56.73661</td>
+<td style="text-align: right;">59.73661</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">65 ANIOS Y MAS</td>
+<td style="text-align: right;">73.02322</td>
+<td style="text-align: right;">76.02322</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="ya-aprendimos-a-conjugar-con-dplyr" class="slide level2 fit-text">
+<h2>¡Ya aprendimos a conjugar con <code>dplyr</code>!</h2>
+</section></section>
+<section id="y-ahora-cómo-seguimos" class="title-slide slide level1 center">
+<h1>Y ahora cómo seguimos?</h1>
+<p>En esta clase aprendimos a usar los verbos básicos del paquete <code>dplyr</code> junto con el conector de estos verbos el pipe <strong>%&gt;%</strong></p>
+<p>Hacete un buen 🧉 que en la segunda parte de nuestra clase vamos a ver:</p>
+<ul>
+<li><p>Cómo unir dos tablas de resumen entre sí (porque los datos no vienen siempre todos juntos, ni de una) -</p></li>
+<li><p>Cómo “dar vuelta” una tabla. (Porque a veces la tortilla necesita vuelta y vuelta)</p></li>
+<li><p>Cómo aplicar una transfromación a muchas variables de un toque (porque nos encanta trabajar menos y evitarnos errores)</p></li>
+</ul>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="images/logo-uflo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

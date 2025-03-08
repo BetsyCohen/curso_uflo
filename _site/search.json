@@ -771,5 +771,124 @@
     "title": "Flujo de trabajo con datos en R: importacion y exploración inicial",
     "section": "summary(): Un resumen Estadístico Básico 📊",
     "text": "summary(): Un resumen Estadístico Básico 📊\nO puedo por ejemplo seleccionar una sola columna y ver los estadísticos de resumen.\n\nsummary(iris$Sepal.Length)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  4.300   5.100   5.800   5.843   6.400   7.900 \n\n\n\n\n\n\n\n\n¿Qué nos dice summary?\n\n\nUsando la encuesta que descargamos elegi algunas de las columnas e interpretá los datos que te brinda summary. Vamos a compartir nuestras conclusiones en clase"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#qué-es-tidyverse",
+    "href": "materiales/slides/clase_4_parte_1.html#qué-es-tidyverse",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "¿Qué es Tidyverse? 🤔",
+    "text": "¿Qué es Tidyverse? 🤔\nEl tidyverse no es solo un paquete de R, ¡es una colección de paquetes diseñados para trabajar juntos de forma armoniosa en el análisis de datos! Piensen en él como un “universo” o “ecosistema” de herramientas.\nCaracterísticas Clave del Tidyverse:\n\nFilosofía “Tidy Data”: Organización de datos de forma consistente y fácil de usar (datos “ordenados”).\nSintaxis Consistente y Verbosa: Funciones con nombres claros (verbos) que hacen tareas específicas. Código fácil de leer y entender.\nDiseñado para el Flujo de Trabajo de Data Science: Paquetes para cada etapa del análisis: importación, limpieza, transformación, visualización, modelado, comunicación.\nÉnfasis en la Legibilidad y la Reproducibilidad: Código más fácil de escribir, leer, mantener y compartir.\nComunidad Activa y Documentación Exhaustiva: Gran apoyo y recursos para aprender y resolver problemas."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#un-flujo-de-trabajo-ordenado-o-tidy-tiene-fases-que-iteran-entre-sí",
+    "href": "materiales/slides/clase_4_parte_1.html#un-flujo-de-trabajo-ordenado-o-tidy-tiene-fases-que-iteran-entre-sí",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Un flujo de trabajo ordenado o tidy tiene fases que iteran entre sí",
+    "text": "Un flujo de trabajo ordenado o tidy tiene fases que iteran entre sí"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#tidyverse-propone-uno-o-varios-paquetes-que-conservando-una-lógica-similar-responden-a-cada-una-de-estas-etapas",
+    "href": "materiales/slides/clase_4_parte_1.html#tidyverse-propone-uno-o-varios-paquetes-que-conservando-una-lógica-similar-responden-a-cada-una-de-estas-etapas",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Tidyverse propone uno o varios paquetes que conservando una lógica similar responden a cada una de estas etapas",
+    "text": "Tidyverse propone uno o varios paquetes que conservando una lógica similar responden a cada una de estas etapas"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#paquetes-principales-de-tidyverse-los-8-magníficos",
+    "href": "materiales/slides/clase_4_parte_1.html#paquetes-principales-de-tidyverse-los-8-magníficos",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨",
+    "text": "Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨\nAunque tidyverse incluye muchos paquetes, hay 8 paquetes “centrales” que son los más esenciales y que se cargan automáticamente al cargar tidyverse con library(tidyverse):"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#instalando-y-cargando-el-tidyverse",
+    "href": "materiales/slides/clase_4_parte_1.html#instalando-y-cargando-el-tidyverse",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Instalando y Cargando el Tidyverse 📦",
+    "text": "Instalando y Cargando el Tidyverse 📦\nInstalar Tidyverse (solo la primera vez):\nPara instalar cualquier librería siempre usamos la función install.packages() por lo que si aún no lo hiciste deberas escribir:\n\ninstall.packages(\"tidyverse\")\n\nY cada vez que querramos usar el proyecto deberemos cargarlo al inicio de cada sesión de R: escribiendo library() y el nombre de la librería\n\nlibrary(tidyverse)\n\nY así cuando cargamos tidyverse , se cargan automáticamente los paquetes que este contiene. ¡Listos para usar!"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#cargar-los-datos",
+    "href": "materiales/slides/clase_4_parte_1.html#cargar-los-datos",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Cargar los datos",
+    "text": "Cargar los datos\nVamos a trabajar con la serie histórica de Encuesta Nacional de Consumos Culturales que representa las olas 2013,2017 y 2022 de este estudio.\n\n# creamos el vector con la url\nencc_serie_hist_url &lt;- \"https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/d9570d16-f5d1-4d18-8145-3372eafb97af/download/encc-serie-historica.csv\"  \n\n# lo asignamos a un objeto tabla con la función read.csv\nencc_serie_hist &lt;- read.csv(encc_serie_hist_url)\n\n# vemos los primeros 3 casos\nhead(encc_serie_hist,3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nID\nEXPANSOR\nNSE_3\nEDICION\nGRUPOS_EDAD\nEDAD\nNSE_SOCIOE\nGENERO\nREGION\nPROVINCIA\nTV1\nTV2\nTV3_1\nTV3_2\nTV3_3\nTV3_4\nTV3_5\nTV3_6\nTV5_1\nTV5_2\nTV5_3\nTV5_4\nTV6.1\nTV6.2\nTV8.1\nTV8.2\nTV8.3\nTV8.4\nTV8.5\nCINE1\nCINE2\nCINE3\nCINE4\nCINE5\nNOTI1\nNOTI2\nNOTI3.1\nNOTI5\nNOTI8\nNOTI10\nLIBRO1\nLIBRO2\nLIBRO3.1\nLIBRO3.2\nLIBRO4_1\nLIBRO4_2\nLIBRO4_3\nLIBRO4_4\nLIBRO5\nLIBRO6\nLIBRO9\nLIBRO13\nRADIO1\nRADIO2\nRADIO3\nRADIO5_1\nRADIO5_2\nRADIO5_3\nRADIO5_4\nRADIO5_5\nMUSICA1\nMUSICA2\nMUSICA3\nMUSICA7_1\nMUSICA7_2\nMUSICA7_3\nMUSICA7_4\nMUSICA7_5\nMUSICA7_6\nMUSICA7_7\nMUSICA7_8\nMUSICA7_9\nMUSICA9\nMUSICA10\nMUSICA11\nMUSICA12\nMUSICA13\nMUSICA15\nVJ1\nVJ2\nVJ3_1\nVJ3_2\nVJ3_3\nVJ3_4\nVJ3_5\nVJ3_6\nVJ7\nTEATRO1\nTEATRO3\nTEATRO4\nPAT1\nPAT4\nPAT5_1\nPAT5_2\nPAT5_3\nPAT5_4\nPAT5_5\nPAT5_6\nPAT7.1\nPAT7.2\nPAT7.3\nPAT7.4\nPAT7.5\nPAT7.6\nPAT7.7\nPAT7.8\nPAT7.9\nPAT7.10\nPAT7.11\nPAT7.12\nPAT7.14\nPAT7.15\nPAT7.16\nPAT7.19\nINT1\nINT2\nINT3\nINT4\nINT5\nINT6_1\nINT6_2\nINT6_3\nINT6_4\nINT6_5\nINT6_6\nINT6_7\nINT7.1\nINT7.2\nINT7.3\nINT7.4\nINT7.5\nINT7.6\nINT8\nINT9\nINT10\nCOMUN4\nSOC2\nSOC13.1\nSOC13.2\n\n\n\n\n1\n10011\nC2+C3\n2013\n13 A 17 ANIOS\n16\nC3\nMUJER\nCENTRO\nCORDOBA\nSI\n\nNO\nNO\nNO\nSI\n\nNO\nSI\nSI\nSI\nNO\n\n\n\n\n\n4\nNA\nSI\n\nTODOS O CASI TODAS LOS MESES\nNA\nNA\nNO\n\n\nNA\nSI\nNA\nNO\nLE ABURREN/ SE DUERME\n\n\n\n\n\n\nNA\nNA\n2\n10\nSI\n\n\nSI\nNO\nSI\nSI\nSI\nNO\nNS NC\n\n\n\nNO\nNO\nNO\n\n\nNO\nNO\nSI\n\nTODOS O CASI TODAS LAS SEMANAS\nNA\nNA\n\nNO\n\n\n\n\n\n\n\nNA\nNO\n\nNA\n\n\n\n\n\n\n\n\nNUNCA\nNUNCA\n\nNUNCA\n\nHACE MAS DE UN ANIO\nENTRE 1 Y 12 MESES\nNUNCA\nNUNCA\nNUNCA\nNUNCA\nNUNCA\nNUNCA\nNUNCA\nNUNCA\nNUNCA\nSI\n\nSI\nSI\nSI\n\n\nSI\n\n\n\nSI\nTODOS O CASI TODOS LOS DIAS\nNUNCA\nNUNCA\n\n\n\n2\n0\n2\n\n4\nSECUNDARIOS INCOMPLETOS\nSECUNDARIOS COMPLETOS\n\n\n2\n12572\nC2+C3\n2013\n50 A 64 ANIOS\n53\nC3\nMUJER\nCENTRO\nCORDOBA\nSI\n\nNO\nSI\nNO\nNO\n\nNO\nSI\nNO\nNO\nNO\n\n\n\n\n\n1\nNA\nNO\nNS NC\n\nNA\nNA\nSI\n\nALGUNAS VECES AL MES\nNA\nSI\nNA\nNO\nMOTIVOS ECONOMICOS\n\n\n\n\n\n\nNA\nNA\nNA\nNA\nSI\n\n\nSI\nNO\nNO\nNO\nNO\nSI\n\nALGUNAS VECES A LA SEMANA\nNO\nNO\nNO\nNO\nNO\n\nSI\nNO\nNO\nNO\nMOTIVOS ECONOMICOS\n\nNA\nNA\n\nNO\n\n\n\n\n\n\n\nNA\nNO\n\nNA\n\n\n\n\n\n\n\n\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\n\nHACE MAS DE UN ANIO\n\nHACE MAS DE UN ANIO\nNUNCA\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\nNUNCA\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\nHACE MAS DE UN ANIO\nNO\n\nNO\n\nNO\n\n\n\n\n\n\n\n\n\n\n\n\n\n0\n0\n0\n\n2\n\nSECUNDARIOS COMPLETOS\n\n\n3\n9911\nC2+C3\n2013\n30 A 49 ANIOS\n34\nC3\nVARON\nCENTRO\nCORDOBA\nSI\n\nNO\nSI\nNO\nNO\n\nNO\nSI\nNO\nNO\nNO\n\n\n\n\n\n4\nNA\nNO\nNS NC\n\nNA\nNA\nSI\n\nTODOS O CASI TODOS LOS DIAS\nNA\nNO\nNA\nNO\nNS NC\n\n\n\n\n\n\nNA\nNA\nNA\n20\nNO\nNO LE GUSTA/ INTERESA LA RADIO\n\n\nNO\n\n\n\nSI\n\nTODOS O CASI TODOS LOS DIAS\nSI\nSI\nNO\nNO\nNO\n\nNO\nNO\nNO\nSI\n\nALGUNAS VECES AL ANIO O MENOS\nNA\nNA\n\nNO\n\n\n\n\n\n\n\nNA\nNO\n\nNA\n\n\n\n\n\n\n\n\nENTRE 1 Y 12 MESES\nHACE MAS DE UN ANIO\n\nNUNCA\n\nHACE MAS DE UN ANIO\nENTRE 1 Y 12 MESES\nENTRE 1 Y 12 MESES\nENTRE 1 Y 12 MESES\nNUNCA\nENTRE 1 Y 12 MESES\nENTRE 1 Y 12 MESES\nNUNCA\nNUNCA\nENTRE 1 Y 12 MESES\nNUNCA\nSI\n\nSI\nSI\nSI\n\n\n\n\n\n\nSI\nNUNCA\nNUNCA\nNUNCA\n\n\n\n2\n0\n1\n\n5\nTERCIARIOS INCOMPLETOS\nPRIMARIOS COMPLETOS"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#verbos-básicos-del-tidyverse-acciones-con-datos",
+    "href": "materiales/slides/clase_4_parte_1.html#verbos-básicos-del-tidyverse-acciones-con-datos",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Verbos Básicos del Tidyverse: ¡Acciones con Datos! 🎬",
+    "text": "Verbos Básicos del Tidyverse: ¡Acciones con Datos! 🎬\nDentro del tidyverse, especialmente en el paquete dplyr vamos a trabajar mucho con:\n\nselect(): Selecciona las columnas que necesitas.\nfilter(): Filas las filas u observaciones que cumplen con ciertas condiciones.\nmutate(): Crear nuevas columnas a partir de las existentes.\ngroup_by(): agrupar filas según los valores de una o más columnas.\nsummarize(): Resume o hace un cálculo para los datos que agrupamos.\narrange(): Ordenar filas según los valores de una o más columnas."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#como-por-un-tubo-los-pipes",
+    "href": "materiales/slides/clase_4_parte_1.html#como-por-un-tubo-los-pipes",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Como por un tubo: Los Pipes %>%",
+    "text": "Como por un tubo: Los Pipes %&gt;%\nTodos estos verbos se van a ir encadenando por una especie de tubo o pipes que representamos con %&gt;% (Ctrl+may+M)\n\n¿Qué hacen los pipes %&gt;%?\n\nConectan operaciones en secuencia (de izquierda a derecha, de arriba a abajo).\nToman el resultado de la operación de la izquierda y lo “envían” como primer argumento a la función de la derecha.\nPermiten escribir código de forma más lineal, clara y fácil de leer, especialmente para secuencias largas de transformaciones de datos.\nEvitan crear variables intermedias innecesarias, haciendo el código más conciso y limpio."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#pipe-es-como-decirle-y-después",
+    "href": "materiales/slides/clase_4_parte_1.html#pipe-es-como-decirle-y-después",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Pipe es como decirle “Y después”",
+    "text": "Pipe es como decirle “Y después”"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#puede-ser-que-en-alguna-documentación-o-libro-encuentres-otro-modelo-de-pipe",
+    "href": "materiales/slides/clase_4_parte_1.html#puede-ser-que-en-alguna-documentación-o-libro-encuentres-otro-modelo-de-pipe",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Puede ser que en alguna documentación o libro encuentres otro “modelo” de pipe",
+    "text": "Puede ser que en alguna documentación o libro encuentres otro “modelo” de pipe\nEsto se debe a que una versión de pipe es nativa y la otra no. Pero a los fines de lo que necesitas saber hasta ahora tienen la misma función."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#arranquemos-por-llamar-a-tidyverse",
+    "href": "materiales/slides/clase_4_parte_1.html#arranquemos-por-llamar-a-tidyverse",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Arranquemos por llamar a tidyverse 📢",
+    "text": "Arranquemos por llamar a tidyverse 📢\nLa primera vez que llamamos a tidyverse nos da un mensaje de advertencia, en donde nos pone al tanto de los paquetes que nos está trayendo y algunos conflictos entre funciones.\n\nlibrary(tidyverse)\n\n\n\n\n\n\n\nEl que avisa no traiciona\n\n\nTidyverse nos informa que pueden existir conflictos entre algunas de sus funciones. Esto se debe a que inicialmente su desarrollo se realizó de manera separada y por lo tanto las funciones tienen el mismo nombre. Para evitar problemas podes usar el nombre del paquete dos puntos y el nombre de la función."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#seleccionando-columnas-con-select",
+    "href": "materiales/slides/clase_4_parte_1.html#seleccionando-columnas-con-select",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "1. Seleccionando columnas con select()",
+    "text": "1. Seleccionando columnas con select()\nHasta ahora habíamos visto que podíamos llamar a una columna en particular con el signo $ o con [,columna_seleccionada]\n\n# traigo los primeros casos de la columna NSE_SOCIOE\nhead(encc_serie_hist$NSE_SOCIOE)\n\n[1] \"C3\"  \"C3\"  \"C3\"  \"D2E\" \"C3\"  \"C3\" \n\n\nla función select() me permite hacer esto con muchas columnas. Veamos este ejemplo en el que charlamos usando verbos y el pipe (y después)\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  head() # selecciona los primeros 5 casos\n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\n\n\n\n\n1\n2013\n16\n13 A 17 ANIOS\n\n\n2\n2013\n53\n50 A 64 ANIOS\n\n\n3\n2013\n34\n30 A 49 ANIOS\n\n\n4\n2013\n32\n30 A 49 ANIOS\n\n\n5\n2013\n89\n65 ANIOS Y MAS\n\n\n6\n2013\n22\n18 A 29 ANIOS"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#filtrando-filas-con-filter",
+    "href": "materiales/slides/clase_4_parte_1.html#filtrando-filas-con-filter",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "2. Filtrando filas con filter()",
+    "text": "2. Filtrando filas con filter()\nCon filter vamos filtrar las observaciones que cumplan determiada condición.\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  tail() # # selecciona los últimos 5 casos\n\n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\n\n\n\n\n3375\n9749\n2022\n45\n30 A 49 ANIOS\n\n\n3376\n9750\n2022\n24\n18 A 29 ANIOS\n\n\n3377\n9751\n2022\n72\n65 ANIOS Y MAS\n\n\n3378\n9752\n2022\n42\n30 A 49 ANIOS\n\n\n3379\n9753\n2022\n21\n18 A 29 ANIOS\n\n\n3380\n9754\n2022\n24\n18 A 29 ANIOS"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#crear-columnas-nuevas-con-mutate",
+    "href": "materiales/slides/clase_4_parte_1.html#crear-columnas-nuevas-con-mutate",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "3. Crear columnas nuevas con mutate()",
+    "text": "3. Crear columnas nuevas con mutate()\nSupongamos que quisiera saber la edad de todos los entrevistados al dia de hoy\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  mutate(edad_2025 = EDAD+3) |&gt; # crea una nueva columna (edad_2025) que es igual a edad+3 y después\n  sample_n(size = 4) # crea una muestra de 4 casos \n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\nedad_2025\n\n\n\n\n9669\n2022\n52\n50 A 64 ANIOS\n55\n\n\n9415\n2022\n16\n13 A 17 ANIOS\n19\n\n\n6514\n2022\n25\n18 A 29 ANIOS\n28\n\n\n7639\n2022\n65\n65 ANIOS Y MAS\n68"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#summarise-y-group_by",
+    "href": "materiales/slides/clase_4_parte_1.html#summarise-y-group_by",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "4.summarise() y group_by()",
+    "text": "4.summarise() y group_by()\nAl pricipio summarise y group_by pueden resultarnos un poco contra intutivos.\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  mutate(edad_2025 = EDAD+3) |&gt; # crea una nueva columna (edad_2025) que es igual a edad+3 y después\n  group_by(GRUPOS_EDAD) |&gt; #\n  summarise(edad_promedio = mean(EDAD),\n            edad_promedio_2025 = mean(edad_2025))\n\n\n\n\n\nGRUPOS_EDAD\nedad_promedio\nedad_promedio_2025\n\n\n\n\n13 A 17 ANIOS\n15.23645\n18.23645\n\n\n18 A 29 ANIOS\n23.85043\n26.85043\n\n\n30 A 49 ANIOS\n39.43268\n42.43268\n\n\n50 A 64 ANIOS\n56.73661\n59.73661\n\n\n65 ANIOS Y MAS\n73.02322\n76.02322"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#ya-aprendimos-a-conjugar-con-dplyr",
+    "href": "materiales/slides/clase_4_parte_1.html#ya-aprendimos-a-conjugar-con-dplyr",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "¡Ya aprendimos a conjugar con dplyr!",
+    "text": "¡Ya aprendimos a conjugar con dplyr!"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_1.html#paquetes-principales-de-tidyverse-los-8-magníficos-1",
+    "href": "materiales/slides/clase_4_parte_1.html#paquetes-principales-de-tidyverse-los-8-magníficos-1",
+    "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
+    "section": "Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨",
+    "text": "Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨\n\nggplot2: ¡Para visualizaciones de datos impresionantes y personalizables!\ndplyr: ¡Para manipulación y transformación de datos! (Verbos: filter, select, mutate, arrange, summarize, group_by)\ntidyr: ¡Para “ordenar” tus datos y organizarlos en formato “tidy”!\nreadr: Para importar datos de forma rápida y eficiente (Funciones: read_csv, read_tsv, read_delim, etc. - Alternativa a read.csv y funciones base de R )\npurrr: ¡Para programación funcional y trabajar con listas de forma elegante!\ntibble: ¡Para crear data frames modernos y mejorados! (Alternativa a los data frames base de R, más “amigables” y consistentes)\nstringr: ¡Para manipulación de cadenas de texto (strings)!\nforcats: ¡Para trabajar con variables categóricas (factores)!\n\n¡Y muchos más paquetes útiles en el “universo” Tidyverse! (como readxl, lubridate, httr, rvest, etc.)"
   }
 ]
