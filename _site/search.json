@@ -868,7 +868,7 @@
     "href": "materiales/slides/clase_4_parte_1.html#crear-columnas-nuevas-con-mutate",
     "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
     "section": "3. Crear columnas nuevas con mutate()",
-    "text": "3. Crear columnas nuevas con mutate()\nSupongamos que quisiera saber la edad de todos los entrevistados al dia de hoy\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  mutate(edad_2025 = EDAD+3) |&gt; # crea una nueva columna (edad_2025) que es igual a edad+3 y después\n  sample_n(size = 4) # crea una muestra de 4 casos \n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\nedad_2025\n\n\n\n\n9669\n2022\n52\n50 A 64 ANIOS\n55\n\n\n9415\n2022\n16\n13 A 17 ANIOS\n19\n\n\n6514\n2022\n25\n18 A 29 ANIOS\n28\n\n\n7639\n2022\n65\n65 ANIOS Y MAS\n68"
+    "text": "3. Crear columnas nuevas con mutate()\nSupongamos que quisiera saber la edad de todos los entrevistados al dia de hoy\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  mutate(edad_2025 = EDAD+3) |&gt; # crea una nueva columna (edad_2025) que es igual a edad+3 y después\n  sample_n(size = 4) # crea una muestra de 4 casos \n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\nedad_2025\n\n\n\n\n9136\n2022\n44\n30 A 49 ANIOS\n47\n\n\n6973\n2022\n57\n50 A 64 ANIOS\n60\n\n\n8373\n2022\n28\n18 A 29 ANIOS\n31\n\n\n7814\n2022\n88\n65 ANIOS Y MAS\n91"
   },
   {
     "objectID": "materiales/slides/clase_4_parte_1.html#summarise-y-group_by",
@@ -890,5 +890,82 @@
     "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
     "section": "Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨",
     "text": "Paquetes principales de Tidyverse: ¡Los 8 Magníficos! ✨\n\nggplot2: ¡Para visualizaciones de datos impresionantes y personalizables!\ndplyr: ¡Para manipulación y transformación de datos! (Verbos: filter, select, mutate, arrange, summarize, group_by)\ntidyr: ¡Para “ordenar” tus datos y organizarlos en formato “tidy”!\nreadr: Para importar datos de forma rápida y eficiente (Funciones: read_csv, read_tsv, read_delim, etc. - Alternativa a read.csv y funciones base de R )\npurrr: ¡Para programación funcional y trabajar con listas de forma elegante!\ntibble: ¡Para crear data frames modernos y mejorados! (Alternativa a los data frames base de R, más “amigables” y consistentes)\nstringr: ¡Para manipulación de cadenas de texto (strings)!\nforcats: ¡Para trabajar con variables categóricas (factores)!\n\n¡Y muchos más paquetes útiles en el “universo” Tidyverse! (como readxl, lubridate, httr, rvest, etc.)"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#qué-es-un-join",
+    "href": "materiales/slides/clase_4_parte_2.html#qué-es-un-join",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Qué es un join()",
+    "text": "Qué es un join()\nEn el análisis de datos, a menudo tenemos información distribuida en múltiples tablas relacionadas y necesitamos unirlas para combinar la información y poder analizarla en conjunto.\nEjemplo:\nTabla 1: encc_personas_region: Información agregada por región\nTabla 2: tamanio_localidad_region: Información sobre el tamaño de localidad por región\nQueremos unir estas tablas para tener en una sola tabla información combinada por región."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#que-tipos-de-join-existen",
+    "href": "materiales/slides/clase_4_parte_2.html#que-tipos-de-join-existen",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Que tipos de join() existen",
+    "text": "Que tipos de join() existen\ndplyr nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:\n\n\n\n\n\n\n\nleft_join: Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA.\n\n\n\nright_join: Similar a left_join, pero mantiene TODAS las filas de tabla_B (derecha) y agrega las columnas de tabla_A donde hay coincidencia.\n\n\n\ninner_join: Mantiene solo las filas que tienen coincidencia en la columna_clave en AMBAS tablas.Es la intersección de las tablas.\n\n\n\nfull_join: Unión COMPLETA (EXTERNA). Mantiene TODAS las filas de AMBAS tablas, combinando las filas donde hay coincidencia y rellenando con NA donde no la hay. Es la unión de las tablas."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#como-junto-tablas",
+    "href": "materiales/slides/clase_4_parte_2.html#como-junto-tablas",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Como junto tablas",
+    "text": "Como junto tablas"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#qué-es-un-pivoteo-y-en-qué-situaciones-lo-voy-a-necesitar",
+    "href": "materiales/slides/clase_4_parte_2.html#qué-es-un-pivoteo-y-en-qué-situaciones-lo-voy-a-necesitar",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Qué es un pivoteo y en qué situaciones lo voy a necesitar",
+    "text": "Qué es un pivoteo y en qué situaciones lo voy a necesitar\nMuchas veces nos va a pasar que vamos a tener una tabla en la cual las categorías que queremos mostrar (por ejemplo sexo, edad, provincia) se encuentran como nombres de columnas. Por ejemplo:\n\nencc_personas_por_genero_region\n\n\n\n\n\nregion\nMujer\nVarón\nNo binario\n\n\n\n\nCABA\n215\n173\nNA\n\n\nCENTRO\n368\n240\nNA\n\n\nCUYO\n246\n185\nNA\n\n\nGBA\n370\n249\n1\n\n\nNEA\n269\n179\nNA\n\n\nNOA\n284\n162\nNA\n\n\nPATAGONIA\n253\n186\nNA\n\n\n\n\n\n\nLa variable sexo no existe como tal sino que se encuentra repartida a lo ancho de la tabla como columnas y entonces si nos pasan una tabla como esta no podríamos aplicar operaciones como filter() y quedarnos sólo con las mujeres"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#estirar-a-lo-largo-con-pivot_longer",
+    "href": "materiales/slides/clase_4_parte_2.html#estirar-a-lo-largo-con-pivot_longer",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Estirar a lo largo con pivot_longer",
+    "text": "Estirar a lo largo con pivot_longer\nPara convertir a sexo en columna vamos a usar una función muy útil llamada pivot_longer.\nLa función nos pide al menos dos argumentos para operar (además de la tabla en cuestión, obviamente)\n\nencc_personas_por_genero_region_alargada &lt;- encc_personas_por_genero_region %&gt;% \n  pivot_longer(\n    cols = c(\"Mujer\",\"Varón\",\"No binario\"), # qué columnas necesitas pivotear\n    names_to = \"sexo\", # cómo se va a llamar la variable a donde van a parar\n    values_to = \"personas\" # (opcional) nombre de la columna a donde van a parar los valores pivoteados\n    )\n\nencc_personas_por_genero_region_alargada %&gt;% \n  head(n=8)\n\n\n\n\n\nregion\nsexo\npersonas\n\n\n\n\nCABA\nMujer\n215\n\n\nCABA\nVarón\n173\n\n\nCABA\nNo binario\nNA\n\n\nCENTRO\nMujer\n368\n\n\nCENTRO\nVarón\n240\n\n\nCENTRO\nNo binario\nNA\n\n\nCUYO\nMujer\n246\n\n\nCUYO\nVarón\n185"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#estirar-a-lo-largo-con-pivot_longer-1",
+    "href": "materiales/slides/clase_4_parte_2.html#estirar-a-lo-largo-con-pivot_longer-1",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Estirar a lo largo con pivot_longer",
+    "text": "Estirar a lo largo con pivot_longer\nY ahora ya podemos hacer operaciones con esta tabla como por ejemplo filtrar solo a las muejeres\n\nencc_personas_por_genero_region_alargada %&gt;% \n  filter(sexo == \"Mujer\")\n\n\n\n\n\nregion\nsexo\npersonas\n\n\n\n\nCABA\nMujer\n215\n\n\nCENTRO\nMujer\n368\n\n\nCUYO\nMujer\n246\n\n\nGBA\nMujer\n370\n\n\nNEA\nMujer\n269\n\n\nNOA\nMujer\n284\n\n\nPATAGONIA\nMujer\n253"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#estirar-a-lo-ancho-con-pivot_wider",
+    "href": "materiales/slides/clase_4_parte_2.html#estirar-a-lo-ancho-con-pivot_wider",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Estirar a lo ancho con pivot_wider",
+    "text": "Estirar a lo ancho con pivot_wider\nPivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser\n\nencc_personas_por_genero_region_alargada %&gt;% \n  pivot_wider(names_from = \"sexo\", # que categorias tengo que poner como nombre de la variable que voy a estirar a lo ancho como columnas\n              values_from = \"personas\") # Qué variable contiene los valores que debo repartir a lo ancho por esas columnas\n\n\n\n\n\nregion\nMujer\nVarón\nNo binario\n\n\n\n\nCABA\n215\n173\nNA\n\n\nCENTRO\n368\n240\nNA\n\n\nCUYO\n246\n185\nNA\n\n\nGBA\n370\n249\n1\n\n\nNEA\n269\n179\nNA\n\n\nNOA\n284\n162\nNA\n\n\nPATAGONIA\n253\n186\nNA\n\n\n\n\n\n\n:::{call-out tip} Si bien no es una regla, podríamos pensar que pivot_longer va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider siempre nos da un formato :::"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#que-tipos-de-join-existen-1",
+    "href": "materiales/slides/clase_4_parte_2.html#que-tipos-de-join-existen-1",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Que tipos de join() existen",
+    "text": "Que tipos de join() existen\ndplyr nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:\n\n\n\n\n\n\n\nleft_join: Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA.\n\n\n\nright_join: Similar a left_join, pero mantiene TODAS las filas de tabla_B (derecha) y agrega las columnas de tabla_A donde hay coincidencia.\n\n\n\ninner_join: Mantiene solo las filas que tienen coincidencia en la columna_clave en AMBAS tablas.Es la intersección de las tablas.\n\n\n\nfull_join: Unión COMPLETA (EXTERNA). Mantiene TODAS las filas de AMBAS tablas, combinando las filas donde hay coincidencia y rellenando con NA donde no la hay. Es la unión de las tablas."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#tipos-de-join",
+    "href": "materiales/slides/clase_4_parte_2.html#tipos-de-join",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Tipos de join()",
+    "text": "Tipos de join()\ndplyr nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:\n\n\nleft_join: Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA."
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#tipos-de-join-1",
+    "href": "materiales/slides/clase_4_parte_2.html#tipos-de-join-1",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Tipos de join()",
+    "text": "Tipos de join()"
+  },
+  {
+    "objectID": "materiales/slides/clase_4_parte_2.html#tipos-de-join-2",
+    "href": "materiales/slides/clase_4_parte_2.html#tipos-de-join-2",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Tipos de join()",
+    "text": "Tipos de join()\n\n\n\n\n\n\nOtros tipos de join\n\n\nsemi_join Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.\nanti_join Unión ANTI-IZQUIERDA. Mantiene solo las filas de tabla_A que NO tienen coincidencia en la columna_clave en tabla_B. Sirve para filtrar tabla_A y quedarte solo con las filas sin coincidencias en tabla_B."
   }
 ]

@@ -215,4 +215,4 @@ Hacete un buen 🧉 que en la segunda parte de nuestra clase vamos a ver:
 
 -   Cómo "dar vuelta" una tabla. (Porque a veces la tortilla necesita vuelta y vuelta)
 
--   Cómo aplicar una transfromación a muchas variables de un toque (porque nos encanta trabajar menos y evitarnos errores)
+-   Cómo aplicar una transformación a muchas variables de un toque (porque nos encanta trabajar menos y evitarnos errores)
