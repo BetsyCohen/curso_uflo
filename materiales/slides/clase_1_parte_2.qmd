@@ -3,7 +3,7 @@ title: "La interfaz de RStudio."
 subtitle: "Primeros pasos en R"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
-date: "20/03/2025"
+date: "03/20/2025"
 format:
   revealjs:
     width: 1600
@@ -96,7 +96,7 @@ Una vez que cocinamos nuestros datos y tenemos resultados, queremos presentarlos
 
 **Quarto**: Es la nueva generación de R Markdown. Es más potente y flexible, permite crear no solo documentos, sino también presentaciones (como esta!), sitios web, blogs, libros y más. ¡Y no solo con R, sino también con otros lenguajes!
 
-## Proyectos 
+## Proyectos
 
 Trabajar con proyectos en RStudio hace que todo el trabajo sea más sencillo. Los proyectos crean una carpeta en nuestra PC en donde se almacenarán los archivos, tablas, scripts, y hace que todo sea más organizado.
 

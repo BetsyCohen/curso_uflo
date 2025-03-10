@@ -19,7 +19,7 @@ df-print: kable
 
 # El tidyverso: la frontera final
 
-En la clase de hoy, nos sumergirnos en el universo de **`tidyverse`**, un conjunto de paquetes de R esencial para el análisis de datos. Cuando esta clase termine no solo vamos a poder importar datos de las distintas fuentes y hacer una exploración general, sino también emepzar a manipular y encadenar operaciones entre sí.
+En la clase de hoy, nos sumergirnos en el universo de **`tidyverse`**, un conjunto de paquetes de R esencial para el análisis de datos. Cuando esta clase termine no solo vamos a poder importar datos de las distintas fuentes y hacer una exploración general, sino también empezar a manipular y encadenar operaciones entre sí.
 
 ## ¿Qué es Tidyverse? 🤔 {.smaller}
 
@@ -78,7 +78,7 @@ library(tidyverse)
 
 Y así cuando cargamos `tidyverse` , **se cargan automáticamente los paquetes que este contiene**. ¡Listos para usar!
 
-## Cargar los datos
+## Cargar los datos {.smaller}
 
 Vamos a trabajar con la [serie histórica de Encuesta Nacional de Consumos Culturales](https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales) que representa las olas 2013,2017 y 2022 de este estudio.
 
@@ -147,7 +147,7 @@ library(tidyverse)
 Tidyverse nos informa que pueden existir conflictos entre algunas de sus funciones. Esto se debe a que inicialmente su desarrollo se realizó de manera separada y por lo tanto las funciones tienen el mismo nombre. Para evitar problemas podes usar el nombre del paquete dos puntos y el nombre de la función.
 :::
 
-## 1. Seleccionando **columnas** con `select()`
+## 1. Seleccionando **columnas** con `select()` {.smaller}
 
 Hasta ahora habíamos visto que podíamos llamar a una columna en particular con el signo \$ o con \[,columna_seleccionada\]
 
@@ -205,6 +205,60 @@ encc_serie_hist |> # toma la tabla encc_series_hist y después...
 
 ## ¡Ya aprendimos a conjugar con `dplyr`! {.fit-text}
 
+# La yapa: `across()`: Aplicar Funciones a Múltiples Columnas
+
+**`across()`** es muy útil cuando trabajamos con transformaciones de tablas
+
+**`across()` permite aplicar la *misma función* (o funciones) a *múltiples columnas* de forma concisa dentro de verbos como `mutate()` y `summarize()`**.
+
+## Sintaxis de `across()` {.smaller}
+
+Sintaxis básica de across() dentro de mutate():
+
+``` r
+tabla_mutada <- tabla %>%
+mutate(
+across(
+.cols = columnas_a_modificar,
+.fns = funcion_a_aplicar,
+# ... argumentos adicionales para la función ...
+.names = "{.col}_{.fn}" # (opcional) patrón para nombrar nuevas columnas
+)
+)
+```
+
+-   **`across()`**: Función para aplicar operaciones a múltiples columnas.
+
+-   **`.cols = columnas_a_modificar`**: Especifica **qué columnas quieres modificar** (o usar como input). Podes usar `c("columna1", "columna2", "columna3")`, selectores de columnas (`starts_with("...")`), `everything()`, `where(is.numeric)`, etc.
+
+-   **`.fns = funcion_a_aplicar`**: Especifica **qué función (o lista de funciones)** quieres aplicar a las columnas seleccionadas en `.cols`. Puede ser una sola función (ej: `mean`) o una lista de funciones (ej: `list(mean = mean, median = median)`).
+
+-   **`.names = "{.col}_{.fn}"`**: (Opcional) Define un **patrón para nombrar las nuevas columnas** que se crean (si la función aplicada crea nuevas columnas, como `mutate()`). `{.col}` se reemplaza por el nombre de la columna original, y `{.fn}` por el nombre de la función (si usaste una lista de funciones nombradas).
+
+## Ejemplo de `across()` con `mutate()`
+
+Supongamos que queremos convertir a **minuscula** los valores de varias columnas de texto
+
+```{r}
+encc_serie_hist %>% 
+  mutate(
+    across(
+      .cols = c("REGION", "PROVINCIA", "GENERO"), # Columnas de texto a modificar
+      .fns = tolower,            # Función: convertir a minuscula (tolower)
+      .names = "{.col}_MINUS"    # Nombres de nuevas columnas: "columna_MAYUS"
+    )
+  ) %>% 
+  select(REGION, REGION_MINUS, PROVINCIA, PROVINCIA_MINUS, GENERO, GENERO_MINUS)  %>%
+  head()
+
+```
+
+## `across()` es un ejemplo de la filosofía tidy
+
+Nos evita la repetición de tareas y por ende nos ahorra un montón de tiempo y posibles errores.
+
+**`across()` es muy versátil y se puede usar con muchos verbos de `dplyr` y con diferentes tipos de funciones.** ¡Simplifica mucho el código cuando necesitas aplicar la misma transformación a varias columnas!
+
 # Y ahora cómo seguimos?
 
 En esta clase aprendimos a usar los verbos básicos del paquete `dplyr` junto con el conector de estos verbos el pipe **%\>%**
@@ -214,5 +268,3 @@ Hacete un buen 🧉 que en la segunda parte de nuestra clase vamos a ver:
 -   Cómo unir dos tablas de resumen entre sí (porque los datos no vienen siempre todos juntos, ni de una) -
 
 -   Cómo "dar vuelta" una tabla. (Porque a veces la tortilla necesita vuelta y vuelta)
-
--   Cómo aplicar una transformación a muchas variables de un toque (porque nos encanta trabajar menos y evitarnos errores)

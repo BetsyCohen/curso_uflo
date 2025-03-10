@@ -6,62 +6,28 @@ En esta unidad se trabajan las siguientes temáticas
 
 • Por qué R. R y su comunidad. La sociología y R. • Entornos, scripts y notebooks. Packages y librerías. Tipos de objetos en R. Convenciones y símbolos de R. • El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. • ETL como proceso "iterativo" de conocimiento.
 
-## Materiales Clase 1
+## Materiales Clase 1: La interfaz de RStudio.
 
-::: slide-deck
+:::: slide-deck
+::: slides
+[Slides](materiales/slides/clase_1_parte_2.qmd)
+:::
+
+::: video
+[Video recomendado](https://www.youtube.com/watch?app=desktop&v=-h0F6fIHtWM&t=66s&ab_channel=HanselOchoaMontero)
+:::
+
+::::
+
+## Materiales Clase 2: Por qué R y su comunidad. La sociología y R.
+
+:::: slide-deck
 ::: slides
 [Slides](materiales/slides/clase_2_tema_1.qmd)
 :::
 
-::: source
-[Source](materiales/slides/clase_2/clase_2_tema_1.qmd)
-:::
-
 ::: video
-[Video]()
-:::
-:::
-
-::: application-exercise
-**titlo del ejercicio**
-
-> **Option 1 - UN Votes**
-
-> ::: source
-
-> [Source]()
-
-> :::
-
-> ::: video
-
-> [Video]()
-
-> :::
-
-> **Option 2 - COVID-19**
-
-> ::: source
-
-> [Source]()
-
-> :::
+[Videos latinr](https://latinr.org/cronograma/programa/)
 :::
 
-::: reading
--   R4DS :: [Chp 2 - Introduction]()
-
--   IMS :: [Sec 1.1 & 1.2 - Case study & Data basics]()
-:::
-
-Meet the toolkit - Version control and collaboration\*\*
-
-::: slides
-[Slides]()
-:::
-
-::: video
-[Video]()
-:::
-
-:::
+::::

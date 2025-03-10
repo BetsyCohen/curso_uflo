@@ -3,7 +3,7 @@ title: "Introducción a Tidyverse: union y pivoteo de tablas"
 subtitle: "Análisis de Datos 1"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
-date: "10/04/2025"
+date: "04/10/2025"
 format:
   revealjs:
     width: 1600
@@ -66,6 +66,8 @@ Estas operaciones son clave para trabajar con conjuntos de datos complejos y cua
 
 # Que las tablas sean unidas porque esa es la ley primera
 
+Conociendo la familia de funciones join()
+
 ## Qué es un join()
 
 En el análisis de datos, a menudo tenemos información distribuida en múltiples tablas relacionadas y necesitamos unirlas para combinar la información y poder analizarla en conjunto.
@@ -78,47 +80,92 @@ Ejemplo:
 
 Queremos unir estas tablas para tener en una sola tabla información combinada por región.
 
-
 ## Que tipos de join() existen {.smaller}
 
 `dplyr` nos ofrece una familia de funciones \*\*\*\_join()\*\* para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:
 
 |                                                                                                                                                                                                          |                                                                               |
-|------------------------------------------------|-----------------------|
+|----------------------------------------------|-------------------------|
 | **left_join:** Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA. | ![](images/left-join.gif){fig-align="center" fig-align="bottom" width="125"}  |
 | **right_join:** Similar a left_join, pero mantiene TODAS las filas de tabla_B (derecha) y agrega las columnas de tabla_A donde hay coincidencia.                                                         | ![](images/right-join.gif){fig-align="center" fig-align="bottom" width="125"} |
 | **inner_join:** Mantiene solo las filas que tienen coincidencia en la columna_clave en AMBAS tablas.Es la intersección de las tablas.                                                                    | ![](images/inner-join.gif){fig-align="center" fig-align="bottom" width="125"} |
 | **full_join:** Unión COMPLETA (EXTERNA). Mantiene TODAS las filas de AMBAS tablas, combinando las filas donde hay coincidencia y rellenando con NA donde no la hay. Es la unión de las tablas.           | ![](images/full-join.gif){fig-align="center" fig-align="bottom" width="125"}  |
 
-
 ## Otros tipos de join
 
 ::: callout-note
-
 **semi_join** Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.
 
 **anti_join** Unión ANTI-IZQUIERDA. Mantiene solo las filas de tabla_A que NO tienen coincidencia en la columna_clave en tabla_B. Sirve para filtrar tabla_A y quedarte solo con las filas sin coincidencias en tabla_B.
 :::
 
+## ¿Cómo Unimos Tablas con dplyr? 🛠️
 
-¿Cómo Unimos Tablas con dplyr? 🛠️
-Todas las funciones *_join() de dplyr comparten una sintaxis similar:
+Todas las funciones \*\_join() de dplyr comparten una sintaxis similar:
 
-```r
+``` r
 nueva_tabla_unida <- tabla_A %>%
 tipo_de_join(tabla_B, by = "columna_clave")
 ```
 
-tabla_A %>% tipo_de_join(tabla_B, ...): Siempre empezamos con la tabla "izquierda" (tabla_A) y la "pipeamos" a la función tipo_de_join().
-tabla_B: Es la tabla "derecha" que queremos unir a tabla_A.
-by = "columna_clave": CLAVE DE UNIÓN. Especificamos qué columna (o columnas) se utilizan para encontrar las coincidencias entre las filas de tabla_A y tabla_B. Las tablas se unirán basándose en los valores compartidos en esta columna. El nombre de la columna clave debe ser el mismo en ambas tablas, o podemos usar by = c("columna_A" = "columna_B") si tienen nombres diferentes.
+-   `tabla_A %\>% tipo_de_join(tabla_B, ...)`: Siempre empezamos con la tabla "izquierda" `(tabla_A)` y la "pipeamos" a la función `tipo_de_join()`.
 
+-   `tabla_B`: Es la tabla "derecha" que queremos unir a `tabla_A`.
 
+-   `by = "columna_clave"`: CLAVE DE UNIÓN. Especificamos qué columna (o columnas) se utilizan para encontrar las coincidencias entre las filas de tabla_A y tabla_B. Las tablas se unirán basándose en los valores compartidos en esta columna. El nombre de la columna clave debe ser el mismo en ambas tablas, o podemos usar `by = c("columna_A" = "columna_B")` si tienen nombres diferentes.
 
+## Ejemplo de left_join() ⬅️ {.smaller .scrollable}
+
+Vamos a asumir que `encc_personas_region` es nuestra tabla "principal" (izquierda) y queremos agregarle información de `tamanio_localidad_region` (tabla derecha), manteniendo todas las regiones de `encc_personas_region`:
+
+De nuevo partimos de:
+
+::: columns
+::: {.column width="40%"}
+```{r}
+head(encc_personas_region,3)
+```
+:::
+
+::: {.column width="60%"}
+```{r}
+head(tamanio_localidad_region,3)
+```
+:::
+:::
+
+```{r}
+tabla_left_join <- encc_personas_region %>% # tabla de la izquierda
+  left_join(tamanio_localidad_region, by = "region") # unir tabla de la derecha usando como clave la variable "Region"
+
+tabla_left_join
+```
+
+## Elegir el Tipo de Join Correcto 🧐 {.incremental}
+
+La elección del tipo de join depende de lo que quieras lograr en tu análisis.
+
+-   `inner_join():` Cuando necesitas datos completos y solo te interesan las filas que tienen información en ambas tablas. "Intersección".
+
+-   `left_join():` Cuando quieres mantener todos los datos de tu tabla principal (izquierda) y agregar información complementaria de otra tabla (derecha), aunque falte información en la tabla derecha para algunas filas. "Prioriza la tabla izquierda".
+
+-   `right_join():` Similar a left_join, pero priorizando la tabla derecha. Menos común en la práctica.
+
+-   `full_join():` Cuando quieres mantener todos los datos de ambas tablas, incluso si no hay coincidencias. "Unión completa".
+
+-   `semi_join()` y `anti_join():` Para filtrar una tabla basándote en la existencia o no existencia de coincidencias en otra tabla. No agregan columnas, solo filtran filas.
+
+::: callout-tip
+## Tip analógico
+
+A veces llegar a una tabla / resultados puede requerir de múltiples uniones y transformaciones en el medio. Dibujar en papel o una pizarra las tablas puede ser de gran ayuda en este proceso.
+:::
 
 # Yo soy al derecho dado vuelta estas vos
 
-## Qué es un pivoteo y en qué situaciones lo voy a necesitar {.smaller}
+Las funciones pivot_longer() y pivot_wider()
+
+## Situaciones que requieren cintura {.smaller}
 
 Muchas veces nos va a pasar que vamos a tener una tabla en la cual las categorías que queremos mostrar (por ejemplo sexo, edad, provincia) se encuentran como nombres de columnas. Por ejemplo:
 
@@ -128,23 +175,56 @@ encc_personas_por_genero_region
 
 La variable `sexo` no existe como tal sino que se encuentra **repartida a lo ancho de la tabla como columnas** y entonces si nos pasan una tabla como esta no podríamos aplicar operaciones como `filter()` y quedarnos sólo con las mujeres
 
+## Qué es un pivoteo y en qué situaciones lo voy a necesitar {.smaller}
+
+El **pivoteo de tablas** es una operación para **reorganizar la estructura de una tabla**, cambiando la disposición de las filas y columnas. Es como "girar" o "rotar" la tabla para ver los datos desde otra perspectiva.
+
+Dos operaciones clave de pivoteo en `tidyr`:
+
+-   **`pivot_longer()`**: Convierte **columnas "anchas" en filas "largas"**. "Alarga" la tabla. Útil cuando las categorías están como nombres de columnas y queremos tenerlas en una columna *variable*.
+
+-   **`pivot_wider()`**: Convierte **filas "largas" en columnas "anchas"**. "Ensancha" la tabla. Operación inversa a `pivot_longer()`. Útil cuando las categorías están en una columna *variable* y queremos tenerlas como nombres de columnas.
+
 ## Estirar a lo largo con pivot_longer {.smaller}
 
 Para convertir a sexo en columna vamos a usar una función muy útil llamada `pivot_longer`.
 
-La función nos pide al menos dos argumentos para operar (además de la tabla en cuestión, obviamente)
+Partimos de la tabla resumen de personas por genero y región que tiene este aspecto
+
+```{r}
+encc_personas_por_genero_region
+```
+
+Esta tabla esta buena para presentarla en un reporte al público pero no nos sirve si queremos "amasarla" al calor de la transformación de datos. Necesitamos estirar los datos de las columnas Mujer, Varon y No binario.
+
+## Estirar a lo largo con pivot_longer {.smaller}
+
+::: columns
+::: {.column width="50%"}
+La función nos pide al menos **dos argumentos** para operar (además de la tabla en cuestión, obviamente)
 
 ```{r}
 encc_personas_por_genero_region_alargada <- encc_personas_por_genero_region %>% 
   pivot_longer(
-    cols = c("Mujer","Varón","No binario"), # qué columnas necesitas pivotear
-    names_to = "sexo", # cómo se va a llamar la variable a donde van a parar
-    values_to = "personas" # (opcional) nombre de la columna a donde van a parar los valores pivoteados
+    # 1. qué columnas pivotear
+    cols = c("Mujer","Varón","No binario"), 
+    # 2. cómo se va a llamar la variable 
+    names_to = "sexo", 
+    # (opcional) donde van a parar los valores alargados
+    values_to = "personas" 
     )
 
-encc_personas_por_genero_region_alargada %>% 
-  head(n=8)
 ```
+:::
+
+::: {.column width="50%"}
+De modo que
+
+```{r}
+head(encc_personas_por_genero_region_alargada)
+```
+:::
+:::
 
 ## Estirar a lo largo con pivot_longer {.smaller}
 
@@ -161,12 +241,21 @@ Pivot wider es (como ya te estaras imaginando) la operación inversa. Los argume
 
 ```{r}
 encc_personas_por_genero_region_alargada %>% 
-  pivot_wider(names_from = "sexo", # que categorias tengo que poner como nombre de la variable que voy a estirar a lo ancho como columnas
-              values_from = "personas") # Qué variable contiene los valores que debo repartir a lo ancho por esas columnas
+  pivot_wider(
+    # 1. Nombre de la variable que voy a estirar a lo ancho como columnas
+    names_from = "sexo", 
+    # 2. Qué variable contiene los valores que debo repartir en las columnas
+    values_from = "personas") 
 ```
 
-:::{call-out tip} Si bien no es una regla, podríamos pensar que pivot_longer va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider siempre nos da un formato :::
+::: callout-tip
+Si bien no es una regla, podríamos pensar que `pivot_longer()` va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera *tidy*, mientras que `pivot_wider()` siempre nos da un formato
+:::
 
-# across() the universe
+# ¿Qué aprendimos hasta acá?
 
-# Qué aprendimos hasta acá
+-   Conocimos algunos de los beneficios de la comunidad de R
+-   Nos zambullimos en R y recorrimos los básicos del IDE RStudio
+-   Aprendimos convenciones y elementos básicos y a importar tablas para trabajar con ellas.
+-   Hicimos nuestro primer viaje al *tidyverso* con los verbos centrales `dplyr()` y los conjugamos entre sí con `pipes`
+-   Unimos tablas y las hicimos girar sobre sí mismas para poder manipularlas.

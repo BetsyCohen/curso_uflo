@@ -8,10 +8,10 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.526">
 
   <meta name="author" content="Betsy Cohen">
-  <meta name="dcterms.date" content="2025-10-04">
+  <meta name="dcterms.date" content="2025-04-10">
   <title>Curso análisis de datos 1. Sociología UFLO - Introducción a Tidyverse: union y pivoteo de tablas</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -32,7 +32,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -222,7 +222,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -402,7 +403,7 @@ Betsy Cohen
 </div>
 </div>
 
-  <p class="date">2025-10-04</p>
+  <p class="date">2025-04-10</p>
 </section>
 <section id="clase-de-hoy-más-allá-de-los-verbos-básicos" class="title-slide slide level1 center">
 <h1>Clase de Hoy: Más Allá de los Verbos Básicos 🚀</h1>
@@ -418,7 +419,7 @@ Betsy Cohen
 <section>
 <section id="que-las-tablas-sean-unidas-porque-esa-es-la-ley-primera" class="title-slide slide level1 center">
 <h1>Que las tablas sean unidas porque esa es la ley primera</h1>
-
+<p>Conociendo la familia de funciones join()</p>
 </section>
 <section id="qué-es-un-join" class="slide level2">
 <h2>Qué es un join()</h2>
@@ -428,44 +429,43 @@ Betsy Cohen
 <p><strong>Tabla 2:</strong> <code>tamanio_localidad_region</code>: Información sobre el tamaño de localidad por región</p>
 <p>Queremos unir estas tablas para tener en una sola tabla información combinada por región.</p>
 </section>
-<section id="tipos-de-join" class="slide level2">
-<h2>Tipos de join()</h2>
+<section id="que-tipos-de-join-existen" class="slide level2 smaller">
+<h2>Que tipos de join() existen</h2>
 <p><code>dplyr</code> nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:</p>
-<div class="columns">
-<div class="column" style="width:70%;">
-<p><strong>left_join:</strong> Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA.</p>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="images/left-join.gif" data-layout-valign="bottom"></p>
-</figure>
-</div>
-</div>
-</div>
+<table>
+<colgroup>
+<col style="width: 64%">
+<col style="width: 35%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>left_join:</strong> Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA.</td>
+<td><img data-src="images/left-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+</tr>
+<tr class="even">
+<td><strong>right_join:</strong> Similar a left_join, pero mantiene TODAS las filas de tabla_B (derecha) y agrega las columnas de tabla_A donde hay coincidencia.</td>
+<td><img data-src="images/right-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+</tr>
+<tr class="odd">
+<td><strong>inner_join:</strong> Mantiene solo las filas que tienen coincidencia en la columna_clave en AMBAS tablas.Es la intersección de las tablas.</td>
+<td><img data-src="images/inner-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+</tr>
+<tr class="even">
+<td><strong>full_join:</strong> Unión COMPLETA (EXTERNA). Mantiene TODAS las filas de AMBAS tablas, combinando las filas donde hay coincidencia y rellenando con NA donde no la hay. Es la unión de las tablas.</td>
+<td><img data-src="images/full-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="tipos-de-join-1" class="slide level2">
-<h2>Tipos de join()</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="images/right-join.gif" data-layout-valign="bottom"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="tipos-de-join-2" class="slide level2">
-<h2>Tipos de join()</h2>
+<section id="otros-tipos-de-join" class="slide level2">
+<h2>Otros tipos de join</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Otros tipos de join</strong></p>
+<p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
 <p><strong>semi_join</strong> Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.</p>
@@ -474,47 +474,199 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="que-tipos-de-join-existen" class="slide level2 smaller">
-<h2>Que tipos de join() existen</h2>
-<p><code>dplyr</code> nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:</p>
+<section id="cómo-unimos-tablas-con-dplyr" class="slide level2">
+<h2>¿Cómo Unimos Tablas con dplyr? 🛠️</h2>
+<p>Todas las funciones *_join() de dplyr comparten una sintaxis similar:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>nueva_tabla_unida <span class="ot">&lt;-</span> tabla_A <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a></a><span class="fu">tipo_de_join</span>(tabla_B, <span class="at">by =</span> <span class="st">"columna_clave"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><code>tabla_A %\&gt;% tipo_de_join(tabla_B, ...)</code>: Siempre empezamos con la tabla “izquierda” <code>(tabla_A)</code> y la “pipeamos” a la función <code>tipo_de_join()</code>.</p></li>
+<li><p><code>tabla_B</code>: Es la tabla “derecha” que queremos unir a <code>tabla_A</code>.</p></li>
+<li><p><code>by = "columna_clave"</code>: CLAVE DE UNIÓN. Especificamos qué columna (o columnas) se utilizan para encontrar las coincidencias entre las filas de tabla_A y tabla_B. Las tablas se unirán basándose en los valores compartidos en esta columna. El nombre de la columna clave debe ser el mismo en ambas tablas, o podemos usar <code>by = c("columna_A" = "columna_B")</code> si tienen nombres diferentes.</p></li>
+</ul>
+</section>
+<section id="ejemplo-de-left_join" class="slide level2 smaller scrollable">
+<h2>Ejemplo de left_join() ⬅️</h2>
+<p>Vamos a asumir que <code>encc_personas_region</code> es nuestra tabla “principal” (izquierda) y queremos agregarle información de <code>tamanio_localidad_region</code> (tabla derecha), manteniendo todas las regiones de <code>encc_personas_region</code>:</p>
+<p>De nuevo partimos de:</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">head</span>(encc_personas_region,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
 <table>
-<colgroup>
-<col style="width: 68%">
-<col style="width: 31%">
-</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: right;">total_personas</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td><strong>left_join:</strong> Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA.</td>
-<td><img data-src="images/left-join.gif" data-fig-align="center" width="125"></td>
+<td style="text-align: left;">CABA</td>
+<td style="text-align: right;">388</td>
 </tr>
 <tr class="even">
-<td><strong>right_join:</strong> Similar a left_join, pero mantiene TODAS las filas de tabla_B (derecha) y agrega las columnas de tabla_A donde hay coincidencia.</td>
-<td><img data-src="images/right-join.gif" data-fig-align="center" width="125"></td>
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: right;">608</td>
 </tr>
 <tr class="odd">
-<td><strong>inner_join:</strong> Mantiene solo las filas que tienen coincidencia en la columna_clave en AMBAS tablas.Es la intersección de las tablas.</td>
-<td><img data-src="images/inner-join.gif" data-fig-align="center" width="125"></td>
-</tr>
-<tr class="even">
-<td><strong>full_join:</strong> Unión COMPLETA (EXTERNA). Mantiene TODAS las filas de AMBAS tablas, combinando las filas donde hay coincidencia y rellenando con NA donde no la hay. Es la unión de las tablas.</td>
-<td><img data-src="images/full-join.gif" data-fig-align="center" width="125"></td>
+<td style="text-align: left;">CUYO</td>
+<td style="text-align: right;">431</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">head</span>(tamanio_localidad_region,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: right;">Mas de 400mil</th>
+<th style="text-align: right;">80mil a 400mil</th>
+<th style="text-align: right;">Menos 80mil</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: right;">388</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUYO</td>
+<td style="text-align: right;">308</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">18</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>tabla_left_join <span class="ot">&lt;-</span> encc_personas_region <span class="sc">%&gt;%</span> <span class="co"># tabla de la izquierda</span></span>
+<span id="cb4-2"><a></a>  <span class="fu">left_join</span>(tamanio_localidad_region, <span class="at">by =</span> <span class="st">"region"</span>) <span class="co"># unir tabla de la derecha usando como clave la variable "Region"</span></span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a>tabla_left_join</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: right;">total_personas</th>
+<th style="text-align: right;">Mas de 400mil</th>
+<th style="text-align: right;">80mil a 400mil</th>
+<th style="text-align: right;">Menos 80mil</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: right;">388</td>
+<td style="text-align: right;">388</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: right;">608</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUYO</td>
+<td style="text-align: right;">431</td>
+<td style="text-align: right;">308</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GBA</td>
+<td style="text-align: right;">620</td>
+<td style="text-align: right;">614</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NEA</td>
+<td style="text-align: right;">448</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">354</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NOA</td>
+<td style="text-align: right;">446</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">177</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PATAGONIA</td>
+<td style="text-align: right;">439</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">295</td>
+<td style="text-align: right;">41</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
-<section id="como-junto-tablas" class="slide level2">
-<h2>Como junto tablas</h2>
+<section id="elegir-el-tipo-de-join-correcto" class="slide level2 incremental">
+<h2>Elegir el Tipo de Join Correcto 🧐</h2>
+<p>La elección del tipo de join depende de lo que quieras lograr en tu análisis.</p>
+<ul>
+<li><p><code>inner_join():</code> Cuando necesitas datos completos y solo te interesan las filas que tienen información en ambas tablas. “Intersección”.</p></li>
+<li><p><code>left_join():</code> Cuando quieres mantener todos los datos de tu tabla principal (izquierda) y agregar información complementaria de otra tabla (derecha), aunque falte información en la tabla derecha para algunas filas. “Prioriza la tabla izquierda”.</p></li>
+<li><p><code>right_join():</code> Similar a left_join, pero priorizando la tabla derecha. Menos común en la práctica.</p></li>
+<li><p><code>full_join():</code> Cuando quieres mantener todos los datos de ambas tablas, incluso si no hay coincidencias. “Unión completa”.</p></li>
+<li><p><code>semi_join()</code> y <code>anti_join():</code> Para filtrar una tabla basándote en la existencia o no existencia de coincidencias en otra tabla. No agregan columnas, solo filtran filas.</p></li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip analógico</strong></p>
+</div>
+<div class="callout-content">
+<p>A veces llegar a una tabla / resultados puede requerir de múltiples uniones y transformaciones en el medio. Dibujar en papel o una pizarra las tablas puede ser de gran ayuda en este proceso.</p>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="yo-soy-al-derecho-dado-vuelta-estas-vos" class="title-slide slide level1 center">
 <h1>Yo soy al derecho dado vuelta estas vos</h1>
-
+<p>Las funciones pivot_longer() y pivot_wider()</p>
 </section>
-<section id="qué-es-un-pivoteo-y-en-qué-situaciones-lo-voy-a-necesitar" class="slide level2 smaller">
-<h2>Qué es un pivoteo y en qué situaciones lo voy a necesitar</h2>
+<section id="situaciones-que-requieren-cintura" class="slide level2 smaller">
+<h2>Situaciones que requieren cintura</h2>
 <p>Muchas veces nos va a pasar que vamos a tener una tabla en la cual las categorías que queremos mostrar (por ejemplo sexo, edad, provincia) se encuentran como nombres de columnas. Por ejemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>encc_personas_por_genero_region</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>encc_personas_por_genero_region</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -576,142 +728,21 @@ Betsy Cohen
 </div>
 <p>La variable <code>sexo</code> no existe como tal sino que se encuentra <strong>repartida a lo ancho de la tabla como columnas</strong> y entonces si nos pasan una tabla como esta no podríamos aplicar operaciones como <code>filter()</code> y quedarnos sólo con las mujeres</p>
 </section>
+<section id="qué-es-un-pivoteo-y-en-qué-situaciones-lo-voy-a-necesitar" class="slide level2 smaller">
+<h2>Qué es un pivoteo y en qué situaciones lo voy a necesitar</h2>
+<p>El <strong>pivoteo de tablas</strong> es una operación para <strong>reorganizar la estructura de una tabla</strong>, cambiando la disposición de las filas y columnas. Es como “girar” o “rotar” la tabla para ver los datos desde otra perspectiva.</p>
+<p>Dos operaciones clave de pivoteo en <code>tidyr</code>:</p>
+<ul>
+<li><p><strong><code>pivot_longer()</code></strong>: Convierte <strong>columnas “anchas” en filas “largas”</strong>. “Alarga” la tabla. Útil cuando las categorías están como nombres de columnas y queremos tenerlas en una columna <em>variable</em>.</p></li>
+<li><p><strong><code>pivot_wider()</code></strong>: Convierte <strong>filas “largas” en columnas “anchas”</strong>. “Ensancha” la tabla. Operación inversa a <code>pivot_longer()</code>. Útil cuando las categorías están en una columna <em>variable</em> y queremos tenerlas como nombres de columnas.</p></li>
+</ul>
+</section>
 <section id="estirar-a-lo-largo-con-pivot_longer" class="slide level2 smaller">
 <h2>Estirar a lo largo con pivot_longer</h2>
 <p>Para convertir a sexo en columna vamos a usar una función muy útil llamada <code>pivot_longer</code>.</p>
-<p>La función nos pide al menos dos argumentos para operar (además de la tabla en cuestión, obviamente)</p>
+<p>Partimos de la tabla resumen de personas por genero y región que tiene este aspecto</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>encc_personas_por_genero_region_alargada <span class="ot">&lt;-</span> encc_personas_por_genero_region <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"Mujer"</span>,<span class="st">"Varón"</span>,<span class="st">"No binario"</span>), <span class="co"># qué columnas necesitas pivotear</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">names_to =</span> <span class="st">"sexo"</span>, <span class="co"># cómo se va a llamar la variable a donde van a parar</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="at">values_to =</span> <span class="st">"personas"</span> <span class="co"># (opcional) nombre de la columna a donde van a parar los valores pivoteados</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    )</span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a>encc_personas_por_genero_region_alargada <span class="sc">%&gt;%</span> </span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">region</th>
-<th style="text-align: left;">sexo</th>
-<th style="text-align: right;">personas</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">CABA</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">215</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CABA</td>
-<td style="text-align: left;">Varón</td>
-<td style="text-align: right;">173</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CABA</td>
-<td style="text-align: left;">No binario</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CENTRO</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">368</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CENTRO</td>
-<td style="text-align: left;">Varón</td>
-<td style="text-align: right;">240</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CENTRO</td>
-<td style="text-align: left;">No binario</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CUYO</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">246</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CUYO</td>
-<td style="text-align: left;">Varón</td>
-<td style="text-align: right;">185</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="estirar-a-lo-largo-con-pivot_longer-1" class="slide level2 smaller">
-<h2>Estirar a lo largo con pivot_longer</h2>
-<p>Y ahora ya podemos hacer operaciones con esta tabla como por ejemplo filtrar solo a las muejeres</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>encc_personas_por_genero_region_alargada <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">"Mujer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">region</th>
-<th style="text-align: left;">sexo</th>
-<th style="text-align: right;">personas</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">CABA</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">215</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CENTRO</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">368</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CUYO</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">246</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">GBA</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">370</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NEA</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">269</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NOA</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">284</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PATAGONIA</td>
-<td style="text-align: left;">Mujer</td>
-<td style="text-align: right;">253</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="estirar-a-lo-ancho-con-pivot_wider" class="slide level2 smaller">
-<h2>Estirar a lo ancho con pivot_wider</h2>
-<p>Pivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>encc_personas_por_genero_region_alargada <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"sexo"</span>, <span class="co"># que categorias tengo que poner como nombre de la variable que voy a estirar a lo ancho como columnas</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>              <span class="at">values_from =</span> <span class="st">"personas"</span>) <span class="co"># Qué variable contiene los valores que debo repartir a lo ancho por esas columnas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>encc_personas_por_genero_region</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -771,15 +802,227 @@ Betsy Cohen
 </div>
 </div>
 </div>
-<p>:::{call-out tip} Si bien no es una regla, podríamos pensar que pivot_longer va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider siempre nos da un formato :::</p>
-</section></section>
-<section id="across-the-universe" class="title-slide slide level1 center">
-<h1>across() the universe</h1>
-
+<p>Esta tabla esta buena para presentarla en un reporte al público pero no nos sirve si queremos “amasarla” al calor de la transformación de datos. Necesitamos estirar los datos de las columnas Mujer, Varon y No binario.</p>
 </section>
-
+<section id="estirar-a-lo-largo-con-pivot_longer-1" class="slide level2 smaller">
+<h2>Estirar a lo largo con pivot_longer</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>La función nos pide al menos <strong>dos argumentos</strong> para operar (además de la tabla en cuestión, obviamente)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>encc_personas_por_genero_region_alargada <span class="ot">&lt;-</span> encc_personas_por_genero_region <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb7-3"><a></a>    <span class="co"># 1. qué columnas pivotear</span></span>
+<span id="cb7-4"><a></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"Mujer"</span>,<span class="st">"Varón"</span>,<span class="st">"No binario"</span>), </span>
+<span id="cb7-5"><a></a>    <span class="co"># 2. cómo se va a llamar la variable </span></span>
+<span id="cb7-6"><a></a>    <span class="at">names_to =</span> <span class="st">"sexo"</span>, </span>
+<span id="cb7-7"><a></a>    <span class="co"># (opcional) donde van a parar los valores alargados</span></span>
+<span id="cb7-8"><a></a>    <span class="at">values_to =</span> <span class="st">"personas"</span> </span>
+<span id="cb7-9"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>De modo que</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">head</span>(encc_personas_por_genero_region_alargada)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">personas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">215</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: left;">Varón</td>
+<td style="text-align: right;">173</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: left;">No binario</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">368</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">Varón</td>
+<td style="text-align: right;">240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">No binario</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="estirar-a-lo-largo-con-pivot_longer-2" class="slide level2 smaller">
+<h2>Estirar a lo largo con pivot_longer</h2>
+<p>Y ahora ya podemos hacer operaciones con esta tabla como por ejemplo filtrar solo a las muejeres</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>encc_personas_por_genero_region_alargada <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">"Mujer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: left;">sexo</th>
+<th style="text-align: right;">personas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">215</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">368</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUYO</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">246</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GBA</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">370</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NEA</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">269</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NOA</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">284</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PATAGONIA</td>
+<td style="text-align: left;">Mujer</td>
+<td style="text-align: right;">253</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="estirar-a-lo-ancho-con-pivot_wider" class="slide level2 smaller">
+<h2>Estirar a lo ancho con pivot_wider</h2>
+<p>Pivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>encc_personas_por_genero_region_alargada <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb10-3"><a></a>    <span class="co"># 1. Nombre de la variable que voy a estirar a lo ancho como columnas</span></span>
+<span id="cb10-4"><a></a>    <span class="at">names_from =</span> <span class="st">"sexo"</span>, </span>
+<span id="cb10-5"><a></a>    <span class="co"># 2. Qué variable contiene los valores que debo repartir en las columnas</span></span>
+<span id="cb10-6"><a></a>    <span class="at">values_from =</span> <span class="st">"personas"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: right;">Mujer</th>
+<th style="text-align: right;">Varón</th>
+<th style="text-align: right;">No binario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CABA</td>
+<td style="text-align: right;">215</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CENTRO</td>
+<td style="text-align: right;">368</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUYO</td>
+<td style="text-align: right;">246</td>
+<td style="text-align: right;">185</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GBA</td>
+<td style="text-align: right;">370</td>
+<td style="text-align: right;">249</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NEA</td>
+<td style="text-align: right;">269</td>
+<td style="text-align: right;">179</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NOA</td>
+<td style="text-align: right;">284</td>
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PATAGONIA</td>
+<td style="text-align: right;">253</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Si bien no es una regla, podríamos pensar que <code>pivot_longer()</code> va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera <em>tidy</em>, mientras que <code>pivot_wider()</code> siempre nos da un formato</p>
+</div>
+</div>
+</div>
+</section></section>
 <section id="qué-aprendimos-hasta-acá" class="title-slide slide level1 center">
-<h1>Qué aprendimos hasta acá</h1>
+<h1>¿Qué aprendimos hasta acá?</h1>
+<ul>
+<li>Conocimos algunos de los beneficios de la comunidad de R</li>
+<li>Nos zambullimos en R y recorrimos los básicos del IDE RStudio</li>
+<li>Aprendimos convenciones y elementos básicos y a importar tablas para trabajar con ellas.</li>
+<li>Hicimos nuestro primer viaje al <em>tidyverso</em> con los verbos centrales <code>dplyr()</code> y los conjugamos entre sí con <code>pipes</code></li>
+<li>Unimos tablas y las hicimos girar sobre sí mismas para poder manipularlas.</li>
+</ul>
 
 
 <img src="images/logo-uflo.png" class="slide-logo r-stretch"><div class="footer footer-default">
@@ -812,7 +1055,6 @@ Betsy Cohen
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1111,10 +1353,9 @@ Betsy Cohen
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1124,8 +1365,17 @@ Betsy Cohen
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

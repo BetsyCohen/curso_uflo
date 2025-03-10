@@ -3,7 +3,7 @@ title: "Por qué R y su comunidad. La sociología y R"
 subtitle: "Análisis de Datos 1"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
-date: "27/03/2025"
+date: "03/27/2025"
 format: 
   revealjs: 
     width: 1600
@@ -35,7 +35,6 @@ R es un lenguaje de programación ampliamente utilizado en la comunidad académi
 
 -   **Paquetes especializados:** R cuenta con una vasta colección de paquetes diseñados para análisis en ciencias sociales, como `tidyverse`, `survey`, `sjPlot` y `epitools`.
 
-
 ## La comunidad de R
 
 Uno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciativas para compartir conocimientos y fomentar la colaboración, como:
@@ -46,8 +45,7 @@ Uno de los aspectos más valiosos de R es su comunidad. Existen diversas iniciat
 
 ![](images/r-comunity.png)
 
-
-## Qué significa **comunidad** en la práctica 
+## Qué significa **comunidad** en la práctica
 
 En sociología, R se ha convertido en una herramienta clave para la investigación, permitiendo el procesamiento y análisis de encuestas, datos censales y redes sociales. Algunas aplicaciones específicas incluyen:
 
@@ -55,13 +53,11 @@ En sociología, R se ha convertido en una herramienta clave para la investigaci�
 -   **Análisis de redes sociales** con `igraph`.
 -   **Procesamiento de datos censales** con `tidyCensus`.
 
-
 ## Un ejemplo argentino 🧉: El paquete `{EPH}`
 
 Una de las experiencias más interesantes en la comunidad de R en sociología es el desarrollo del paquete `{EPH}`, que permite acceder y analizar los datos de la Encuesta Permanente de Hogares (EPH) en Argentina. Esto ha facilitado estudios sobre desigualdad, pobreza y mercado laboral.
 
 ![](images/hex-eph.png){fig-align="left" width="96"}
-
 
 ## Código de ejemplo EPH
 

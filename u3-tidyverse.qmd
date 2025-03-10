@@ -1,31 +1,51 @@
 ---
-title: "Unidad 3: Ordenar manipular, explorar volver a arrancar: introducción a ETL en acción y la filosofía “tidy”"
+title: "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse" 
 ---
 
-En esta unidad tendremos dos grandes bloques
+## Flujo de trabajo con datos en R: importación y exploración inicial
 
-Extraer, cargar, transformar
+Importación de datos- uso de here()-exploración inicial de datos
 
-·         Filosofía "tidy" para estructurar y manipular datos. Tidyverse.
 
-·         Transformación de datos (dplyr y sus verbos),
+:::: slide-deck
 
-·         uniones (joins) y pivoteos.
+::: slides
+[Slides Clase 3](materiales/slides/clase_3.qmd)
+:::
 
-·         La función across()
+::: video
+[Video Clase 3]()
+:::
 
-Análisis exploratorio
+::::
 
-·         Tipos de datos
+## Introducción al Tidyverse: El Universo de Herramientas para transformación de datos
 
-·         Análisis exploratorio y descriptivos para datos numéricos y datos categóricos.
+Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función `across()`
 
-·         Uso de if_else() y case_when().
+:::: slide-deck
 
-·         Limpieza y normalización de datos.
+::: slides
+[Slides Clase 4 parte 1](materiales/slides/clase_4_parte_1.qmd)
+:::
 
-·         Tratamiento de casos perdidos.
+::: slides
+[Slides Clase 4 parte 2](materiales/slides/clase_4_parte_2.qmd)
+:::
 
-·          janitor() como complemento del universo tidyverse.
+::: video
+[Video Clase 4 parte 1]()
+:::
 
-·         "Empoderando" los verbos de dplyr: la funcion map() de la libreria purr
+::: video
+[Video Clase 4 parte 2]()
+:::
+
+::::
+
+
+## Análisis exploratorio
+
+Análisis exploratorio y descriptivos para datos numéricos y datos categóricos - Uso de if_else() y case_when(). 
+Limpieza y normalización de datos. Tratamiento de casos perdidos. 
+janitor() como complemento del universo tidyverse. "Empoderando" los verbos de dplyr: la funcion map() de la libreria purr

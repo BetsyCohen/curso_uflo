@@ -41,7 +41,7 @@ Cuando trabajamos en R, tenemos diferentes "espacios" o entornos para escribir y
 
 ## Scripts: Recetas de Análisis Reutilizables 📝 {.smaller}
 
-::::: columns
+::: columns
 ::: {.column width="40%"}
 Retomemos este concepto fundamental:
 
@@ -61,7 +61,7 @@ Retomemos este concepto fundamental:
 ::: {.column width="60%"}
 ![](images/clase_2_parte_2_screenshot_script_comments.png)
 :::
-:::::
+:::
 
 ## Consola: Exploración Interactiva y Pruebas Rápidas 🧮
 
@@ -90,7 +90,7 @@ Retomemos este concepto fundamental:
 
 En el cuadrante de Output (abajo a la derecha) tenemos varias pestañas entre ella una que vamos a usar bastante la pestaña **help** Gracias al trabajo de la comunidad vas a notar que en general la documentación y ayuda de las funciones siempre te dan una descripción, detalles y ejemplos de usos.
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ![](images/clase_2_parte_2_screenshot_help_1){width="60%"}
 :::
@@ -98,7 +98,7 @@ En el cuadrante de Output (abajo a la derecha) tenemos varias pestañas entre el
 ::: {.column width="50%"}
 ![](images/clase_2_parte_2_screenshot_help_2){width="60%"}
 :::
-:::::
+:::
 
 # Objetos en R: Los "Ingredientes" de tu Análisis
 
@@ -255,7 +255,7 @@ mayores_de_16
 
 ## Factores: Categorías con Sentido {.smaller}
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 -   Representan variables categóricas (nominales u ordinales).
 -   Definen **niveles** o categorías posibles.
@@ -278,7 +278,7 @@ Con la función `factor()` nuestro vector deja de ser un simple conjunto de text
 levels(niveles_educativos_factor)
 ```
 :::
-:::::
+:::
 
 ::: callout-tip
 ### Characters vs Factores
@@ -333,38 +333,49 @@ En el "universo tidyverse" (que usaremos mucho), trabajamos con data frames **"t
 
 Podemos acceder a partes específicas de un data frame usando corchetes `[]` o el símbolo `$` (también le decimos "pesitos"):
 
-::: columns
-:::{.column width = '50%'} - **Por posición (índices numéricos):**
+<br>
 
-```{{r}}
-# Traer el caso en la Primera fila, segunda columna:
+::: columns
+::: {.column width="50%"}
+### Por posición (índices numéricos):
+
+Traer el caso en la Primera fila, segunda columna:
+
+```{r}
 sociodata[1, 2]
 ```
 
+Traer toda la primera fila:
+
 ```{r}
-# Traer toda la primera fila:
 sociodata[1, ]
 ```
 
+Traer toda la segunda columna:
+
 ```{r}
-# Traer toda la segunda columna:
 sociodata[, 2]
 ```
 :::
 
-:::{.column width = "50%"} - **Por nombre de columna (`$`):**
+::: {.column width="50%"}
+### Por nombre de columna (`$`):
 
-```{{r}}
-# Columna "educacion" completa:
+Columna "educacion" completa:
+
+```{r}
 sociodata$educacion
 ```
 
+Primer elemento de la columna "nombre":
+
 ```{r}
-# Primer elemento de la columna "nombre":
 sociodata$nombre[1]
 ```
+:::
+:::
 
-::: :::: \# Operadores en R: Dando Órdenes a los Datos ⚙️
+# Operadores en R: Dando Órdenes a los Datos ⚙️
 
 Los **operadores** son símbolos especiales que indican a R qué tipo de acción o cálculo debe realizar. Son como los "verbos" en el lenguaje de R.
 
@@ -376,12 +387,17 @@ Tenemos diferentes tipos de operadores:
 
 ## 1. Operadores Aritméticos: Cálculos con Datos ➕ ➖ ✖️ ➗ {.smaller}
 
+:::: {.columns}
+
+::: {.column width="40%"}
 -   `+` Suma
 -   `-` Resta
 -   `*` Multiplicación
 -   `/` División
 -   `^` Potencia
+:::
 
+::: {.column width="60%"}
 **Por ejemplo:**
 
 ```{r}
@@ -396,15 +412,27 @@ edades + 5
 edades * 2
 ```
 
+:::
+
+::::
+
+
+
+
 ## 2. Operadores Relacionales {.smaller}
 
+:::: {.columns}
+
+::: {.column width="40%"}
 -   `>` Mayor que
 -   `<` Menor que
 -   `>=` Mayor o igual que
 -   `<=` Menor o igual que
 -   `==` Igual a (¡ojo, **dos iguales**!)
 -   `!=` No igual a (distinto de)
+:::
 
+::: {.column width="60%"}
 **Ejemplos con vectores:**
 
 ```{r}
@@ -420,6 +448,13 @@ niveles_educativos <- c("Secundario", "Universitario", "Primario", "Universitari
 # ¿Qué niveles educativos son "Universitario"?
 niveles_educativos == "Universitario"
 ```
+
+:::
+
+::::
+
+
+
 
 ## 3. Operadores de Asignación {.smaller}
 
