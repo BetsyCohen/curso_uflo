@@ -1,0 +1,73 @@
+---
+title: "Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚  " 
+---
+
+![](tp_1_U3_header.jpg){fig-align="center" width="615"}
+
+## Objetivos
+
+-   Explorar alguna de las hipótesis acerca de los consumos culturales de los argentinos según la ENCC 2022.
+
+-   Interiorizarnos con el estudio explorando:
+
+    -   [Metodología y manual de uso de los datos de la ENCC](https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/da9823d4-543b-4efc-bb43-13d9df7344d5)
+
+    -   [Cuestionario](https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/7f0af926-e365-4e9e-bb4f-a70a3bffe416)
+
+    -   [Características de la muestra](https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/956e2046-40ec-4cb0-b6a7-345b83e93471)
+
+-   Diseñar una propuesta de trabajo tidy
+
+Vamos a utilizar la Encuesta Nacional de Consumos Culturales 2022 (ENCC_2022) para explorar algunas hipótesis sobre diferencias en los consumos culturales en Argentina.
+
+**Dataset**: Encuesta Nacional de Consumos Culturales 2022 disponible en [este sitio](https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/b635d1fc-2161-4901-a21d-7f93d56d99a4)
+
+Variables de interés para esta actividad:
+
+`nse_3:` Nivel Socioeconómico (3 categorías: ABC1, C2C3, D1D2E)
+
+`genero`: Género autopercibido (Mujer, Varón, No binario, etc.)
+
+`region`: Región geográfica (CABA, GBA, Pampeana, etc.)
+
+**Columnas que indican consumo cultural:** Por ejemplo, columnas que empiezan con cine (consumo de cine), libro (lectura de libros), musica (consumo de música), teatro (asistencia al teatro), etc. ¡Exploren las variables disponibles! Hipótesis para Explorar
+
+## 🕵️‍♀️ Hipótesis :
+
+Elegir al menos una de las siguientes hipótesis
+
+"El consumo de CINE es diferente según el Nivel Socioeconómico (NSE) de las personas."
+
+Podríamos esperar que las personas de NSE más alto (ABC1) tengan mayor consumo de cine que las de NSE más bajo (D1D2E). Otras hipótesis que pueden explorar (¡elijan la que más les interese!):
+
+¿Existen diferencias en el consumo de LIBROS entre regiones del país?
+
+¿Hay diferencias en la asistencia al TEATRO entre géneros?
+
+¿El consumo de MÚSICA varía según el NSE?
+
+¡Formula tu propia hipótesis sobre cualquier consumo cultural y cualquier variable demográfica disponible en la encuesta!
+
+## Consigna Paso a Paso:
+
+### 1. Testear la Hipótesis 📝
+
+Usando las herramientas del `tidyverse` que aprendimos, realicen los siguientes pasos para explorar su hipótesis:
+
+-   SELECCIONAR las columnas relevantes para su hipótesis. Por ejemplo, si exploran la hipótesis del cine y el NSE, necesitarán:
+
+    -   La columna de NSE: nse_3 Alguna columna que indique consumo de cine. ¡Exploren los nombres de las columnas! Por ejemplo, cine1 podría indicar si fue al cine alguna vez en el último año. Pueden usar `names(encc_2022)` para ver todos los nombres y buscar columnas relacionadas con "cine". `select()` les será útil aquí. FILTRAR los datos si es necesario. Por ejemplo, si quieren enfocarse en un género en particular, o en una región específica. `filter()` es su aliado. (Para esta primera actividad, ¡pueden simplificar y no filtrar, trabajando con todos los datos!).
+
+-   AGRUPAR los datos por la variable demográfica de interés (NSE, género, región, etc.). `group_by()` es esencial. Si exploran diferencias por NSE, agrupen por nse_3.
+
+-   RESUMIR los datos para calcular alguna métrica de "consumo cultural" por grupo. `summarize()` les permitirá calcular:
+
+    -   Cantidad de personas en cada grupo (usando `n()` o `n_distinct(id)`).
+
+    -   Porcentaje de personas que consumen X cultura dentro de cada grupo. Por ejemplo, si cine1 == "SI" indica que fue al cine, pueden calcular la proporción de "SI" dentro de cada grupo de NSE. ¡Esto requiere usar `mean()` con una variable lógica (TRUE/FALSE)! Pueden necesitar crear una variable lógica con `mutate()` primero.
+
+-   PIVOTEAR la tabla resumen (opcional, pero ¡recomendado para presentar los resultados de forma más clara!). Si calcularon porcentajes de consumo para diferentes categorías de una variable cultural (ej: "fue al cine SI/NO" por NSE), **pivot_wider()** puede ser útil para tener las categorías de consumo como columnas.
+
+-   ANALIZAR e INTERPRETAR los resultados. ¿Qué encontraron? ¿Se confirma su hipótesis inicial? ¿Existen diferencias en los consumos culturales según la variable demográfica que exploraron? ¿En qué grupos se observa mayor/menor consumo?
+
+¡Que comience la exploración cultural con el Tidyverse! 🚀

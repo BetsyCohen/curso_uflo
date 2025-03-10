@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Curso análisis de datos 1. Sociología UFLO - Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</title>
+<title>Curso análisis de datos 1. Sociología UFLO - Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./u4-graficos.html" rel="next">
-<link href="./u2-intro-r.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +82,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index_materiales.html">Materiales</a></li><li class="breadcrumb-item"><a href="./u3-tidyverse.html">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Curso análisis de datos 1. Sociología UFLO
+      </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Curso análisis de datos 1. Sociología UFLO</a> 
+      <a href="../../">Curso análisis de datos 1. Sociología UFLO</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -114,13 +114,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inicio</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./index_materiales.html" class="sidebar-item-text sidebar-link">
+            <a href="../../index_materiales.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Materiales</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -129,25 +129,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./u2-intro-r.html" class="sidebar-item-text sidebar-link">
+  <a href="../../u2-intro-r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unidad 2 Introducción al análisis de datos con R y RStudio</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./u3-tidyverse.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../u3-tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./u4-graficos.html" class="sidebar-item-text sidebar-link">
+  <a href="../../u4-graficos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./u5-comunidad.html" class="sidebar-item-text sidebar-link">
+  <a href="../../u5-comunidad.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unidad 5: Recursos y experiencias de la comunidad.</span></a>
   </div>
 </li>
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./index_programa.html" class="sidebar-item-text sidebar-link">
+            <a href="../../index_programa.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programa y crono</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -164,13 +164,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./programa_y_crono/programa.html" class="sidebar-item-text sidebar-link">
+  <a href="../../programa_y_crono/programa.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programa</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./programa_y_crono/cronograma.html" class="sidebar-item-text sidebar-link">
+  <a href="../../programa_y_crono/cronograma.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cronograma</span></a>
   </div>
 </li>
@@ -186,19 +186,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial" id="toc-flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial" class="nav-link active" data-scroll-target="#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial">Flujo de trabajo con datos en R: importación y exploración inicial</a></li>
-  <li><a href="#introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" id="toc-introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" class="nav-link" data-scroll-target="#introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos">Introducción al Tidyverse: El Universo de Herramientas para transformación de datos</a></li>
-  <li><a href="#análisis-exploratorio" id="toc-análisis-exploratorio" class="nav-link" data-scroll-target="#análisis-exploratorio">Análisis exploratorio</a></li>
-  <li><a href="#janitor" id="toc-janitor" class="nav-link" data-scroll-target="#janitor">Janitor()</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#hipótesis" id="toc-hipótesis" class="nav-link" data-scroll-target="#hipótesis">🕵️‍♀️ Hipótesis :</a></li>
+  <li><a href="#consigna-paso-a-paso" id="toc-consigna-paso-a-paso" class="nav-link" data-scroll-target="#consigna-paso-a-paso">Consigna Paso a Paso:</a>
+  <ul class="collapse">
+  <li><a href="#testear-la-hipótesis" id="toc-testear-la-hipótesis" class="nav-link" data-scroll-target="#testear-la-hipótesis">1. Testear la Hipótesis 📝</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index_materiales.html">Materiales</a></li><li class="breadcrumb-item"><a href="./u3-tidyverse.html">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</h1>
+<h1 class="title">Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚</h1>
 </div>
 
 
@@ -215,47 +217,64 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial" class="level2">
-<h2 class="anchored" data-anchor-id="flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial">Flujo de trabajo con datos en R: importación y exploración inicial</h2>
-<p>Importación de datos- uso de here()-exploración inicial de datos</p>
-<div class="slide-deck">
-<div class="slides">
-<p><a href="./materiales/slides/clase_3.html">Slides Clase 3</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tp_1_U3_header.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="615"></p>
+</figure>
 </div>
-<div class="video">
-<p><a href="">Video Clase 3</a></p>
-</div>
-</div>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Explorar alguna de las hipótesis acerca de los consumos culturales de los argentinos según la ENCC 2022.</p></li>
+<li><p>Interiorizarnos con el estudio explorando:</p>
+<ul>
+<li><p><a href="https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/da9823d4-543b-4efc-bb43-13d9df7344d5">Metodología y manual de uso de los datos de la ENCC</a></p></li>
+<li><p><a href="https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/7f0af926-e365-4e9e-bb4f-a70a3bffe416">Cuestionario</a></p></li>
+<li><p><a href="https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/956e2046-40ec-4cb0-b6a7-345b83e93471">Características de la muestra</a></p></li>
+</ul></li>
+<li><p>Diseñar una propuesta de trabajo tidy</p></li>
+</ul>
+<p>Vamos a utilizar la Encuesta Nacional de Consumos Culturales 2022 (ENCC_2022) para explorar algunas hipótesis sobre diferencias en los consumos culturales en Argentina.</p>
+<p><strong>Dataset</strong>: Encuesta Nacional de Consumos Culturales 2022 disponible en <a href="https://datos.cultura.gob.ar/dataset/encuesta-nacional-de-consumos-culturales/archivo/b635d1fc-2161-4901-a21d-7f93d56d99a4">este sitio</a></p>
+<p>Variables de interés para esta actividad:</p>
+<p><code>nse_3:</code> Nivel Socioeconómico (3 categorías: ABC1, C2C3, D1D2E)</p>
+<p><code>genero</code>: Género autopercibido (Mujer, Varón, No binario, etc.)</p>
+<p><code>region</code>: Región geográfica (CABA, GBA, Pampeana, etc.)</p>
+<p><strong>Columnas que indican consumo cultural:</strong> Por ejemplo, columnas que empiezan con cine (consumo de cine), libro (lectura de libros), musica (consumo de música), teatro (asistencia al teatro), etc. ¡Exploren las variables disponibles! Hipótesis para Explorar</p>
 </section>
-<section id="introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos">Introducción al Tidyverse: El Universo de Herramientas para transformación de datos</h2>
-<p>Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función <code>across()</code></p>
-<div class="slide-deck">
-<div class="slides">
-<p><a href="./materiales/slides/clase_4_parte_1.html">Slides Clase 4 parte 1</a></p>
-</div>
-<div class="slides">
-<p><a href="./materiales/slides/clase_4_parte_2.html">Slides Clase 4 parte 2</a></p>
-</div>
-<div class="video">
-<p><a href="">Video Clase 4 parte 1</a></p>
-</div>
-<div class="video">
-<p><a href="">Video Clase 4 parte 2</a></p>
-</div>
-</div>
-<div class="exam">
-<p><a href="exams/tp_1_U3.qmd">Actividad 1 - Optativa</a></p>
-</div>
+<section id="hipótesis" class="level2">
+<h2 class="anchored" data-anchor-id="hipótesis">🕵️‍♀️ Hipótesis :</h2>
+<p>Elegir al menos una de las siguientes hipótesis</p>
+<p>“El consumo de CINE es diferente según el Nivel Socioeconómico (NSE) de las personas.”</p>
+<p>Podríamos esperar que las personas de NSE más alto (ABC1) tengan mayor consumo de cine que las de NSE más bajo (D1D2E). Otras hipótesis que pueden explorar (¡elijan la que más les interese!):</p>
+<p>¿Existen diferencias en el consumo de LIBROS entre regiones del país?</p>
+<p>¿Hay diferencias en la asistencia al TEATRO entre géneros?</p>
+<p>¿El consumo de MÚSICA varía según el NSE?</p>
+<p>¡Formula tu propia hipótesis sobre cualquier consumo cultural y cualquier variable demográfica disponible en la encuesta!</p>
 </section>
-<section id="análisis-exploratorio" class="level2">
-<h2 class="anchored" data-anchor-id="análisis-exploratorio">Análisis exploratorio</h2>
-<p>Análisis exploratorio y descriptivos para datos numéricos y datos categóricos - Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. janitor() como complemento del universo tidyverse. “Empoderando” los verbos de dplyr: la funcion map() de la libreria purr</p>
-</section>
-<section id="janitor" class="level2">
-<h2 class="anchored" data-anchor-id="janitor">Janitor()</h2>
+<section id="consigna-paso-a-paso" class="level2">
+<h2 class="anchored" data-anchor-id="consigna-paso-a-paso">Consigna Paso a Paso:</h2>
+<section id="testear-la-hipótesis" class="level3">
+<h3 class="anchored" data-anchor-id="testear-la-hipótesis">1. Testear la Hipótesis 📝</h3>
+<p>Usando las herramientas del <code>tidyverse</code> que aprendimos, realicen los siguientes pasos para explorar su hipótesis:</p>
+<ul>
+<li><p>SELECCIONAR las columnas relevantes para su hipótesis. Por ejemplo, si exploran la hipótesis del cine y el NSE, necesitarán:</p>
+<ul>
+<li>La columna de NSE: nse_3 Alguna columna que indique consumo de cine. ¡Exploren los nombres de las columnas! Por ejemplo, cine1 podría indicar si fue al cine alguna vez en el último año. Pueden usar <code>names(encc_2022)</code> para ver todos los nombres y buscar columnas relacionadas con “cine”. <code>select()</code> les será útil aquí. FILTRAR los datos si es necesario. Por ejemplo, si quieren enfocarse en un género en particular, o en una región específica. <code>filter()</code> es su aliado. (Para esta primera actividad, ¡pueden simplificar y no filtrar, trabajando con todos los datos!).</li>
+</ul></li>
+<li><p>AGRUPAR los datos por la variable demográfica de interés (NSE, género, región, etc.). <code>group_by()</code> es esencial. Si exploran diferencias por NSE, agrupen por nse_3.</p></li>
+<li><p>RESUMIR los datos para calcular alguna métrica de “consumo cultural” por grupo. <code>summarize()</code> les permitirá calcular:</p>
+<ul>
+<li><p>Cantidad de personas en cada grupo (usando <code>n()</code> o <code>n_distinct(id)</code>).</p></li>
+<li><p>Porcentaje de personas que consumen X cultura dentro de cada grupo. Por ejemplo, si cine1 == “SI” indica que fue al cine, pueden calcular la proporción de “SI” dentro de cada grupo de NSE. ¡Esto requiere usar <code>mean()</code> con una variable lógica (TRUE/FALSE)! Pueden necesitar crear una variable lógica con <code>mutate()</code> primero.</p></li>
+</ul></li>
+<li><p>PIVOTEAR la tabla resumen (opcional, pero ¡recomendado para presentar los resultados de forma más clara!). Si calcularon porcentajes de consumo para diferentes categorías de una variable cultural (ej: “fue al cine SI/NO” por NSE), <strong>pivot_wider()</strong> puede ser útil para tener las categorías de consumo como columnas.</p></li>
+<li><p>ANALIZAR e INTERPRETAR los resultados. ¿Qué encontraron? ¿Se confirma su hipótesis inicial? ¿Existen diferencias en los consumos culturales según la variable demográfica que exploraron? ¿En qué grupos se observa mayor/menor consumo?</p></li>
+</ul>
+<p>¡Que comience la exploración cultural con el Tidyverse! 🚀</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -800,18 +819,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a 2="" href="./u2-intro-r.html" class="pagination-link  aria-label=" unidad="" introducción="" al="" análisis="" de="" datos="" con="" r="" y="" rstudio"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Unidad 2 Introducción al análisis de datos con R y RStudio</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./u4-graficos.html" class="pagination-link" aria-label="Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto">
-        <span class="nav-page-text">Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

@@ -6,9 +6,7 @@ title: "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyver
 
 Importación de datos- uso de here()-exploración inicial de datos
 
-
-:::: slide-deck
-
+::: slide-deck
 ::: slides
 [Slides Clase 3](materiales/slides/clase_3.qmd)
 :::
@@ -16,15 +14,13 @@ Importación de datos- uso de here()-exploración inicial de datos
 ::: video
 [Video Clase 3]()
 :::
-
-::::
+:::
 
 ## Introducción al Tidyverse: El Universo de Herramientas para transformación de datos
 
 Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función `across()`
 
-:::: slide-deck
-
+::: slide-deck
 ::: slides
 [Slides Clase 4 parte 1](materiales/slides/clase_4_parte_1.qmd)
 :::
@@ -40,12 +36,14 @@ Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, us
 ::: video
 [Video Clase 4 parte 2]()
 :::
+:::
 
-::::
-
+::: exam
+[Actividad 1 - Optativa](exams/tp_1_U3.qmd)
+:::
 
 ## Análisis exploratorio
 
-Análisis exploratorio y descriptivos para datos numéricos y datos categóricos - Uso de if_else() y case_when(). 
-Limpieza y normalización de datos. Tratamiento de casos perdidos. 
-janitor() como complemento del universo tidyverse. "Empoderando" los verbos de dplyr: la funcion map() de la libreria purr
+Análisis exploratorio y descriptivos para datos numéricos y datos categóricos - Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. janitor() como complemento del universo tidyverse. "Empoderando" los verbos de dplyr: la funcion map() de la libreria purr
+
+## Janitor()

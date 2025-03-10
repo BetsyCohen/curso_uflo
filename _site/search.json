@@ -145,7 +145,7 @@
     "href": "programa_y_crono/cronograma.html",
     "title": "Cronograma",
     "section": "",
-    "text": "CARRERA: Licenciatura en Sociología ASIGNATURA: Análisis de datos I DOCENTE (s) A CARGO: Lic. Betsabé Cohen; Dr. Gastón Becerra AÑO: 2025\nClase Fecha Unidad Contenidos teóricos Coworking 1 20/03 Bienvenida y presentación de la materia Instalación de R y Rstudio. Interfaz y primeros pasos.\n2 27/03 1 Emergencia de las “ciencias de datos”. La sociología frente a las ciencias de datos y la “crisis metodológica”. La sociología y los datos. La mitología del data-mining y sus pretensiones epistemológicas. 2 Por que R y su comunidad. La sociología y R.\nEntornos, scripts y notebooks. Paquetes y librerías. Tipos de objetos en R. Convenciones y símbolos de R.\n3 03/04 1 Epistemología de datos\n2 El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. Creación de un script extrayendo datos de datos.gor.ar / sitio de tu provincia y transformación para su posterior análisis ETL como proceso “iterativo de conocimiento”.\nPresentación de consignas TP Parcial y su relación con TP Final 4 10/04 3 Filosofía “tidy” para estructurar y manipular datos. Tidyverse. Glimpse() y summary() Transformación de datos (dplyr y sus verbos), uniones (joins) y pivoteos. La funcion across() Transformación de exploración inicial. 5 17/04 Feriado Jueves Santo 6 24/04 Feriado Día de acción por la tolerancia y el respeto entre los pueblos 7 01/05 Feriado Día del Trabajo 8 08/05 3 Análisis exploratorio y descriptivos para datos numéricos y categóricos. Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. Validación y corrección de datos nulos, perdidos y outliers. 9 15/05 3 janitor() como complemento del universo tidyverse. La función map de purr.”Empoderando” los verbos de dplyr: la funcion map() de la libreria purr\n10 22/05 4 Graficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos Esquisser como herramienta de ayuda 11 29/05 4 Tablas: Gramática de Tablas paquetes GT y DT Mapas: tipos de mapas. Creación de mapas simples con leaflet Hacemos una tabla en gt con Spotify API Haciendo un mapa de coropletas 12 05/06 4 RMarkdown y Quarto Reportes y Presentaciones Tableros Tableros 13 12/06 4 Recorrido por paquetes de referencia de la comunidad: {EPH}, {polAr}, {datos}. Proyecto rOpenSci. La comunidad de ciencia de datos en Argentina.\n14 19/06 4 Coworking: Trabajo sobre proyecto final 15 26/06 4 Ronda de presentación de Proyectos Finales\n16 03/07 5 Cierre de la Materia entrega de notas y Tips para continuar trabajando con lo aprendido",
+    "text": "cat(‘’)",
     "crumbs": [
       "Programa y crono",
       "Cronograma"
@@ -1251,7 +1251,7 @@
     "href": "u3-tidyverse.html#introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos",
     "title": "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse",
     "section": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
-    "text": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos\nFlujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función across()\n\n\nSlides Clase 4 parte 1\n\n\nSlides Clase 4 parte 2\n\n\nVideo Clase 4 parte 1\n\n\nVideo Clase 4 parte 2",
+    "text": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos\nFlujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función across()\n\n\nSlides Clase 4 parte 1\n\n\nSlides Clase 4 parte 2\n\n\nVideo Clase 4 parte 1\n\n\nVideo Clase 4 parte 2\n\n\n\nActividad 1 - Optativa",
     "crumbs": [
       "Materiales",
       "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse"
@@ -1281,5 +1281,44 @@
     "title": "Flujo de trabajo con datos en R: importacion y exploración inicial",
     "section": "",
     "text": "En la clase de hoy, vamos a cubrir dos aspectos esenciales para cualquier proyecto de análisis de datos:\n\nFlujo de Trabajo: Entender los pasos generales que seguimos desde que tenemos una pregunta de investigación hasta que comunicamos resultados.\nImportación de Datos desde csv: Aprender a traer datos a R desde archivos csv, tanto online como locales.\nExploración de Datos: Aprender a usar algunas funciones básicas de exploración de los datos\n\nEn todo ello vamos a usar paquetes de la libreria tidyverse y vamos gestionarlo siguiendo buenas prácticas usando Proyectos de R y el paquete here()"
+  },
+  {
+    "objectID": "materiales/exams/tp_1_U3.html",
+    "href": "materiales/exams/tp_1_U3.html",
+    "title": "Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚",
+    "section": "",
+    "text": "Explorar alguna de las hipótesis acerca de los consumos culturales de los argentinos según la ENCC 2022.\nInteriorizarnos con el estudio explorando:\n\nMetodología y manual de uso de los datos de la ENCC\nCuestionario\nCaracterísticas de la muestra\n\nDiseñar una propuesta de trabajo tidy\n\nVamos a utilizar la Encuesta Nacional de Consumos Culturales 2022 (ENCC_2022) para explorar algunas hipótesis sobre diferencias en los consumos culturales en Argentina.\nDataset: Encuesta Nacional de Consumos Culturales 2022 disponible en este sitio\nVariables de interés para esta actividad:\nnse_3: Nivel Socioeconómico (3 categorías: ABC1, C2C3, D1D2E)\ngenero: Género autopercibido (Mujer, Varón, No binario, etc.)\nregion: Región geográfica (CABA, GBA, Pampeana, etc.)\nColumnas que indican consumo cultural: Por ejemplo, columnas que empiezan con cine (consumo de cine), libro (lectura de libros), musica (consumo de música), teatro (asistencia al teatro), etc. ¡Exploren las variables disponibles! Hipótesis para Explorar"
+  },
+  {
+    "objectID": "materiales/exams/tp_1_U3.html#objetivos",
+    "href": "materiales/exams/tp_1_U3.html#objetivos",
+    "title": "Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚",
+    "section": "Objetivos",
+    "text": "Objetivos\n\nExplorar alguna de las hipótesis acerca de los consumos culturales de los argentinos según la ENCC 2022.\nInteriorizarnos con el estudio explorando:\n\nMetodología y manual de uso de los datos de la ENCC\nCuestionario\nCaracterísticas de la muestra\n\nDiseñar una propuesta de trabajo tidy\n\nVamos a utilizar la Encuesta Nacional de Consumos Culturales 2022 (ENCC_2022) para explorar algunas hipótesis sobre diferencias en los consumos culturales en Argentina.\nDataset: Encuesta Nacional de Consumos Culturales 2022 disponible en este sitio\nVariables de interés para esta actividad:\nnse_3: Nivel Socioeconómico (3 categorías: ABC1, C2C3, D1D2E)\ngenero: Género autopercibido (Mujer, Varón, No binario, etc.)\nregion: Región geográfica (CABA, GBA, Pampeana, etc.)\nColumnas que indican consumo cultural: Por ejemplo, columnas que empiezan con cine (consumo de cine), libro (lectura de libros), musica (consumo de música), teatro (asistencia al teatro), etc. ¡Exploren las variables disponibles! Hipótesis para Explorar"
+  },
+  {
+    "objectID": "materiales/exams/tp_1_U3.html#hipótesis",
+    "href": "materiales/exams/tp_1_U3.html#hipótesis",
+    "title": "Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚",
+    "section": "🕵️‍♀️ Hipótesis :",
+    "text": "🕵️‍♀️ Hipótesis :\nElegir al menos una de las siguientes hipótesis\n“El consumo de CINE es diferente según el Nivel Socioeconómico (NSE) de las personas.”\nPodríamos esperar que las personas de NSE más alto (ABC1) tengan mayor consumo de cine que las de NSE más bajo (D1D2E). Otras hipótesis que pueden explorar (¡elijan la que más les interese!):\n¿Existen diferencias en el consumo de LIBROS entre regiones del país?\n¿Hay diferencias en la asistencia al TEATRO entre géneros?\n¿El consumo de MÚSICA varía según el NSE?\n¡Formula tu propia hipótesis sobre cualquier consumo cultural y cualquier variable demográfica disponible en la encuesta!"
+  },
+  {
+    "objectID": "materiales/exams/tp_1_U3.html#consigna-paso-a-paso",
+    "href": "materiales/exams/tp_1_U3.html#consigna-paso-a-paso",
+    "title": "Unidad 3: TP 1:Explorando los Consumos Culturales 🎬 📚",
+    "section": "Consigna Paso a Paso:",
+    "text": "Consigna Paso a Paso:\n\n1. Testear la Hipótesis 📝\nUsando las herramientas del tidyverse que aprendimos, realicen los siguientes pasos para explorar su hipótesis:\n\nSELECCIONAR las columnas relevantes para su hipótesis. Por ejemplo, si exploran la hipótesis del cine y el NSE, necesitarán:\n\nLa columna de NSE: nse_3 Alguna columna que indique consumo de cine. ¡Exploren los nombres de las columnas! Por ejemplo, cine1 podría indicar si fue al cine alguna vez en el último año. Pueden usar names(encc_2022) para ver todos los nombres y buscar columnas relacionadas con “cine”. select() les será útil aquí. FILTRAR los datos si es necesario. Por ejemplo, si quieren enfocarse en un género en particular, o en una región específica. filter() es su aliado. (Para esta primera actividad, ¡pueden simplificar y no filtrar, trabajando con todos los datos!).\n\nAGRUPAR los datos por la variable demográfica de interés (NSE, género, región, etc.). group_by() es esencial. Si exploran diferencias por NSE, agrupen por nse_3.\nRESUMIR los datos para calcular alguna métrica de “consumo cultural” por grupo. summarize() les permitirá calcular:\n\nCantidad de personas en cada grupo (usando n() o n_distinct(id)).\nPorcentaje de personas que consumen X cultura dentro de cada grupo. Por ejemplo, si cine1 == “SI” indica que fue al cine, pueden calcular la proporción de “SI” dentro de cada grupo de NSE. ¡Esto requiere usar mean() con una variable lógica (TRUE/FALSE)! Pueden necesitar crear una variable lógica con mutate() primero.\n\nPIVOTEAR la tabla resumen (opcional, pero ¡recomendado para presentar los resultados de forma más clara!). Si calcularon porcentajes de consumo para diferentes categorías de una variable cultural (ej: “fue al cine SI/NO” por NSE), pivot_wider() puede ser útil para tener las categorías de consumo como columnas.\nANALIZAR e INTERPRETAR los resultados. ¿Qué encontraron? ¿Se confirma su hipótesis inicial? ¿Existen diferencias en los consumos culturales según la variable demográfica que exploraron? ¿En qué grupos se observa mayor/menor consumo?\n\n¡Que comience la exploración cultural con el Tidyverse! 🚀"
+  },
+  {
+    "objectID": "u3-tidyverse.html#janitor",
+    "href": "u3-tidyverse.html#janitor",
+    "title": "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse",
+    "section": "Janitor()",
+    "text": "Janitor()",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse"
+    ]
   }
 ]
