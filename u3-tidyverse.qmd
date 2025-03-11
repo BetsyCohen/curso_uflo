@@ -1,5 +1,5 @@
 ---
-title: "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse" 
+title: "Unidad 3: ETL con tidyverse" 
 ---
 
 ## Flujo de trabajo con datos en R: importación y exploración inicial
@@ -16,9 +16,13 @@ Importación de datos- uso de here()-exploración inicial de datos
 :::
 :::
 
-## Introducción al Tidyverse: El Universo de Herramientas para transformación de datos
+## Introducción a Tidyverse: El Universo de Herramientas para transformación de datos
 
-Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función `across()`
+-	El flujo de trabajo bajo la filosofía “tidy” 
+-	Transformación de datos: dplyr() verbos centrales y uso de pipe 
+-	La función `across()`
+-	uniones (joins) y pivoteos
+
 
 ::: slide-deck
 ::: slides
@@ -42,8 +46,57 @@ Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, us
 [Actividad 1 - Optativa](exams/tp_1_U3.qmd)
 :::
 
-## Análisis exploratorio
+## Análisis exploratorio, condicionales y purr
 
-Análisis exploratorio y descriptivos para datos numéricos y datos categóricos - Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. janitor() como complemento del universo tidyverse. "Empoderando" los verbos de dplyr: la funcion map() de la libreria purr
+-	Análisis exploratorio y descriptivos para datos numéricos y categóricos. 
+-	Uso de if_else() y case_when(). 
+-	La función map de purr()
 
-## Janitor()
+
+-	Limpieza y normalización de datos. 
+-	Tratamiento de casos perdidos.
+
+::: slide-deck
+::: slides
+[Slides Clase 5 parte 1](materiales/slides/clase_5_parte_1.qmd)
+:::
+
+::: slides
+[Slides Clase 5 parte 2](materiales/slides/clase_5_parte_2.qmd)
+:::
+
+::: video
+[Video Clase 5 parte 1]()
+:::
+
+::: video
+[Video Clase 5 parte 2]()
+:::
+
+
+## janitor() normalización de datos y casos perdidos. 
+
+-	janitor() como complemento del universo tidyverse. 
+
+-	Limpieza y normalización de datos. 
+-	Tratamiento de casos perdidos.
+
+::: slide-deck
+::: slides
+[Slides Clase 6 parte 1](materiales/slides/clase_6_parte_1.qmd)
+:::
+
+::: slides
+[Slides Clase 6 parte 2](materiales/slides/clase_6_parte_2.qmd)
+:::
+
+::: video
+[Video Clase 6 parte 1]()
+:::
+
+::: video
+[Video Clase 6 parte 2]()
+:::
+
+
+

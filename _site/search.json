@@ -1320,5 +1320,173 @@
       "Materiales",
       "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse"
     ]
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#datos-numéricos-resúmenes-estadísticos",
+    "href": "materiales/slides/clase_5_parte_1.html#datos-numéricos-resúmenes-estadísticos",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Datos Numéricos: Resúmenes Estadísticos 🔢",
+    "text": "Datos Numéricos: Resúmenes Estadísticos 🔢\nPara variables numéricas, los resúmenes estadísticos nos ofrecen una visión rápida de su distribución y características.\nHerramientas:\n\nsummarize(): Para calcular estadísticos como media, mediana, desviación estándar, etc.\n\nresumen_edad &lt;- encc_2022 %&gt;%\n  summarize(\n    media_edad = mean(edad, na.rm = TRUE),\n    mediana_edad = median(edad, na.rm = TRUE),\n    desvio_std_edad = sd(edad, na.rm = TRUE),\n    min_edad = min(edad, na.rm = TRUE),\n    max_edad = max(edad, na.rm = TRUE),\n    rango_edad = max_edad - min_edad,\n    iqr_edad = IQR(edad, na.rm = TRUE),\n    cantidad_encuestados = n()\n  )"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#datos-numéricos-resúmenes-estadísticos-1",
+    "href": "materiales/slides/clase_5_parte_1.html#datos-numéricos-resúmenes-estadísticos-1",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Datos Numéricos: Resúmenes Estadísticos 🔢",
+    "text": "Datos Numéricos: Resúmenes Estadísticos 🔢\n\n\nEsta tabla nos presenta un resumen conciso de la distribución de la edad en la muestra, mostrando medidas de tendencia central, dispersión y rango.\n\n\nresumen_edad\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmedia_edad\nmediana_edad\ndesvio_std_edad\nmin_edad\nmax_edad\nrango_edad\niqr_edad\ncantidad_encuestados\n\n\n\n\n44.27337\n43\n18.68123\n13\n91\n78\n30\n3380"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#datos-categóricos-tablas-de-frecuencia",
+    "href": "materiales/slides/clase_5_parte_1.html#datos-categóricos-tablas-de-frecuencia",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Datos Categóricos: Tablas de Frecuencia 📊",
+    "text": "Datos Categóricos: Tablas de Frecuencia 📊\nPara variables categóricas, las tablas de frecuencia nos muestran la distribución de las categorías y su importancia relativa.\n\n\nHerramientas:\n\ncount(): Para contar las ocurrencias de cada categoría.\nmutate(): Para calcular proporciones y porcentajes a partir de las frecuencias.\n\n\n\nfrecuencia_regiones_prop &lt;- encc_2022 %&gt;%\n  count(region, sort = TRUE) %&gt;%\n  mutate(\n    proporcion = n / sum(n),\n    porcentaje = proporcion * 100\n  )\n\nfrecuencia_regiones_prop\n\n\n\n\n\nregion\nn\nproporcion\nporcentaje\n\n\n\n\nGBA\n620\n0.1834320\n18.34320\n\n\nCENTRO\n608\n0.1798817\n17.98817\n\n\nNEA\n448\n0.1325444\n13.25444\n\n\nNOA\n446\n0.1319527\n13.19527\n\n\nPATAGONIA\n439\n0.1298817\n12.98817\n\n\nCUYO\n431\n0.1275148\n12.75148\n\n\nCABA\n388\n0.1147929\n11.47929\n\n\n\n\n\n\n\n\nEsta tabla muestra las regiones ordenadas por frecuencia, junto con la cantidad de encuestados en cada región, su proporción y porcentaje respecto al total de la muestra."
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#if_else-condiciones-binarias-sino",
+    "href": "materiales/slides/clase_5_parte_1.html#if_else-condiciones-binarias-sino",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "if_else(): Condiciones Binarias (SI/NO) 💡",
+    "text": "if_else(): Condiciones Binarias (SI/NO) 💡\nif_else() es ideal para crear variables basadas en una condición que tiene dos resultados posibles.\nEjemplo: Variable es_mayor_de_50\nCreemos una variable que indique si la edad del encuestado es mayor de 50 años (SI/NO).\n\nencc_mayor_50 &lt;- encc_2022 %&gt;%\n  mutate(\n    es_mayor_de_50 = if_else(edad &gt; 50, \"SI\", \"NO\")\n  )\n\nencc_mayor_50 %&gt;% count(es_mayor_de_50)\n\n\n\n\n\nes_mayor_de_50\nn\n\n\n\n\nNO\n2139\n\n\nSI\n1241\n\n\n\n\n\n\nif_else() asigna “SI” a es_mayor_de_50 si edad &gt; 50 es verdadero, y “NO” en caso contrario."
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#case_when-condiciones-múltiples-y-categorías",
+    "href": "materiales/slides/clase_5_parte_1.html#case_when-condiciones-múltiples-y-categorías",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "case_when(): Condiciones Múltiples y Categorías 🎭",
+    "text": "case_when(): Condiciones Múltiples y Categorías 🎭\ncase_when() es perfecto para lógica condicional más compleja con múltiples categorías.\nRecategorizamos nse_3 en “Alto/Medio”, “Bajo” y “Sin Dato”.\n\n\n\nencc_nse_reducido &lt;- encc_2022 %&gt;%\n  mutate(\n    nse_reducido = case_when(\n      nse_3 %in% c(\"ABC1\", \"C2C3\") ~ \"Alto/Medio\",\n      nse_3 == \"D1D2E\"           ~ \"Bajo\",\n      TRUE                         ~ \"Sin Dato\"\n    )\n  )\n\n\n\nencc_nse_reducido %&gt;% count(nse_reducido)\n\n\n\n\n\nnse_reducido\nn\n\n\n\n\nAlto/Medio\n327\n\n\nSin Dato\n3053\n\n\n\n\n\n\n\n\ncase_when() asigna categorías a nse_reducido basadas en diferentes condiciones aplicadas a nse_3, incluyendo un valor por defecto “Sin Dato”.\n\n\n\n\n\n\nNote\n\n\ncase_when () es una de las estructuras de transformación que seguramente más vas usar. Si ya contas con algo de experiencia en análisis de datos y trabajaste con SPSS case_when() es uno de los procesos que hacemos más habitualmente en lo que llamamos rectegorización de variables"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#qué-es-map",
+    "href": "materiales/slides/clase_5_parte_1.html#qué-es-map",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "¿Qué es map()?",
+    "text": "¿Qué es map()?\n\nmap() es una función que permite aplicar la misma función a cada elemento de una lista o vector.\nSimplifica y hace más eficiente el código cuando necesitamos realizar la misma operación en múltiples columnas o elementos.\nEs un concepto clave de la programación funcional."
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#sintaxis-básica-de-map",
+    "href": "materiales/slides/clase_5_parte_1.html#sintaxis-básica-de-map",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Sintaxis básica de map():",
+    "text": "Sintaxis básica de map():\nmap() nos va a pedir dos elementos básicos para operar como parte de su sintaxis\n\nx: El vector o lista sobre el cual queremos iterar.\n\n\n\n.f: La función que queremos aplicar a cada elemento de .x.\n\nComo resultado devuelve una lista donde cada elemento es el resultado de aplicar la función .f al elemento correspondiente de .x.\nVeamos un ejemplo"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-frecuencia-para-múltiples-variables-categóricas-con-map-y-count",
+    "href": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-frecuencia-para-múltiples-variables-categóricas-con-map-y-count",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Calcular Tablas de Frecuencia para Múltiples Variables Categóricas con map() y count() 📊",
+    "text": "Calcular Tablas de Frecuencia para Múltiples Variables Categóricas con map() y count() 📊\nSupongamos que queremos obtener las tablas de frecuencia para varias variables categóricas de la ENCC_2022: region, genero, nivel_educativo. En lugar de escribir count() para cada variable por separado, podemos usar map() para automatizar este proceso.\n\nvariables_categoricas &lt;- c(\"region\", \"genero\", \"niv_socioe\") # Vector de nombres de variables categóricas\n\nfrecuencias_variables &lt;- map(\n  .x = variables_categoricas, # Vector de nombres de variables categóricas sobre el que iterar\n  .f = function(variable) { # Función anónima que toma el nombre de una variable como argumento\n    encc_2022 %&gt;%\n      count(!!sym(variable), sort = TRUE) # Calcula la tabla de frecuencia para la variable en el dataset encc_2022\n  }\n)"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-frecuencia-para-múltiples-variables-categóricas-con-map-y-count-1",
+    "href": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-frecuencia-para-múltiples-variables-categóricas-con-map-y-count-1",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Calcular Tablas de Frecuencia para Múltiples Variables Categóricas con map() y count() 📊",
+    "text": "Calcular Tablas de Frecuencia para Múltiples Variables Categóricas con map() y count() 📊\n\nfrecuencias_variables # Imprimir la lista de data frames de frecuencias\n\n[[1]]\n     region   n\n1       GBA 620\n2    CENTRO 608\n3       NEA 448\n4       NOA 446\n5 PATAGONIA 439\n6      CUYO 431\n7      CABA 388\n\n[[2]]\n      genero    n\n1      Mujer 2005\n2      Varón 1374\n3 No binario    1\n\n[[3]]\n  niv_socioe    n\n1         C3 1119\n2         D1  953\n3         C2  648\n4        D2E  333\n5       ABC1  327"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#pero-qué-es-esta-locura",
+    "href": "materiales/slides/clase_5_parte_1.html#pero-qué-es-esta-locura",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "😱Pero … ¿¡Qué es esta locura!?",
+    "text": "😱Pero … ¿¡Qué es esta locura!?\n\nmap() iteró sobre el vector variables_categoricas. Para cada nombre de variable (ej., “region”), aplicó la función anónima.\n\n\n\nLa función anónima usa count(!!sym(variable), sort = TRUE) para calcular la tabla de frecuencia de la variable actual, ordenando por frecuencia descendente.\n\n\n\n!!sym(variable): Recordemos que esto permite usar el nombre de la variable dinámicamente dentro de count().\n\n\n\nEl resultado frecuencias_variables es una lista, donde cada elemento es un data frame que representa la tabla de frecuencia para una de las variables categóricas. Cada data frame muestra las categorías y sus frecuencias (n)."
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-proporciones-para-múltiples-variables-categóricas-con-map-y-funciones-anidadas",
+    "href": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-proporciones-para-múltiples-variables-categóricas-con-map-y-funciones-anidadas",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Calcular Tablas de Proporciones para Múltiples Variables Categóricas con map() y Funciones Anidadas 📈",
+    "text": "Calcular Tablas de Proporciones para Múltiples Variables Categóricas con map() y Funciones Anidadas 📈\nAhora, vamos a calcular las tablas de proporciones (y porcentajes) para las mismas variables categóricas (region, genero, nivel_educativo). Vamos a anidar funciones dentro de map() para realizar los cálculos de proporción dentro de cada tabla de frecuencia.\n\nproporciones_variables &lt;- map(\n  .x = variables_categoricas, # Vector de nombres de variables categóricas\n  .f = function(variable) { # Función anónima para calcular tabla de proporciones para una variable\n    encc_2022 %&gt;%\n      count(!!sym(variable), sort = TRUE) %&gt;% # Primero, calcular la tabla de frecuencia\n      mutate( # Luego, dentro de la misma función anónima, calcular proporciones y porcentajes\n        proporcion = n / sum(n),\n        porcentaje = proporcion * 100\n      )\n  }\n)"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-proporciones-para-múltiples-variables-categóricas-con-map-y-funciones-anidadas-1",
+    "href": "materiales/slides/clase_5_parte_1.html#calcular-tablas-de-proporciones-para-múltiples-variables-categóricas-con-map-y-funciones-anidadas-1",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "Calcular Tablas de Proporciones para Múltiples Variables Categóricas con map() y Funciones Anidadas 📈",
+    "text": "Calcular Tablas de Proporciones para Múltiples Variables Categóricas con map() y Funciones Anidadas 📈\n\nproporciones_variables # Imprimir la lista de data frames de proporciones\n\n[[1]]\n     region   n proporcion porcentaje\n1       GBA 620  0.1834320   18.34320\n2    CENTRO 608  0.1798817   17.98817\n3       NEA 448  0.1325444   13.25444\n4       NOA 446  0.1319527   13.19527\n5 PATAGONIA 439  0.1298817   12.98817\n6      CUYO 431  0.1275148   12.75148\n7      CABA 388  0.1147929   11.47929\n\n[[2]]\n      genero    n  proporcion porcentaje\n1      Mujer 2005 0.593195266 59.3195266\n2      Varón 1374 0.406508876 40.6508876\n3 No binario    1 0.000295858  0.0295858\n\n[[3]]\n  niv_socioe    n proporcion porcentaje\n1         C3 1119 0.33106509  33.106509\n2         D1  953 0.28195266  28.195266\n3         C2  648 0.19171598  19.171598\n4        D2E  333 0.09852071   9.852071\n5       ABC1  327 0.09674556   9.674556"
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#es-mágico",
+    "href": "materiales/slides/clase_5_parte_1.html#es-mágico",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "¡Es mágico!",
+    "text": "¡Es mágico!\n\nDe nuevo, map() iteró sobre variables_categoricas.\n\n\n\nLa función anónima ahora realiza dos operaciones anidadas:\n\ncount(!!sym(variable), sort = TRUE): Calcula la tabla de frecuencia (como el ej. anterior).\nmutate(proporcion = n / sum(n), porcentaje = proporcion * 100): Dentro del mismo pipe, calcula las columnas proporcion y porcentaje a partir de la frecuencia n de la tabla de frecuencia.\n\nEl resultado proporciones_variables es una lista, donde cada elemento es un data frame que contiene la tabla de frecuencia y las proporciones/porcentajes para cada variable categórica."
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#la-yapa-combinar-las-tablas-en-un-solo-data-frame-con-list_rbind-y-un-id-de-variable",
+    "href": "materiales/slides/clase_5_parte_1.html#la-yapa-combinar-las-tablas-en-un-solo-data-frame-con-list_rbind-y-un-id-de-variable",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "La yapa: Combinar las Tablas en un Solo Data Frame con list_rbind() y un ID de Variable 🧲",
+    "text": "La yapa: Combinar las Tablas en un Solo Data Frame con list_rbind() y un ID de Variable 🧲\nFinalmente, combinemos las listas de tablas de proporciones (proporciones_variables) en un único data frame “largo”, y agreguemos una columna variable para identificar a qué variable categórica corresponde cada tabla.\n\nproporciones_variables_df &lt;- proporciones_variables %&gt;%\n  list_rbind(names_to = \"variable\") # Combinar la lista en un data frame y usar 'names_to' para crear columna 'variable'\n\nstr(proporciones_variables_df)\n\n'data.frame':   15 obs. of  7 variables:\n $ variable  : int  1 1 1 1 1 1 1 2 2 2 ...\n $ region    : chr  \"GBA\" \"CENTRO\" \"NEA\" \"NOA\" ...\n $ n         : int  620 608 448 446 439 431 388 2005 1374 1 ...\n $ proporcion: num  0.183 0.18 0.133 0.132 0.13 ...\n $ porcentaje: num  18.3 18 13.3 13.2 13 ...\n $ genero    : chr  NA NA NA NA ...\n $ niv_socioe: chr  NA NA NA NA ...\n\n\nAhora tenemos un data frame “tidy” donde cada fila representa una categoría de una variable categórica, con columnas para la variable, la categoría, la frecuencia, la proporción y el porcentaje. Este formato facilita la comparación de distribuciones entre diferentes variables categóricas, y puede ser usado para crear visualizaciones tabulares o gráficas comparativas (aunque en esta clase no estemos usando gráficos)."
+  },
+  {
+    "objectID": "materiales/slides/clase_5_parte_1.html#map-un-universo-de-posibilidades",
+    "href": "materiales/slides/clase_5_parte_1.html#map-un-universo-de-posibilidades",
+    "title": "Análisis Exploratorio, Transformación Condicional y Funciones con map()",
+    "section": "map(): Un Universo de Posibilidades 🌌",
+    "text": "map(): Un Universo de Posibilidades 🌌\nLa función map() es extremadamente versátil y puede usarse con una gran variedad de funciones y propósitos. En clases futuras, exploraremos más usos de map() y otras funciones del paquete purrr para la programación funcional y la manipulación de datos avanzada.\nEn resumen, map() nos permite:\n\nAutomatizar tareas repetitivas de forma eficiente y concisa.\nAplicar la misma lógica a múltiples columnas o elementos de una lista o vector.\nEscribir código más limpio, legible y mantenible.\nAdoptar un estilo de programación funcional que es poderoso y común en el ecosistema de R y tidyverse.\n\n\n\n\n\n\n\nNote\n\n\nSi te interesa aprender más sobre map() y sus aplicaciones podes consultar la documentación (que por suerte viene con muchos ejemplos) en https://purrr.tidyverse.org/reference/map.html"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#como-funciona-validate",
+    "href": "materiales/slides/clase_6.html#como-funciona-validate",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "¿Como funciona validate?",
+    "text": "¿Como funciona validate?\nCon validate, podemos definir un conjunto de reglas y aplicarlas sobre un dataset, obteniendo un resumen de qué reglas se cumplen o fallan.\nLa sintaxis general siempre va a ir teniendo una estructura como esta\nreglas &lt;- validator(tatuaje_en_cuello == \"Sí\" ,el_pelo_negro == \"Sí \"``)\nresultado &lt;- confront(dataset, reglas)\n\n\n\n\n\n\nNote\n\n\nPodes leer más sobre validate y los tipos de validación que te permite hacer en el libro en inglés por ahora) “The Data Validation Cookbook”"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#un-ejemplo-sencillo",
+    "href": "materiales/slides/clase_6.html#un-ejemplo-sencillo",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "Un ejemplo sencillo",
+    "text": "Un ejemplo sencillo\nlas primeras tres reglas son comprobaciones de registros: cada registro arrojará una respuesta. En la última regla, comprobamos si la velocidad y la distancia están correlacionadas positivamente; esto arrojará una única respuesta TRUEo FALSEpara todo el conjunto de datos.\nEl dataframe de resultado con una línea de información para cada regla V1, V2, V3y V4. Para ser precisos:\n\n¿Cuántos elementos de datos se comprobaron con cada regla?\n¿Cuántos elementos se aprobaron, fallaron o dieron como resultado NA?\nSi la verificación resultó en un error (no se pudo realizar) o dio una advertencia.\nLa expresión que realmente se evaluó para realizar la verificación.\n\n\n\n\n# reglas para dataset de autos\nreglas &lt;- validator(speed &gt;= 0\n                 , dist &gt;= 0\n                 , speed/dist &lt;= 1.5\n                 , cor(speed, dist)&gt;=0.2)\n\nresultado   &lt;- confront(cars, reglas)\n\n\n\nsummary(resultado)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nname\nitems\npasses\nfails\nnNA\nerror\nwarning\nexpression\n\n\n\n\nV1\n50\n50\n0\n0\nFALSE\nFALSE\nspeed - 0 &gt;= -1e-08\n\n\nV2\n50\n50\n0\n0\nFALSE\nFALSE\ndist - 0 &gt;= -1e-08\n\n\nV3\n50\n48\n2\n0\nFALSE\nFALSE\nspeed/dist &lt;= 1.5\n\n\nV4\n1\n1\n0\n0\nFALSE\nFALSE\ncor(speed, dist) &gt;= 0.2"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#interpretando-los-resultados",
+    "href": "materiales/slides/clase_6.html#interpretando-los-resultados",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "Interpretando los resultados",
+    "text": "Interpretando los resultados\nLa misma información se puede resumir gráficamente de la siguiente manera, donde cada barra horizontal indica el porcentaje de casos de Reprobado, Aprobado y Omitido.\n\nplot(resultado)\n\n\nSiguiendo los criterios de Integridad, Completitud, Consistencia y Exatitud que mencionámos veamos algunos ejemplos de cómo podemos usar validate para revisar nuestra base"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#cargar-el-dataset-palmer-penguins",
+    "href": "materiales/slides/clase_6.html#cargar-el-dataset-palmer-penguins",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "📌 Cargar el dataset Palmer Penguins",
+    "text": "📌 Cargar el dataset Palmer Penguins\nUsaremos la base de datos penguins_raw del paquete palmerpenguins, que contiene errores comunes como valores faltantes, nombres inconsistentes y datos mal ingresados.\n¿Qué cosas ya le ves de entrada que estan mal?\n\n#install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\n\n# Cargamos la base de datos cruda de pingüinos\ndf &lt;- palmerpenguins::penguins_raw\n\n# Revisamos los primeros registros\nhead(df)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstudyName\nSample Number\nSpecies\nRegion\nIsland\nStage\nIndividual ID\nClutch Completion\nDate Egg\nCulmen Length (mm)\nCulmen Depth (mm)\nFlipper Length (mm)\nBody Mass (g)\nSex\nDelta 15 N (o/oo)\nDelta 13 C (o/oo)\nComments\n\n\n\n\nPAL0708\n1\nAdelie Penguin (Pygoscelis adeliae)\nAnvers\nTorgersen\nAdult, 1 Egg Stage\nN1A1\nYes\n2007-11-11\n39.1\n18.7\n181\n3750\nMALE\nNA\nNA\nNot enough blood for isotopes.\n\n\nPAL0708\n2\nAdelie Penguin (Pygoscelis adeliae)\nAnvers\nTorgersen\nAdult, 1 Egg Stage\nN1A2\nYes\n2007-11-11\n39.5\n17.4\n186\n3800\nFEMALE\n8.94956\n-24.69454\nNA\n\n\nPAL0708\n3\nAdelie Penguin (Pygoscelis adeliae)\nAnvers\nTorgersen\nAdult, 1 Egg Stage\nN2A1\nYes\n2007-11-16\n40.3\n18.0\n195\n3250\nFEMALE\n8.36821\n-25.33302\nNA\n\n\nPAL0708\n4\nAdelie Penguin (Pygoscelis adeliae)\nAnvers\nTorgersen\nAdult, 1 Egg Stage\nN2A2\nYes\n2007-11-16\nNA\nNA\nNA\nNA\nNA\nNA\nNA\nAdult not sampled.\n\n\nPAL0708\n5\nAdelie Penguin (Pygoscelis adeliae)\nAnvers\nTorgersen\nAdult, 1 Egg Stage\nN3A1\nYes\n2007-11-16\n36.7\n19.3\n193\n3450\nFEMALE\n8.76651\n-25.32426\nNA\n\n\nPAL0708\n6\nAdelie Penguin (Pygoscelis adeliae)\nAnvers\nTorgersen\nAdult, 1 Egg Stage\nN3A2\nYes\n2007-11-16\n39.3\n20.6\n190\n3650\nMALE\n8.66496\n-25.29805\nNA"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#validación-de-completitud",
+    "href": "materiales/slides/clase_6.html#validación-de-completitud",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "Validación de Completitud",
+    "text": "Validación de Completitud\nVamos a empezar por la completitud. ¿Qué tan “completo” está penguins_raw?\n\n# Generamos reglas \nreglas_completitud_raw &lt;- validator(sin_faltantes_raw = is_complete(df)) # Regla general de completitud para TODO el dataset\n\n# Confrontamos df con las reglas\nresultado_completitud_raw &lt;- confront(df, reglas_completitud_raw)\n\nsummary(resultado_completitud_raw) # Imprimir resultados\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nname\nitems\npasses\nfails\nnNA\nerror\nwarning\nexpression\n\n\n\n\nsin_faltantes_raw\n344\n34\n310\n0\nFALSE\nFALSE\nis_complete(df)\n\n\n\n\n\n\nEse summary lo leemos así: - name: El nombre de la regla.\n\nitems: El dataset tiene 344 elementos que se están evaluando.\npasses: De esos 344 elementos, 310 cumplen con la regla, es decir, no tienen valores faltantes.\nfails: ego 34 no la pasaron.\nnNA: es el número de valores faltantes (NA) identificados en el dataset. ojo porque por ahí todavia no creamos la regla adecuada para detectarlos.\nerror: FALSE: Quiere decuir que no hubo errores en la evaluación de la regla.\nwarning: FALSE: No hay advertencias durante la evaluación.\nexpression: is_complete(df): La expresión que se utilizó para la validación, que en este caso verifica la completitud del dataset sin faltantes."
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#validación-de-integridad",
+    "href": "materiales/slides/clase_6.html#validación-de-integridad",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "Validación de Integridad",
+    "text": "Validación de Integridad\nVamos a verificar si hay filas duplicadas.\n\n# Reglas de integridad para penguins_raw (df)\nreglas_integridad_raw &lt;- validator(\n    sin_faltantes_raw = is_complete(df), # (General - no relevante aquí)\n    sin_duplicados_raw = is_unique(df) # Regla de integridad: registros únicos\n)\n\n# Confrontamos penguins_raw (df) con las reglas de integridad\nresultado_integridad_raw &lt;- confront(df, reglas_integridad_raw)\n\nsummary(resultado_integridad_raw) # Imprimir resultados\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nname\nitems\npasses\nfails\nnNA\nerror\nwarning\nexpression\n\n\n\n\nsin_faltantes_raw\n344\n34\n310\n0\nFALSE\nFALSE\nis_complete(df)\n\n\nsin_duplicados_raw\n344\n344\n0\n0\nFALSE\nFALSE\nis_unique(df)"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#validación-de-exactitud",
+    "href": "materiales/slides/clase_6.html#validación-de-exactitud",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "Validación de Exactitud",
+    "text": "Validación de Exactitud\n\nreglas_exactitud_raw &lt;- validator(\n\n    sin_faltantes_dataset_raw = is_complete(df), # (General)\n    sin_duplicados_raw = is_unique(df), # (Integridad)\n\n    # Reglas de completitud:\n    culmen_length_mm_no_na_raw = !is.na(`Culmen Length (mm)`), # \n    culmen_depth_mm_no_na_raw = !is.na(`Culmen Depth (mm)`),\n    flipper_length_mm_no_na_raw = !is.na(`Flipper Length (mm)`),\n    body_mass_g_no_na_raw = !is.na(`Body Mass (g)`),\n    sex_no_na_raw = !is.na(Sex), # Completitud para 'Sex'\n\n    # Reglas de Categorías Válidas (Consistencia de Categorías):\n    categorias_especie_raw = Species %in% c(\"Adelie Penguin (Pygoscelis adeliae)\", \"Chinstrap penguin (Pygoscelis antarctica)\", \"Gentoo penguin (Pygoscelis papua)\"), # Categorías válidas para 'Species'\n    categorias_isla_raw = Island %in% c(\"Biscoe\", \"Dream\", \"Torgersen\"), # Categorías válidas para 'Island'\n    categorias_sexo_raw = Sex %in% c(\"MALE\", \"FEMALE\", \".\") # Categorías válidas para 'Sex' (¡incluimos \".\"!)\n)\n\n# Confrontar penguins_raw (df) con las reglas de exactitud\nresultado_exactitud_raw &lt;- confront(df, reglas_exactitud_raw)\nsummary(resultado_exactitud_raw) # Imprimir resultado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nname\nitems\npasses\nfails\nnNA\nerror\nwarning\nexpression\n\n\n\n\nsin_faltantes_dataset_raw\n344\n34\n310\n0\nFALSE\nFALSE\nis_complete(df)\n\n\nsin_duplicados_raw\n344\n344\n0\n0\nFALSE\nFALSE\nis_unique(df)\n\n\nculmen_length_mm_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Culmen Length (mm))\n\n\nculmen_depth_mm_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Culmen Depth (mm))\n\n\nflipper_length_mm_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Flipper Length (mm))\n\n\nbody_mass_g_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Body Mass (g))\n\n\nsex_no_na_raw\n344\n333\n11\n0\nFALSE\nFALSE\n!is.na(Sex)\n\n\ncategorias_especie_raw\n344\n344\n0\n0\nFALSE\nFALSE\nSpecies %vin% c(“Adelie Penguin (Pygoscelis adeliae)”, “Chinstrap penguin (Pygoscelis antarctica)”, “Gentoo penguin (Pygoscelis papua)”)\n\n\ncategorias_isla_raw\n344\n344\n0\n0\nFALSE\nFALSE\nIsland %vin% c(“Biscoe”, “Dream”, “Torgersen”)\n\n\ncategorias_sexo_raw\n344\n333\n0\n11\nFALSE\nFALSE\nSex %vin% c(“MALE”, “FEMALE”, “.”)"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#validación-de-consistencia",
+    "href": "materiales/slides/clase_6.html#validación-de-consistencia",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "Validación de Consistencia",
+    "text": "Validación de Consistencia\nFinalmente, vamos a verificar la consistencia de tipos de datos en penguins_raw. Ya vimos con glimpse() que muchas columnas numéricas se importaron como character. Vamos a usar validate para confirmar y cuantificar este problema de consistencia de tipo de datos.\n\nreglas_consistencia_raw &lt;- validator(\n\n    sin_faltantes_dataset_raw = is_complete(df), # (General - no foco)\n    sin_duplicados_raw = is_unique(df), # (Integridad - no foco)\n    culmen_length_mm_no_na_raw = !is.na(`Culmen Length (mm)`), # (Exactitud - no foco ahora)\n    culmen_depth_mm_no_na_raw = !is.na(`Culmen Depth (mm)`),\n    flipper_length_mm_no_na_raw = !is.na(`Flipper Length (mm)`),\n    body_mass_g_no_na_raw = !is.na(`Body Mass (g)`),\n    sex_no_na_raw = !is.na(Sex),\n    categorias_especie_raw = Species %in% c(\"Adelie Penguin (Pygoscelis adeliae)\", \"Chinstrap penguin (Pygoscelis antarctica)\", \"Gentoo penguin (Pygoscelis papua)\"),\n    categorias_isla_raw = Island %in% c(\"Biscoe\", \"Dream\", \"Torgersen\"),\n    categorias_sexo_raw = Sex %in% c(\"MALE\", \"FEMALE\", \".\"),\n\n    # Reglas de Consistencia de TIPO DE DATOS (¡Aquí está el foco!):\n    culmen_length_mm_es_numerico_raw = is.numeric(`Culmen Length (mm)`), # ¡Consistencia de tipo para 'Culmen Length (mm)'!\n    culmen_depth_mm_es_numerico_raw = is.numeric(`Culmen Depth (mm)`),\n    flipper_length_mm_es_numerico_raw = is.numeric(`Flipper Length (mm)`),\n    body_mass_g_es_numerico_raw = is.numeric(`Body Mass (g)`),\n    sex_es_factor_raw = is.factor(Sex), # Verificar si 'Sex' es factor (¡debería ser categórica!)\n    species_es_factor_raw = is.factor(Species), # Verificar si 'Species' es factor\n    island_es_factor_raw = is.factor(Island) # Verificar si 'Island' es factor\n)\n\nsalida_consistencia_raw &lt;- confront(df, reglas_consistencia_raw)\n\nsummary(salida_consistencia_raw) # Resumen del resultado de consistencia de tipos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nname\nitems\npasses\nfails\nnNA\nerror\nwarning\nexpression\n\n\n\n\nsin_faltantes_dataset_raw\n344\n34\n310\n0\nFALSE\nFALSE\nis_complete(df)\n\n\nsin_duplicados_raw\n344\n344\n0\n0\nFALSE\nFALSE\nis_unique(df)\n\n\nculmen_length_mm_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Culmen Length (mm))\n\n\nculmen_depth_mm_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Culmen Depth (mm))\n\n\nflipper_length_mm_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Flipper Length (mm))\n\n\nbody_mass_g_no_na_raw\n344\n342\n2\n0\nFALSE\nFALSE\n!is.na(Body Mass (g))\n\n\nsex_no_na_raw\n344\n333\n11\n0\nFALSE\nFALSE\n!is.na(Sex)\n\n\ncategorias_especie_raw\n344\n344\n0\n0\nFALSE\nFALSE\nSpecies %vin% c(“Adelie Penguin (Pygoscelis adeliae)”, “Chinstrap penguin (Pygoscelis antarctica)”, “Gentoo penguin (Pygoscelis papua)”)\n\n\ncategorias_isla_raw\n344\n344\n0\n0\nFALSE\nFALSE\nIsland %vin% c(“Biscoe”, “Dream”, “Torgersen”)\n\n\ncategorias_sexo_raw\n344\n333\n0\n11\nFALSE\nFALSE\nSex %vin% c(“MALE”, “FEMALE”, “.”)\n\n\nculmen_length_mm_es_numerico_raw\n1\n1\n0\n0\nFALSE\nFALSE\nis.numeric(Culmen Length (mm))\n\n\nculmen_depth_mm_es_numerico_raw\n1\n1\n0\n0\nFALSE\nFALSE\nis.numeric(Culmen Depth (mm))\n\n\nflipper_length_mm_es_numerico_raw\n1\n1\n0\n0\nFALSE\nFALSE\nis.numeric(Flipper Length (mm))\n\n\nbody_mass_g_es_numerico_raw\n1\n1\n0\n0\nFALSE\nFALSE\nis.numeric(Body Mass (g))\n\n\nsex_es_factor_raw\n1\n0\n1\n0\nFALSE\nFALSE\nis.factor(Sex)\n\n\nspecies_es_factor_raw\n1\n0\n1\n0\nFALSE\nFALSE\nis.factor(Species)\n\n\nisland_es_factor_raw\n1\n0\n1\n0\nFALSE\nFALSE\nis.factor(Island)"
+  },
+  {
+    "objectID": "materiales/slides/clase_6.html#y-así-llegamos-al-fin-de-la-unidad-3",
+    "href": "materiales/slides/clase_6.html#y-así-llegamos-al-fin-de-la-unidad-3",
+    "title": "Limpieza y Normalización de Datos",
+    "section": "¡Y así llegamos al fin de la unidad 3!",
+    "text": "¡Y así llegamos al fin de la unidad 3!\nHoy aprendimos a:\n\nPreparar nuestros datos para el análisis: Empezamos limpiando los nombres de las variables con janitor::clean_names() para que sean más manejables y consistentes.\nDetectar problemas comunes de calidad de datos: Exploramos cómo identificar valores faltantes, duplicados y valores únicos utilizando funciones básicas de R y dplyr.\nValidar nuestros datos de forma estructurada con validate: Aprendimos a definir reglas para evaluar la completitud, integridad, exactitud y consistencia de nuestros datos. Vimos cómo usar las funciones clave de validate (validator, confront, summary, plot) para aplicar estas reglas al dataset penguins_raw.\nCuantificar y resumir los problemas de calidad de datos: Comprobamos cómo validate no solo detecta los problemas, sino que también nos proporciona información detallada y resumida sobre cuántos registros fallan en cada regla y dónde se encuentran los errores."
   }
 ]

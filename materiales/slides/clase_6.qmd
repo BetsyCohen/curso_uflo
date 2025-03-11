@@ -1,0 +1,310 @@
+---
+title: "Limpieza y Normalización de Datos"
+subtitle: "Análisis de Datos 1"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+date: "15/05/2025"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+```{r}
+#| context: setup
+#| include: false
+
+# Cargar librerías
+library(tidyverse)
+library(janitor) # Cargamos el paquete janitor
+library(validate)
+library(palmerpenguins)
+
+
+```
+
+# 👋Encerar y pulir {.smaller}
+
+::: columns
+::: {.column width="50%"}
+En esta clase abordaremos los conceptos fundamentales de **limpieza y normalización de datos**. Para trabajar con datos de manera efectiva, es crucial garantizar su **calidad**. Según Schmidt et al. (2021), podemos evaluar la calidad de los datos a partir de los siguientes criterios:
+
+-   **Integridad**: ¿En qué grado los datos cumplen requisitos a nivel técnico y de su estructura?
+
+-   **Completitud**: ¿En qué grado los valores esperados están presentes?
+
+-   **Consistencia**: ¿En qué grado los valores de los datos están libres de rupturas de convenciones o contradicciones?
+
+-   **Exactitud**: ¿Cuál es el grado de acuerdo entre distribuciones y asociaciones observadas y esperadas?
+:::
+
+::: {.column width="50%"}
+![](https://media.giphy.com/media/J2xkAW1E8kvyE/giphy.gif){fig-align="right"}
+:::
+:::
+
+# 1. Limpieza de nombres de variables {.smaller}
+
+Uno de los primeros pasos en la limpieza de datos es asegurarnos de que los nombres de las variables sean **claros, consistentes y fáciles de manejar**. Para esto, utilizaremos el paquete `janitor` y su función `clean_names()`, que convierte los nombres de las columnas a formato **snake_case**.
+
+::: columns
+::: {.column width="50%"}
+```{r}
+# Ejemplo de un dataset con nombres desordenados
+df <- data.frame(
+  "Código ID" = 1:4,
+  "Nombre Completo" = c("Ana Pérez", "Juan Gómez", "María López", "Ana Pérez"),
+  "Ingreso Mensual" = c(30000, 45000,50000,30000)
+)
+# Limpiar nombres de variables
+
+df <- clean_names(df)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+names(df)
+```
+:::
+:::
+
+# 2. Detección de valores faltantes {.smaller}
+
+Es importante identificar si hay datos faltantes en nuestro conjunto de datos. Podemos hacerlo con `is.na()` y algunas funciones de `dplyr`.
+
+```{r}
+# Introducimos algunos valores faltantes
+df$ingreso_mensual[2] <- NA
+```
+
+```{r}
+# Contar valores faltantes por variable
+colSums(is.na(df))
+```
+
+```{r}
+# Filtrar registros con datos faltantes
+df %>% filter(is.na(ingreso_mensual))
+```
+
+# 3. Identificación de valores únicos y duplicados {.smaller}
+
+Podemos analizar los valores únicos y detectar duplicados con `distinct()` y `duplicated()`.
+
+```{r}
+# Ver valores únicos
+distinct(df, nombre_completo)
+
+# Detectar duplicados
+df[duplicated(df$nombre_completo), ]
+```
+
+# 4. Validaciones estructuradas con `validate`
+
+El paquete `validate` nos permite definir reglas de validación y aplicarlas sistemáticamente sobre nuestros datos. `validate` permite verificar múltiples reglas al mismo tiempo y generar informes detallados sobre el cumplimiento de los datos.
+
+## ¿Como funciona validate?
+
+Con `validate`, podemos definir un conjunto de reglas y aplicarlas sobre un dataset, obteniendo un resumen de qué reglas se cumplen o fallan.
+
+La sintaxis general siempre va a ir teniendo una estructura como esta
+
+`reglas <- validator(tatuaje_en_cuello == "Sí" ,el_pelo_negro == "Sí` `"``)`
+
+`resultado <- confront(dataset, reglas)`
+
+::: callout-note
+Podes leer más sobre validate y los tipos de validación que te permite hacer en el libro en inglés por ahora) ["The Data Validation Cookbook"](https://data-cleaning.github.io/validate/)
+:::
+
+## Un ejemplo sencillo {.smaller}
+
+las primeras tres reglas son comprobaciones de registros: cada registro arrojará una respuesta. En la última regla, comprobamos si la velocidad y la distancia están correlacionadas positivamente; esto arrojará una única respuesta `TRUE`o `FALSE`para todo el conjunto de datos.
+
+El dataframe de resultado con una línea de información para cada regla `V1`, `V2`, `V3`y `V4`. Para ser precisos:
+
+-   ¿Cuántos elementos de datos se comprobaron con cada regla?
+
+-   ¿Cuántos elementos se aprobaron, fallaron o dieron como resultado `NA`?
+
+-   Si la verificación resultó en un error (no se pudo realizar) o dio una advertencia.
+
+-   La expresión que realmente se evaluó para realizar la verificación.
+
+::: columns
+::: {.column width="50%"}
+```{r}
+
+# reglas para dataset de autos
+reglas <- validator(speed >= 0
+                 , dist >= 0
+                 , speed/dist <= 1.5
+                 , cor(speed, dist)>=0.2)
+
+resultado   <- confront(cars, reglas)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+summary(resultado)
+```
+:::
+:::
+
+## Interpretando los resultados {.smaller}
+
+La misma información se puede resumir gráficamente de la siguiente manera, donde cada barra horizontal indica el porcentaje de casos de Reprobado, Aprobado y Omitido.
+
+```{r}
+plot(resultado)
+```
+
+Siguiendo los criterios de **Integridad**, **Completitud**, **Consistencia** y **Exatitud** que mencionámos veamos algunos ejemplos de cómo podemos usar `validate` para revisar nuestra base
+
+## 📌 Cargar el dataset Palmer Penguins {.smaller .scrollable}
+
+Usaremos la base de datos penguins_raw del paquete palmerpenguins, que contiene errores comunes como valores faltantes, nombres inconsistentes y datos mal ingresados.
+
+¿Qué cosas ya le ves de entrada que estan mal?
+
+```{r}
+#install.packages("palmerpenguins")
+library(palmerpenguins)
+
+# Cargamos la base de datos cruda de pingüinos
+df <- palmerpenguins::penguins_raw
+
+# Revisamos los primeros registros
+head(df)
+
+```
+
+## Validación de Completitud {.smaller .scrollable}
+
+Vamos a empezar por la completitud. ¿Qué tan "completo" está penguins_raw?
+
+```{r}
+# Generamos reglas 
+reglas_completitud_raw <- validator(sin_faltantes_raw = is_complete(df)) # Regla general de completitud para TODO el dataset
+
+# Confrontamos df con las reglas
+resultado_completitud_raw <- confront(df, reglas_completitud_raw)
+
+summary(resultado_completitud_raw) # Imprimir resultados
+```
+
+Ese summary lo leemos así: 
+-   *name*: El nombre de la regla.
+
+-   *items*: El dataset tiene 344 elementos que se están evaluando. 
+
+-   *passes*: De esos 344 elementos, 310 cumplen con la regla, es decir, no tienen valores faltantes. 
+
+-   *fails:* ego 34 no la pasaron. 
+
+-   *nNA*: es el número de valores faltantes (NA) identificados en el dataset. ojo porque por ahí todavia no creamos la regla adecuada para detectarlos.
+
+-   *error*: FALSE: Quiere decuir que no hubo errores en la evaluación de la regla. 
+
+-   *warning*: FALSE: No hay advertencias durante la evaluación. 
+
+-   *expression*: is_complete(df): La expresión que se utilizó para la validación, que en este caso verifica la completitud del dataset sin faltantes.
+
+## Validación de Integridad
+
+Vamos a verificar si hay filas duplicadas.
+
+```{r}
+# Reglas de integridad para penguins_raw (df)
+reglas_integridad_raw <- validator(
+    sin_faltantes_raw = is_complete(df), # (General - no relevante aquí)
+    sin_duplicados_raw = is_unique(df) # Regla de integridad: registros únicos
+)
+
+# Confrontamos penguins_raw (df) con las reglas de integridad
+resultado_integridad_raw <- confront(df, reglas_integridad_raw)
+
+summary(resultado_integridad_raw) # Imprimir resultados
+```
+
+## Validación de Exactitud {.smaller .scrollable}
+
+```{r}
+reglas_exactitud_raw <- validator(
+
+    sin_faltantes_dataset_raw = is_complete(df), # (General)
+    sin_duplicados_raw = is_unique(df), # (Integridad)
+
+    # Reglas de completitud:
+    culmen_length_mm_no_na_raw = !is.na(`Culmen Length (mm)`), # 
+    culmen_depth_mm_no_na_raw = !is.na(`Culmen Depth (mm)`),
+    flipper_length_mm_no_na_raw = !is.na(`Flipper Length (mm)`),
+    body_mass_g_no_na_raw = !is.na(`Body Mass (g)`),
+    sex_no_na_raw = !is.na(Sex), # Completitud para 'Sex'
+
+    # Reglas de Categorías Válidas (Consistencia de Categorías):
+    categorias_especie_raw = Species %in% c("Adelie Penguin (Pygoscelis adeliae)", "Chinstrap penguin (Pygoscelis antarctica)", "Gentoo penguin (Pygoscelis papua)"), # Categorías válidas para 'Species'
+    categorias_isla_raw = Island %in% c("Biscoe", "Dream", "Torgersen"), # Categorías válidas para 'Island'
+    categorias_sexo_raw = Sex %in% c("MALE", "FEMALE", ".") # Categorías válidas para 'Sex' (¡incluimos "."!)
+)
+
+# Confrontar penguins_raw (df) con las reglas de exactitud
+resultado_exactitud_raw <- confront(df, reglas_exactitud_raw)
+summary(resultado_exactitud_raw) # Imprimir resultado
+```
+
+## Validación de Consistencia {.smaller .scrollable}
+
+Finalmente, vamos a verificar la consistencia de tipos de datos en penguins_raw. Ya vimos con glimpse() que muchas columnas numéricas se importaron como character. Vamos a usar validate para confirmar y cuantificar este problema de consistencia de tipo de datos.
+
+```{r}
+reglas_consistencia_raw <- validator(
+
+    sin_faltantes_dataset_raw = is_complete(df), # (General - no foco)
+    sin_duplicados_raw = is_unique(df), # (Integridad - no foco)
+    culmen_length_mm_no_na_raw = !is.na(`Culmen Length (mm)`), # (Exactitud - no foco ahora)
+    culmen_depth_mm_no_na_raw = !is.na(`Culmen Depth (mm)`),
+    flipper_length_mm_no_na_raw = !is.na(`Flipper Length (mm)`),
+    body_mass_g_no_na_raw = !is.na(`Body Mass (g)`),
+    sex_no_na_raw = !is.na(Sex),
+    categorias_especie_raw = Species %in% c("Adelie Penguin (Pygoscelis adeliae)", "Chinstrap penguin (Pygoscelis antarctica)", "Gentoo penguin (Pygoscelis papua)"),
+    categorias_isla_raw = Island %in% c("Biscoe", "Dream", "Torgersen"),
+    categorias_sexo_raw = Sex %in% c("MALE", "FEMALE", "."),
+
+    # Reglas de Consistencia de TIPO DE DATOS (¡Aquí está el foco!):
+    culmen_length_mm_es_numerico_raw = is.numeric(`Culmen Length (mm)`), # ¡Consistencia de tipo para 'Culmen Length (mm)'!
+    culmen_depth_mm_es_numerico_raw = is.numeric(`Culmen Depth (mm)`),
+    flipper_length_mm_es_numerico_raw = is.numeric(`Flipper Length (mm)`),
+    body_mass_g_es_numerico_raw = is.numeric(`Body Mass (g)`),
+    sex_es_factor_raw = is.factor(Sex), # Verificar si 'Sex' es factor (¡debería ser categórica!)
+    species_es_factor_raw = is.factor(Species), # Verificar si 'Species' es factor
+    island_es_factor_raw = is.factor(Island) # Verificar si 'Island' es factor
+)
+
+salida_consistencia_raw <- confront(df, reglas_consistencia_raw)
+
+summary(salida_consistencia_raw) # Resumen del resultado de consistencia de tipos
+```
+
+
+## ¡Y así llegamos al fin de la unidad 3! {.smaller}
+
+Hoy aprendimos a:
+
+-  **Preparar nuestros datos para el análisis**: Empezamos limpiando los nombres de las variables con janitor::clean_names() para que sean más manejables y consistentes.
+
+-   **Detectar problemas comunes de calidad de datos:** Exploramos cómo identificar valores faltantes, duplicados y valores únicos utilizando funciones básicas de R y dplyr.
+
+-   **Validar nuestros datos de forma estructurada con validate:** Aprendimos a definir reglas para evaluar la completitud, integridad, exactitud y consistencia de nuestros datos. Vimos cómo usar las funciones clave de validate (validator, confront, summary, plot) para aplicar estas reglas al dataset penguins_raw.
+
+-   **Cuantificar y resumir los problemas de calidad de datos**: Comprobamos cómo validate no solo detecta los problemas, sino que también nos proporciona información detallada y resumida sobre cuántos registros fallan en cada regla y dónde se encuentran los errores.
+

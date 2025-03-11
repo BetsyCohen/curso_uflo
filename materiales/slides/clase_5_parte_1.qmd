@@ -1,0 +1,310 @@
+---
+title: "Análisis Exploratorio, Transformación Condicional y Funciones con `map()`"
+subtitle: "Análisis de Datos 1"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+date: "08/05/2025"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+```{r}
+#| context: setup
+#| include: false
+
+# Cargar librerías (reutilizamos setup previo)
+library(tidyverse)
+library(purrr) # Cargamos el paquete purrr
+
+# Cargar datos ENCC 2022 (reutilizamos carga previa)
+url <- "https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/b635d1fc-2161-4901-a21d-7f93d56d99a4/download/base-datos-encc-2022-2023.csv"
+
+encc_2022 <- read.csv(url)
+```
+
+# Exploración, Transformación Condicional y la Magia de map() 🚀
+
+En la clase de hoy, vamos a explorar tres aspectos fundamentales del análisis de datos:
+
+-   Repaso de Análisis Exploratorio y Descriptivo: Resúmenes clave para datos numéricos y categóricos.
+-   Lógica Condicional con if_else() y case_when(): Transformación de datos basada en condiciones.
+-   Introducción a purrr::map(): La función map() para aplicar operaciones a múltiples elementos de forma eficiente y elegante.
+
+# Análisis Exploratorio y Descriptivo 🔍
+
+Vamos a repasar brevemente las herramientas esenciales para entender nuestros datos, tanto numéricos como categóricos.
+
+## Datos Numéricos: Resúmenes Estadísticos 🔢 {.smaller}
+
+Para variables numéricas, los resúmenes estadísticos nos ofrecen una visión rápida de su distribución y características.
+
+**Herramientas:**
+
+-   `summarize()`: Para calcular estadísticos como media, mediana, desviación estándar, etc.
+
+    ```{r}
+    resumen_edad <- encc_2022 %>%
+      summarize(
+        media_edad = mean(edad, na.rm = TRUE),
+        mediana_edad = median(edad, na.rm = TRUE),
+        desvio_std_edad = sd(edad, na.rm = TRUE),
+        min_edad = min(edad, na.rm = TRUE),
+        max_edad = max(edad, na.rm = TRUE),
+        rango_edad = max_edad - min_edad,
+        iqr_edad = IQR(edad, na.rm = TRUE),
+        cantidad_encuestados = n()
+      )
+    ```
+
+## Datos Numéricos: Resúmenes Estadísticos 🔢
+
+::: columns
+::: {.column width="50%"}
+Esta tabla nos presenta un resumen conciso de la distribución de la edad en la muestra, mostrando medidas de tendencia central, dispersión y rango.
+:::
+
+::: {.column width="50%"}
+```{r}
+resumen_edad
+```
+:::
+:::
+
+## Datos Categóricos: Tablas de Frecuencia 📊 {.smaller}
+
+Para variables categóricas, las tablas de frecuencia nos muestran la distribución de las categorías y su importancia relativa.
+
+::: columns
+::: {.column width="50%"}
+**Herramientas:**
+
+-   `count()`: Para contar las ocurrencias de cada categoría.
+
+-   `mutate()`: Para calcular proporciones y porcentajes a partir de las frecuencias.
+:::
+
+::: {.column width="50%"}
+```{r}
+frecuencia_regiones_prop <- encc_2022 %>%
+  count(region, sort = TRUE) %>%
+  mutate(
+    proporcion = n / sum(n),
+    porcentaje = proporcion * 100
+  )
+
+frecuencia_regiones_prop
+```
+:::
+:::
+
+Esta tabla muestra las regiones ordenadas por frecuencia, junto con la cantidad de encuestados en cada región, su proporción y porcentaje respecto al total de la muestra.
+
+# Lógica Condicional: `if_else()` y `case_when()` 🤔
+
+## `if_else()`: Condiciones Binarias (SI/NO) 💡 {.smaller}
+
+`if_else()` es ideal para crear variables basadas en una condición que tiene dos resultados posibles.
+
+**Ejemplo: Variable `es_mayor_de_50`**
+
+Creemos una variable que indique si la edad del encuestado es mayor de 50 años (SI/NO).
+
+```{r}
+encc_mayor_50 <- encc_2022 %>%
+  mutate(
+    es_mayor_de_50 = if_else(edad > 50, "SI", "NO")
+  )
+
+encc_mayor_50 %>% count(es_mayor_de_50)
+```
+
+`if_else()` asigna "SI" a `es_mayor_de_50` si `edad > 50` es verdadero, y "NO" en caso contrario.
+
+## `case_when()`: Condiciones Múltiples y Categorías 🎭 {.smaller}
+
+`case_when()` es perfecto para lógica condicional más compleja con múltiples categorías.
+
+Recategorizamos `nse_3` en "Alto/Medio", "Bajo" y "Sin Dato".
+
+::: columns
+::: {.column width="50%"}
+```{r}
+
+encc_nse_reducido <- encc_2022 %>%
+  mutate(
+    nse_reducido = case_when(
+      nse_3 %in% c("ABC1", "C2C3") ~ "Alto/Medio",
+      nse_3 == "D1D2E"           ~ "Bajo",
+      TRUE                         ~ "Sin Dato"
+    )
+  )
+
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+encc_nse_reducido %>% count(nse_reducido)
+```
+:::
+:::
+
+`case_when()` asigna categorías a `nse_reducido` basadas en diferentes condiciones aplicadas a `nse_3`, incluyendo un valor por defecto "Sin Dato".
+
+::: callout-note
+case_when () es una de las estructuras de transformación que seguramente más vas usar. Si ya contas con algo de experiencia en análisis de datos y trabajaste con SPSS case_when() es uno de los procesos que hacemos más habitualmente en lo que llamamos **rectegorización** de variables
+:::
+
+# Introducción a `purrr::map()`: La Magia de la Iteración Funcional ✨
+
+Ahora vamos a introducir una herramienta muy poderosa para **automatizar tareas repetitivas**: la función `map()` del paquete `purrr`.
+
+## ¿Qué es `map()`?
+
+-   `map()` es una función que permite aplicar la **misma función** a **cada elemento de una lista o vector**.
+
+-   Simplifica y hace más eficiente el código cuando necesitamos realizar la misma operación en múltiples columnas o elementos.
+
+-   Es un concepto clave de la **programación funcional**.
+
+## Sintaxis básica de `map()`:
+
+map() nos va a pedir dos elementos básicos para operar como parte de su sintaxis
+
+-   `x`: El **vector o lista** sobre el cual queremos iterar.
+
+<!-- -->
+
+-   `.f`: La **función** que queremos aplicar a cada elemento de `.x`.
+
+Como resultado devuelve una **lista** donde cada elemento es el resultado de aplicar la función `.f` al elemento correspondiente de `.x`.
+
+Veamos un ejemplo
+
+## Calcular Tablas de Frecuencia para Múltiples Variables Categóricas con `map()` y `count()` 📊 {.smaller}
+
+Supongamos que queremos obtener las tablas de frecuencia para varias variables categóricas de la ENCC_2022: `region`, `genero`, `nivel_educativo`. En lugar de escribir `count()` para cada variable por separado, podemos usar `map()` para automatizar este proceso.
+
+```{r}
+variables_categoricas <- c("region", "genero", "niv_socioe") # Vector de nombres de variables categóricas
+
+frecuencias_variables <- map(
+  .x = variables_categoricas, # Vector de nombres de variables categóricas sobre el que iterar
+  .f = function(variable) { # Función anónima que toma el nombre de una variable como argumento
+    encc_2022 %>%
+      count(!!sym(variable), sort = TRUE) # Calcula la tabla de frecuencia para la variable en el dataset encc_2022
+  }
+)
+
+```
+
+## Calcular Tablas de Frecuencia para Múltiples Variables Categóricas con `map()` y `count()` 📊 {.smaller}
+
+```{r}
+frecuencias_variables # Imprimir la lista de data frames de frecuencias
+```
+
+## 😱Pero ... ¿¡Qué es esta locura!?
+
+-   `map()` iteró sobre el vector `variables_categoricas`. Para cada nombre de variable (ej., "region"), aplicó la función anónima.
+
+<!-- -->
+
+-   La función anónima usa `count(!!sym(variable), sort = TRUE)` para calcular la tabla de frecuencia de la variable actual, ordenando por frecuencia descendente.
+
+<!-- -->
+
+-   `!!sym(variable)`: Recordemos que esto permite usar el nombre de la variable dinámicamente dentro de `count()`.
+
+<!-- -->
+
+-   El resultado `frecuencias_variables` es una **lista**, donde cada elemento es un **data frame** que representa la tabla de frecuencia para una de las variables categóricas. Cada data frame muestra las categorías y sus frecuencias (`n`).
+
+## Calcular Tablas de Proporciones para Múltiples Variables Categóricas con `map()` y Funciones Anidadas 📈 {.smaller}
+
+Ahora, vamos a calcular las tablas de proporciones (y porcentajes) para las mismas variables categóricas (`region`, `genero`, `nivel_educativo`). Vamos a anidar funciones dentro de `map()` para realizar los cálculos de proporción dentro de cada tabla de frecuencia.
+
+```{r}
+proporciones_variables <- map(
+  .x = variables_categoricas, # Vector de nombres de variables categóricas
+  .f = function(variable) { # Función anónima para calcular tabla de proporciones para una variable
+    encc_2022 %>%
+      count(!!sym(variable), sort = TRUE) %>% # Primero, calcular la tabla de frecuencia
+      mutate( # Luego, dentro de la misma función anónima, calcular proporciones y porcentajes
+        proporcion = n / sum(n),
+        porcentaje = proporcion * 100
+      )
+  }
+)
+
+```
+
+## Calcular Tablas de Proporciones para Múltiples Variables Categóricas con `map()` y Funciones Anidadas 📈
+
+```{r}
+proporciones_variables # Imprimir la lista de data frames de proporciones
+```
+
+## ¡Es mágico!
+
+-   De nuevo, `map()` iteró sobre `variables_categoricas`.
+
+<!-- -->
+
+-   La función anónima ahora realiza dos operaciones anidadas:
+
+    1.  `count(!!sym(variable), sort = TRUE)`: Calcula la tabla de frecuencia (como el ej. anterior).
+
+    2.  `mutate(proporcion = n / sum(n), porcentaje = proporcion * 100)`: *Dentro del mismo pipe*, calcula las columnas `proporcion` y `porcentaje` a partir de la frecuencia `n` de la tabla de frecuencia.
+
+-   El resultado `proporciones_variables` es una **lista**, donde cada elemento es un **data frame** que contiene la tabla de frecuencia y las proporciones/porcentajes para cada variable categórica.
+
+## La yapa: Combinar las Tablas en un Solo Data Frame con `list_rbind()` y un ID de Variable 🧲 {.smaller}
+
+Finalmente, combinemos las listas de tablas de proporciones (`proporciones_variables`) en un único data frame "largo", y agreguemos una columna `variable` para identificar a qué variable categórica corresponde cada tabla.
+
+```{r}
+proporciones_variables_df <- proporciones_variables %>%
+  list_rbind(names_to = "variable") # Combinar la lista en un data frame y usar 'names_to' para crear columna 'variable'
+
+str(proporciones_variables_df)
+```
+
+Ahora tenemos un data frame "tidy" donde cada fila representa una categoría de una variable categórica, con columnas para la variable, la categoría, la frecuencia, la proporción y el porcentaje. Este formato facilita la comparación de distribuciones entre diferentes variables categóricas, y puede ser usado para crear visualizaciones tabulares o gráficas comparativas (aunque en esta clase no estemos usando gráficos).
+
+## `map()`: Un Universo de Posibilidades 🌌 {.smaller}
+
+La función `map()` es extremadamente versátil y puede usarse con una gran variedad de funciones y propósitos. En clases futuras, exploraremos más usos de `map()` y otras funciones del paquete `purrr` para la programación funcional y la manipulación de datos avanzada.
+
+**En resumen, `map()` nos permite:**
+
+-   **Automatizar tareas repetitivas** de forma eficiente y concisa.
+
+-   **Aplicar la misma lógica a múltiples columnas o elementos** de una lista o vector.
+
+-   **Escribir código más limpio, legible y mantenible**.
+
+-   **Adoptar un estilo de programación funcional** que es poderoso y común en el ecosistema de R y `tidyverse`.
+
+::: callout-note
+Si te interesa aprender más sobre map() y sus aplicaciones podes consultar la documentación (que por suerte viene con muchos ejemplos) en [https://purrr.tidyverse.org/reference/map.html](https://purrr.tidyverse.org/reference/map.html)
+:::
+
+# Resumen de la Clase de Hoy 🚀
+
+En la clase de hoy, cubrimos tres temas importantes:
+
+-   **Análisis Exploratorio Descriptivo**: Repasamos resúmenes estadísticos para datos numéricos y tablas de frecuencia para datos categóricos.
+
+-   **Lógica Condicional con `if_else()` y `case_when()`**: Reforzamos el uso de estas funciones para transformaciones basadas en condiciones.
+
+-   **Introducción a `purrr::map()`**: Aprendimos los fundamentos de la función `map()` para la iteración funcional, y cómo usar `map_dbl()` y `map()` para aplicar funciones a múltiples variables, y combinar los resultados con `list_rbind()`.
