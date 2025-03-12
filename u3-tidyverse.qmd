@@ -2,20 +2,7 @@
 title: "Unidad 3: ETL con tidyverse" 
 ---
 
-## Flujo de trabajo con datos en R: importación y exploración inicial
 
--   Importación de datos- uso de `here()`
--   Exploración inicial de datos
-
-::: slide-deck
-::: slides
-[Slides Clase 3](materiales/slides/clase_3.qmd)
-:::
-
-::: video
-[Video Clase 3]()
-:::
-:::
 
 ## Introducción a Tidyverse: El Universo de Herramientas para transformación de datos
 

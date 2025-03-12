@@ -17,6 +17,8 @@ execute:
 df-print: kable
 ---
 
+
+
 # Clase 2: Navegando R: Entornos, Objetos y Operadores
 
 Hoy vamos a explorar los **ladrillos fundamentales** con los que construimos análisis de datos en R:
@@ -121,9 +123,13 @@ Un **vector** es una colección **ordenada** de elementos, todos del **mismo tip
 
 Usamos la función `c()` (de "combine" o "concatenar") para crear vectores:
 
+
+
 ```{r}
  c(25, 30, 22, 40, 35)
 ```
+
+
 
 ## Say my name: ponerle un nombre al vector {.smaller}
 
@@ -131,27 +137,41 @@ Para que podamos guardar y luego "llamar" nuestro vector vamos a necesitar poner
 
 De esta manera podemos nombrar nuestro vector edades
 
+
+
 ```{r}
 edades <- c(25, 14, 22, 40, 35)
 ```
 
+
+
 y luego podemos llamarlo
+
+
 
 ```{r}
 edades
 ```
 
+
+
 ## Say my name: ponerle un nombre al vector {.smaller}
 
 Y esto es una gran ventaja porque por ej si queremos realizar alguna operación como por ejemplo sumarle un año a todas las edades simplemente haremos lo siguiente
+
+
 
 ```{r}
 edades+1
 ```
 
+
+
 Esta característica a en la que la operación **se ejecuta sobre cada uno de los elementos** del vector se denomina **element-wise**.
 
 Entonces si realizamos una **operación entre dos vectores** se ejecutará entre los vectores con misma ubicación. Por ejemplo:
+
+
 
 ```{r}
 edades*2
@@ -160,6 +180,8 @@ edades*2
 ```{r}
 edades-5
 ```
+
+
 
 ## Pará pará pará
 
@@ -202,9 +224,13 @@ Los vectores en R pueden almacenar diferentes tipos de datos:
 
 Aprovechandon nuestro vector `edades` Podriamos preguntarle a R la edad de nuestro entrevistado más joven. Para eso vamos a usar la función `min()`
 
+
+
 ```{r}
 min(edades)
 ```
+
+
 
 ::: callout-tip
 ## ¡Ahora ustedes!
@@ -225,19 +251,27 @@ Otro tipo de dato que vamos a usar MUCHISIMO son los de tipo texto
 
 Veamos un ejemplo
 
+
+
 ```{r}
 provincia <- c("CABA", "Buenos Aires","Buenos Aires","Buenos Aires","Mendoza")
 provincia
 ```
+
+
 
 ::: callout-important
 ## ¡OJO!
 
 Los strings no necesariamente tienen que contener letras. También pueden tener números almacenados como texto. Por ejemplo:
 
+
+
 ```{r}
  c("10", "9", "8", "10", "9")
 ```
+
+
 :::
 
 ## Lógicos: Verdadero o Falso ✅ ❌
@@ -248,10 +282,14 @@ Los strings no necesariamente tienen que contener letras. También pueden tener 
 
 Por ejemplo podriamos querer saber si nuestros entrevistados estan en edad de votar
 
+
+
 ```{r}
 mayores_de_16 <- edades > 16
 mayores_de_16
 ```
+
+
 
 ## Factores: Categorías con Sentido {.smaller}
 
@@ -264,19 +302,27 @@ mayores_de_16
 
 Vayamos con un clasico de la sociología
 
+
+
 ```{r}
 niveles_educativos_caracter <- c("Primario","Secundario","Terciario","Universitario")
 niveles_educativos_factor <- factor(niveles_educativos_caracter)
 niveles_educativos_factor
 ```
+
+
 :::
 
 ::: {.column width="50%"}
 Con la función `factor()` nuestro vector deja de ser un simple conjunto de textos sueltos y pasa a ser si quisieramos saber todos los niveles de nuetra variable categórica podemos usar la funcion `levels()`
 
+
+
 ```{r}
 levels(niveles_educativos_factor)
 ```
+
+
 :::
 :::
 
@@ -300,13 +346,19 @@ Podemos crear data frames con la función `data.frame()` a partir de estos vecto
 
 Supongamos que tenemos tres vectores chacarcter, otro numerico y otro factorial
 
+
+
 ```{r}
 nombres <- c("Ana", "Pedro", "Maria", "Juan", "Sofia")
 edades <- c(25, 30, 22, 40, 35)
 nivel_edu <- factor(c("Universitario", "Secundario", "Universitario", "Terciario", "Secundario"))
 ```
 
+
+
 Usando `data.frame()` Nombramos a cada una de las variables indicando el nombre es la columna = nombre_del_vector
+
+
 
 ```{r}
 sociodata <- data.frame(
@@ -316,6 +368,8 @@ sociodata <- data.frame(
 
 sociodata
 ```
+
+
 
 ## Estructura "Tidy" de Data Frames 🧹
 
@@ -341,21 +395,33 @@ Podemos acceder a partes específicas de un data frame usando corchetes `[]` o e
 
 Traer el caso en la Primera fila, segunda columna:
 
+
+
 ```{r}
 sociodata[1, 2]
 ```
 
+
+
 Traer toda la primera fila:
+
+
 
 ```{r}
 sociodata[1, ]
 ```
 
+
+
 Traer toda la segunda columna:
+
+
 
 ```{r}
 sociodata[, 2]
 ```
+
+
 :::
 
 ::: {.column width="50%"}
@@ -363,15 +429,23 @@ sociodata[, 2]
 
 Columna "educacion" completa:
 
+
+
 ```{r}
 sociodata$educacion
 ```
 
+
+
 Primer elemento de la columna "nombre":
+
+
 
 ```{r}
 sociodata$nombre[1]
 ```
+
+
 :::
 :::
 
@@ -399,6 +473,8 @@ Tenemos diferentes tipos de operadores:
 ::: {.column width="60%"}
 **Por ejemplo:**
 
+
+
 ```{r}
 edades <- c(25, 30, 22, 40, 35)
 
@@ -410,6 +486,8 @@ edades + 5
 # Calcular el doble de cada edad:
 edades * 2
 ```
+
+
 :::
 :::
 
@@ -428,6 +506,8 @@ edades * 2
 ::: {.column width="60%"}
 **Ejemplos con vectores:**
 
+
+
 ```{r}
 edades <- c(25, 30, 22, 40, 35)
 
@@ -441,6 +521,8 @@ niveles_educativos <- c("Secundario", "Universitario", "Primario", "Universitari
 # ¿Qué niveles educativos son "Universitario"?
 niveles_educativos == "Universitario"
 ```
+
+
 :::
 :::
 
@@ -448,22 +530,34 @@ niveles_educativos == "Universitario"
 
 -   **`<-` (Asignación "flechita"):** Asigna el valor de la derecha al objeto de la izquierda. **¡Es el más común y recomendado!**
 
+
+
     ```{r}
     mi_variable <- 10
     nombre_data_frame <- sociodata
     ```
 
+
+
 -   **`=` (Asignación "igual"):** También asigna valores. Funciona similar a `<-`, pero en algunos contextos puede ser menos claro.
+
+
 
     ```{r}
     otra_variable = 20
     ```
 
+
+
 -   **`->` (Asignación "flecha derecha"):** Asigna el valor de la izquierda al objeto de la derecha. Menos común, menos legible.
+
+
 
     ```{r}
     "Hola R" -> mensaje
     ```
+
+
 
 **En este curso, usaremos principalmente `<-` para asignaciones. ¡Es una buena práctica mantener la consistencia!**
 
@@ -485,3 +579,4 @@ En la próxima clase, aprenderemos a:
 
 -   **Importar datos desde archivos externos:** CSV, Excel, etc.
 -   **Explorar los datos importados:** Ver su estructura, tipos de variables. :::
+

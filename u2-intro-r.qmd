@@ -6,6 +6,17 @@ En esta unidad se trabajan las siguientes temáticas
 
 • Por qué R. R y su comunidad. La sociología y R. • Entornos, scripts y notebooks. Packages y librerías. Tipos de objetos en R. Convenciones y símbolos de R. • El flujo de trabajo en un proyecto de análisis de datos. Importación de datos. • ETL como proceso "iterativo" de conocimiento.
 
+## Instalación de R y RStudio
+
+::: slide-deck
+
+::: slides
+[Slides](materiales/slides/clase_1_parte_1.qmd)
+:::
+
+:::
+
+
 ## Materiales Clase 1: La interfaz de RStudio.
 
 ::: slide-deck
@@ -37,5 +48,20 @@ En esta unidad se trabajan las siguientes temáticas
 
 ::: video
 [Video]()
+:::
+:::
+
+## Flujo de trabajo con datos en R: importación y exploración inicial
+
+-   Importación de datos- uso de `here()`
+-   Exploración inicial de datos
+
+::: slide-deck
+::: slides
+[Slides Clase 3](materiales/slides/clase_3.qmd)
+:::
+
+::: video
+[Video Clase 3]()
 :::
 :::

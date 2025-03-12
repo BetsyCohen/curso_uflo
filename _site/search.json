@@ -1542,5 +1542,90 @@
       "Materiales",
       "Unidad 3: ETL con tidyverse"
     ]
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#r-y-rstudio-no-son-lo-mismo",
+    "href": "materiales/slides/clase_1_parte_1.html#r-y-rstudio-no-son-lo-mismo",
+    "title": "Instalación de R y R Studio.",
+    "section": "¿R y RStudio? ¿No son lo mismo?",
+    "text": "¿R y RStudio? ¿No son lo mismo?\nR y RStudio son como el motor y la carrocería en un auto. R es un lenguaje de programación, mientras que RStudio es el programa desde el cual vamos a utilizar dicho lenguaje Para tener el auto completo necesitamos instalar ambos.\nSi ya tenés descargados ambos programas, te recomiendo actualizarlos siguiendo los mismos pasos. R cambia todo el tiempo, por lo que resulta muy importante ir actualizando periódicamente.\n¡Vamos a hacerlo!."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-y-rstudio",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-y-rstudio",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R y RStudio",
+    "text": "Instalando R y RStudio\n\nDirigite a la siguiente página -&gt; https://posit.co/downloads/\nBajá hasta encontrar lo que se muestra en la imágen y hace click en “download” para descargar la versión gratuita (es la que usa todo el mundo y seguro tendrá todo lo que precisás)"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-1",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-1",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R",
+    "text": "Instalando R\nLa página que vas a ver es un poco más rústica que la anterior. Pero estás en el buen camino. Hacé click en tu sistema operativo (Linux, macOS, Windows)."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-en-windows",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-en-windows",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R en Windows",
+    "text": "Instalando R en Windows\nSi tu sistema operativo es windows, hacé click en “Install R for the first time”\n\ny luego en “Download R…. for Windows”.\n\nLa versión de R (los numeritos) puede cambiar, pero la pinta general de la página es la que ves en las imágenes."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-en-windows-1",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-en-windows-1",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R en Windows",
+    "text": "Instalando R en Windows\nLuego andá a la carpeta donde lo hayas descargado y ejecutalo como administrador\n\nSeguí las instrucciones de instalación y después seguí a la sección Instalando RSTudio de este documento"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-en-linux",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-en-linux",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R en Linux",
+    "text": "Instalando R en Linux\nEn el caso de que tengas Linux, elegí tu sistema operativo y seguí las instrucciones que te da la página. Luego, volvé al punto 5 de este documento"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-en-mac",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-en-mac",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R en Mac",
+    "text": "Instalando R en Mac\nEn el caso de Mac, mirate este video:"
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#instalando-r-studio-1",
+    "href": "materiales/slides/clase_1_parte_1.html#instalando-r-studio-1",
+    "title": "Instalación de R y R Studio.",
+    "section": "Instalando R Studio",
+    "text": "Instalando R Studio\nSi tenés otro sistema operativo, más abajo hay otras opciones de instaladores."
+  },
+  {
+    "objectID": "materiales/slides/clase_1_parte_1.html#its-a-rap",
+    "href": "materiales/slides/clase_1_parte_1.html#its-a-rap",
+    "title": "Instalación de R y R Studio.",
+    "section": "It’s a rap!",
+    "text": "It’s a rap!\nCon esto ya deberíamos tener R y RStudio en nuestra compu"
+  },
+  {
+    "objectID": "u2-intro-r.html#instalación-de-r-y-rstudio",
+    "href": "u2-intro-r.html#instalación-de-r-y-rstudio",
+    "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
+    "section": "Instalación de R y RStudio",
+    "text": "Instalación de R y RStudio\n\n\nSlides",
+    "crumbs": [
+      "Materiales",
+      "Unidad 2 Introducción al análisis de datos con R y RStudio"
+    ]
+  },
+  {
+    "objectID": "u2-intro-r.html#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial",
+    "href": "u2-intro-r.html#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial",
+    "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
+    "section": "Flujo de trabajo con datos en R: importación y exploración inicial",
+    "text": "Flujo de trabajo con datos en R: importación y exploración inicial\n\nImportación de datos- uso de here()\nExploración inicial de datos\n\n\n\nSlides Clase 3\n\n\nVideo Clase 3",
+    "crumbs": [
+      "Materiales",
+      "Unidad 2 Introducción al análisis de datos con R y RStudio"
+    ]
   }
 ]
