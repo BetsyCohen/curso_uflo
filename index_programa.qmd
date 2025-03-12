@@ -2,4 +2,4 @@
 title: "Programa y Cronograma 2025"
 ---
 
-En esta sección vas encontrar el programa y cronograma de la materia ene el primer cuatrimestre 2025
+En esta sección vas encontrar el [programa](https://curso-analisis-datos-1-sociologia.netlify.app/programa_y_crono/programa) y [cronograma](https://curso-analisis-datos-1-sociologia.netlify.app/programa_y_crono/cronograma) de la materia ene el primer cuatrimestre 2025

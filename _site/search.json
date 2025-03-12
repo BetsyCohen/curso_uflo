@@ -176,12 +176,12 @@
   {
     "objectID": "u3-tidyverse.html",
     "href": "u3-tidyverse.html",
-    "title": "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse",
+    "title": "Unidad 3: ETL con tidyverse",
     "section": "",
-    "text": "Importación de datos- uso de here()-exploración inicial de datos\n\n\nSlides Clase 3\n\n\nVideo Clase 3",
+    "text": "Importación de datos- uso de here()\nExploración inicial de datos\n\n\n\nSlides Clase 3\n\n\nVideo Clase 3",
     "crumbs": [
       "Materiales",
-      "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse"
+      "Unidad 3: ETL con tidyverse"
     ]
   },
   {
@@ -1229,7 +1229,7 @@
     "href": "u2-intro-r.html#materiales-clase-2-por-qué-r-y-su-comunidad.-la-sociología-y-r.",
     "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
     "section": "Materiales Clase 2: Por qué R y su comunidad. La sociología y R.",
-    "text": "Materiales Clase 2: Por qué R y su comunidad. La sociología y R.\n\n\nSlides\n\n\nVideos latinr",
+    "text": "Materiales Clase 2: Por qué R y su comunidad. La sociología y R.\n\n\nSlides Por qué R y su comunidad.\n\n\nVideos latinr\n\n\n\n\nSlides Entornos, Objetos y Operadores en R.\n\n\nVideo",
     "crumbs": [
       "Materiales",
       "Unidad 2 Introducción al análisis de datos con R y RStudio"
@@ -1238,12 +1238,12 @@
   {
     "objectID": "u3-tidyverse.html#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial",
     "href": "u3-tidyverse.html#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial",
-    "title": "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse",
+    "title": "Unidad 3: ETL con tidyverse",
     "section": "",
-    "text": "Importación de datos- uso de here()-exploración inicial de datos\n\n\nSlides Clase 3\n\n\nVideo Clase 3",
+    "text": "Importación de datos- uso de here()\nExploración inicial de datos\n\n\n\nSlides Clase 3\n\n\nVideo Clase 3",
     "crumbs": [
       "Materiales",
-      "Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse"
+      "Unidad 3: ETL con tidyverse"
     ]
   },
   {
@@ -1488,5 +1488,59 @@
     "title": "Limpieza y Normalización de Datos",
     "section": "¡Y así llegamos al fin de la unidad 3!",
     "text": "¡Y así llegamos al fin de la unidad 3!\nHoy aprendimos a:\n\nPreparar nuestros datos para el análisis: Empezamos limpiando los nombres de las variables con janitor::clean_names() para que sean más manejables y consistentes.\nDetectar problemas comunes de calidad de datos: Exploramos cómo identificar valores faltantes, duplicados y valores únicos utilizando funciones básicas de R y dplyr.\nValidar nuestros datos de forma estructurada con validate: Aprendimos a definir reglas para evaluar la completitud, integridad, exactitud y consistencia de nuestros datos. Vimos cómo usar las funciones clave de validate (validator, confront, summary, plot) para aplicar estas reglas al dataset penguins_raw.\nCuantificar y resumir los problemas de calidad de datos: Comprobamos cómo validate no solo detecta los problemas, sino que también nos proporciona información detallada y resumida sobre cuántos registros fallan en cada regla y dónde se encuentran los errores."
+  },
+  {
+    "objectID": "u3-tidyverse.html#introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos",
+    "href": "u3-tidyverse.html#introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos",
+    "title": "Unidad 3: ETL con tidyverse",
+    "section": "Introducción a Tidyverse: El Universo de Herramientas para transformación de datos",
+    "text": "Introducción a Tidyverse: El Universo de Herramientas para transformación de datos\n\nEl flujo de trabajo bajo la filosofía “tidy”\nTransformación de datos: dplyr() verbos centrales y uso de pipe\nLa función across()\nuniones (joins) y pivoteos\n\n\n\nSlides Clase 4 parte 1\n\n\nSlides Clase 4 parte 2\n\n\nVideo Clase 4 parte 1\n\n\nVideo Clase 4 parte 2\n\n\n\nActividad 1 - Optativa",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: ETL con tidyverse"
+    ]
+  },
+  {
+    "objectID": "u3-tidyverse.html#análisis-exploratorio-condicionales-y-purr",
+    "href": "u3-tidyverse.html#análisis-exploratorio-condicionales-y-purr",
+    "title": "Unidad 3: ETL con tidyverse",
+    "section": "Análisis exploratorio, condicionales y purr",
+    "text": "Análisis exploratorio, condicionales y purr\n\nAnálisis exploratorio y descriptivos para datos numéricos y categóricos.\nUso de if_else() y case_when().\nLa función map() de purr\nLimpieza y normalización de datos.\nTratamiento de casos perdidos.\n\n\n\nSlides Clase 5 parte 1\n\n\nSlides Clase 5 parte 2\n\n\nVideo Clase 5 parte 1\n\n\nVideo Clase 5 parte 2",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: ETL con tidyverse"
+    ]
+  },
+  {
+    "objectID": "u3-tidyverse.html#janitor-normalización-de-datos-y-casos-perdidos.",
+    "href": "u3-tidyverse.html#janitor-normalización-de-datos-y-casos-perdidos.",
+    "title": "Unidad 3: ETL con tidyverse",
+    "section": "janitor() normalización de datos y casos perdidos.",
+    "text": "janitor() normalización de datos y casos perdidos.\n\njanitor() como complemento del universo tidyverse.\nLimpieza y normalización de datos.\nTratamiento de casos perdidos.\n\n::: slide-deck ::: slides Slides Clase 6 parte 1",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: ETL con tidyverse"
+    ]
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "Licencia",
+    "section": "",
+    "text": "© 2025 Betsy Cohen\nEstos materiales están publicados bajo la licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA), la cual implica:\n\nAtribución: Podés compartir y adaptar el material siempre que reconozcas la autoría de forma adecuada.\nUso no comercial: No está permitido usar el material con fines comerciales.\nCompartir igual: Si adaptás o transformas el material, debés distribuirlo bajo la misma licencia.",
+    "crumbs": [
+      "Licencia"
+    ]
+  },
+  {
+    "objectID": "u3-tidyverse.html#normalización-de-datos-y-casos-perdidos.",
+    "href": "u3-tidyverse.html#normalización-de-datos-y-casos-perdidos.",
+    "title": "Unidad 3: ETL con tidyverse",
+    "section": "Normalización de datos y casos perdidos.",
+    "text": "Normalización de datos y casos perdidos.\n\njanitor y validate para el uso de limpieza y normalización de datos\n\n\n\nSlides Clase 6 parte 2\n\n\nVideo Clase 6 parte 1",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: ETL con tidyverse"
+    ]
   }
 ]

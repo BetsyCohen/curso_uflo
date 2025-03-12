@@ -4,7 +4,8 @@ title: "Unidad 3: ETL con tidyverse"
 
 ## Flujo de trabajo con datos en R: importación y exploración inicial
 
-Importación de datos- uso de here()-exploración inicial de datos
+-   Importación de datos- uso de `here()`
+-   Exploración inicial de datos
 
 ::: slide-deck
 ::: slides
@@ -18,11 +19,10 @@ Importación de datos- uso de here()-exploración inicial de datos
 
 ## Introducción a Tidyverse: El Universo de Herramientas para transformación de datos
 
--	El flujo de trabajo bajo la filosofía “tidy” 
--	Transformación de datos: dplyr() verbos centrales y uso de pipe 
--	La función `across()`
--	uniones (joins) y pivoteos
-
+-   El flujo de trabajo bajo la filosofía "tidy"
+-   Transformación de datos: dplyr() verbos centrales y uso de pipe
+-   La función `across()`
+-   uniones (joins) y pivoteos
 
 ::: slide-deck
 ::: slides
@@ -48,13 +48,11 @@ Importación de datos- uso de here()-exploración inicial de datos
 
 ## Análisis exploratorio, condicionales y purr
 
--	Análisis exploratorio y descriptivos para datos numéricos y categóricos. 
--	Uso de if_else() y case_when(). 
--	La función map de purr()
-
-
--	Limpieza y normalización de datos. 
--	Tratamiento de casos perdidos.
+-   Análisis exploratorio y descriptivos para datos numéricos y categóricos.
+-   Uso de `if_else()` y `case_when()`.
+-   La función `map()` de `purr`
+-   Limpieza y normalización de datos.
+-   Tratamiento de casos perdidos.
 
 ::: slide-deck
 ::: slides
@@ -72,20 +70,13 @@ Importación de datos- uso de here()-exploración inicial de datos
 ::: video
 [Video Clase 5 parte 2]()
 :::
-
-
-## janitor() normalización de datos y casos perdidos. 
-
--	janitor() como complemento del universo tidyverse. 
-
--	Limpieza y normalización de datos. 
--	Tratamiento de casos perdidos.
-
-::: slide-deck
-::: slides
-[Slides Clase 6 parte 1](materiales/slides/clase_6_parte_1.qmd)
 :::
 
+## Normalización de datos y casos perdidos.
+
+-   `janitor` y `validate` para el uso de limpieza y normalización de datos
+
+::: slide-deck
 ::: slides
 [Slides Clase 6 parte 2](materiales/slides/clase_6_parte_2.qmd)
 :::
@@ -93,10 +84,4 @@ Importación de datos- uso de here()-exploración inicial de datos
 ::: video
 [Video Clase 6 parte 1]()
 :::
-
-::: video
-[Video Clase 6 parte 2]()
 :::
-
-
-

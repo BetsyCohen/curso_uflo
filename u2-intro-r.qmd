@@ -8,7 +8,7 @@ En esta unidad se trabajan las siguientes temáticas
 
 ## Materiales Clase 1: La interfaz de RStudio.
 
-:::: slide-deck
+::: slide-deck
 ::: slides
 [Slides](materiales/slides/clase_1_parte_2.qmd)
 :::
@@ -16,18 +16,26 @@ En esta unidad se trabajan las siguientes temáticas
 ::: video
 [Video recomendado](https://www.youtube.com/watch?app=desktop&v=-h0F6fIHtWM&t=66s&ab_channel=HanselOchoaMontero)
 :::
-
-::::
+:::
 
 ## Materiales Clase 2: Por qué R y su comunidad. La sociología y R.
 
-:::: slide-deck
+::: slide-deck
 ::: slides
-[Slides](materiales/slides/clase_2_tema_1.qmd)
+[Slides Por qué R y su comunidad.](materiales/slides/clase_2_tema_1.qmd)
 :::
 
 ::: video
 [Videos latinr](https://latinr.org/cronograma/programa/)
 :::
+:::
 
-::::
+::: slide-deck
+::: slides
+[Slides Entornos, Objetos y Operadores en R.](materiales/slides/clase_2_tema_2.qmd)
+:::
+
+::: video
+[Video]()
+:::
+:::

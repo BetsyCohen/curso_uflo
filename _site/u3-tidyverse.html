@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Curso análisis de datos 1. Sociología UFLO - Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</title>
+<title>Curso análisis de datos 1. Sociología UFLO - Unidad 3: ETL con tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index_materiales.html">Materiales</a></li><li class="breadcrumb-item"><a href="./u3-tidyverse.html">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index_materiales.html">Materiales</a></li><li class="breadcrumb-item"><a href="./u3-tidyverse.html">Unidad 3: ETL con tidyverse</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -136,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./u3-tidyverse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</span></a>
+ <span class="menu-text">Unidad 3: ETL con tidyverse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,6 +176,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licencia</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -187,18 +193,18 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial" id="toc-flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial" class="nav-link active" data-scroll-target="#flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial">Flujo de trabajo con datos en R: importación y exploración inicial</a></li>
-  <li><a href="#introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" id="toc-introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" class="nav-link" data-scroll-target="#introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos">Introducción al Tidyverse: El Universo de Herramientas para transformación de datos</a></li>
-  <li><a href="#análisis-exploratorio" id="toc-análisis-exploratorio" class="nav-link" data-scroll-target="#análisis-exploratorio">Análisis exploratorio</a></li>
-  <li><a href="#janitor" id="toc-janitor" class="nav-link" data-scroll-target="#janitor">Janitor()</a></li>
+  <li><a href="#introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" id="toc-introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" class="nav-link" data-scroll-target="#introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos">Introducción a Tidyverse: El Universo de Herramientas para transformación de datos</a></li>
+  <li><a href="#análisis-exploratorio-condicionales-y-purr" id="toc-análisis-exploratorio-condicionales-y-purr" class="nav-link" data-scroll-target="#análisis-exploratorio-condicionales-y-purr">Análisis exploratorio, condicionales y purr</a></li>
+  <li><a href="#normalización-de-datos-y-casos-perdidos." id="toc-normalización-de-datos-y-casos-perdidos." class="nav-link" data-scroll-target="#normalización-de-datos-y-casos-perdidos.">Normalización de datos y casos perdidos.</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index_materiales.html">Materiales</a></li><li class="breadcrumb-item"><a href="./u3-tidyverse.html">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index_materiales.html">Materiales</a></li><li class="breadcrumb-item"><a href="./u3-tidyverse.html">Unidad 3: ETL con tidyverse</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Unidad 3: Ordenar manipular, explorar volver a arrancar: ETL con tidyverse</h1>
+<h1 class="title">Unidad 3: ETL con tidyverse</h1>
 </div>
 
 
@@ -217,7 +223,10 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial" class="level2">
 <h2 class="anchored" data-anchor-id="flujo-de-trabajo-con-datos-en-r-importación-y-exploración-inicial">Flujo de trabajo con datos en R: importación y exploración inicial</h2>
-<p>Importación de datos- uso de here()-exploración inicial de datos</p>
+<ul>
+<li>Importación de datos- uso de <code>here()</code></li>
+<li>Exploración inicial de datos</li>
+</ul>
 <div class="slide-deck">
 <div class="slides">
 <p><a href="./materiales/slides/clase_3.html">Slides Clase 3</a></p>
@@ -227,9 +236,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="introducción-al-tidyverse-el-universo-de-herramientas-para-transformación-de-datos">Introducción al Tidyverse: El Universo de Herramientas para transformación de datos</h2>
-<p>Flujo de trabajo con tidyverse, sus paquetes, dplyr y sus verbos principales, uso de pipe, uso de función <code>across()</code></p>
+<section id="introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos">Introducción a Tidyverse: El Universo de Herramientas para transformación de datos</h2>
+<ul>
+<li>El flujo de trabajo bajo la filosofía “tidy”</li>
+<li>Transformación de datos: dplyr() verbos centrales y uso de pipe</li>
+<li>La función <code>across()</code></li>
+<li>uniones (joins) y pivoteos</li>
+</ul>
 <div class="slide-deck">
 <div class="slides">
 <p><a href="./materiales/slides/clase_4_parte_1.html">Slides Clase 4 parte 1</a></p>
@@ -248,12 +262,43 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="exams/tp_1_U3.qmd">Actividad 1 - Optativa</a></p>
 </div>
 </section>
-<section id="análisis-exploratorio" class="level2">
-<h2 class="anchored" data-anchor-id="análisis-exploratorio">Análisis exploratorio</h2>
-<p>Análisis exploratorio y descriptivos para datos numéricos y datos categóricos - Uso de if_else() y case_when(). Limpieza y normalización de datos. Tratamiento de casos perdidos. janitor() como complemento del universo tidyverse. “Empoderando” los verbos de dplyr: la funcion map() de la libreria purr</p>
+<section id="análisis-exploratorio-condicionales-y-purr" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-exploratorio-condicionales-y-purr">Análisis exploratorio, condicionales y purr</h2>
+<ul>
+<li>Análisis exploratorio y descriptivos para datos numéricos y categóricos.</li>
+<li>Uso de <code>if_else()</code> y <code>case_when()</code>.</li>
+<li>La función <code>map()</code> de <code>purr</code></li>
+<li>Limpieza y normalización de datos.</li>
+<li>Tratamiento de casos perdidos.</li>
+</ul>
+<div class="slide-deck">
+<div class="slides">
+<p><a href="./materiales/slides/clase_5_parte_1.html">Slides Clase 5 parte 1</a></p>
+</div>
+<div class="slides">
+<p><a href="materiales/slides/clase_5_parte_2.qmd">Slides Clase 5 parte 2</a></p>
+</div>
+<div class="video">
+<p><a href="">Video Clase 5 parte 1</a></p>
+</div>
+<div class="video">
+<p><a href="">Video Clase 5 parte 2</a></p>
+</div>
+</div>
 </section>
-<section id="janitor" class="level2">
-<h2 class="anchored" data-anchor-id="janitor">Janitor()</h2>
+<section id="normalización-de-datos-y-casos-perdidos." class="level2">
+<h2 class="anchored" data-anchor-id="normalización-de-datos-y-casos-perdidos.">Normalización de datos y casos perdidos.</h2>
+<ul>
+<li><code>janitor</code> y <code>validate</code> para el uso de limpieza y normalización de datos</li>
+</ul>
+<div class="slide-deck">
+<div class="slides">
+<p><a href="materiales/slides/clase_6_parte_2.qmd">Slides Clase 6 parte 2</a></p>
+</div>
+<div class="video">
+<p><a href="">Video Clase 6 parte 1</a></p>
+</div>
+</div>
 
 
 </section>

@@ -26,6 +26,8 @@ website:
         contents:
           - programa_y_crono/programa.qmd
           - programa_y_crono/cronograma.qmd
+      - text: "Licencia"
+        href: license.qmd
 
 
 format:
