@@ -4953,7 +4953,7 @@ Betsy Cohen
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>url_encuesta <span class="ot">&lt;-</span> <span class="st">"https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/b635d1fc-2161-4901-a21d-7f93d56d99a4/download/base-datos-encc-2022-2023.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="paso-2-cargar-la-base" class="slide level2">
+<section id="paso-2-cargar-la-base" class="slide level2 smaller scrollable">
 <h2>Paso 2: cargar la base</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>encuesta_version_directo_online <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url_encuesta)</span>
@@ -9371,6 +9371,25 @@ Betsy Cohen
 </div>
 </div>
 </section>
+<section id="csv-con-encoding-rebeldes" class="slide level2 smaller">
+<h2>¿csv con encoding rebeldes?</h2>
+<p>A veces los archivos contienen caracteres especiales (como tildes o ñ) que no se ven bien si la computadora no entiende cómo están guardados. Vamos a tratar de leer el archivo y nos va a dar un error diciendo que no comprende el <strong>encoding</strong> de un archivo. <code>guess_encoding</code> de <code>readr</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># &gt; library(readr)</span></span>
+<span id="cb8-2"><a></a><span class="co"># &gt; guess_encoding(url_de_un_csv_que_se_empaco)</span></span>
+<span id="cb8-3"><a></a><span class="co"># # A tibble: 2 × 2</span></span>
+<span id="cb8-4"><a></a><span class="co">#   encoding   confidence</span></span>
+<span id="cb8-5"><a></a><span class="co">#   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb8-6"><a></a><span class="co"># 1 ISO-8859-1       0.70</span></span>
+<span id="cb8-7"><a></a><span class="co"># 2 ISO-8859-2       0.30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>👉 Aquí, ISO-8859-1 (también llamado “Latin-1”) es el formato con mayor probabilidad (70% de confianza). Esto significa que lo más seguro es que el archivo esté guardado en este formato.</p>
+<p>👉 ISO-8859-2 tiene 30% de confianza, lo que indica que algunos caracteres podrían estar en este otro formato.</p>
+<p><strong>¿Qué hacer con esta información?</strong> Cuando importamos el archivo en R, debemos usar la codificación correcta para evitar errores con caracteres especiales. Como ISO-8859-1 tiene la confianza más alta, lo importamos así:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># datos &lt;- read.csv("url_de_un_csv_que_se_empaco", fileEncoding = "ISO-8859-1")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="datos-importados-exitosamente" class="slide level2">
 <h2>¡Datos Importados Exitosamente!</h2>
 <p>Ya sea que importes el archivo <strong>directamente desde la URL de GitHub (online)</strong> o <strong>desde un archivo local</strong> usando <code>here()</code>, ahora tienes los datos en R como data frames.</p>
@@ -9402,8 +9421,8 @@ Betsy Cohen
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-2"><a></a><span class="fu">glimpse</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-2"><a></a><span class="fu">glimpse</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 150
 Columns: 5
@@ -9416,7 +9435,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setos
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   150 obs. of  5 variables:
  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
@@ -9442,7 +9461,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setos
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -9505,7 +9524,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setos
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">tail</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">tail</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -9589,7 +9608,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setos
 <section id="summary-un-resumen-estadístico-básico-1" class="slide level2">
 <h2>summary(): Un resumen Estadístico Básico 📊</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summary</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
@@ -9612,7 +9631,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setos
 <h2>summary(): Un resumen Estadístico Básico 📊</h2>
 <p>O puedo por ejemplo seleccionar una sola columna y ver los estadísticos de resumen.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summary</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">summary</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   4.300   5.100   5.800   5.843   6.400   7.900 </code></pre>

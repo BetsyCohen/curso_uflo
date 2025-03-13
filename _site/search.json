@@ -210,7 +210,7 @@
     "href": "materiales/slides/clase_1_parte_2.html#scripts-guardando-nuestras-recetas",
     "title": "La interfaz de RStudio.",
     "section": "2. Scripts: Guardando nuestras recetas 📝",
-    "text": "2. Scripts: Guardando nuestras recetas 📝\nEscribir comandos directamente en la consola es útil para probar, pero para un análisis más serio, necesitamos scripts.\nUn script de R es un archivo de texto plano (con extensión .R) donde guardas una serie de comandos de R.\nEs como guardar tu receta en un archivo para poder repetirla o modificarla después.\nEn RStudio, abris un nuevo script desde\nArchivo &gt; Nuevo Archivo &gt; Script de R.\n\nclase_1_parte_2_screenshot_r_open_file\n\n\n\n\n\nNote\n\n\n¡Buenas prácticas!\nComenta tus scripts (usando #) para recordar qué hace cada parte del código. Guarda tus scripts con nombres descriptivos (ej: analisis_encuesta_2024.R)."
+    "text": "2. Scripts: Guardando nuestras recetas 📝\nEscribir comandos directamente en la consola es útil para probar, pero para un análisis más serio, necesitamos scripts.\nUn script de R es un archivo de texto plano (con extensión .R) donde guardas una serie de comandos de R.\nEs como guardar tu receta en un archivo para poder repetirla o modificarla después.\nEn RStudio, abris un nuevo script desde\nArchivo &gt; Nuevo Archivo &gt; Script de R.\n\n\n\nclase_1_parte_2_screenshot_r_open_file\n\n\n\n\n\n\n\n\nNote\n\n\n\n¡Buenas prácticas!\nComenta tus scripts (usando #) para recordar qué hace cada parte del código. Guarda tus scripts con nombres descriptivos (ej: analisis_encuesta_2024.R)."
   },
   {
     "objectID": "materiales/slides/clase_1_parte_2.html#markdown-r-markdown-y-quarto-presentando-nuestros-platos",
@@ -1218,7 +1218,7 @@
     "href": "u2-intro-r.html#materiales-clase-1-la-interfaz-de-rstudio.",
     "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
     "section": "Materiales Clase 1: La interfaz de RStudio.",
-    "text": "Materiales Clase 1: La interfaz de RStudio.\n\n\nSlides La interfaz de RStudio\n\n\nVideo recomendado",
+    "text": "Materiales Clase 1: La interfaz de RStudio.\n\n\nSlides La interfaz de RStudio\n\n\nVideo recomendado\n\n\nEjercicio practico",
     "crumbs": [
       "Materiales",
       "Unidad 2 Introducción al análisis de datos con R y RStudio"
@@ -1655,10 +1655,28 @@
     "href": "u2-intro-r.html#materiales-clase-3-flujo-de-trabajo-en-r",
     "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
     "section": "Materiales Clase 3: Flujo de trabajo en R",
-    "text": "Materiales Clase 3: Flujo de trabajo en R\n\nImportación de datos- uso de here()\nExploración inicial de datos\n\n\n\nSlides Clase 3 Flujo de trabajo en R",
+    "text": "Materiales Clase 3: Flujo de trabajo en R\n\nImportación de datos- uso de here()\nExploración inicial de datos\n\n\n\nSlides Clase 3 Flujo de trabajo en R\n\n\nEjercicio práctico",
     "crumbs": [
       "Materiales",
       "Unidad 2 Introducción al análisis de datos con R y RStudio"
     ]
+  },
+  {
+    "objectID": "u2-intro-r.html#materiales-clase-2-por-qué-r-y-su-comunidad.-entornos-objetos-y-operadores.",
+    "href": "u2-intro-r.html#materiales-clase-2-por-qué-r-y-su-comunidad.-entornos-objetos-y-operadores.",
+    "title": "Unidad 2 Introducción al análisis de datos con R y RStudio",
+    "section": "Materiales Clase 2: Por qué R y su comunidad. Entornos objetos y operadores.",
+    "text": "Materiales Clase 2: Por qué R y su comunidad. Entornos objetos y operadores.\n\n\nSlides Por qué R y su comunidad.\n\n\nSlides Entornos, Objetos y Operadores en R.\n\n\nEjercicio práctico",
+    "crumbs": [
+      "Materiales",
+      "Unidad 2 Introducción al análisis de datos con R y RStudio"
+    ]
+  },
+  {
+    "objectID": "materiales/slides/clase_3.html#csv-con-encoding-rebeldes",
+    "href": "materiales/slides/clase_3.html#csv-con-encoding-rebeldes",
+    "title": "Flujo de trabajo con datos en R: importacion y exploración inicial",
+    "section": "¿csv con encoding rebeldes?",
+    "text": "¿csv con encoding rebeldes?\nA veces los archivos contienen caracteres especiales (como tildes o ñ) que no se ven bien si la computadora no entiende cómo están guardados. Vamos a tratar de leer el archivo y nos va a dar un error diciendo que no comprende el encoding de un archivo. guess_encoding de readr\n\n# &gt; library(readr)\n# &gt; guess_encoding(url_de_un_csv_que_se_empaco)\n# # A tibble: 2 × 2\n#   encoding   confidence\n#   &lt;chr&gt;           &lt;dbl&gt;\n# 1 ISO-8859-1       0.70\n# 2 ISO-8859-2       0.30\n\n👉 Aquí, ISO-8859-1 (también llamado “Latin-1”) es el formato con mayor probabilidad (70% de confianza). Esto significa que lo más seguro es que el archivo esté guardado en este formato.\n👉 ISO-8859-2 tiene 30% de confianza, lo que indica que algunos caracteres podrían estar en este otro formato.\n¿Qué hacer con esta información? Cuando importamos el archivo en R, debemos usar la codificación correcta para evitar errores con caracteres especiales. Como ISO-8859-1 tiene la confianza más alta, lo importamos así:\n\n# datos &lt;- read.csv(\"url_de_un_csv_que_se_empaco\", fileEncoding = \"ISO-8859-1\")"
   }
 ]

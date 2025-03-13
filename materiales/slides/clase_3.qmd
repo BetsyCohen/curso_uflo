@@ -142,13 +142,41 @@ Podemos leer el archivo csv **directamente desde la URL de GitHub** usando `read
 url_encuesta <- "https://datos.cultura.gob.ar/dataset/251c2ac2-e670-451c-9dbf-a4212af225b5/resource/b635d1fc-2161-4901-a21d-7f93d56d99a4/download/base-datos-encc-2022-2023.csv"
 ```
 
-## Paso 2: cargar la base
+## Paso 2: cargar la base {.smaller .scrollable}
 
 ```{r}
 encuesta_version_directo_online <- read.csv(url_encuesta)
 
 head(encuesta_version_directo_online)
 ```
+## ¿csv con encoding rebeldes? {.smaller}
+A veces los archivos contienen caracteres especiales (como tildes o ñ) que no se ven bien si la computadora no entiende cómo están guardados. 
+Vamos a tratar de leer el archivo y nos va a dar un error diciendo que no comprende el **encoding** de un archivo. `guess_encoding` de `readr`
+
+```{r}
+# > library(readr)
+# > guess_encoding(url_de_un_csv_que_se_empaco)
+# # A tibble: 2 × 2
+#   encoding   confidence
+#   <chr>           <dbl>
+# 1 ISO-8859-1       0.70
+# 2 ISO-8859-2       0.30
+```
+
+
+👉 Aquí, ISO-8859-1 (también llamado "Latin-1") es el formato con mayor probabilidad (70% de confianza). Esto significa que lo más seguro es que el archivo esté guardado en este formato.
+
+
+👉 ISO-8859-2 tiene 30% de confianza, lo que indica que algunos caracteres podrían estar en este otro formato.
+
+
+**¿Qué hacer con esta información?**
+Cuando importamos el archivo en R, debemos usar la codificación correcta para evitar errores con caracteres especiales. Como ISO-8859-1 tiene la confianza más alta, lo importamos así:
+
+```{r}
+# datos <- read.csv("url_de_un_csv_que_se_empaco", fileEncoding = "ISO-8859-1")
+```
+
 
 ## ¡Datos Importados Exitosamente!
 
@@ -193,8 +221,6 @@ str(iris)
 ```
 :::
 :::
-
-
 
 ## head() y tail(): Primeras y Últimas Filas ⏫ ⏬
 
