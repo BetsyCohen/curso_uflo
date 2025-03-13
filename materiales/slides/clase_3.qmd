@@ -177,25 +177,24 @@ Las funciones `glimpse()` (del paquete `dplyr`, parte del `tidyverse`) y `str()`
 
 -   **`str(nombre_dataframe)`**: Muestra la **estructura interna** del objeto R (en este caso, un data frame). Indica el **tipo de dato** de cada columna y también muestra **algunas observaciones**, pero de forma vertical. Es más detallada que `glimpse()` en cuanto a información interna, pero puede ser menos legible para data frames muy anchos.
 
-## `glimpse()` y `str()`: Radiografía de la Estructura 🦴
+## `glimpse()` y `str()`: Radiografía de la Estructura 🦴 {.smaller}
 
 ::: columns
-:::{.column width = "50%"}
-
+::: {.column width="50%"}
 ```{r}
-library(dplyr) # llamamos a la librería dplyr que es donde vive la función glimpse
-
+library(dplyr)
 glimpse(iris)
 ```
 :::
 
-:::{.column width = "50%"}
-
+::: {.column width="50%"}
 ```{r}
 str(iris)
 ```
+:::
+:::
 
-::: ::::
+
 
 ## head() y tail(): Primeras y Últimas Filas ⏫ ⏬
 
