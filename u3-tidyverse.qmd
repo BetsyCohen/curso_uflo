@@ -4,7 +4,6 @@ title: "Unidad 3: ETL con tidyverse"
 
 ## Introducción a Tidyverse: El Universo de Herramientas para transformación de datos
 
-
 ::: slide-deck
 ::: slides
 [Introducción a tidyverse: dplyr](materiales/slides/introduccion_tidyverse_dplyr.qmd)
@@ -13,11 +12,10 @@ title: "Unidad 3: ETL con tidyverse"
 ::: slides
 [Introducción a tidyverse: union y pivoteo](materiales/slides/introduccion_tidyverse_union_pivoteo.qmd)
 :::
-
 :::
 
 ::: exam
-[Actividad 1 - Optativa](exams/tp_1_U3.qmd)
+[Actividad 1 - Optativa](materiales/exams/tp_1_U3.qmd)
 :::
 
 ## Análisis exploratorio, condicionales y funcion `map()` de `purr`
