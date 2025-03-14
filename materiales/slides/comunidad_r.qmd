@@ -1,6 +1,6 @@
 ---
 title: "Por qué R y su comunidad. La sociología y R"
-subtitle: "Análisis de Datos 1"
+subtitle: "Análisis de datos I - Unidad 2"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
 date: "03/27/2025"

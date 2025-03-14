@@ -1,10 +1,9 @@
-# Ejercicio Práctico Complementario: Importando y Explorando Datos Sociológicos en R
+# Ejercicio Práctico Complementario: Importando y Explorando Datos
 
-# ¡Bienvenidos a la exploración de datos sociológicos en R!
 
 # En este script, vamos a practicar:
 # 1. Crear un Proyecto de R
-# 2. Importar un dataset sociológico (ENCC 2022-2023) desde una URL online
+# 2. Importar un dataset desde una URL online
 # 3. Explorar el dataset importado con funciones clave
 
 
@@ -13,16 +12,16 @@
 # 1. Crea un Nuevo Proyecto de R:
 #    - Andá  a 'Archivo' -> 'Nuevo Proyecto...'
 #    - Hace clic en 'Nuevo Directorio' -> 'Proyecto de R'
-#    - Ponele nombre a tu proyecto (ej: 'Exploracion_ENCC_2022_2023') y elegí una ubicación.
-#    - Fijate que la opción 'Crear un repositorio Git' NO esté marcada 
+#    - Ponele nombre a tu proyecto (ej: 'Exploracion_mas_cultura') y elegí una ubicación.
+#    - Fijate que la opción 'Crear un repositorio Git' NO esté marcada
 #    - Haz clic en 'Crear Proyecto'.
 
 #   RStudio se va a reiniciar y con esto ya vas a estar trabajando dentro de tu nuevo proyecto
-#   (en la esquina derecha superior arriba de tu Global Enviroment deberías ver el nombre de proyecto) 
+#   (en la esquina derecha superior arriba de tu Global Enviroment deberías ver el nombre de proyecto)
 
-# 2. Al comienzo de cada proyecto Carga las Librerías necesarias: 
+# 2. Al comienzo de cada proyecto Carga las Librerías necesarias:
 #    Si no las tenes instaladas podes hacerlo con install.packages("nombre_libreria").
-#    Acordate que solo INSTALAS una vez y que CARGASA la librería cada vez que inicias tu sesión 
+#    Acordate que solo INSTALAS una vez y que CARGASA la librería cada vez que inicias tu sesión
 
 
 library(here)
@@ -37,16 +36,16 @@ library(dplyr) # Para glimpse()
 # $5000 semestrales que se podian utilizar en espectáculos, comercios, espacios, eventos, cursos,
 # talleres y otras actividades culturales.
 
-# Para evaluar el Programa el ex Ministerio de Cultura llevó adelante un análisis de los consumos y una 
+# Para evaluar el Programa el ex Ministerio de Cultura llevó adelante un análisis de los consumos y una
 # encuesta que que se implementó como parte de la estrategia de monitoreo y evaluación del Programa con el
-# fin de conocer sus prácticas y hábitos culturales en meses previos a la activación de la tarjeta. 
-# Dicha tabla se enriqueció con el tipo de beneficios que los encuestados reciben de ANSES e información 
+# fin de conocer sus prácticas y hábitos culturales en meses previos a la activación de la tarjeta.
+# Dicha tabla se enriqueció con el tipo de beneficios que los encuestados reciben de ANSES e información
 # relacionada al uso que le dieron a la tarjeta Más Cultura.
 
 # Vamos a importar los datos de la encuesta directamente desde una URL.
-# ¡Este es un dataset REAL de una encuesta sociológica!
 
-# 3. Defini la URL del dataset ENCC 2022-2023:
+
+# 3. Defini la URL del dataset :
 #    Ingresa al sitio de datos abiertos de Cultura https://datos.cultura.gob.ar/dataset/mas-cultura
 #    Copia con el boton derecho de tu mouse la URL de descarga y asígnala al vector 'url_encuesta_mas_cultura'.
 
@@ -54,21 +53,21 @@ url_encuesta_mas_cultura <- "https://datos.cultura.gob.ar/dataset/3dc4ec3b-b563-
 
 
 # 4. Importa el dataset directamente desde la URL:
-#    Usa la función 'read.csv()' y la variable 'url_encuesta_encc' como argumento.
+#    Usa la función 'read.csv()' y la variable 'url_encuesta_mas_cultura' como argumento.
 #    Asigna el data frame importado a un objeto llamado 'encuesta_online'.
 
-#   Preguntas: 
-#   En nuestro uso de read.csv vamos a usar el parámetro "stringsAsFactor" y file encoding 
+#   Preguntas:
+#   En nuestro uso de read.csv vamos a usar el parámetro "stringsAsFactor" y file encoding
 #   accede al help de esta función escribiendo el nombre de la función en la solapa Help
 
 #   ¿Qué hace el parámetro strinsAsFactors? probá los resultados de este script poniendo TRUE o FALSE
 #   ¿Qué hace el parámetro fileEncoding? probá los resultados de este script poniendo TRUE o FALSE
 
 
-encuesta_online <- read.csv(url_encuesta_mas_cultura, 
-                            stringsAsFactors = TRUE, 
+encuesta_online <- read.csv(url_encuesta_mas_cultura,
+                            stringsAsFactors = TRUE,
                             fileEncoding = "ISO-8859-1"
-                            ) 
+                            )
 
 #    Imprimi las primeras filas para verificar la importación online:
 head(encuesta_online)
@@ -113,7 +112,7 @@ tail(encuesta_online, n = 15)
 #    Ejecuta 'summary()' en el data frame 'encuesta_online' y observa el resumen estadístico.
 
 #    Proba 'summary(encuesta_online[, 1:10])' para ver el resumen de las primeras 10 columnas, para empezar.
-#    También podes probar 'summary(encuesta_online$P4)' para ver el resumen de una columna específica 
+#    También podes probar 'summary(encuesta_online$P4)' para ver el resumen de una columna específica
 
 summary(encuesta_online[, 1:10]) # Resumen de las primeras 10 columnas (para no saturar la consola)
 # summary(encuesta_online) # (Opcional - para ver el resumen completo, ¡pero puede ser largo!)
@@ -123,8 +122,8 @@ summary(encuesta_online$consumo_libros) # Resumen de la columna 'P4' (ejemplo)
 #    Pregunta: Observando el 'summary()' de las primeras columnas, ¿qué tipos de estadísticos se muestran?
 #              Para las columnas numéricas, ¿qué información te dan los estadísticos como 'Mean', 'Median', 'Min', 'Max'?
 #              ¿Cuántas personas fueron al cine por última vez en los últiumos 6 meses?
-#              ¿Qué puedes inferir sobre la variable consumo_libros a partir de su 'summary()'? 
+#              ¿Qué puedes inferir sobre la variable consumo_libros a partir de su 'summary()'?
 
-# --- ¡Fin del Ejercicio Práctico! ---
+
 
 # ¡Felicitaciones! Estas un paso más cerca de analizar políticas públicas en R como un profesional en sociología :)

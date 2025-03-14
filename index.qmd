@@ -12,7 +12,7 @@ En esta página vas a encontrar todo el material para curso "Análisis de datos 
 
 📆 Todos los jueves a las 19 hs.
 
-💻 On Line via (campus UFLO)\[https://campus.uflo.edu.ar/\]
+💻 On Line via [campus UFLO](https://campus.uflo.edu.ar/)
 
 🐱 Repositorio en GitHub
 

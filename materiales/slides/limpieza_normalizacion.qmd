@@ -117,7 +117,7 @@ Con `validate`, podemos definir un conjunto de reglas y aplicarlas sobre un data
 
 La sintaxis general siempre va a ir teniendo una estructura como esta
 
-`reglas <- validator(tatuaje_en_cuello == "Sí" ,el_pelo_negro == "Sí` `"``)`
+`reglas <- validator(tatuaje_en_cuello == "Sí" ,el_pelo_negro == "Sí` ``` "``) ```
 
 `resultado <- confront(dataset, reglas)`
 
@@ -202,20 +202,19 @@ resultado_completitud_raw <- confront(df, reglas_completitud_raw)
 summary(resultado_completitud_raw) # Imprimir resultados
 ```
 
-Ese summary lo leemos así: 
--   *name*: El nombre de la regla.
+Ese summary lo leemos así: - *name*: El nombre de la regla.
 
--   *items*: El dataset tiene 344 elementos que se están evaluando. 
+-   *items*: El dataset tiene 344 elementos que se están evaluando.
 
--   *passes*: De esos 344 elementos, 310 cumplen con la regla, es decir, no tienen valores faltantes. 
+-   *passes*: De esos 344 elementos, 310 cumplen con la regla, es decir, no tienen valores faltantes.
 
--   *fails:* ego 34 no la pasaron. 
+-   *fails:* ego 34 no la pasaron.
 
 -   *nNA*: es el número de valores faltantes (NA) identificados en el dataset. ojo porque por ahí todavia no creamos la regla adecuada para detectarlos.
 
--   *error*: FALSE: Quiere decuir que no hubo errores en la evaluación de la regla. 
+-   *error*: FALSE: Quiere decuir que no hubo errores en la evaluación de la regla.
 
--   *warning*: FALSE: No hay advertencias durante la evaluación. 
+-   *warning*: FALSE: No hay advertencias durante la evaluación.
 
 -   *expression*: is_complete(df): La expresión que se utilizó para la validación, que en este caso verifica la completitud del dataset sin faltantes.
 
@@ -295,16 +294,14 @@ salida_consistencia_raw <- confront(df, reglas_consistencia_raw)
 summary(salida_consistencia_raw) # Resumen del resultado de consistencia de tipos
 ```
 
-
 ## ¡Y así llegamos al fin de la unidad 3! {.smaller}
 
 Hoy aprendimos a:
 
--  **Preparar nuestros datos para el análisis**: Empezamos limpiando los nombres de las variables con janitor::clean_names() para que sean más manejables y consistentes.
+-   **Preparar nuestros datos para el análisis**: Empezamos limpiando los nombres de las variables con janitor::clean_names() para que sean más manejables y consistentes.
 
 -   **Detectar problemas comunes de calidad de datos:** Exploramos cómo identificar valores faltantes, duplicados y valores únicos utilizando funciones básicas de R y dplyr.
 
 -   **Validar nuestros datos de forma estructurada con validate:** Aprendimos a definir reglas para evaluar la completitud, integridad, exactitud y consistencia de nuestros datos. Vimos cómo usar las funciones clave de validate (validator, confront, summary, plot) para aplicar estas reglas al dataset penguins_raw.
 
 -   **Cuantificar y resumir los problemas de calidad de datos**: Comprobamos cómo validate no solo detecta los problemas, sino que también nos proporciona información detallada y resumida sobre cuántos registros fallan en cada regla y dónde se encuentran los errores.
-

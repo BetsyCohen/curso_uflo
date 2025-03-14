@@ -1,6 +1,6 @@
 ---
 title: "Instalación de R y R Studio."
-subtitle: "Primeros pasos en R"
+subtitle: "Análisis de datos I - Unidad 2"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
 date: "03/20/2025"

@@ -1,6 +1,6 @@
 ---
 title: "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos"
-subtitle: "Análisis de Datos 1"
+subtitle: "Análisis de Datos 1 - Unidad 3"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
 date: "10/04/2025"

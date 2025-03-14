@@ -83,6 +83,6 @@ primera_fila # Imprime la primera fila
 edad_valentina <- datos_sociodemograficos[3, "edad"] # O también: datos_sociodemograficos$edad[3]
 edad_valentina # Imprime la edad de Valentina
 
-# --- ¡Fin del Ejercicio Práctico! ---
+
 
 

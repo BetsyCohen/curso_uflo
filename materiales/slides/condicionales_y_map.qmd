@@ -296,7 +296,7 @@ La función `map()` es extremadamente versátil y puede usarse con una gran vari
 -   **Adoptar un estilo de programación funcional** que es poderoso y común en el ecosistema de R y `tidyverse`.
 
 ::: callout-note
-Si te interesa aprender más sobre map() y sus aplicaciones podes consultar la documentación (que por suerte viene con muchos ejemplos) en [https://purrr.tidyverse.org/reference/map.html](https://purrr.tidyverse.org/reference/map.html)
+Si te interesa aprender más sobre map() y sus aplicaciones podes consultar la documentación (que por suerte viene con muchos ejemplos) en <https://purrr.tidyverse.org/reference/map.html>
 :::
 
 # Resumen de la Clase de Hoy 🚀

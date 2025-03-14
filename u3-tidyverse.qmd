@@ -2,73 +2,36 @@
 title: "Unidad 3: ETL con tidyverse" 
 ---
 
-
-
 ## Introducción a Tidyverse: El Universo de Herramientas para transformación de datos
 
--   El flujo de trabajo bajo la filosofía "tidy"
--   Transformación de datos: dplyr() verbos centrales y uso de pipe
--   La función `across()`
--   uniones (joins) y pivoteos
 
 ::: slide-deck
 ::: slides
-[Slides Clase 4 parte 1](materiales/slides/clase_4_parte_1.qmd)
+[Introducción a tidyverse: dplyr](materiales/slides/introduccion_tidyverse_dplyr.qmd)
 :::
 
 ::: slides
-[Slides Clase 4 parte 2](materiales/slides/clase_4_parte_2.qmd)
+[Introducción a tidyverse: union y pivoteo](materiales/slides/introduccion_tidyverse_union_pivoteo.qmd)
 :::
 
-::: video
-[Video Clase 4 parte 1]()
-:::
-
-::: video
-[Video Clase 4 parte 2]()
-:::
 :::
 
 ::: exam
 [Actividad 1 - Optativa](exams/tp_1_U3.qmd)
 :::
 
-## Análisis exploratorio, condicionales y purr
-
--   Análisis exploratorio y descriptivos para datos numéricos y categóricos.
--   Uso de `if_else()` y `case_when()`.
--   La función `map()` de `purr`
--   Limpieza y normalización de datos.
--   Tratamiento de casos perdidos.
+## Análisis exploratorio, condicionales y funcion `map()` de `purr`
 
 ::: slide-deck
 ::: slides
-[Slides Clase 5 parte 1](materiales/slides/clase_5_parte_1.qmd)
-:::
-
-::: slides
-[Slides Clase 5 parte 2](materiales/slides/clase_5_parte_2.qmd)
-:::
-
-::: video
-[Video Clase 5 parte 1]()
-:::
-
-::: video
-[Video Clase 5 parte 2]()
+[Análisis exploratorio, condicionales y purr](materiales/slides/condicionales_y_map.qmd)
 :::
 :::
 
 ## Normalización de datos y casos perdidos.
 
--   `janitor` y `validate` para el uso de limpieza y normalización de datos
-
 ::: slide-deck
 ::: slides
-[Slides Clase 6 parte 2](materiales/slides/clase_6_parte_2.qmd)
-:::
-
-::: video
-[Video Clase 6 parte 1]()
+[Limpieza y normalización](materiales/slides/limpieza_normalizacion.qmd)
 :::
 :::

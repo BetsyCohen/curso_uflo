@@ -79,5 +79,38 @@
   },
   "materiales/slides/clase_1_parte_1.qmd": {
     "clase_1_parte_1.html": "2d0dc4e8"
+  },
+  "materiales/slides/comunidad_r.qmd": {
+    "comunidad_r.html": "40a704f3"
+  },
+  "materiales/slides/interfaz_RStudio.qmd": {
+    "interfaz_RStudio.html": "eb06b060"
+  },
+  "materiales/slides/Instalacion_r.qmd": {
+    "Instalacion_r.html": "25e368e2"
+  },
+  "materiales/slides/flujo_de_trabajo.qmd": {
+    "flujo_de_trabajo.html": "0e1e3c8c"
+  },
+  "materiales/slides/entorno_objetos_operadores.qmd": {
+    "entorno_objetos_operadores.html": "80cca052"
+  },
+  "materiales/slides/condicionales_y_map.qmd": {
+    "condicionales_y_map.html": "5e9a9f67"
+  },
+  "materiales/slides/introduccion_tidyverse_dplyr.qmd": {
+    "introduccion_tidyverse_dplyr.html": "20c9eedd"
+  },
+  "materiales/slides/introduccion_tidyverse_union_pivoteo.qmd": {
+    "introduccion_tidyverse_union_pivoteo.html": "295d96c3"
+  },
+  "materiales/slides/limpieza_normalizacion.qmd": {
+    "limpieza_normalizacion.html": "8722719c"
+  },
+  "materiales/excercise/ejercicio_interfaz.qmd": {
+    "ejercicio_interfaz.html": "927ed7ed"
+  },
+  "materiales/excercise/ejercicio_flujo_trabajo.qmd": {
+    "ejercicio_flujo_trabajo.html": "5301c573"
   }
 }

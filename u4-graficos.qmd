@@ -2,16 +2,59 @@
 title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
 ---
 
-Gráficos: Nociones generales sobre tipos de gráficos y sus usos. Introducción a ggplot2 y su gramática de gráficos. Esquisse() como guía inicial para entender la gramática
+## Gráficos
 
-Tablas: Gramática de tablas y tablas con GT y DT::datatable()
+::: slide-deck
 
-Mapas: tipos de mapas. Creación de mapas simples con leaflet
+::: slides
+[Tipos de gráficos y sus usos]()
+:::
 
-RMarkdown y Quarto
 
-Reportes y Presentaciones
+::: slides
+[Gramática de gráficos con ggplot2]()
+:::
 
-Tableros
+:::
 
-Blogs y Páginas web
+
+## Tablas
+
+::: slide-deck
+
+::: slides
+[Gramática de Tablas paquetes GT y DT]()
+:::
+
+:::
+
+## Mapas
+::: slide-deck
+
+::: slides
+[Tipos de mapas]()
+:::
+
+::: slides
+[Mapas con leaflet]()
+:::
+
+:::
+
+## RMarkdown y Quarto
+
+::: slide-deck
+
+::: slides
+[Reportes]()
+:::
+
+::: slides
+[Presentaciones]()
+:::
+
+::: slides
+[Tableros]()
+:::
+
+:::

@@ -68,6 +68,8 @@ Usando las herramientas del `tidyverse` que aprendimos, realicen los siguientes 
 
 -   PIVOTEAR la tabla resumen (opcional, pero ¡recomendado para presentar los resultados de forma más clara!). Si calcularon porcentajes de consumo para diferentes categorías de una variable cultural (ej: "fue al cine SI/NO" por NSE), **pivot_wider()** puede ser útil para tener las categorías de consumo como columnas.
 
--   ANALIZAR e INTERPRETAR los resultados. ¿Qué encontraron? ¿Se confirma su hipótesis inicial? ¿Existen diferencias en los consumos culturales según la variable demográfica que exploraron? ¿En qué grupos se observa mayor/menor consumo?
+    ### 2. Analizar e interpretar  📝
+
+    Escribí un breve analisis ¿Qué encontraron? ¿Se confirma su hipótesis inicial? ¿Existen diferencias en los consumos culturales según la variable demográfica que exploraron? ¿En qué grupos se observa mayor/menor consumo?
 
 ¡Que comience la exploración cultural con el Tidyverse! 🚀

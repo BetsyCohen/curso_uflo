@@ -1,6 +1,6 @@
 ---
-title: "Flujo de trabajo con datos en R: importacion y exploración inicial"
-subtitle: "Análisis de Datos 1"
+title: "Flujo de trabajo en R: importacion y exploración inicial"
+subtitle: "Análisis de datos I - Unidad 2"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
 date: "10/04/2025"
@@ -149,9 +149,10 @@ encuesta_version_directo_online <- read.csv(url_encuesta)
 
 head(encuesta_version_directo_online)
 ```
+
 ## ¿csv con encoding rebeldes? {.smaller}
-A veces los archivos contienen caracteres especiales (como tildes o ñ) que no se ven bien si la computadora no entiende cómo están guardados. 
-Vamos a tratar de leer el archivo y nos va a dar un error diciendo que no comprende el **encoding** de un archivo. `guess_encoding` de `readr`
+
+A veces los archivos contienen caracteres especiales (como tildes o ñ) que no se ven bien si la computadora no entiende cómo están guardados. Vamos a tratar de leer el archivo y nos va a dar un error diciendo que no comprende el **encoding** de un archivo. `guess_encoding` de `readr`
 
 ```{r}
 # > library(readr)
@@ -163,20 +164,15 @@ Vamos a tratar de leer el archivo y nos va a dar un error diciendo que no compre
 # 2 ISO-8859-2       0.30
 ```
 
-
 👉 Aquí, ISO-8859-1 (también llamado "Latin-1") es el formato con mayor probabilidad (70% de confianza). Esto significa que lo más seguro es que el archivo esté guardado en este formato.
-
 
 👉 ISO-8859-2 tiene 30% de confianza, lo que indica que algunos caracteres podrían estar en este otro formato.
 
-
-**¿Qué hacer con esta información?**
-Cuando importamos el archivo en R, debemos usar la codificación correcta para evitar errores con caracteres especiales. Como ISO-8859-1 tiene la confianza más alta, lo importamos así:
+**¿Qué hacer con esta información?** Cuando importamos el archivo en R, debemos usar la codificación correcta para evitar errores con caracteres especiales. Como ISO-8859-1 tiene la confianza más alta, lo importamos así:
 
 ```{r}
 # datos <- read.csv("url_de_un_csv_que_se_empaco", fileEncoding = "ISO-8859-1")
 ```
-
 
 ## ¡Datos Importados Exitosamente!
 
