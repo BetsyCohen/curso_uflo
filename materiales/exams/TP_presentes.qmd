@@ -1,0 +1,83 @@
+## "TP Integrador - Son 30.000 - Exploración de la Base de Presentes 📊"
+
+![](TP_presentes.jpg){fig-align="center" width="605"}
+
+## Objetivos
+
+-   Aplicar los conceptos clave del curso utilizando un dataset real.
+
+-   Explorar patrones en los datos relacionados con la represión en Argentina.
+
+-   Implementar transformaciones y limpieza de datos bajo la filosofía "tidy".
+
+-   Usar visualizaciones para comunicar hallazgos relevantes.
+
+Trabajaremos con el paquete **presentes**, que contiene datos sobre personas desaparecidas y centros clandestinos de detención en Argentina.
+
+**Dataset**: `presentes::personas`
+
+## 🕵️‍♀️ Hipótesis a explorar
+
+Elegir una de las siguientes preguntas para investigar:
+
+-   ¿Existe una relación entre la edad de las víctimas y la fecha de desaparición?
+
+-   ¿Hubo diferencias en el número de víctimas según el género en distintas provincias?
+
+-   ¿Cuál era el perfil socioeconómico de las víctimas según su ocupación registrada?
+
+-   ¿Hay centros clandestinos que registran mayor cantidad de casos en ciertos periodos?
+
+## Consigna Paso a Paso
+
+### 1. Preparación del entorno 🖥️
+
+-   Cargar los paquetes necesarios (`tidyverse`, `presentes`, `janitor`, `validate`).
+
+-   Importar los datos de `presentes::personas`.
+
+-   Explorar la estructura de los datos con `glimpse()` y `summary()`.
+
+### 2. Transformación de los datos 🔄
+
+-   Seleccionar las columnas necesarias para responder la hipótesis elegida (`select()`).
+
+-   Limpiar nombres de variables con `janitor::clean_names()`.
+
+-   Crear nuevas variables si es necesario (`mutate()`, `if_else()`, `case_when()`).
+
+-   Aplicar `across()` para transformar múltiples columnas.
+
+-   Identificar y manejar valores faltantes o inconsistentes.
+
+### 3. Análisis y exploración 📈
+
+-   Filtrar los datos relevantes (`filter()`).
+
+-   Agrupar los datos por la variable de interés (`group_by()`).
+
+-   Resumir la información clave (`summarise()`).
+
+-   Explorar correlaciones y patrones (`count()`, `mean()`, `sd()`).
+
+-   Realizar uniones con otros datasets si es necesario (`left_join()`).
+
+### 4. Visualización de los resultados 🎨
+
+-   Crear gráficos con `ggplot2` para mostrar tendencias.
+
+-   Comparar variables utilizando `facet_wrap()` o `facet_grid()`.
+
+-   Representar distribuciones con `geom_histogram()` o `geom_density()`.
+
+-   Resumir categorías con `geom_bar()` o `geom_col()`.
+
+### 5. Interpretación y conclusiones 📝
+
+-   Responder la pregunta planteada con los datos analizados.
+
+-   Destacar los principales hallazgos.
+
+-   Plantear posibles limitaciones del análisis.
+
+-   Sugerir líneas futuras de investigación.
