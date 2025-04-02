@@ -1319,7 +1319,7 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="filtrando-filas-con-filter" class="slide level2">
+<section id="filtrando-filas-con-filter" class="slide level2 smaller">
 <h2>2. Filtrando <strong>filas</strong> con <code>filter()</code></h2>
 <p>Con filter vamos filtrar las observaciones que cumplan determiada condición.</p>
 <div class="cell">
@@ -1388,7 +1388,7 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="crear-columnas-nuevas-con-mutate" class="slide level2">
+<section id="crear-columnas-nuevas-con-mutate" class="slide level2 smaller">
 <h2>3. Crear columnas nuevas con <code>mutate()</code></h2>
 <p>Supongamos que quisiera saber la edad de todos los entrevistados al dia de hoy</p>
 <div class="cell">
@@ -1411,32 +1411,32 @@ Betsy Cohen
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">7591</td>
+<td style="text-align: right;">7598</td>
 <td style="text-align: right;">2022</td>
-<td style="text-align: right;">32</td>
+<td style="text-align: right;">33</td>
 <td style="text-align: left;">30 A 49 ANIOS</td>
-<td style="text-align: right;">35</td>
+<td style="text-align: right;">36</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">7089</td>
+<td style="text-align: right;">8814</td>
 <td style="text-align: right;">2022</td>
-<td style="text-align: right;">41</td>
+<td style="text-align: right;">43</td>
 <td style="text-align: left;">30 A 49 ANIOS</td>
-<td style="text-align: right;">44</td>
+<td style="text-align: right;">46</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">6695</td>
+<td style="text-align: right;">8510</td>
 <td style="text-align: right;">2022</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: left;">30 A 49 ANIOS</td>
-<td style="text-align: right;">35</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">65 ANIOS Y MAS</td>
+<td style="text-align: right;">75</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">8648</td>
+<td style="text-align: right;">7634</td>
 <td style="text-align: right;">2022</td>
-<td style="text-align: right;">25</td>
-<td style="text-align: left;">18 A 29 ANIOS</td>
-<td style="text-align: right;">28</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: left;">65 ANIOS Y MAS</td>
+<td style="text-align: right;">70</td>
 </tr>
 </tbody>
 </table>
@@ -1444,7 +1444,7 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="summarise-y-group_by" class="slide level2">
+<section id="summarise-y-group_by" class="slide level2 smaller">
 <h2>4.<code>summarise()</code> y <code>group_by()</code></h2>
 <p>Al pricipio summarise y group_by pueden resultarnos un poco contra intutivos.</p>
 <div class="cell">
@@ -1525,7 +1525,7 @@ Betsy Cohen
 <li><p><strong><code>.names = "{.col}_{.fn}"</code></strong>: (Opcional) Define un <strong>patrón para nombrar las nuevas columnas</strong> que se crean (si la función aplicada crea nuevas columnas, como <code>mutate()</code>). <code>{.col}</code> se reemplaza por el nombre de la columna original, y <code>{.fn}</code> por el nombre de la función (si usaste una lista de funciones nombradas).</p></li>
 </ul>
 </section>
-<section id="ejemplo-de-across-con-mutate" class="slide level2">
+<section id="ejemplo-de-across-con-mutate" class="slide level2 smaller">
 <h2>Ejemplo de <code>across()</code> con <code>mutate()</code></h2>
 <p>Supongamos que queremos convertir a <strong>minuscula</strong> los valores de varias columnas de texto</p>
 <div class="cell">
@@ -1615,7 +1615,7 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="across-es-un-ejemplo-de-la-filosofía-tidy" class="slide level2">
+<section id="across-es-un-ejemplo-de-la-filosofía-tidy" class="slide level2 smaller">
 <h2><code>across()</code> es un ejemplo de la filosofía tidy</h2>
 <p>Nos evita la repetición de tareas y por ende nos ahorra un montón de tiempo y posibles errores.</p>
 <p><strong><code>across()</code> es muy versátil y se puede usar con muchos verbos de <code>dplyr</code> y con diferentes tipos de funciones.</strong> ¡Simplifica mucho el código cuando necesitas aplicar la misma transformación a varias columnas!</p>
@@ -1625,7 +1625,7 @@ Betsy Cohen
 <p>En esta clase aprendimos a usar los verbos básicos del paquete <code>dplyr</code> junto con el conector de estos verbos el pipe <strong>%&gt;%</strong></p>
 <p>Hacete un buen 🧉 que en la segunda parte de nuestra clase vamos a ver:</p>
 <ul>
-<li><p>Cómo unir dos tablas de resumen entre sí (porque los datos no vienen siempre todos juntos, ni de una) -</p></li>
+<li><p>Cómo unir dos tablas de resumen entre sí (porque los datos no vienen siempre todos juntos, ni de una)</p></li>
 <li><p>Cómo “dar vuelta” una tabla. (Porque a veces la tortilla necesita vuelta y vuelta)</p></li>
 </ul>
 

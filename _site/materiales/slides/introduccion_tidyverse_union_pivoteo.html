@@ -434,25 +434,37 @@ Betsy Cohen
 <p><code>dplyr</code> nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:</p>
 <table>
 <colgroup>
-<col style="width: 71%">
-<col style="width: 28%">
+<col style="width: 42%">
+<col style="width: 57%">
 </colgroup>
 <tbody>
 <tr class="odd">
 <td><strong>left_join:</strong> Mantiene TODAS las filas de tabla_A (izquierda) y agrega las columnas correspondientes de tabla_B donde hay coincidencia en la columna_clave. Si no hay coincidencia, se completa con NA.</td>
-<td><img data-src="images/left-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+<td><img data-src="images/left-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="200"></td>
 </tr>
 <tr class="even">
 <td><strong>right_join:</strong> Similar a left_join, pero mantiene TODAS las filas de tabla_B (derecha) y agrega las columnas de tabla_A donde hay coincidencia.</td>
-<td><img data-src="images/right-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+<td><img data-src="images/right-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="200"></td>
 </tr>
+</tbody>
+</table>
+</section>
+<section id="que-tipos-de-join-existen-1" class="slide level2 smaller">
+<h2>Que tipos de join() existen</h2>
+<p><code>dplyr</code> nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:</p>
+<table>
+<colgroup>
+<col style="width: 41%">
+<col style="width: 58%">
+</colgroup>
+<tbody>
 <tr class="odd">
 <td><strong>inner_join:</strong> Mantiene solo las filas que tienen coincidencia en la columna_clave en AMBAS tablas.Es la intersección de las tablas.</td>
-<td><img data-src="images/inner-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+<td><img data-src="images/inner-join.gif" class="quarto-figure quarto-figure-bottom" width="200"></td>
 </tr>
 <tr class="even">
 <td><strong>full_join:</strong> Unión COMPLETA (EXTERNA). Mantiene TODAS las filas de AMBAS tablas, combinando las filas donde hay coincidencia y rellenando con NA donde no la hay. Es la unión de las tablas.</td>
-<td><img data-src="images/full-join.gif" class="quarto-figure quarto-figure-center" data-fig-align="bottom" width="125"></td>
+<td><img data-src="images/full-join.gif" class="quarto-figure quarto-figure-bottom" width="200"></td>
 </tr>
 </tbody>
 </table>
@@ -633,7 +645,7 @@ Betsy Cohen
 </div>
 </div>
 </section>
-<section id="elegir-el-tipo-de-join-correcto" class="slide level2 incremental">
+<section id="elegir-el-tipo-de-join-correcto" class="slide level2 incremental smaller">
 <h2>Elegir el Tipo de Join Correcto 🧐</h2>
 <p>La elección del tipo de join depende de lo que quieras lograr en tu análisis.</p>
 <ul>
@@ -660,7 +672,7 @@ Betsy Cohen
 <section>
 <section id="yo-soy-al-derecho-dado-vuelta-estas-vos" class="title-slide slide level1 center">
 <h1>Yo soy al derecho dado vuelta estas vos</h1>
-<p>Las funciones pivot_longer() y pivot_wider()</p>
+<p>Las funciones <code>pivot_longer()</code> y <code>pivot_wider()</code></p>
 </section>
 <section id="situaciones-que-requieren-cintura" class="slide level2 smaller">
 <h2>Situaciones que requieren cintura</h2>
@@ -1023,6 +1035,11 @@ Betsy Cohen
 <li>Hicimos nuestro primer viaje al <em>tidyverso</em> con los verbos centrales <code>dplyr()</code> y los conjugamos entre sí con <code>pipes</code></li>
 <li>Unimos tablas y las hicimos girar sobre sí mismas para poder manipularlas.</li>
 </ul>
+</section>
+
+<section id="ahora-a-practicar" class="title-slide slide level1 center">
+<h1>Ahora a practicar!</h1>
+<p>Ahora ya estamos podemos completar nuestro primer trabajo práctico integrador.</p>
 
 
 <img src="images/logo-uflo.png" class="slide-logo r-stretch"><div class="footer footer-default">

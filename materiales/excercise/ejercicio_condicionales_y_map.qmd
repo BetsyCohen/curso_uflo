@@ -1,0 +1,190 @@
+---
+title: "Ejercicio Práctico: Transformación Condicional y Funciones con `map()`"
+format: html
+editor: visual
+---
+
+## Explorando Trayectorias Educativas con Condiciones y `map()` 🚀
+
+![](https://resizer.glanacion.com/resizer/v2/en-1997-se-oficializo-la-creacion-de-insignia-TCPL4BRBW5HMBCJZ6MFQPF3TUA.jpg?auth=503a28f2afe5338229f5e4096da0670362dd9dbe4cb138ebeed252add7303910&width=768&quality=70&smart=false){fig-align="center"}
+
+En este ejercicio práctico, vamos a aplicar lo que aprendimos sobre lógica condicional (`if_else()` y `case_when()`) y la función m `map()` del paquete `purrr`.
+
+Como ejemplo vamos estar utilizando un dataset de Indicadores de trayectoria escolar de la Provincia de Buenos Aires que contiene información correspondiente a los indicadores de proceso, trayectoria y sobreedad de los niveles inicial, primario y secundario.
+
+Los datos se encuentran publicados en el sitio https://catalogo.datos.gba.gob.ar/dataset/indicadores-de-trayectoria
+
+::: callout-tip
+Si te interesa conocer más acerca de este tema te recomendamos la lectura del [Manual Metodológico de Indicadores Educativos](https://abc.gob.ar/secretarias/sites/default/files/2024-08/Manual%20Metodolo%CC%81gico%20de%20Indicadores%20Educativos-%20Agosto%202024.pdf) que publica la Dirección de Información y Estadística de la Subsecretaria de Planeamiento. (Dirección General de Cultura y Educación del Gobierno de la Provincia de Buenos Aires)
+:::
+
+**Objetivos:**
+
+-   Practicar el uso de `if_else()` para crear variables booleanas basadas en condiciones temporales.
+-   Utilizar `case_when()` para agrupar años en períodos educativos.
+-   Aplicar la función `map()` para obtener resúmenes de múltiples indicadores educativos de manera eficiente.
+
+```{r}
+#| context: setup
+#| include: false
+
+# Cargar librerías que vamos a usar 
+library(tidyverse)
+library(purrr) 
+
+# Cargar datos 
+url <- "https://catalogo.datos.gba.gob.ar/dataset/0c691f21-28df-4ea5-98be-6e92b5a589c6/resource/5a73b8ea-24a4-4608-aaeb-39dde782fabf/download/indicadores-proceso-trayectoria-sobreedad-2012_2022.csv"
+
+
+trayectorias <- read.csv(url)
+
+```
+
+Veamos las características de nuestro dataset con glimpse
+
+```{r}
+glimpse(trayectorias)
+```
+```{r}
+head(trayectorias)
+```
+
+La tabla muestra para cada municipio los resultados de indicadores por año
+
+
+veamos los inicios y fines de la serie histórica
+
+```{r}
+trayectorias %>% 
+  group_by(municipio_id) %>% 
+  summarise(anio_de_inicio_serie = min(anio),
+            anio_de_fin_serie = max(anio))
+```
+
+Un lujo, todos nuestros municipios parecen iniciar y terminar su serie en 2022 y terminar en 2022.
+
+
+
+## Ejercicio 1: Lógica Condicional con `if_else()` 💡 
+
+Vamos a crear una nueva variable que indique si el año de registro es posterior a 2017.
+
+Utiliza la función `mutate()` junto con `if_else()` para crear una nueva columna llamada `es_anio_posterior_2017`. Esta columna debe tener el valor `TRUE` si el `anio` es mayor que 2017 y `FALSE` en caso contrario
+
+```{r}
+# Completa el siguiente código:
+trayectorias_con_anio_posterior <- trayectorias %>%
+  mutate(
+    es_anio_posterior_2017 = if_else(anio > 2017, TRUE, FALSE)
+  )
+
+# Muestra la frecuencia de la nueva variable para verificar tu respuesta:
+trayectorias_con_anio_posterior %>% count(es_anio_posterior_2017)
+```
+
+## Ejercicio 2: Lógica Condicional con case_when() 🎭
+Vamos a agrupar los años en diferentes períodos educativos correspondientes a las gestiones electorales
+
+Utiliza la función mutate() junto con case_when() para crear una nueva columna llamada periodo_educativo basada en la variable anio. Los períodos deben ser:
+
+- Daniel Scioli (PJ) 2007 - 2011
+- Maria Eugenia Vidal (PRO) 2015 - 2019
+- Axel Kicillof 2019 - 2023
+
+
+```{r}
+trayectorias<- trayectorias %>%
+  mutate(
+    periodo_educativo = case_when(
+      anio >= 2012 & anio <= 2015 ~ "Daniel Scioli (PJ)",
+      anio >= 2016 & anio <= 2019 ~ "Maria Eugenia Vidal (PRO)",
+      anio >= 2019 & anio <= 2023 ~ "Axel Kicillof (PJ)",
+      TRUE ~ "Otro período"
+    ),
+    # la ordenamos como factor
+    periodo_educativo = factor(
+      periodo_educativo,
+      levels = c("Daniel Scioli (PJ)","Maria Eugenia Vidal (PRO)","Axel Kicillof (PJ)"),
+      ordered = T)
+  )
+
+# Chequeamos como quedó:
+trayectorias %>% 
+  group_by(periodo_educativo) %>% 
+  summarise(inicio = min(anio),
+            fin = max(anio))
+```
+
+- ¿Cual fue el promedio de repitencia primaria historica?
+- ¿Cual fue el promedio de repitencia primaria en cada gestión?
+- Si tomamos como benchmark el promedio de toda la serie ¿que gestión obtuvo una mayor repitencia promedio? 
+
+```{r}
+# Calculamos el promedio histórico de repitencia en primaria
+repitencia_primaria_historica <- mean(trayectorias$repitencia_primaria, na.rm = TRUE)
+repitencia_primaria_historica
+```
+
+
+```{r}
+# Calculamos el promedio de repitencia por período de gestión
+repitencia_por_gestion <- trayectorias %>% 
+  group_by(periodo_educativo) %>% 
+  summarise(repitencia_primaria = mean(repitencia_primaria, na.rm = TRUE)) %>% 
+  mutate(diferencia_primaria = repitencia_primaria - repitencia_primaria_historica)
+
+# Mostramos el resultado
+repitencia_por_gestion
+```
+
+## Ejercicio 3: Usando map() para Explorar Indicadores de Primaria 📊
+Queremos obtener la media de varios indicadores de la escuela primaria a lo largo de los años.
+
+Tu tarea:
+
+Crea un vector con los nombres de las variables que representan indicadores de primaria: "promocion_efectiva_primaria", "repitencia_primaria", "abandono_interanual_primaria", "sobreedad_primaria".
+Utiliza la función map() para aplicar una función anónima a cada nombre de variable en el vector.
+Dentro de la función anónima, utiliza summarize() para calcular la media (mean()) de la variable correspondiente en el dataset trayectorias. Recuerda usar na.rm = TRUE para manejar los valores faltantes.
+Agrega el nombre de la variable al resultado usando mutate().
+
+
+```{r}
+# Completa el siguiente código:
+indicadores_primaria <- c("promocion_efectiva_primaria", "repitencia_primaria", "abandono_interanual_primaria", "sobreedad_primaria")
+
+media_indicadores_primaria <- map(
+  .x = indicadores_primaria,
+  .f = function(variable) {
+    trayectorias %>%
+      summarize(
+        media = mean(!!sym(variable), na.rm = TRUE)
+      ) %>%
+      mutate(indicador = variable)
+  }
+)
+
+# Combina la lista de resultados en un solo data frame:
+media_indicadores_primaria_df <- bind_rows(media_indicadores_primaria)
+media_indicadores_primaria_df
+```
+
+:::{.callout-tip}
+### ¿Qué es !!sym(variable) y por qué lo usamos en map()?
+
+Imagina que tenes una lista de nombres de columnas (como "region", "genero", "niv_socioe") guardada en una variable llamada variables_categoricas. Cuando usamos la función `map()`, queremos hacer la misma operación (por ejemplo, contar las categorías con count()) en cada una de esas columnas.
+
+La función count() en R, que viene del paquete dplyr, normalmente espera que le digamos el nombre de la columna directamente, sin comillas, así:
+
+`encc_2022 %>% count(region)`
+
+Sin embargo, dentro de la función que le damos a map(), los nombres de las columnas están guardados como texto (strings) dentro de la variable variable. R no entendería si simplemente escribiéramos count(variable), porque pensaría que variable es el nombre de una columna literal llamada "variable", ¡y no los nombres de nuestras columnas reales!
+
+Aquí es donde entra en juego esta "magia": `!!sym(variable)`. Pensalo como una forma de traducir el texto que tenemos en la variable variable al "lenguaje" que la función count() necesita para entender que nos referimos a una columna específica de nuestro dataset.
+
+-   **sym(variable)**: Esta parte toma el texto que está dentro de la variable (por ejemplo, "region") y lo convierte en algo que R considera un "símbolo" o un nombre.
+
+-   **!! (los dos signos de exclamación)**: Estos le dicen a la función count(): "Che, lo que viene acá no es un texto cualquiera, es el nombre de una columna que quiero que uses".
+
+
+Usar !!sym(variable) dentro de map() nos permite escribir código mucho más corto y eficiente. En lugar de escribir una línea de código count() para cada columna que queremos analizar, podemos hacerlo todo de una vez usando map() y esta "traducción". Esto es especialmente útil cuando tenes muchas columnas a las que quieres aplicar la misma operación.
+:::

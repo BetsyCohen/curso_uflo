@@ -115,5 +115,8 @@
   },
   "materiales/exams/TP_presentes.qmd": {
     "TP_presentes.html": "e2f7b20a"
+  },
+  "materiales/excercise/ejercicio_condicionales_y_map.qmd": {
+    "ejercicio_condicionales_y_map.html": "4ec06b0f"
   }
 }

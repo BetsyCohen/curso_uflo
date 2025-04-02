@@ -164,7 +164,7 @@ encc_serie_hist |> # toma la tabla encc_series_hist y después...
   head() # selecciona los primeros 5 casos
 ```
 
-## 2. Filtrando **filas** con `filter()`
+## 2. Filtrando **filas** con `filter()` {.smaller}
 
 Con filter vamos filtrar las observaciones que cumplan determiada condición.
 
@@ -175,7 +175,7 @@ encc_serie_hist |> # toma la tabla encc_series_hist y después...
   tail() # # selecciona los últimos 5 casos
 ```
 
-## 3. Crear columnas nuevas con `mutate()`
+## 3. Crear columnas nuevas con `mutate()` {.smaller}
 
 Supongamos que quisiera saber la edad de todos los entrevistados al dia de hoy
 
@@ -188,7 +188,7 @@ encc_serie_hist |> # toma la tabla encc_series_hist y después...
   
 ```
 
-## 4.`summarise()` y `group_by()`
+## 4.`summarise()` y `group_by()` {.smaller}
 
 Al pricipio summarise y group_by pueden resultarnos un poco contra intutivos.
 
@@ -235,7 +235,7 @@ across(
 
 -   **`.names = "{.col}_{.fn}"`**: (Opcional) Define un **patrón para nombrar las nuevas columnas** que se crean (si la función aplicada crea nuevas columnas, como `mutate()`). `{.col}` se reemplaza por el nombre de la columna original, y `{.fn}` por el nombre de la función (si usaste una lista de funciones nombradas).
 
-## Ejemplo de `across()` con `mutate()`
+## Ejemplo de `across()` con `mutate()` {.smaller}
 
 Supongamos que queremos convertir a **minuscula** los valores de varias columnas de texto
 
@@ -253,7 +253,7 @@ encc_serie_hist %>%
 
 ```
 
-## `across()` es un ejemplo de la filosofía tidy
+## `across()` es un ejemplo de la filosofía tidy {.smaller}
 
 Nos evita la repetición de tareas y por ende nos ahorra un montón de tiempo y posibles errores.
 
@@ -265,6 +265,6 @@ En esta clase aprendimos a usar los verbos básicos del paquete `dplyr` junto co
 
 Hacete un buen 🧉 que en la segunda parte de nuestra clase vamos a ver:
 
--   Cómo unir dos tablas de resumen entre sí (porque los datos no vienen siempre todos juntos, ni de una) -
+-   Cómo unir dos tablas de resumen entre sí (porque los datos no vienen siempre todos juntos, ni de una)
 
 -   Cómo "dar vuelta" una tabla. (Porque a veces la tortilla necesita vuelta y vuelta)
