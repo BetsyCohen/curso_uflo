@@ -178,7 +178,7 @@
     "href": "u3-tidyverse.html",
     "title": "Unidad 3: ETL con tidyverse",
     "section": "",
-    "text": "Introducción a tidyverse: dplyr\n\n\nIntroducción a tidyverse: union y pivoteo\n\n\n\nActividad 1 - Optativa",
+    "text": "Introducción a tidyverse: dplyr\n\n\nIntroducción a tidyverse: union y pivoteo\n\n\n\nActividad Integradora 1",
     "crumbs": [
       "Materiales",
       "Unidad 3: ETL con tidyverse"
@@ -1494,7 +1494,7 @@
     "href": "u3-tidyverse.html#introducción-a-tidyverse-el-universo-de-herramientas-para-transformación-de-datos",
     "title": "Unidad 3: ETL con tidyverse",
     "section": "",
-    "text": "Introducción a tidyverse: dplyr\n\n\nIntroducción a tidyverse: union y pivoteo\n\n\n\nActividad 1 - Optativa",
+    "text": "Introducción a tidyverse: dplyr\n\n\nIntroducción a tidyverse: union y pivoteo\n\n\n\nActividad Integradora 1",
     "crumbs": [
       "Materiales",
       "Unidad 3: ETL con tidyverse"
@@ -2796,5 +2796,16 @@
     "title": "Ejercicio Práctico: Transformación Condicional y Funciones con map()",
     "section": "Ejercicio 3: Usando map() para Explorar Indicadores de Primaria 📊",
     "text": "Ejercicio 3: Usando map() para Explorar Indicadores de Primaria 📊\nQueremos obtener la media de varios indicadores de la escuela primaria a lo largo de los años.\nTu tarea:\nCrea un vector con los nombres de las variables que representan indicadores de primaria: “promocion_efectiva_primaria”, “repitencia_primaria”, “abandono_interanual_primaria”, “sobreedad_primaria”. Utiliza la función map() para aplicar una función anónima a cada nombre de variable en el vector. Dentro de la función anónima, utiliza summarize() para calcular la media (mean()) de la variable correspondiente en el dataset trayectorias. Recuerda usar na.rm = TRUE para manejar los valores faltantes. Agrega el nombre de la variable al resultado usando mutate().\n\n# Completa el siguiente código:\nindicadores_primaria &lt;- c(\"promocion_efectiva_primaria\", \"repitencia_primaria\", \"abandono_interanual_primaria\", \"sobreedad_primaria\")\n\nmedia_indicadores_primaria &lt;- map(\n  .x = indicadores_primaria,\n  .f = function(variable) {\n    trayectorias %&gt;%\n      summarize(\n        media = mean(!!sym(variable), na.rm = TRUE)\n      ) %&gt;%\n      mutate(indicador = variable)\n  }\n)\n\n# Combina la lista de resultados en un solo data frame:\nmedia_indicadores_primaria_df &lt;- bind_rows(media_indicadores_primaria)\nmedia_indicadores_primaria_df\n\n       media                    indicador\n1 97.1303232  promocion_efectiva_primaria\n2  2.4012458          repitencia_primaria\n3  0.3081684 abandono_interanual_primaria\n4  7.1446734           sobreedad_primaria\n\n\n\n\n\n\n\n\n¿Qué es !!sym(variable) y por qué lo usamos en map()?\n\n\n\nImagina que tenes una lista de nombres de columnas (como “region”, “genero”, “niv_socioe”) guardada en una variable llamada variables_categoricas. Cuando usamos la función map(), queremos hacer la misma operación (por ejemplo, contar las categorías con count()) en cada una de esas columnas.\nLa función count() en R, que viene del paquete dplyr, normalmente espera que le digamos el nombre de la columna directamente, sin comillas, así:\nencc_2022 %&gt;% count(region)\nSin embargo, dentro de la función que le damos a map(), los nombres de las columnas están guardados como texto (strings) dentro de la variable variable. R no entendería si simplemente escribiéramos count(variable), porque pensaría que variable es el nombre de una columna literal llamada “variable”, ¡y no los nombres de nuestras columnas reales!\nAquí es donde entra en juego esta “magia”: !!sym(variable). Pensalo como una forma de traducir el texto que tenemos en la variable variable al “lenguaje” que la función count() necesita para entender que nos referimos a una columna específica de nuestro dataset.\n\nsym(variable): Esta parte toma el texto que está dentro de la variable (por ejemplo, “region”) y lo convierte en algo que R considera un “símbolo” o un nombre.\n!! (los dos signos de exclamación): Estos le dicen a la función count(): “Che, lo que viene acá no es un texto cualquiera, es el nombre de una columna que quiero que uses”.\n\nUsar !!sym(variable) dentro de map() nos permite escribir código mucho más corto y eficiente. En lugar de escribir una línea de código count() para cada columna que queremos analizar, podemos hacerlo todo de una vez usando map() y esta “traducción”. Esto es especialmente útil cuando tenes muchas columnas a las que quieres aplicar la misma operación."
+  },
+  {
+    "objectID": "u3-tidyverse.html#condicionales-y-funcion-map-de-purr",
+    "href": "u3-tidyverse.html#condicionales-y-funcion-map-de-purr",
+    "title": "Unidad 3: ETL con tidyverse",
+    "section": "Condicionales y funcion map() de purr",
+    "text": "Condicionales y funcion map() de purr\n\n\nAnálisis exploratorio, condicionales y purr\n\n\n\nActividad Optativa",
+    "crumbs": [
+      "Materiales",
+      "Unidad 3: ETL con tidyverse"
+    ]
   }
 ]

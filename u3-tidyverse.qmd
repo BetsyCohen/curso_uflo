@@ -15,15 +15,19 @@ title: "Unidad 3: ETL con tidyverse"
 :::
 
 ::: exam
-[Actividad 1 - Optativa](materiales/exams/tp_1_U3.qmd)
+[Actividad Integradora 1](materiales/exams/tp_1_U3.qmd)
 :::
 
-## Análisis exploratorio, condicionales y funcion `map()` de `purr`
+## Condicionales y funcion `map()` de `purr`
 
 ::: slide-deck
 ::: slides
 [Análisis exploratorio, condicionales y purr](materiales/slides/condicionales_y_map.qmd)
 :::
+:::
+
+::: application-exercise
+[Actividad Optativa](materiales/excercise/ejercicio_condicionales_y_map.qmd)
 :::
 
 ## Normalización de datos y casos perdidos.
