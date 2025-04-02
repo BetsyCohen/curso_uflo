@@ -61,7 +61,7 @@ url_encuesta_mas_cultura <- "https://datos.cultura.gob.ar/dataset/3dc4ec3b-b563-
 #   accede al help de esta función escribiendo el nombre de la función en la solapa Help
 
 #   ¿Qué hace el parámetro strinsAsFactors? probá los resultados de este script poniendo TRUE o FALSE
-#   ¿Qué hace el parámetro fileEncoding? probá los resultados de este script poniendo TRUE o FALSE
+#   ¿Qué hace el parámetro fileEncoding?  Qué pasa si no indicamos el encoding con este archivo
 
 
 encuesta_online <- read.csv(url_encuesta_mas_cultura,

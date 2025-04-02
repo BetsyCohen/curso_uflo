@@ -1,3 +1,144 @@
 ---
-title: "Ejercicio Práctico Complementario: Importando y Explorando Datos"
+title: "Ejercicio Práctico: Importando y Explorando Datos del Programa Más Cultura"
+format: html
+editor: visual
 ---
+
+## Explorando la Encuesta del Programa Más Cultura en R
+
+En este ejercicio práctico, vamos a trabajar con datos reales de la encuesta del Programa Más Cultura. Este programa buscó potenciar el consumo de bienes y servicios culturales entre jóvenes de todo el país.
+
+**En este script, vamos a practicar:**
+
+1.  Crear un Proyecto de R
+2.  Importar el dataset de la encuesta desde una URL online
+3.  Explorar el dataset importado con funciones clave
+
+## Parte 1: Preparación Inicial: Proyecto y Librerías
+
+1.  **Crea un Nuevo Proyecto de R:**
+
+    -   Anda a 'Archivo' -\> 'Nuevo Proyecto...'
+    -   Hacé clic en 'Nuevo Directorio' -\> 'Proyecto de R'
+    -   Ponele nombre a tu proyecto (ej: 'Exploracion_mas_cultura') y elige una ubicación.
+    -   Fijate que la opción 'Crear un repositorio Git' NO esté marcada.
+    -   Hacé clic en 'Crear Proyecto'.
+
+    RStudio se va a reiniciar y con esto ya vas a estar trabajando dentro de tu nuevo proyecto (en la esquina derecha superior arriba de tu Global Environment deberías ver el nombre de proyecto).
+
+2.  **Carga las Librerías necesarias:** 
+
+Al comienzo de cada proyecto, carga las librerías que vas a utilizar. Si no las tenes instaladas, poedes hacerlo con `install.packages("nombre_libreria")`. 
+
+::: {.callout-important}
+Acordate que solo **INSTALAS** una vez y **CARGAS** la librería cada vez que inicias tu **sesión.**
+:::
+
+```{r}
+library(here)
+library(dplyr) # para taernos glimpse()
+```
+
+## Parte 2: Importando Datos de la Encuesta Programa Más Cultura
+
+El programa \"Más Cultura\" buscó potenciar el consumo de bienes y servicios culturales (cine, teatro, espectáculos en vivo, compra de libros, revistas, comics, instrumentos, artesanías, talleres, cursos, etc.) de las y los jóvenes de todo el país. A través de una tarjeta virtual se otorgaron beneficios, descuentos y \$5000 semestrales que se podían utilizar en espectáculos, comercios, espacios, eventos, cursos, talleres y otras actividades culturales.
+
+Para evaluar el Programa, el ex Ministerio de Cultura llevó adelante un análisis de los consumos y una encuesta que se implementó como parte de la estrategia de monitoreo y evaluación del Programa con el fin de conocer sus prácticas y hábitos culturales en meses previos a la activación de la tarjeta. Dicha tabla se enriqueció con el tipo de beneficios que los encuestados reciben de ANSES e información relacionada al uso que le dieron a la tarjeta Más Cultura.
+
+Vamos a importar los datos de la encuesta directamente desde una URL.
+
+3.   **Defini la URL del dataset:** Ingresa al sitio de datos abiertos de Cultura <https://datos.cultura.gob.ar/dataset/mas-cultura>. Copiá con el botón derecho de tu mouse la URL de descarga y asignala al vector `url_encuesta_mas_cultura`.
+
+```{r}
+url_encuesta_mas_cultura <- "https://datos.cultura.gob.ar/dataset/3dc4ec3b-b563-4c29-9fc9-6da64d6117bd/resource/d0d752aa-5a38-4a5c-9617-f555383935f3/download/mas_cultura_205787.csv"
+
+```
+
+4.  **Importá el dataset directamente desde la URL:** Usa la función `read.csv()` y la variable `url_encuesta_mas_cultura` como argumento. Asigná el data frame importado a un objeto llamado `encuesta_online`.
+
+En nuestro uso de `read.csv`, vamos a usar los parámetros `"stringsAsFactors"` y `"fileEncoding"`. Accede a la ayuda de esta función escribiendo `?read.csv` en la Consola o en la pestaña Help.
+
+-   ¿Qué hace el parámetro `stringsAsFactors`? Proeba los resultados poniendo `TRUE` o `FALSE`.
+
+-   ¿Qué hace el parámetro `fileEncoding`? Qué pasa si no indicamos el encoding con este archivo.
+
+```{r}
+encuesta_online <- read.csv(url_encuesta_mas_cultura,
+                            stringsAsFactors = TRUE,
+                            fileEncoding = "ISO-8859-1"
+                            ) 
+
+# Imprime las primeras filas para verificar la importación online:
+head(encuesta_online)
+```
+
+## Parte 3: Exploración Inicial del Dataset
+
+Ahora vamos a explorar el dataset que importamos usando las funciones de exploración.
+
+5.   **Explora `encuesta_online` con `glimpse()` o `str()`:** Ejecuta `glimpse()` en el data frame `encuesta_online` y lee la salida en la Consola.
+
+::: {.callout-idea}
+**Si bien es una cuestión de gustos**
+- Usa str() cuando necesites un desglose estructural rápido y conciso.
+- Usa glimpse() cuando quieras una vista más amigable y horizontal, especialmente con data frames grandes.
+:::
+
+```{r}
+glimpse(encuesta_online)
+```
+
+-   ¿Cuántas filas y columnas tiene el dataset?
+
+-   ¿Qué tipos de datos predominan en las columnas? (chr, int, dbl, etc.)
+
+-   ¿Qué función están cumpliendo las preguntas consumo_XXXX? ¿Por qué crees que usaron esa estructura? ¿Qué otro tipo de estructura de variable crees que sería adecuada?
+
+-   Si tuvieras que evaluar el programa, ¿qué preguntas harías y qué variables elegirías para empezar a responderlas?
+
+
+
+6.  **Explora `encuesta_online` con `head()` y `tail()`:**
+    Usa `head()` y `tail()` para ver las primeras y últimas filas del data frame `encuesta_online`. Prueba a cambiar el argumento `n` para ver más o menos filas (ej: `head(encuesta_online, n = 15)`).
+
+```{r}
+head(encuesta_online)
+tail(encuesta_online, n = 15)
+```
+
+**Preguntas:**
+
+-    Observando las primeras filas con `head()`, ¿poedes identificar algunas variables y sus posibles significados?
+
+-    ¿Te da `head()` una idea general del tipo de datos que contiene la encuesta? ¿Lo usuarias como forma de resumen? ¿Por qué?
+
+7.  **Explorá `encuesta_online` con `summary()`:**
+
+Ejecuta `summary()` en el data frame `encuesta_online` y observa el resumen estadístico.
+
+```{r}
+summary(encuesta_online)
+```
+
+
+Probá `summary(encuesta_online[, 1:10])` para ver el resumen de las primeras 10 columnas, para empezar. 
+
+También puedes probar `summary(encuesta_online$consumo_libros)` para ver el resumen de una columna específica.
+
+    ```{r}
+    summary(encuesta_online[, 1:10]) 
+
+    summary(encuesta_online$consumo_libros) # Resumen de la columna 'consumo_libros' (ejemplo)
+    ```
+
+-    Observando el `summary()` de las primeras columnas, ¿qué tipos de estadísticos se muestran?
+
+-    Para las columnas numéricas, ¿qué información te dan los estadísticos como 'Mean', 'Median', 'Min', 'Max'?
+
+-    ¿Cuántas personas fueron al cine por última vez en los últimos 6 meses? (Busca la variable relacionada en el resumen)
+
+-    ¿Qué podes inferir sobre la variable `consumo_libros` a partir de su `summary()`?
+
+
+
+🚀 ¡Felicitaciones! Estás un paso más cerca de analizar políticas públicas en R como un profesional en sociología

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Curso análisis de datos 1. Sociología UFLO - Ejercicio Práctico Complementario: Importando y Explorando Datos</title>
+<title>Curso análisis de datos 1. Sociología UFLO - Ejercicio Práctico: Importando y Explorando Datos del Programa Más Cultura</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -188,14 +222,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#explorando-la-encuesta-del-programa-más-cultura-en-r" id="toc-explorando-la-encuesta-del-programa-más-cultura-en-r" class="nav-link active" data-scroll-target="#explorando-la-encuesta-del-programa-más-cultura-en-r">Explorando la Encuesta del Programa Más Cultura en R</a></li>
+  <li><a href="#parte-1-preparación-inicial-proyecto-y-librerías" id="toc-parte-1-preparación-inicial-proyecto-y-librerías" class="nav-link" data-scroll-target="#parte-1-preparación-inicial-proyecto-y-librerías">Parte 1: Preparación Inicial: Proyecto y Librerías</a></li>
+  <li><a href="#parte-2-importando-datos-de-la-encuesta-programa-más-cultura" id="toc-parte-2-importando-datos-de-la-encuesta-programa-más-cultura" class="nav-link" data-scroll-target="#parte-2-importando-datos-de-la-encuesta-programa-más-cultura">Parte 2: Importando Datos de la Encuesta Programa Más Cultura</a></li>
+  <li><a href="#parte-3-exploración-inicial-del-dataset" id="toc-parte-3-exploración-inicial-del-dataset" class="nav-link" data-scroll-target="#parte-3-exploración-inicial-del-dataset">Parte 3: Exploración Inicial del Dataset</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ejercicio Práctico Complementario: Importando y Explorando Datos</h1>
+<h1 class="title">Ejercicio Práctico: Importando y Explorando Datos del Programa Más Cultura</h1>
 </div>
 
 
@@ -212,8 +255,1163 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="explorando-la-encuesta-del-programa-más-cultura-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="explorando-la-encuesta-del-programa-más-cultura-en-r">Explorando la Encuesta del Programa Más Cultura en R</h2>
+<p>En este ejercicio práctico, vamos a trabajar con datos reales de la encuesta del Programa Más Cultura. Este programa buscó potenciar el consumo de bienes y servicios culturales entre jóvenes de todo el país.</p>
+<p><strong>En este script, vamos a practicar:</strong></p>
+<ol type="1">
+<li>Crear un Proyecto de R</li>
+<li>Importar el dataset de la encuesta desde una URL online</li>
+<li>Explorar el dataset importado con funciones clave</li>
+</ol>
+</section>
+<section id="parte-1-preparación-inicial-proyecto-y-librerías" class="level2">
+<h2 class="anchored" data-anchor-id="parte-1-preparación-inicial-proyecto-y-librerías">Parte 1: Preparación Inicial: Proyecto y Librerías</h2>
+<ol type="1">
+<li><p><strong>Crea un Nuevo Proyecto de R:</strong></p>
+<ul>
+<li>Anda a ‘Archivo’ -&gt; ‘Nuevo Proyecto…’</li>
+<li>Hacé clic en ‘Nuevo Directorio’ -&gt; ‘Proyecto de R’</li>
+<li>Ponele nombre a tu proyecto (ej: ‘Exploracion_mas_cultura’) y elige una ubicación.</li>
+<li>Fijate que la opción ‘Crear un repositorio Git’ NO esté marcada.</li>
+<li>Hacé clic en ‘Crear Proyecto’.</li>
+</ul>
+<p>RStudio se va a reiniciar y con esto ya vas a estar trabajando dentro de tu nuevo proyecto (en la esquina derecha superior arriba de tu Global Environment deberías ver el nombre de proyecto).</p></li>
+<li><p><strong>Carga las Librerías necesarias:</strong></p></li>
+</ol>
+<p>Al comienzo de cada proyecto, carga las librerías que vas a utilizar. Si no las tenes instaladas, poedes hacerlo con <code>install.packages("nombre_libreria")</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Acordate que solo <strong>INSTALAS</strong> una vez y <strong>CARGAS</strong> la librería cada vez que inicias tu <strong>sesión.</strong></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at C:/Users/Betsy/curso_uflo</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># para taernos glimpse()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+</section>
+<section id="parte-2-importando-datos-de-la-encuesta-programa-más-cultura" class="level2">
+<h2 class="anchored" data-anchor-id="parte-2-importando-datos-de-la-encuesta-programa-más-cultura">Parte 2: Importando Datos de la Encuesta Programa Más Cultura</h2>
+<p>El programa "Más Cultura" buscó potenciar el consumo de bienes y servicios culturales (cine, teatro, espectáculos en vivo, compra de libros, revistas, comics, instrumentos, artesanías, talleres, cursos, etc.) de las y los jóvenes de todo el país. A través de una tarjeta virtual se otorgaron beneficios, descuentos y $5000 semestrales que se podían utilizar en espectáculos, comercios, espacios, eventos, cursos, talleres y otras actividades culturales.</p>
+<p>Para evaluar el Programa, el ex Ministerio de Cultura llevó adelante un análisis de los consumos y una encuesta que se implementó como parte de la estrategia de monitoreo y evaluación del Programa con el fin de conocer sus prácticas y hábitos culturales en meses previos a la activación de la tarjeta. Dicha tabla se enriqueció con el tipo de beneficios que los encuestados reciben de ANSES e información relacionada al uso que le dieron a la tarjeta Más Cultura.</p>
+<p>Vamos a importar los datos de la encuesta directamente desde una URL.</p>
+<ol start="3" type="1">
+<li><strong>Defini la URL del dataset:</strong> Ingresa al sitio de datos abiertos de Cultura <a href="https://datos.cultura.gob.ar/dataset/mas-cultura" class="uri">https://datos.cultura.gob.ar/dataset/mas-cultura</a>. Copiá con el botón derecho de tu mouse la URL de descarga y asignala al vector <code>url_encuesta_mas_cultura</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url_encuesta_mas_cultura <span class="ot">&lt;-</span> <span class="st">"https://datos.cultura.gob.ar/dataset/3dc4ec3b-b563-4c29-9fc9-6da64d6117bd/resource/d0d752aa-5a38-4a5c-9617-f555383935f3/download/mas_cultura_205787.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li><strong>Importá el dataset directamente desde la URL:</strong> Usa la función <code>read.csv()</code> y la variable <code>url_encuesta_mas_cultura</code> como argumento. Asigná el data frame importado a un objeto llamado <code>encuesta_online</code>.</li>
+</ol>
+<p>En nuestro uso de <code>read.csv</code>, vamos a usar los parámetros <code>"stringsAsFactors"</code> y <code>"fileEncoding"</code>. Accede a la ayuda de esta función escribiendo <code>?read.csv</code> en la Consola o en la pestaña Help.</p>
+<ul>
+<li><p>¿Qué hace el parámetro <code>stringsAsFactors</code>? Proeba los resultados poniendo <code>TRUE</code> o <code>FALSE</code>.</p></li>
+<li><p>¿Qué hace el parámetro <code>fileEncoding</code>? Qué pasa si no indicamos el encoding con este archivo.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>encuesta_online <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url_encuesta_mas_cultura,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fileEncoding =</span> <span class="st">"ISO-8859-1"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                            ) </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprime las primeras filas para verificar la importación online:</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(encuesta_online)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id identidad_genero franja_etaria provincia programas_anses
+1  1            Mujer         21-24     BS.AS  solo progresar
+2  2            Mujer         21-24     CHACO        solo auh
+3  3            Mujer         21-24     BS.AS  solo progresar
+4  4            Mujer         18-20  SANTA FE  solo progresar
+5  5            Mujer         25-34     BS.AS       auh + aue
+6  6            Mujer         21-24  LA RIOJA  solo progresar
+  hay_libros_en_tu_casa hay_instrumentos_musicales_en_tu_casa
+1                    Sí                                    No
+2                    Sí                                    Sí
+3                    Sí                                    Sí
+4                    No                                    Sí
+5                    Sí                                    No
+6                    Sí                                    No
+  hay_computadora_en_tu_casa tenes_conexion_a_internet_en_tu_casa
+1                         Sí                                   Sí
+2                         No                                   Sí
+3                         No                                   Sí
+4                         No                                   Sí
+5                         No                                   Sí
+6                         No                                   Sí
+  cuando_fuiste_al_cine_por_UV por_que_no_fuiste_al_cine_en_los_U6M
+1       En los últimos 6 meses           Fui en los últimos 6 meses
+2                 No fui nunca                  Por falta de dinero
+3       En los últimos 6 meses           Fui en los últimos 6 meses
+4           Hace más de 5 años                  Por falta de dinero
+5         Hace menos de 5 años                  Por falta de dinero
+6         Hace menos de 5 años                  Por falta de dinero
+  cuando_fuiste_al_teatro_por_UV por_que_no_fuiste_al_teatro_en_los_U6M
+1             Hace más de 5 años                    Por falta de dinero
+2           Hace menos de 5 años                        Por otro motivo
+3             Hace más de 5 años        Porque no tengo un teatro cerca
+4                   No fui nunca                        Por otro motivo
+5             Hace más de 5 años                    Por falta de dinero
+6                   No fui nunca        Porque no tengo un teatro cerca
+  cuando_fuiste_a_ver_musica_en_vivo_por_UV
+1                      Hace menos de 5 años
+2                      Hace menos de 5 años
+3                              No fui nunca
+4                    En los últimos 6 meses
+5                        Hace más de 5 años
+6                      Hace menos de 5 años
+  por_que_no_fuiste_a_ver_musica_en_los_U6M cuando_fuiste_a_museos_por_UV
+1                       Por falta de dinero          Hace menos de 5 años
+2                       Por falta de dinero        En los últimos 6 meses
+3                       Por falta de dinero            Hace más de 5 años
+4                Fui en los últimos 6 meses            Hace más de 5 años
+5                       Por falta de dinero        En los últimos 6 meses
+6                       Por falta de dinero                  No fui nunca
+                          por_que_no_fuiste_a_museos_en_los_U6M
+1                                           Por falta de tiempo
+2                                    Fui en los últimos 6 meses
+3 Porque no hay museos ni exposiciones de arte cerca de mi casa
+4 Porque no hay museos ni exposiciones de arte cerca de mi casa
+5                                    Fui en los últimos 6 meses
+6 Porque no hay museos ni exposiciones de arte cerca de mi casa
+  cuando_compraste_un_libro_por_UV por_que_no_compraste_libros_en_los_U6M
+1           En los últimos 6 meses          Compré en los últimos 6 meses
+2             Hace menos de 5 años                    Por falta de dinero
+3             Hace menos de 5 años                    Por falta de dinero
+4                  No compré nunca                   Por falta de interés
+5             Hace menos de 5 años                    Por falta de dinero
+6           En los últimos 6 meses          Compré en los últimos 6 meses
+  cuando_realizaste_talleres_artisticos_por_UV
+1                           Hace más de 5 años
+2                         Hace menos de 5 años
+3                           Hace más de 5 años
+4                         Hace menos de 5 años
+5                         Hace menos de 5 años
+6                       En los últimos 6 meses
+  por_que_no_realizaste_talleres_en_los_U6M
+1                       Por falta de tiempo
+2                           Por otro motivo
+3                      Por falta de interés
+4                           Por otro motivo
+5                       Por falta de dinero
+6            Realicé en los últimos 6 meses
+  otras_actividades_U6M_jugue_videojuegos
+1                                      Sí
+2                                      No
+3                                      Sí
+4                                      No
+5                                      No
+6                                      No
+  otras_actividades_U6M_fiestas_regionales
+1                                       Sí
+2                                       No
+3                                       No
+4                                       No
+5                                       Sí
+6                                       No
+  otras_actividades_U6M_compre_instrumentos
+1                                        No
+2                                        No
+3                                        No
+4                                        Sí
+5                                        No
+6                                        No
+  otras_actividades_U6M_compre_revistas_anime
+1                                          No
+2                                          Sí
+3                                          No
+4                                          No
+5                                          No
+6                                          No
+  otras_actividades_U6M_peliculas_plataformas
+1                                          Sí
+2                                          No
+3                                          Sí
+4                                          No
+5                                          No
+6                                          Sí
+  otras_actividades_U6M_centros_culturales
+1                                       Sí
+2                                       No
+3                                       No
+4                                       No
+5                                       No
+6                                       Sí
+  otras_actividades_U6M_musica_plataformas consumo_si_no consumo_instrumentos
+1                                       No            si                    0
+2                                       No            si                    0
+3                                       No            si                    0
+4                                       No            no                    0
+5                                       No            si                    0
+6                                       No            si                    0
+  consumo_museos consumo_teatro consumo_cine consumo_libreria_artistica
+1              0              0            0                          0
+2              0              0            0                          0
+3              0              0            0                          1
+4              0              0            0                          0
+5              0              0            1                          0
+6              0              0            0                          1
+  consumo_libros consumo_festivales consumo_recitales consumo_diciembre21
+1              1                  0                 0                   1
+2              0                  0                 0                   0
+3              1                  0                 0                   1
+4              0                  0                 0                   0
+5              0                  0                 0                   0
+6              0                  0                 0                   0
+  consumo_enero22 consumo_febrero22 consumo_marzo22 consumo_abril22
+1               0                 0               0               0
+2               0                 1               0               0
+3               1                 0               0               0
+4               0                 0               0               0
+5               0                 0               1               0
+6               1                 0               0               0
+  consumo_mayo22 consumo_junio22_en_adelante
+1              0                           0
+2              0                           0
+3              0                           0
+4              0                           0
+5              0                           1
+6              0                           0</code></pre>
+</div>
+</div>
+</section>
+<section id="parte-3-exploración-inicial-del-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="parte-3-exploración-inicial-del-dataset">Parte 3: Exploración Inicial del Dataset</h2>
+<p>Ahora vamos a explorar el dataset que importamos usando las funciones de exploración.</p>
+<ol start="5" type="1">
+<li><strong>Explora <code>encuesta_online</code> con <code>glimpse()</code> o <code>str()</code>:</strong> Ejecuta <code>glimpse()</code> en el data frame <code>encuesta_online</code> y lee la salida en la Consola.</li>
+</ol>
+<div class="callout-idea">
+<p><strong>Si bien es una cuestión de gustos</strong> - Usa str() cuando necesites un desglose estructural rápido y conciso. - Usa glimpse() cuando quieras una vista más amigable y horizontal, especialmente con data frames grandes.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(encuesta_online)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 205,787
+Columns: 44
+$ id                                           &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9…
+$ identidad_genero                             &lt;fct&gt; Mujer, Mujer, Mujer, Muje…
+$ franja_etaria                                &lt;fct&gt; 21-24, 21-24, 21-24, 18-2…
+$ provincia                                    &lt;fct&gt; BS.AS, CHACO, BS.AS, SANT…
+$ programas_anses                              &lt;fct&gt; solo progresar, solo auh,…
+$ hay_libros_en_tu_casa                        &lt;fct&gt; Sí, Sí, Sí, No, Sí, Sí, S…
+$ hay_instrumentos_musicales_en_tu_casa        &lt;fct&gt; No, Sí, Sí, Sí, No, No, S…
+$ hay_computadora_en_tu_casa                   &lt;fct&gt; Sí, No, No, No, No, No, N…
+$ tenes_conexion_a_internet_en_tu_casa         &lt;fct&gt; Sí, Sí, Sí, Sí, Sí, Sí, N…
+$ cuando_fuiste_al_cine_por_UV                 &lt;fct&gt; En los últimos 6 meses, N…
+$ por_que_no_fuiste_al_cine_en_los_U6M         &lt;fct&gt; Fui en los últimos 6 mese…
+$ cuando_fuiste_al_teatro_por_UV               &lt;fct&gt; Hace más de 5 años, Hace …
+$ por_que_no_fuiste_al_teatro_en_los_U6M       &lt;fct&gt; Por falta de dinero, Por …
+$ cuando_fuiste_a_ver_musica_en_vivo_por_UV    &lt;fct&gt; Hace menos de 5 años, Hac…
+$ por_que_no_fuiste_a_ver_musica_en_los_U6M    &lt;fct&gt; Por falta de dinero, Por …
+$ cuando_fuiste_a_museos_por_UV                &lt;fct&gt; Hace menos de 5 años, En …
+$ por_que_no_fuiste_a_museos_en_los_U6M        &lt;fct&gt; Por falta de tiempo, Fui …
+$ cuando_compraste_un_libro_por_UV             &lt;fct&gt; En los últimos 6 meses, H…
+$ por_que_no_compraste_libros_en_los_U6M       &lt;fct&gt; Compré en los últimos 6 m…
+$ cuando_realizaste_talleres_artisticos_por_UV &lt;fct&gt; Hace más de 5 años, Hace …
+$ por_que_no_realizaste_talleres_en_los_U6M    &lt;fct&gt; Por falta de tiempo, Por …
+$ otras_actividades_U6M_jugue_videojuegos      &lt;fct&gt; Sí, No, Sí, No, No, No, N…
+$ otras_actividades_U6M_fiestas_regionales     &lt;fct&gt; Sí, No, No, No, Sí, No, N…
+$ otras_actividades_U6M_compre_instrumentos    &lt;fct&gt; No, No, No, Sí, No, No, N…
+$ otras_actividades_U6M_compre_revistas_anime  &lt;fct&gt; No, Sí, No, No, No, No, N…
+$ otras_actividades_U6M_peliculas_plataformas  &lt;fct&gt; Sí, No, Sí, No, No, Sí, S…
+$ otras_actividades_U6M_centros_culturales     &lt;fct&gt; Sí, No, No, No, No, Sí, N…
+$ otras_actividades_U6M_musica_plataformas     &lt;fct&gt; No, No, No, No, No, No, S…
+$ consumo_si_no                                &lt;fct&gt; si, si, si, no, si, si, s…
+$ consumo_instrumentos                         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_museos                               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_teatro                               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_cine                                 &lt;int&gt; 0, 0, 0, 0, 1, 0, 1, 0, 1…
+$ consumo_libreria_artistica                   &lt;int&gt; 0, 0, 1, 0, 0, 1, 0, 0, 0…
+$ consumo_libros                               &lt;int&gt; 1, 0, 1, 0, 0, 0, 0, 1, 0…
+$ consumo_festivales                           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_recitales                            &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_diciembre21                          &lt;int&gt; 1, 0, 1, 0, 0, 0, 0, 1, 1…
+$ consumo_enero22                              &lt;int&gt; 0, 0, 1, 0, 0, 1, 1, 0, 0…
+$ consumo_febrero22                            &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_marzo22                              &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 0, 0…
+$ consumo_abril22                              &lt;int&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0…
+$ consumo_mayo22                               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ consumo_junio22_en_adelante                  &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 0, 0…</code></pre>
+</div>
+</div>
+<ul>
+<li><p>¿Cuántas filas y columnas tiene el dataset?</p></li>
+<li><p>¿Qué tipos de datos predominan en las columnas? (chr, int, dbl, etc.)</p></li>
+<li><p>¿Qué función están cumpliendo las preguntas consumo_XXXX? ¿Por qué crees que usaron esa estructura? ¿Qué otro tipo de estructura de variable crees que sería adecuada?</p></li>
+<li><p>Si tuvieras que evaluar el programa, ¿qué preguntas harías y qué variables elegirías para empezar a responderlas?</p></li>
+</ul>
+<ol start="6" type="1">
+<li><strong>Explora <code>encuesta_online</code> con <code>head()</code> y <code>tail()</code>:</strong> Usa <code>head()</code> y <code>tail()</code> para ver las primeras y últimas filas del data frame <code>encuesta_online</code>. Prueba a cambiar el argumento <code>n</code> para ver más o menos filas (ej: <code>head(encuesta_online, n = 15)</code>).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(encuesta_online)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id identidad_genero franja_etaria provincia programas_anses
+1  1            Mujer         21-24     BS.AS  solo progresar
+2  2            Mujer         21-24     CHACO        solo auh
+3  3            Mujer         21-24     BS.AS  solo progresar
+4  4            Mujer         18-20  SANTA FE  solo progresar
+5  5            Mujer         25-34     BS.AS       auh + aue
+6  6            Mujer         21-24  LA RIOJA  solo progresar
+  hay_libros_en_tu_casa hay_instrumentos_musicales_en_tu_casa
+1                    Sí                                    No
+2                    Sí                                    Sí
+3                    Sí                                    Sí
+4                    No                                    Sí
+5                    Sí                                    No
+6                    Sí                                    No
+  hay_computadora_en_tu_casa tenes_conexion_a_internet_en_tu_casa
+1                         Sí                                   Sí
+2                         No                                   Sí
+3                         No                                   Sí
+4                         No                                   Sí
+5                         No                                   Sí
+6                         No                                   Sí
+  cuando_fuiste_al_cine_por_UV por_que_no_fuiste_al_cine_en_los_U6M
+1       En los últimos 6 meses           Fui en los últimos 6 meses
+2                 No fui nunca                  Por falta de dinero
+3       En los últimos 6 meses           Fui en los últimos 6 meses
+4           Hace más de 5 años                  Por falta de dinero
+5         Hace menos de 5 años                  Por falta de dinero
+6         Hace menos de 5 años                  Por falta de dinero
+  cuando_fuiste_al_teatro_por_UV por_que_no_fuiste_al_teatro_en_los_U6M
+1             Hace más de 5 años                    Por falta de dinero
+2           Hace menos de 5 años                        Por otro motivo
+3             Hace más de 5 años        Porque no tengo un teatro cerca
+4                   No fui nunca                        Por otro motivo
+5             Hace más de 5 años                    Por falta de dinero
+6                   No fui nunca        Porque no tengo un teatro cerca
+  cuando_fuiste_a_ver_musica_en_vivo_por_UV
+1                      Hace menos de 5 años
+2                      Hace menos de 5 años
+3                              No fui nunca
+4                    En los últimos 6 meses
+5                        Hace más de 5 años
+6                      Hace menos de 5 años
+  por_que_no_fuiste_a_ver_musica_en_los_U6M cuando_fuiste_a_museos_por_UV
+1                       Por falta de dinero          Hace menos de 5 años
+2                       Por falta de dinero        En los últimos 6 meses
+3                       Por falta de dinero            Hace más de 5 años
+4                Fui en los últimos 6 meses            Hace más de 5 años
+5                       Por falta de dinero        En los últimos 6 meses
+6                       Por falta de dinero                  No fui nunca
+                          por_que_no_fuiste_a_museos_en_los_U6M
+1                                           Por falta de tiempo
+2                                    Fui en los últimos 6 meses
+3 Porque no hay museos ni exposiciones de arte cerca de mi casa
+4 Porque no hay museos ni exposiciones de arte cerca de mi casa
+5                                    Fui en los últimos 6 meses
+6 Porque no hay museos ni exposiciones de arte cerca de mi casa
+  cuando_compraste_un_libro_por_UV por_que_no_compraste_libros_en_los_U6M
+1           En los últimos 6 meses          Compré en los últimos 6 meses
+2             Hace menos de 5 años                    Por falta de dinero
+3             Hace menos de 5 años                    Por falta de dinero
+4                  No compré nunca                   Por falta de interés
+5             Hace menos de 5 años                    Por falta de dinero
+6           En los últimos 6 meses          Compré en los últimos 6 meses
+  cuando_realizaste_talleres_artisticos_por_UV
+1                           Hace más de 5 años
+2                         Hace menos de 5 años
+3                           Hace más de 5 años
+4                         Hace menos de 5 años
+5                         Hace menos de 5 años
+6                       En los últimos 6 meses
+  por_que_no_realizaste_talleres_en_los_U6M
+1                       Por falta de tiempo
+2                           Por otro motivo
+3                      Por falta de interés
+4                           Por otro motivo
+5                       Por falta de dinero
+6            Realicé en los últimos 6 meses
+  otras_actividades_U6M_jugue_videojuegos
+1                                      Sí
+2                                      No
+3                                      Sí
+4                                      No
+5                                      No
+6                                      No
+  otras_actividades_U6M_fiestas_regionales
+1                                       Sí
+2                                       No
+3                                       No
+4                                       No
+5                                       Sí
+6                                       No
+  otras_actividades_U6M_compre_instrumentos
+1                                        No
+2                                        No
+3                                        No
+4                                        Sí
+5                                        No
+6                                        No
+  otras_actividades_U6M_compre_revistas_anime
+1                                          No
+2                                          Sí
+3                                          No
+4                                          No
+5                                          No
+6                                          No
+  otras_actividades_U6M_peliculas_plataformas
+1                                          Sí
+2                                          No
+3                                          Sí
+4                                          No
+5                                          No
+6                                          Sí
+  otras_actividades_U6M_centros_culturales
+1                                       Sí
+2                                       No
+3                                       No
+4                                       No
+5                                       No
+6                                       Sí
+  otras_actividades_U6M_musica_plataformas consumo_si_no consumo_instrumentos
+1                                       No            si                    0
+2                                       No            si                    0
+3                                       No            si                    0
+4                                       No            no                    0
+5                                       No            si                    0
+6                                       No            si                    0
+  consumo_museos consumo_teatro consumo_cine consumo_libreria_artistica
+1              0              0            0                          0
+2              0              0            0                          0
+3              0              0            0                          1
+4              0              0            0                          0
+5              0              0            1                          0
+6              0              0            0                          1
+  consumo_libros consumo_festivales consumo_recitales consumo_diciembre21
+1              1                  0                 0                   1
+2              0                  0                 0                   0
+3              1                  0                 0                   1
+4              0                  0                 0                   0
+5              0                  0                 0                   0
+6              0                  0                 0                   0
+  consumo_enero22 consumo_febrero22 consumo_marzo22 consumo_abril22
+1               0                 0               0               0
+2               0                 1               0               0
+3               1                 0               0               0
+4               0                 0               0               0
+5               0                 0               1               0
+6               1                 0               0               0
+  consumo_mayo22 consumo_junio22_en_adelante
+1              0                           0
+2              0                           0
+3              0                           0
+4              0                           0
+5              0                           1
+6              0                           0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(encuesta_online, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           id identidad_genero franja_etaria  provincia       programas_anses
+205773 205773            Mujer         25-34   MISIONES        solo progresar
+205774 205774            Mujer         21-24    CORDOBA              solo auh
+205775 205775            Mujer         18-20     E.RIOS             auh + aue
+205776 205776            Varón         25-34      CHACO      progresar + pnci
+205777 205777            Mujer         18-20      BS.AS             auh + aue
+205778 205778            Varón         25-34    CAP.FED        solo progresar
+205779 205779            Varón         18-20    CORDOBA        solo progresar
+205780 205780            Mujer         21-24      BS.AS        solo progresar
+205781 205781            Mujer         21-24      BS.AS              solo aue
+205782 205782            Varón         21-24      BS.AS        solo progresar
+205783 205783            Mujer         18-20      CHACO        solo progresar
+205784 205784            Varón         21-24 SGO.ESTERO        solo progresar
+205785 205785            Mujer         21-24    CAP.FED              solo aue
+205786 205786            Mujer         25-34      CHACO progresar + auh + aue
+205787 205787            Varón         25-34      JUJUY        solo progresar
+       hay_libros_en_tu_casa hay_instrumentos_musicales_en_tu_casa
+205773                    Sí                                    Sí
+205774                    No                                    No
+205775                    No                                    No
+205776                    Sí                                    Sí
+205777                    Sí                                    Sí
+205778                    Sí                                    No
+205779                    Sí                                    No
+205780                    Sí                                    No
+205781                    Sí                                    No
+205782                    Sí                                    Sí
+205783                    Sí                                    Sí
+205784                    No                                    No
+205785                    Sí                                    No
+205786                    Sí                                    No
+205787                    Sí                                    No
+       hay_computadora_en_tu_casa tenes_conexion_a_internet_en_tu_casa
+205773                         Sí                                   Sí
+205774                         No                                   No
+205775                         No                                   Sí
+205776                         No                                   Sí
+205777                         Sí                                   Sí
+205778                         Sí                                   Sí
+205779                         Sí                                   No
+205780                         No                                   Sí
+205781                         No                                   No
+205782                         Sí                                   Sí
+205783                         Sí                                   Sí
+205784                         No                                   Sí
+205785                         Sí                                   No
+205786                         No                                   No
+205787                         Sí                                   Sí
+       cuando_fuiste_al_cine_por_UV por_que_no_fuiste_al_cine_en_los_U6M
+205773                 No fui nunca                  Por falta de dinero
+205774           Hace más de 5 años                  Por falta de dinero
+205775                 No fui nunca                  Por falta de dinero
+205776           Hace más de 5 años                  Por falta de dinero
+205777       En los últimos 6 meses           Fui en los últimos 6 meses
+205778       En los últimos 6 meses           Fui en los últimos 6 meses
+205779         Hace menos de 5 años                      Por otro motivo
+205780       En los últimos 6 meses           Fui en los últimos 6 meses
+205781         Hace menos de 5 años                  Por falta de dinero
+205782       En los últimos 6 meses           Fui en los últimos 6 meses
+205783       En los últimos 6 meses           Fui en los últimos 6 meses
+205784         Hace menos de 5 años                  Por falta de dinero
+205785       En los últimos 6 meses           Fui en los últimos 6 meses
+205786         Hace menos de 5 años                  Por falta de dinero
+205787         Hace menos de 5 años                  Por falta de dinero
+       cuando_fuiste_al_teatro_por_UV por_que_no_fuiste_al_teatro_en_los_U6M
+205773                   No fui nunca                    Por falta de dinero
+205774                   No fui nunca                    Por falta de dinero
+205775                   No fui nunca                    Por falta de dinero
+205776             Hace más de 5 años        Porque no tengo un teatro cerca
+205777           Hace menos de 5 años                    Por falta de dinero
+205778         En los últimos 6 meses             Fui en los últimos 6 meses
+205779           Hace menos de 5 años                        Por otro motivo
+205780                   No fui nunca                    Por falta de dinero
+205781           Hace menos de 5 años                    Por falta de dinero
+205782           Hace menos de 5 años                    Por falta de dinero
+205783                   No fui nunca        Porque no tengo un teatro cerca
+205784                   No fui nunca                    Por falta de dinero
+205785             Hace más de 5 años                    Por falta de dinero
+205786                   No fui nunca        Porque no tengo un teatro cerca
+205787             Hace más de 5 años                    Por falta de dinero
+       cuando_fuiste_a_ver_musica_en_vivo_por_UV
+205773                              No fui nunca
+205774                    En los últimos 6 meses
+205775                              No fui nunca
+205776                    En los últimos 6 meses
+205777                      Hace menos de 5 años
+205778                    En los últimos 6 meses
+205779                    En los últimos 6 meses
+205780                              No fui nunca
+205781                      Hace menos de 5 años
+205782                      Hace menos de 5 años
+205783                    En los últimos 6 meses
+205784                              No fui nunca
+205785                        Hace más de 5 años
+205786                              No fui nunca
+205787                    En los últimos 6 meses
+                                  por_que_no_fuiste_a_ver_musica_en_los_U6M
+205773                                                  Por falta de dinero
+205774                                           Fui en los últimos 6 meses
+205775                                                  Por falta de dinero
+205776                                           Fui en los últimos 6 meses
+205777                                                  Por falta de dinero
+205778                                           Fui en los últimos 6 meses
+205779                                           Fui en los últimos 6 meses
+205780                                                  Por falta de dinero
+205781                          Porque no tengo con quien dejar a mis hijos
+205782                                                  Por falta de dinero
+205783                                           Fui en los últimos 6 meses
+205784                                                  Por falta de dinero
+205785 Porque no hubo ningún espectáculo de música en vivo cerca de mi casa
+205786 Porque no hubo ningún espectáculo de música en vivo cerca de mi casa
+205787                                           Fui en los últimos 6 meses
+       cuando_fuiste_a_museos_por_UV
+205773                  No fui nunca
+205774                  No fui nunca
+205775                  No fui nunca
+205776        En los últimos 6 meses
+205777                  No fui nunca
+205778                  No fui nunca
+205779        En los últimos 6 meses
+205780            Hace más de 5 años
+205781        En los últimos 6 meses
+205782                  No fui nunca
+205783                  No fui nunca
+205784                  No fui nunca
+205785                  No fui nunca
+205786            Hace más de 5 años
+205787            Hace más de 5 años
+                               por_que_no_fuiste_a_museos_en_los_U6M
+205773                                           Por falta de dinero
+205774                                           Por falta de dinero
+205775                                           Por falta de dinero
+205776                                    Fui en los últimos 6 meses
+205777                                           Por falta de dinero
+205778                                           Por falta de tiempo
+205779                                    Fui en los últimos 6 meses
+205780 Porque no hay museos ni exposiciones de arte cerca de mi casa
+205781                                    Fui en los últimos 6 meses
+205782                                           Por falta de dinero
+205783                                          Por falta de interés
+205784                                           Por falta de dinero
+205785                                          Por falta de interés
+205786 Porque no hay museos ni exposiciones de arte cerca de mi casa
+205787                                           Por falta de tiempo
+       cuando_compraste_un_libro_por_UV por_que_no_compraste_libros_en_los_U6M
+205773                  No compré nunca                    Por falta de dinero
+205774               Hace más de 5 años                    Por falta de dinero
+205775                  No compré nunca                    Por falta de dinero
+205776           En los últimos 6 meses          Compré en los últimos 6 meses
+205777               Hace más de 5 años                    Por falta de dinero
+205778           En los últimos 6 meses          Compré en los últimos 6 meses
+205779           En los últimos 6 meses          Compré en los últimos 6 meses
+205780             Hace menos de 5 años                    Por falta de dinero
+205781           En los últimos 6 meses          Compré en los últimos 6 meses
+205782             Hace menos de 5 años                    Por falta de dinero
+205783               Hace más de 5 años                        Por otro motivo
+205784             Hace menos de 5 años                    Por falta de dinero
+205785                  No compré nunca                   Por falta de interés
+205786           En los últimos 6 meses          Compré en los últimos 6 meses
+205787             Hace menos de 5 años                    Por falta de dinero
+       cuando_realizaste_talleres_artisticos_por_UV
+205773                             No realicé nunca
+205774                             No realicé nunca
+205775                             No realicé nunca
+205776                             No realicé nunca
+205777                           Hace más de 5 años
+205778                       En los últimos 6 meses
+205779                       En los últimos 6 meses
+205780                           Hace más de 5 años
+205781                           Hace más de 5 años
+205782                         Hace menos de 5 años
+205783                             No realicé nunca
+205784                             No realicé nunca
+205785                             No realicé nunca
+205786                             No realicé nunca
+205787                             No realicé nunca
+         por_que_no_realizaste_talleres_en_los_U6M
+205773                         Por falta de dinero
+205774                         Por falta de dinero
+205775                         Por falta de dinero
+205776                         Por falta de dinero
+205777 Porque no tengo con quien dejar a mis hijos
+205778              Realicé en los últimos 6 meses
+205779              Realicé en los últimos 6 meses
+205780                             Por otro motivo
+205781                         Por falta de dinero
+205782                         Por falta de tiempo
+205783                        Por falta de interés
+205784                         Por falta de dinero
+205785                        Por falta de interés
+205786                             Por otro motivo
+205787                         Por falta de tiempo
+       otras_actividades_U6M_jugue_videojuegos
+205773                                      No
+205774                                      No
+205775                                      No
+205776                                      No
+205777                                      Sí
+205778                                      Sí
+205779                                      No
+205780                                      Sí
+205781                                      No
+205782                                      Sí
+205783                                      No
+205784                                      No
+205785                                      No
+205786                                      No
+205787                                      Sí
+       otras_actividades_U6M_fiestas_regionales
+205773                                       No
+205774                                       Sí
+205775                                       No
+205776                                       Sí
+205777                                       Sí
+205778                                       No
+205779                                       Sí
+205780                                       No
+205781                                       Sí
+205782                                       No
+205783                                       No
+205784                                       No
+205785                                       No
+205786                                       No
+205787                                       No
+       otras_actividades_U6M_compre_instrumentos
+205773                                        No
+205774                                        No
+205775                                        No
+205776                                        Sí
+205777                                        No
+205778                                        No
+205779                                        No
+205780                                        No
+205781                                        No
+205782                                        No
+205783                                        No
+205784                                        No
+205785                                        No
+205786                                        No
+205787                                        No
+       otras_actividades_U6M_compre_revistas_anime
+205773                                          No
+205774                                          No
+205775                                          No
+205776                                          No
+205777                                          No
+205778                                          No
+205779                                          No
+205780                                          No
+205781                                          No
+205782                                          Sí
+205783                                          No
+205784                                          No
+205785                                          No
+205786                                          No
+205787                                          No
+       otras_actividades_U6M_peliculas_plataformas
+205773                                          No
+205774                                          No
+205775                                          No
+205776                                          No
+205777                                          Sí
+205778                                          No
+205779                                          No
+205780                                          No
+205781                                          Sí
+205782                                          No
+205783                                          No
+205784                                          Sí
+205785                                          Sí
+205786                                          Sí
+205787                                          No
+       otras_actividades_U6M_centros_culturales
+205773                                       No
+205774                                       No
+205775                                       No
+205776                                       No
+205777                                       No
+205778                                       No
+205779                                       No
+205780                                       Sí
+205781                                       Sí
+205782                                       No
+205783                                       No
+205784                                       No
+205785                                       No
+205786                                       No
+205787                                       No
+       otras_actividades_U6M_musica_plataformas consumo_si_no
+205773                                       No            no
+205774                                       No            no
+205775                                       No            no
+205776                                       No            no
+205777                                       Sí            no
+205778                                       No            no
+205779                                       No            no
+205780                                       No            no
+205781                                       No            no
+205782                                       No            no
+205783                                       No            no
+205784                                       No            no
+205785                                       No            no
+205786                                       No            no
+205787                                       No            no
+       consumo_instrumentos consumo_museos consumo_teatro consumo_cine
+205773                    0              0              0            0
+205774                    0              0              0            0
+205775                    0              0              0            0
+205776                    0              0              0            0
+205777                    0              0              0            0
+205778                    0              0              0            0
+205779                    0              0              0            0
+205780                    0              0              0            0
+205781                    0              0              0            0
+205782                    0              0              0            0
+205783                    0              0              0            0
+205784                    0              0              0            0
+205785                    0              0              0            0
+205786                    0              0              0            0
+205787                    0              0              0            0
+       consumo_libreria_artistica consumo_libros consumo_festivales
+205773                          0              0                  0
+205774                          0              0                  0
+205775                          0              0                  0
+205776                          0              0                  0
+205777                          0              0                  0
+205778                          0              0                  0
+205779                          0              0                  0
+205780                          0              0                  0
+205781                          0              0                  0
+205782                          0              0                  0
+205783                          0              0                  0
+205784                          0              0                  0
+205785                          0              0                  0
+205786                          0              0                  0
+205787                          0              0                  0
+       consumo_recitales consumo_diciembre21 consumo_enero22 consumo_febrero22
+205773                 0                   0               0                 0
+205774                 0                   0               0                 0
+205775                 0                   0               0                 0
+205776                 0                   0               0                 0
+205777                 0                   0               0                 0
+205778                 0                   0               0                 0
+205779                 0                   0               0                 0
+205780                 0                   0               0                 0
+205781                 0                   0               0                 0
+205782                 0                   0               0                 0
+205783                 0                   0               0                 0
+205784                 0                   0               0                 0
+205785                 0                   0               0                 0
+205786                 0                   0               0                 0
+205787                 0                   0               0                 0
+       consumo_marzo22 consumo_abril22 consumo_mayo22
+205773               0               0              0
+205774               0               0              0
+205775               0               0              0
+205776               0               0              0
+205777               0               0              0
+205778               0               0              0
+205779               0               0              0
+205780               0               0              0
+205781               0               0              0
+205782               0               0              0
+205783               0               0              0
+205784               0               0              0
+205785               0               0              0
+205786               0               0              0
+205787               0               0              0
+       consumo_junio22_en_adelante
+205773                           0
+205774                           0
+205775                           0
+205776                           0
+205777                           0
+205778                           0
+205779                           0
+205780                           0
+205781                           0
+205782                           0
+205783                           0
+205784                           0
+205785                           0
+205786                           0
+205787                           0</code></pre>
+</div>
+</div>
+<p><strong>Preguntas:</strong></p>
+<ul>
+<li><p>Observando las primeras filas con <code>head()</code>, ¿poedes identificar algunas variables y sus posibles significados?</p></li>
+<li><p>¿Te da <code>head()</code> una idea general del tipo de datos que contiene la encuesta? ¿Lo usuarias como forma de resumen? ¿Por qué?</p></li>
+</ul>
+<ol start="7" type="1">
+<li><strong>Explorá <code>encuesta_online</code> con <code>summary()</code>:</strong></li>
+</ol>
+<p>Ejecuta <code>summary()</code> en el data frame <code>encuesta_online</code> y observa el resumen estadístico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(encuesta_online)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id                  identidad_genero  franja_etaria     provincia    
+ Min.   :     1   Mujer            :169206   18-20: 38646   BS.AS   :78093  
+ 1st Qu.: 51448   otras_identidades:  2084   21-24:103367   CORDOBA :13953  
+ Median :102894   Varón            : 34497   25-34: 59410   SANTA FE:11228  
+ Mean   :102894                              35+  :  4364   TUCUMAN :11196  
+ 3rd Qu.:154341                                             CHACO   :10047  
+ Max.   :205787                                             MENDOZA : 9193  
+                                                            (Other) :72077  
+        programas_anses   hay_libros_en_tu_casa
+ solo progresar :129941   No: 23365            
+ solo auh       : 38486   Sí:182422            
+ progresar + auh: 21737                        
+ auh + aue      :  4606                        
+ solo aue       :  3259                        
+ solo pnci      :  2802                        
+ (Other)        :  4956                        
+ hay_instrumentos_musicales_en_tu_casa hay_computadora_en_tu_casa
+ No:122356                             No: 97163                 
+ Sí: 83431                             Sí:108624                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+ tenes_conexion_a_internet_en_tu_casa         cuando_fuiste_al_cine_por_UV
+ No: 46445                            En los últimos 6 meses:75155        
+ Sí:159342                            Hace más de 5 años    :31426        
+                                      Hace menos de 5 años  :75580        
+                                      No fui nunca          :23626        
+                                                                          
+                                                                          
+                                                                          
+                          por_que_no_fuiste_al_cine_en_los_U6M
+ Fui en los últimos 6 meses                 : 75155           
+ Por falta de dinero                        :101049           
+ Por falta de interés                       :  1911           
+ Por falta de tiempo                        :  5076           
+ Por otro motivo                            :  7573           
+ Porque no tengo con quien dejar a mis hijos:  2838           
+ Porque no tengo un cine cerca              : 12185           
+        cuando_fuiste_al_teatro_por_UV
+ En los últimos 6 meses:24163         
+ Hace más de 5 años    :48583         
+ Hace menos de 5 años  :41314         
+ No fui nunca          :91727         
+                                      
+                                      
+                                      
+                         por_que_no_fuiste_al_teatro_en_los_U6M
+ Fui en los últimos 6 meses                 : 24163            
+ Por falta de dinero                        :103726            
+ Por falta de interés                       : 12568            
+ Por falta de tiempo                        :  8224            
+ Por otro motivo                            : 16912            
+ Porque no tengo con quien dejar a mis hijos:  4251            
+ Porque no tengo un teatro cerca            : 35943            
+  cuando_fuiste_a_ver_musica_en_vivo_por_UV
+ En los últimos 6 meses:77913              
+ Hace más de 5 años    :35738              
+ Hace menos de 5 años  :40521              
+ No fui nunca          :51615              
+                                           
+                                           
+                                           
+                                                por_que_no_fuiste_a_ver_musica_en_los_U6M
+ Fui en los últimos 6 meses                                          :77913              
+ Por falta de dinero                                                 :79512              
+ Por falta de interés                                                : 4395              
+ Por falta de tiempo                                                 : 4890              
+ Por otro motivo                                                     :12592              
+ Porque no hubo ningún espectáculo de música en vivo cerca de mi casa:22393              
+ Porque no tengo con quien dejar a mis hijos                         : 4092              
+        cuando_fuiste_a_museos_por_UV
+ En los últimos 6 meses:62044        
+ Hace más de 5 años    :49442        
+ Hace menos de 5 años  :36853        
+ No fui nunca          :57448        
+                                     
+                                     
+                                     
+                                           por_que_no_fuiste_a_museos_en_los_U6M
+ Fui en los últimos 6 meses                                   :62044            
+ Por falta de dinero                                          :57315            
+ Por falta de interés                                         :10388            
+ Por falta de tiempo                                          :14250            
+ Por otro motivo                                              :21703            
+ Porque no hay museos ni exposiciones de arte cerca de mi casa:37445            
+ Porque no tengo con quien dejar a mis hijos                  : 2642            
+       cuando_compraste_un_libro_por_UV
+ En los últimos 6 meses:91443          
+ Hace más de 5 años    :36282          
+ Hace menos de 5 años  :46963          
+ No compré nunca       :31099          
+                                       
+                                       
+                                       
+                      por_que_no_compraste_libros_en_los_U6M
+ Compré en los últimos 6 meses           :91443             
+ Por falta de dinero                     :87446             
+ Por falta de interés                    : 6789             
+ Por falta de tiempo                     : 2858             
+ Por otro motivo                         :12470             
+ Porque no hay librerías cerca de mi casa: 4781             
+                                                            
+ cuando_realizaste_talleres_artisticos_por_UV
+ En los últimos 6 meses:45749                
+ Hace más de 5 años    :47963                
+ Hace menos de 5 años  :31878                
+ No realicé nunca      :80197                
+                                             
+                                             
+                                             
+                                                       por_que_no_realizaste_talleres_en_los_U6M
+ Por falta de dinero                                                        :62865              
+ Por falta de interés                                                       :12159              
+ Por falta de tiempo                                                        :28594              
+ Por otro motivo                                                            :21363              
+ Porque no conozco profesores/talleristas/ escuelas de arte cerca de mi casa:26884              
+ Porque no tengo con quien dejar a mis hijos                                : 8173              
+ Realicé en los últimos 6 meses                                             :45749              
+ otras_actividades_U6M_jugue_videojuegos
+ No:151307                              
+ Sí: 54480                              
+                                        
+                                        
+                                        
+                                        
+                                        
+ otras_actividades_U6M_fiestas_regionales
+ No:126493                               
+ Sí: 79294                               
+                                         
+                                         
+                                         
+                                         
+                                         
+ otras_actividades_U6M_compre_instrumentos
+ No:192116                                
+ Sí: 13671                                
+                                          
+                                          
+                                          
+                                          
+                                          
+ otras_actividades_U6M_compre_revistas_anime
+ No:185424                                  
+ Sí: 20363                                  
+                                            
+                                            
+                                            
+                                            
+                                            
+ otras_actividades_U6M_peliculas_plataformas
+ No: 90728                                  
+ Sí:115059                                  
+                                            
+                                            
+                                            
+                                            
+                                            
+ otras_actividades_U6M_centros_culturales
+ No:163597                               
+ Sí: 42190                               
+                                         
+                                         
+                                         
+                                         
+                                         
+ otras_actividades_U6M_musica_plataformas consumo_si_no consumo_instrumentos
+ No:141232                                no: 46146     Min.   :0.00000     
+ Sí: 64555                                si:159641     1st Qu.:0.00000     
+                                                        Median :0.00000     
+                                                        Mean   :0.00554     
+                                                        3rd Qu.:0.00000     
+                                                        Max.   :1.00000     
+                                                                            
+ consumo_museos     consumo_teatro      consumo_cine   
+ Min.   :0.000000   Min.   :0.000000   Min.   :0.0000  
+ 1st Qu.:0.000000   1st Qu.:0.000000   1st Qu.:0.0000  
+ Median :0.000000   Median :0.000000   Median :0.0000  
+ Mean   :0.000243   Mean   :0.003139   Mean   :0.2539  
+ 3rd Qu.:0.000000   3rd Qu.:0.000000   3rd Qu.:1.0000  
+ Max.   :1.000000   Max.   :1.000000   Max.   :1.0000  
+                                                       
+ consumo_libreria_artistica consumo_libros   consumo_festivales
+ Min.   :0.0000             Min.   :0.0000   Min.   :0.000000  
+ 1st Qu.:0.0000             1st Qu.:0.0000   1st Qu.:0.000000  
+ Median :0.0000             Median :0.0000   Median :0.000000  
+ Mean   :0.4248             Mean   :0.1254   Mean   :0.002435  
+ 3rd Qu.:1.0000             3rd Qu.:0.0000   3rd Qu.:0.000000  
+ Max.   :1.0000             Max.   :1.0000   Max.   :1.000000  
+                                                               
+ consumo_recitales  consumo_diciembre21 consumo_enero22  consumo_febrero22
+ Min.   :0.000000   Min.   :0.0000      Min.   :0.0000   Min.   :0.0000   
+ 1st Qu.:0.000000   1st Qu.:0.0000      1st Qu.:0.0000   1st Qu.:0.0000   
+ Median :0.000000   Median :0.0000      Median :0.0000   Median :0.0000   
+ Mean   :0.004276   Mean   :0.0629      Mean   :0.2117   Mean   :0.2424   
+ 3rd Qu.:0.000000   3rd Qu.:0.0000      3rd Qu.:0.0000   3rd Qu.:0.0000   
+ Max.   :1.000000   Max.   :1.0000      Max.   :1.0000   Max.   :1.0000   
+                                                                          
+ consumo_marzo22  consumo_abril22  consumo_mayo22   consumo_junio22_en_adelante
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000             
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000             
+ Median :0.0000   Median :0.0000   Median :0.0000   Median :0.0000             
+ Mean   :0.2547   Mean   :0.1209   Mean   :0.1128   Mean   :0.1258             
+ 3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:0.0000   3rd Qu.:0.0000             
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000             
+                                                                               </code></pre>
+</div>
+</div>
+<p>Probá <code>summary(encuesta_online[, 1:10])</code> para ver el resumen de las primeras 10 columnas, para empezar.</p>
+<p>También puedes probar <code>summary(encuesta_online$consumo_libros)</code> para ver el resumen de una columna específica.</p>
+<pre><code>::: {.cell}
+
+```{.r .cell-code}
+summary(encuesta_online[, 1:10]) 
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+       id                  identidad_genero  franja_etaria     provincia    
+ Min.   :     1   Mujer            :169206   18-20: 38646   BS.AS   :78093  
+ 1st Qu.: 51448   otras_identidades:  2084   21-24:103367   CORDOBA :13953  
+ Median :102894   Varón            : 34497   25-34: 59410   SANTA FE:11228  
+ Mean   :102894                              35+  :  4364   TUCUMAN :11196  
+ 3rd Qu.:154341                                             CHACO   :10047  
+ Max.   :205787                                             MENDOZA : 9193  
+                                                            (Other) :72077  
+        programas_anses   hay_libros_en_tu_casa
+ solo progresar :129941   No: 23365            
+ solo auh       : 38486   Sí:182422            
+ progresar + auh: 21737                        
+ auh + aue      :  4606                        
+ solo aue       :  3259                        
+ solo pnci      :  2802                        
+ (Other)        :  4956                        
+ hay_instrumentos_musicales_en_tu_casa hay_computadora_en_tu_casa
+ No:122356                             No: 97163                 
+ Sí: 83431                             Sí:108624                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+ tenes_conexion_a_internet_en_tu_casa         cuando_fuiste_al_cine_por_UV
+ No: 46445                            En los últimos 6 meses:75155        
+ Sí:159342                            Hace más de 5 años    :31426        
+                                      Hace menos de 5 años  :75580        
+                                      No fui nunca          :23626        
+                                                                          
+                                                                          
+                                                                          
+```
 
 
+:::
+
+```{.r .cell-code}
+summary(encuesta_online$consumo_libros) # Resumen de la columna 'consumo_libros' (ejemplo)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  0.0000  0.1254  0.0000  1.0000 
+```
+
+
+:::
+:::</code></pre>
+<ul>
+<li><p>Observando el <code>summary()</code> de las primeras columnas, ¿qué tipos de estadísticos se muestran?</p></li>
+<li><p>Para las columnas numéricas, ¿qué información te dan los estadísticos como ‘Mean’, ‘Median’, ‘Min’, ‘Max’?</p></li>
+<li><p>¿Cuántas personas fueron al cine por última vez en los últimos 6 meses? (Busca la variable relacionada en el resumen)</p></li>
+<li><p>¿Qué podes inferir sobre la variable <code>consumo_libros</code> a partir de su <code>summary()</code>?</p></li>
+</ul>
+<p>🚀 ¡Felicitaciones! Estás un paso más cerca de analizar políticas públicas en R como un profesional en sociología</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

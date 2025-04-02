@@ -55,5 +55,5 @@ title: "Unidad 2 Introducción al análisis de datos con R y RStudio"
 :::
 
 ::: application-exercise
-[Ejercicio Flujo de trabajo en R](materiales/excercise/ejercicio_flujo_trabajo.r)
+[Ejercicio Flujo de trabajo en R](materiales/excercise/ejercicio_flujo_trabajo.qmd)
 :::
