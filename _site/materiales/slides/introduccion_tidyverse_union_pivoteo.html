@@ -393,7 +393,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Introducción a Tidyverse: union y pivoteo de tablas</h1>
-  <p class="subtitle">Análisis de Datos 1</p>
+  <p class="subtitle">Análisis de Datos 1 - Unidad 3</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -434,8 +434,8 @@ Betsy Cohen
 <p><code>dplyr</code> nos ofrece una familia de funciones ***_join()** para realizar diferentes tipos de uniones de tablas, basadas en la lógica de las bases de datos relacionales. Los principales tipos son:</p>
 <table>
 <colgroup>
-<col style="width: 64%">
-<col style="width: 35%">
+<col style="width: 71%">
+<col style="width: 28%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -1239,6 +1239,44 @@ Betsy Cohen
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
