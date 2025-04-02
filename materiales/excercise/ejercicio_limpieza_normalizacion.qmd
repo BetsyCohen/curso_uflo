@@ -1,0 +1,185 @@
+---
+title: "Ejercicio Práctico: Limpieza y Normalización de Datos Educativos"
+format: html
+editor: visual
+---
+
+## Limpiar y Normalizar Datos 🧼✨
+
+![](https://www.argentina.gob.ar/sites/default/files/el005362-9_page-0001.jpg){fig-align="center"}
+
+En este ejercicio práctico, aplicaremos las técnicas de limpieza y normalización de datos que aprendimos en la clase. Trabajaremos con un dataset de indicadores de trayectoria educativa de la provincia de Buenos Aires, al cual primero le introduciremos algunos "errores" para simular datos del mundo real.
+
+Los datos se encuentran publicados en el sitio <https://catalogo.datos.gba.gob.ar/dataset/indicadores-de-trayectoria>.
+
+::: callout-tip
+Si te interesa conocer más acerca de este tema te recomendamos la lectura del [Manual Metodológico de Indicadores Educativos](https://abc.gob.ar/secretarias/sites/default/files/2024-08/Manual%20Metodolo%CC%81gico%20de%20Indicadores%20Educativos-%20Agosto%202024.pdf) que publica la Dirección de Información y Estadística de la Subsecretaria de Planeamiento. (Dirección General de Cultura y Educación del Gobierno de la Provincia de Buenos Aires)
+:::
+
+**Objetivos:**
+
+-   Aprender a limpiar los nombres de las variables utilizando el paquete `janitor`.
+-   Practicar la detección y el manejo de valores faltantes.
+-   Identificar y eliminar registros duplicados.
+-   Introducir la validación de datos con el paquete `validate`.
+-   (Opcional) Explorar la necesidad de normalización en este dataset.
+
+# Cargar librerías que vamos a usar
+
+```{r}
+library(tidyverse) 
+library(janitor) 
+library(validate) 
+library(messy) # Para la función ensuciar
+
+# Función para ensuciar los datos
+ensuciar <- function(dataset, umbral) {
+  dataset %>%
+    mutate(across(
+      where(is.numeric), 
+      ~ ifelse(rbinom(length(.), 1, 0.05) == 1, . * 10, .))) %>% # Creamos valores erróneos
+    mutate(id = 1:nrow(dataset)) %>% # ID para identificar mejor duplicados
+    messy(messiness = umbral) %>% # Ensuciamos valores
+    #messy_colnames(messiness = umbral) %>% # Ensuciamos nombres de columnas
+    bind_rows(slice_sample(., prop = 0.1)) # Duplicados
+}
+
+```
+
+Cargar datos
+
+```{r}
+# Cargar datos 
+url <- "https://catalogo.datos.gba.gob.ar/dataset/0c691f21-28df-4ea5-98be-6e92b5a589c6/resource/5a73b8ea-24a4-4608-aaeb-39dde782fabf/download/indicadores-proceso-trayectoria-sobreedad-2012_2022.csv"
+
+
+trayectorias_original <- read.csv(url)
+
+```
+
+Ensuciar el dataset original
+
+```{r}
+trayectorias_sucias <- ensuciar(trayectorias_original, umbral = 0.05) # Ajusta el umbral de "suciedad"
+```
+
+Revisamos los primeros registros del dataset "sucio"
+
+```{r}
+head(trayectorias_sucias)
+```
+
+Vamos a empezar por revisar cómo luce nuestro dataset "sucio" y luego aplicaremos las técnicas de limpieza.
+
+```{r}
+glimpse(trayectorias_sucias)
+```
+
+## 1. Limpieza de Nombres de Variables con `janitor` 🧹
+
+Los nombres de las variables en nuestro dataset "sucio" podrían tener espacios, mayúsculas o caracteres especiales, lo que dificulta trabajar con ellos. Vamos a usar `clean_names()` del paquete `janitor` para estandarizarlos al formato `snake_case`.
+
+Utiliza la función `clean_names()` para limpiar los nombres de las columnas del dataset `trayectorias_sucias` y guarda el resultado en un nuevo data frame llamado `trayectorias_limpio_nombres`.
+
+```{r}
+# Completa el siguiente código:
+trayectorias_limpio_nombres <- clean_names(trayectorias_sucias)
+
+# Imprime los nombres de las columnas del nuevo data frame:
+names(trayectorias_limpio_nombres)
+```
+
+¿Notas cómo cambiaron los nombres de las columnas? ¿Qué ventajas tiene usar nombres de variables en formato `snake_case`?
+
+## 2. Detección de Valores Faltantes 🔍
+
+Es importante saber cuántos datos nos faltan en cada columna para poder decidir cómo manejarlos.
+
+-   Utiliza la función `is.na()` combinada con `colSums()` para contar el número de valores faltantes (NA) en cada columna del data frame `trayectorias_limpio_nombres`.
+
+```{=html}
+<!-- -->
+```
+-   Filtra el data frame `trayectorias_limpio_nombres` para mostrar solo las filas que tienen algún valor faltante en la columna `promocion_efectiva_primaria`.
+
+```{r}
+# Completa el siguiente código para contar los valores faltantes por columna:
+colSums(is.na(trayectorias_limpio_nombres))
+
+# Completa el siguiente código para filtrar filas con NA en 'promocion_efectiva_primaria':
+trayectorias_limpio_nombres %>%
+  filter(is.na(promocion_efectiva_primaria))
+
+```
+
+¿En qué columnas encontraste valores faltantes? ¿Qué posibles razones podrían explicar la presencia de estos valores faltantes en un dataset de indicadores educativos?
+
+## 3. Identificación y Eliminación de Duplicados 👯
+
+La función `ensuciar()` también introdujo algunos registros duplicados. Vamos a identificarlos y eliminarlos utilizando la columna `id` que se creó para este propósito.
+
+-   Utiliza la función `duplicated()` para identificar las filas duplicadas en `trayectorias_limpio_nombres` basándote en la columna `id`.
+
+```{=html}
+<!-- -->
+```
+-   Creá un nuevo data frame llamado `trayectorias_sin_duplicados` que contenga solo las filas únicas del dataset `trayectorias_limpio_nombres`.
+
+```{r}
+# Completa el siguiente código para identificar filas duplicadas usando la columna 'id':
+duplicados <- duplicated(trayectorias_limpio_nombres$id)
+sum(duplicados) # ¿Cuántos duplicados encontramos?
+
+```
+
+```{r}
+# Completa el siguiente código para crear un data frame sin duplicados:
+trayectorias_sin_duplicados <- trayectorias_limpio_nombres %>%
+  filter(!duplicated(id))
+
+# Verifica la cantidad de filas en el dataset original y en el dataset sin duplicados:
+nrow(trayectorias_limpio_nombres)
+nrow(trayectorias_sin_duplicados)
+```
+
+## 4. Validación de Datos con `validate`  ✅
+
+Vamos a usar el paquete `validate` para definir algunas reglas básicas sobre los rangos esperados de algunos indicadores.
+
+Definí las siguientes reglas de validación para el data frame `trayectorias_sin_duplicados`:
+
+-   La columna `anio` debe tener valores entre 2012 y 2022 (inclusive).
+
+-   La columna `promocion_efectiva_primaria` debería tener valores entre 0 y 100.
+
+-   La columna `repitencia_primaria` debería tener valores entre 0 y 100.
+
+Luego, confronta el dataset limpio con estas reglas y mostrá un resumen de los resultados.
+
+```{r}
+# Completa el siguiente código para definir las reglas de validación:
+reglas_trayectorias <- validator(
+  anio_rango = anio %in% factor(2012:2022),
+  promocion_primaria_rango = promocion_efectiva_primaria >= 0 & promocion_efectiva_primaria <= 100,
+  repitencia_primaria_rango = repitencia_primaria >= 0 & repitencia_primaria <= 100
+)
+
+# Completa el siguiente código para confrontar el dataset con las reglas:
+resultado_validacion <- confront(trayectorias_sin_duplicados, reglas_trayectorias)
+
+# Muestra un resumen de los resultados de la validación:
+summary(resultado_validacion)
+```
+
+```{r}
+# Muestra un grafico de los resultados de la validación:
+plot(resultado_validacion)
+```
+
+## Bananas y aviones: Escalas y Normalización de Datos ⚖️
+
+En este dataset, la mayoría de las variables numéricas ya están en escalas similares (porcentajes). Sin embargo, en otros datasets, podríamos encontrar variables con rangos muy diferentes, lo que podría afectar algunos análisis.
+
+**Siempre que te encuentres un dataset tene a hacete la siguiente pregunta:**
+
+[¿Es necesario aplicar alguna técnica de normalización (como escalado min-max o estandarización) antes de realizar análisis comparativos o modelos predictivos? .]{.underline}

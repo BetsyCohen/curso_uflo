@@ -37,3 +37,7 @@ title: "Unidad 3: ETL con tidyverse"
 [Limpieza y normalización](materiales/slides/limpieza_normalizacion.qmd)
 :::
 :::
+
+::: application-exercise
+[Actividad Optativa](materiales/excercise/ejercicio_limpieza_normalizacion.qmd)
+:::

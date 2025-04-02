@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.526">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Curso análisis de datos 1. Sociología UFLO - Ejercicio Práctico: Limpieza y Normalización de Datos Educativos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://kit.fontawesome.com/78ddb093ea.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Curso análisis de datos 1. Sociología UFLO
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Curso análisis de datos 1. Sociología UFLO</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../index_materiales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Materiales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../u2-intro-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unidad 2 Introducción al análisis de datos con R y RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../u3-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unidad 3: ETL con tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../u4-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../u5-comunidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unidad 5: Recursos y experiencias de la comunidad.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../index_programa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programa y crono</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../programa_y_crono/programa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programa</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../programa_y_crono/cronograma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cronograma</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licencia</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#limpiar-y-normalizar-datos" id="toc-limpiar-y-normalizar-datos" class="nav-link active" data-scroll-target="#limpiar-y-normalizar-datos">Limpiar y Normalizar Datos 🧼✨</a></li>
+  <li><a href="#cargar-librerías-que-vamos-a-usar" id="toc-cargar-librerías-que-vamos-a-usar" class="nav-link" data-scroll-target="#cargar-librerías-que-vamos-a-usar">Cargar librerías que vamos a usar</a>
+  <ul class="collapse">
+  <li><a href="#limpieza-de-nombres-de-variables-con-janitor" id="toc-limpieza-de-nombres-de-variables-con-janitor" class="nav-link" data-scroll-target="#limpieza-de-nombres-de-variables-con-janitor">1. Limpieza de Nombres de Variables con <code>janitor</code> 🧹</a></li>
+  <li><a href="#detección-de-valores-faltantes" id="toc-detección-de-valores-faltantes" class="nav-link" data-scroll-target="#detección-de-valores-faltantes">2. Detección de Valores Faltantes 🔍</a></li>
+  <li><a href="#identificación-y-eliminación-de-duplicados" id="toc-identificación-y-eliminación-de-duplicados" class="nav-link" data-scroll-target="#identificación-y-eliminación-de-duplicados">3. Identificación y Eliminación de Duplicados 👯</a></li>
+  <li><a href="#validación-de-datos-con-validate" id="toc-validación-de-datos-con-validate" class="nav-link" data-scroll-target="#validación-de-datos-con-validate">4. Validación de Datos con <code>validate</code> ✅</a></li>
+  <li><a href="#bananas-y-aviones-escalas-y-normalización-de-datos" id="toc-bananas-y-aviones-escalas-y-normalización-de-datos" class="nav-link" data-scroll-target="#bananas-y-aviones-escalas-y-normalización-de-datos">Bananas y aviones: Escalas y Normalización de Datos ⚖️</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ejercicio Práctico: Limpieza y Normalización de Datos Educativos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="limpiar-y-normalizar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="limpiar-y-normalizar-datos">Limpiar y Normalizar Datos 🧼✨</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.argentina.gob.ar/sites/default/files/el005362-9_page-0001.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>En este ejercicio práctico, aplicaremos las técnicas de limpieza y normalización de datos que aprendimos en la clase. Trabajaremos con un dataset de indicadores de trayectoria educativa de la provincia de Buenos Aires, al cual primero le introduciremos algunos “errores” para simular datos del mundo real.</p>
+<p>Los datos se encuentran publicados en el sitio <a href="https://catalogo.datos.gba.gob.ar/dataset/indicadores-de-trayectoria" class="uri">https://catalogo.datos.gba.gob.ar/dataset/indicadores-de-trayectoria</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si te interesa conocer más acerca de este tema te recomendamos la lectura del <a href="https://abc.gob.ar/secretarias/sites/default/files/2024-08/Manual%20Metodolo%CC%81gico%20de%20Indicadores%20Educativos-%20Agosto%202024.pdf">Manual Metodológico de Indicadores Educativos</a> que publica la Dirección de Información y Estadística de la Subsecretaria de Planeamiento. (Dirección General de Cultura y Educación del Gobierno de la Provincia de Buenos Aires)</p>
+</div>
+</div>
+<p><strong>Objetivos:</strong></p>
+<ul>
+<li>Aprender a limpiar los nombres de las variables utilizando el paquete <code>janitor</code>.</li>
+<li>Practicar la detección y el manejo de valores faltantes.</li>
+<li>Identificar y eliminar registros duplicados.</li>
+<li>Introducir la validación de datos con el paquete <code>validate</code>.</li>
+<li>(Opcional) Explorar la necesidad de normalización en este dataset.</li>
+</ul>
+</section>
+<section id="cargar-librerías-que-vamos-a-usar" class="level1">
+<h1>Cargar librerías que vamos a usar</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'janitor' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(validate) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'validate' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'validate'
+
+The following object is masked from 'package:dplyr':
+
+    expr
+
+The following object is masked from 'package:ggplot2':
+
+    expr</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(messy) <span class="co"># Para la función ensuciar</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para ensuciar los datos</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ensuciar <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset, umbral) {</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">where</span>(is.numeric), </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">rbinom</span>(<span class="fu">length</span>(.), <span class="dv">1</span>, <span class="fl">0.05</span>) <span class="sc">==</span> <span class="dv">1</span>, . <span class="sc">*</span> <span class="dv">10</span>, .))) <span class="sc">%&gt;%</span> <span class="co"># Creamos valores erróneos</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dataset)) <span class="sc">%&gt;%</span> <span class="co"># ID para identificar mejor duplicados</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">messy</span>(<span class="at">messiness =</span> umbral) <span class="sc">%&gt;%</span> <span class="co"># Ensuciamos valores</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#messy_colnames(messiness = umbral) %&gt;% # Ensuciamos nombres de columnas</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>(<span class="fu">slice_sample</span>(., <span class="at">prop =</span> <span class="fl">0.1</span>)) <span class="co"># Duplicados</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cargar datos</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://catalogo.datos.gba.gob.ar/dataset/0c691f21-28df-4ea5-98be-6e92b5a589c6/resource/5a73b8ea-24a4-4608-aaeb-39dde782fabf/download/indicadores-proceso-trayectoria-sobreedad-2012_2022.csv"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>trayectorias_original <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ensuciar el dataset original</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>trayectorias_sucias <span class="ot">&lt;-</span> <span class="fu">ensuciar</span>(trayectorias_original, <span class="at">umbral =</span> <span class="fl">0.05</span>) <span class="co"># Ajusta el umbral de "suciedad"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Revisamos los primeros registros del dataset “sucio”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trayectorias_sucias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  anio municipio_id municipio_nombre promocion_efectiva_primaria
+1 2012         6007             &lt;NA&gt;                      1002.6
+2 2013       60070     Adolfo Alsina                       97.35
+3 2014         6007   Adolf)o Alsina                       97.36
+4 2015         6007    Adolfo Alsina                          96
+5 2016         6007    Adolfo Alsina                       97.67
+6 2017         6007    Adolfo Alsina                       97.12
+  promocion_efectiva_secundaria repitencia_primaria repitencia_secundaria
+1                         84.14                1.25                  9.06
+2                         86.84               1.68                  5.31 
+3                         80.79                2.23                  2.52
+4                         91.55                2.41                  5.24
+5                         95.56                2.61                  7.27
+6                         81.23                &lt;NA&gt;                  5.69
+  reinscripcion_primaria reinscripcion_secundaria abandono_interanual_primaria
+1                   0.07                     1.79                        -1.57
+2                    1.3                    0.12                           8.4
+3                   0.07                     0.43                         0.34
+4                   0.21                     0.85                         1.38
+5                  0.07                      1.29                        -0.35
+6                   0.07                      0.3                        -0.28
+  abandono_interanual_secundaria alumnos_promovidos_primaria
+1                           5.01                       98.55
+2                           7.73                        99.3
+3                          16.26                       99.31
+4                           2.36                       98.53
+5                           &lt;NA&gt;                       98.42
+6                          12.77                       98.32
+  alumnos_promovidos_secundaria alumnos_no_promovidos_primaria
+1                         81.46                           1.45
+2                         90.52                            0.7
+3                         90.87                           0.69
+4                         91.38                           1.47
+5                         930.5                           1.58
+6                          &lt;NA&gt;                           1.68
+  alumnos_no_promovidos_secundaria salidos_sin_pase_primaria
+1                            18.54                         0
+2                             9.48                       0.3
+3                             9.13                      0.13
+4                             &lt;NA&gt;                       3.3
+5                             6.95                      0.14
+6                             7.48                      &lt;NA&gt;
+  salidos_sin_pase_secundaria salidos_con_pase_primaria
+1                        2.71                       5.4
+2                        2.77                      5.02
+3                        2.11                     4.84 
+4                        2.49                      &lt;NA&gt;
+5                        2.79                      4.72
+6                        2.41                      4.44
+  salidos_con_pase_secundaria sobreedad_primaria sobreedad_secundaria
+1                         2.9              126.1               26.77 
+2                        5.72              10.27                262.7
+3                        4.31               8.46                25.06
+4                       4.64                7.16                30.85
+5                        3.57               6.81                26.13
+6                        4.76               7.78                18.64
+  sobreedad_avanzada_primaria sobreedad_avanzada_secundaria id
+1                        4.01                         12.28  1
+2                        3.42                         11.51 2 
+3                        2.51                          91.7  3
+4                        1.86                        105.1   4
+5                        1.69                          8.24 5 
+6                        1.75                          &lt;NA&gt;  6</code></pre>
+</div>
+</div>
+<p>Vamos a empezar por revisar cómo luce nuestro dataset “sucio” y luego aplicaremos las técnicas de limpieza.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(trayectorias_sucias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,633
+Columns: 24
+$ anio                             &lt;chr&gt; "2012", "2013", "2014", "2015", "2016…
+$ municipio_id                     &lt;chr&gt; "6007", "60070 ", "6007", "6007", "60…
+$ municipio_nombre                 &lt;chr&gt; NA, "Adolfo Alsina", "Adolf)o Alsina"…
+$ promocion_efectiva_primaria      &lt;chr&gt; "1002.6", "97.35", "97.36", "96", "97…
+$ promocion_efectiva_secundaria    &lt;chr&gt; "84.14", "86.84", "80.79", "91.55", "…
+$ repitencia_primaria              &lt;chr&gt; "1.25", "1.68 ", "2.23", "2.41", "2.6…
+$ repitencia_secundaria            &lt;chr&gt; "9.06", "5.31 ", "2.52", "5.24", "7.2…
+$ reinscripcion_primaria           &lt;chr&gt; "0.07", "1.3", "0.07", "0.21", "0.07 …
+$ reinscripcion_secundaria         &lt;chr&gt; "1.79", "0.12 ", "0.43", "0.85", "1.2…
+$ abandono_interanual_primaria     &lt;chr&gt; "-1.57", "8.4", "0.34", "1.38", "-0.3…
+$ abandono_interanual_secundaria   &lt;chr&gt; "5.01", "7.73", "16.26", "2.36", NA, …
+$ alumnos_promovidos_primaria      &lt;chr&gt; "98.55", "99.3", "99.31", "98.53", "9…
+$ alumnos_promovidos_secundaria    &lt;chr&gt; "81.46", "90.52", "90.87", "91.38", "…
+$ alumnos_no_promovidos_primaria   &lt;chr&gt; "1.45", "0.7", "0.69", "1.47", "1.58"…
+$ alumnos_no_promovidos_secundaria &lt;chr&gt; "18.54", "9.48", "9.13", NA, "6.95", …
+$ salidos_sin_pase_primaria        &lt;chr&gt; "0", "0.3", "0.13", "3.3", "0.14", NA…
+$ salidos_sin_pase_secundaria      &lt;chr&gt; "2.71", "2.77", "2.11", "2.49", "2.79…
+$ salidos_con_pase_primaria        &lt;chr&gt; "5.4", "5.02", "4.84 ", NA, "4.72", "…
+$ salidos_con_pase_secundaria      &lt;chr&gt; "2.9", "5.72", "4.31", "4.64 ", "3.57…
+$ sobreedad_primaria               &lt;chr&gt; "126.1", "10.27", "8.46", "7.16", "6.…
+$ sobreedad_secundaria             &lt;chr&gt; "26.77 ", "262.7", "25.06", "30.85", …
+$ sobreedad_avanzada_primaria      &lt;chr&gt; "4.01", "3.42", "2.51", "1.86", "1.69…
+$ sobreedad_avanzada_secundaria    &lt;chr&gt; "12.28", "11.51", "91.7", "105.1 ", "…
+$ id                               &lt;chr&gt; "1", "2 ", "3", "4", "5 ", "6", "7", …</code></pre>
+</div>
+</div>
+<section id="limpieza-de-nombres-de-variables-con-janitor" class="level2">
+<h2 class="anchored" data-anchor-id="limpieza-de-nombres-de-variables-con-janitor">1. Limpieza de Nombres de Variables con <code>janitor</code> 🧹</h2>
+<p>Los nombres de las variables en nuestro dataset “sucio” podrían tener espacios, mayúsculas o caracteres especiales, lo que dificulta trabajar con ellos. Vamos a usar <code>clean_names()</code> del paquete <code>janitor</code> para estandarizarlos al formato <code>snake_case</code>.</p>
+<p>Utiliza la función <code>clean_names()</code> para limpiar los nombres de las columnas del dataset <code>trayectorias_sucias</code> y guarda el resultado en un nuevo data frame llamado <code>trayectorias_limpio_nombres</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>trayectorias_limpio_nombres <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(trayectorias_sucias)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprime los nombres de las columnas del nuevo data frame:</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(trayectorias_limpio_nombres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "anio"                             "municipio_id"                    
+ [3] "municipio_nombre"                 "promocion_efectiva_primaria"     
+ [5] "promocion_efectiva_secundaria"    "repitencia_primaria"             
+ [7] "repitencia_secundaria"            "reinscripcion_primaria"          
+ [9] "reinscripcion_secundaria"         "abandono_interanual_primaria"    
+[11] "abandono_interanual_secundaria"   "alumnos_promovidos_primaria"     
+[13] "alumnos_promovidos_secundaria"    "alumnos_no_promovidos_primaria"  
+[15] "alumnos_no_promovidos_secundaria" "salidos_sin_pase_primaria"       
+[17] "salidos_sin_pase_secundaria"      "salidos_con_pase_primaria"       
+[19] "salidos_con_pase_secundaria"      "sobreedad_primaria"              
+[21] "sobreedad_secundaria"             "sobreedad_avanzada_primaria"     
+[23] "sobreedad_avanzada_secundaria"    "id"                              </code></pre>
+</div>
+</div>
+<p>¿Notas cómo cambiaron los nombres de las columnas? ¿Qué ventajas tiene usar nombres de variables en formato <code>snake_case</code>?</p>
+</section>
+<section id="detección-de-valores-faltantes" class="level2">
+<h2 class="anchored" data-anchor-id="detección-de-valores-faltantes">2. Detección de Valores Faltantes 🔍</h2>
+<p>Es importante saber cuántos datos nos faltan en cada columna para poder decidir cómo manejarlos.</p>
+<ul>
+<li>Utiliza la función <code>is.na()</code> combinada con <code>colSums()</code> para contar el número de valores faltantes (NA) en cada columna del data frame <code>trayectorias_limpio_nombres</code>.</li>
+</ul>
+<!-- -->
+<ul>
+<li>Filtra el data frame <code>trayectorias_limpio_nombres</code> para mostrar solo las filas que tienen algún valor faltante en la columna <code>promocion_efectiva_primaria</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código para contar los valores faltantes por columna:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(trayectorias_limpio_nombres))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            anio                     municipio_id 
+                             103                               77 
+                municipio_nombre      promocion_efectiva_primaria 
+                              73                               84 
+   promocion_efectiva_secundaria              repitencia_primaria 
+                              85                               86 
+           repitencia_secundaria           reinscripcion_primaria 
+                              78                               80 
+        reinscripcion_secundaria     abandono_interanual_primaria 
+                              70                               80 
+  abandono_interanual_secundaria      alumnos_promovidos_primaria 
+                              81                               78 
+   alumnos_promovidos_secundaria   alumnos_no_promovidos_primaria 
+                              91                               84 
+alumnos_no_promovidos_secundaria        salidos_sin_pase_primaria 
+                              90                               96 
+     salidos_sin_pase_secundaria        salidos_con_pase_primaria 
+                              73                               85 
+     salidos_con_pase_secundaria               sobreedad_primaria 
+                              73                               88 
+            sobreedad_secundaria      sobreedad_avanzada_primaria 
+                              90                               86 
+   sobreedad_avanzada_secundaria                               id 
+                              93                               85 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código para filtrar filas con NA en 'promocion_efectiva_primaria':</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>trayectorias_limpio_nombres <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(promocion_efectiva_primaria))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    anio municipio_id                    municipio_nombre
+1   2020         6028                   Almira_nte Brow@n
+2   &lt;NA&gt;         6077                           Arrecifes
+3   2013         6035                          Avellaneda
+4   2022        60350                          Avellaneda
+5   2014         6063                            Balcarce
+6   2020         &lt;NA&gt;                         Bol&lt;ed&gt;v!ar
+7   2022         6105                                &lt;NA&gt;
+8   2013         6134                         Ca&lt;f1&gt;uelas
+9   2017         6154                      Carlos Tejedor
+10  2013        61680                        Ca@s#t@el@li
+11  2018        6210                            Chacabuco
+12  2013         6218                       Cha^scom&lt;fa&gt;s
+13  2021         6189                     Coronel Dorrego
+14  2017         6182 Coronel de Marina Leonardo Rosal#es
+15  2016         6231                            Daireaux
+16  2020         6252                             ESCOBAR
+17  2021        6252                                 &lt;NA&gt;
+18  2018        62600              E%steban Echeverr&lt;ed&gt;a
+19  2012         6277                 Florentino Ameghino
+20  2013         6277                Flore-ntino Ameghino
+21  2015        6277                  Florentino Ameghino
+22  2022         6277                 Florentino Ameghino
+23  2017         6280                                &lt;NA&gt;
+24  2014         6294                   Gene+ral Arenales
+25 2016          6294                    General Arenales
+26  2018         6294                  General A_r&amp;enales
+27 2015          6329                  General Las Hera_s
+28  2015         6315            General Juan M%ada%riaga
+29  2013         6357            )General Pu-eyrred*&lt;f3&gt;n
+30  2013         6392                   General Villegas 
+31  2015         6392                   General Vil!legas
+32  2016         6406              Hip&lt;f3&gt;lit#o Yri^goyen
+33 2017          &lt;NA&gt;                    Jos&lt;e9&gt; C. @Pa_z
+34  2018        64130                            Jun&lt;ed&gt;n
+35  2018         6427                          La Matanza
+36  2022         6434                            Lan&lt;fa&gt;s
+37  2015         6455                         Las Fl@ores
+38  2013         6466                              Lezama
+39  2012         6490                     Lomas de Zamora
+40  &lt;NA&gt;         6490                    Lom^as de Zamora
+41  2015        64970                            Luj&lt;e1&gt;n
+42  2016         6505                          Magdalena 
+43  2020         6511                            Maip&lt;fa&gt;
+44  2016         6515                 Malvinas Argentinas
+45  2021         6515               Malvinas )Ar$gentinas
+46  2020         6560                              Moreno
+47  2017         6595                      Olav@arr&lt;ed&amp;&gt;a
+48  2014         6602                           Patagones
+49  2019         6609                          Pehuaj&lt;f3&gt;
+50  2015         6630                                Pila
+51  2021         6630                                Pila
+52 20180         6648                 Presidente Per&lt;f3&gt;n
+53  2020        66650                             Ramallo
+54  2022         6672                              R.auch
+55 20140         6686                              R(ojas
+56  2012         &lt;NA&gt;                                &lt;NA&gt;
+57  2022         &lt;NA&gt;                     Salli+quel&lt;f3&amp;&gt;
+58  2017         6735               San Antonio de Areco 
+59  2019         6749                       San Fern)ando
+60  2021         6749                       San Fern&amp;ando
+61  2017         6760                          San Miguel
+62  2022         6770                          San Pedr@o
+63 20140         6778                         San Vicente
+64  2016         &lt;NA&gt;                         San Vicente
+65  2022         &lt;NA&gt;                        San&amp; Vicente
+66  2012         6805                               Tigre
+67  2012         6847                          Tres Lomas
+68  &lt;NA&gt;         6847                        Tres .L$omas
+69  2012         6854                         25 de Mayo 
+70  2012         &lt;NA&gt;                         Z&lt;e1!&gt;rat.e
+71  2016         6882                          Z&lt;&amp;e1&gt;rate
+72  2021         6882                           Z&lt;e1&gt;rate
+73  2022         6882                          Z&lt;e1&gt;rate 
+74  2017         6595                      Olav@arr&lt;ed&amp;&gt;a
+75  2021         6189                     Coronel Dorrego
+76  2022         6770                          San Pedr@o
+77  2021         6630                                Pila
+78  2020         6560                              Moreno
+79  2017         6280                                &lt;NA&gt;
+80  2013         6218                       Cha^scom&lt;fa&gt;s
+81  2022        60350                          Avellaneda
+82  2020         6028                   Almira_nte Brow@n
+83  2020        66650                             Ramallo
+84  2012         6847                          Tres Lomas
+   promocion_efectiva_primaria promocion_efectiva_secundaria
+1                         &lt;NA&gt;                         99.97
+2                         &lt;NA&gt;                         78.49
+3                         &lt;NA&gt;                          &lt;NA&gt;
+4                         &lt;NA&gt;                          88.5
+5                         &lt;NA&gt;                         78.42
+6                         &lt;NA&gt;                         99.44
+7                         &lt;NA&gt;                         88.56
+8                         &lt;NA&gt;                         78.95
+9                         &lt;NA&gt;                         85.85
+10                        &lt;NA&gt;                         81.01
+11                        &lt;NA&gt;                         863.1
+12                        &lt;NA&gt;                         82.96
+13                        &lt;NA&gt;                          &lt;NA&gt;
+14                        &lt;NA&gt;                         88.46
+15                        &lt;NA&gt;                         83.13
+16                        &lt;NA&gt;                         99.62
+17                        &lt;NA&gt;                        94.09 
+18                        &lt;NA&gt;                          80.5
+19                        &lt;NA&gt;                        82.11 
+20                        &lt;NA&gt;                         83.33
+21                        &lt;NA&gt;                         87.34
+22                        &lt;NA&gt;                         88.31
+23                        &lt;NA&gt;                         86.53
+24                        &lt;NA&gt;                         88.03
+25                        &lt;NA&gt;                         87.95
+26                        &lt;NA&gt;                          &lt;NA&gt;
+27                        &lt;NA&gt;                         85.06
+28                        &lt;NA&gt;                         83.58
+29                        &lt;NA&gt;                         82.95
+30                        &lt;NA&gt;                         77.07
+31                        &lt;NA&gt;                         80.25
+32                        &lt;NA&gt;                         76.33
+33                        &lt;NA&gt;                         81.24
+34                        &lt;NA&gt;                        87.51 
+35                        &lt;NA&gt;                         85.87
+36                        &lt;NA&gt;                         90.42
+37                        &lt;NA&gt;                        794.1 
+38                        &lt;NA&gt;                         89.98
+39                        &lt;NA&gt;                         80.59
+40                        &lt;NA&gt;                         90.62
+41                        &lt;NA&gt;                         855.1
+42                        &lt;NA&gt;                         87.95
+43                        &lt;NA&gt;                        100.62
+44                        &lt;NA&gt;                         80.32
+45                        &lt;NA&gt;                         904.9
+46                        &lt;NA&gt;                         99.44
+47                        &lt;NA&gt;                         86.96
+48                        &lt;NA&gt;                         82.96
+49                        &lt;NA&gt;                         87.46
+50                        &lt;NA&gt;                          93.2
+51                        &lt;NA&gt;                         99.76
+52                        &lt;NA&gt;                         84.43
+53                        &lt;NA&gt;                        100.66
+54                        &lt;NA&gt;                         87.38
+55                        &lt;NA&gt;                         81.95
+56                        &lt;NA&gt;                         87.72
+57                        &lt;NA&gt;                         89.29
+58                        &lt;NA&gt;                         86.33
+59                        &lt;NA&gt;                         86.28
+60                        &lt;NA&gt;                         92.54
+61                        &lt;NA&gt;                        85.88 
+62                        &lt;NA&gt;                         86.05
+63                        &lt;NA&gt;                          80.2
+64                        &lt;NA&gt;                         75.75
+65                        &lt;NA&gt;                          &lt;NA&gt;
+66                        &lt;NA&gt;                         80.81
+67                        &lt;NA&gt;                         84.44
+68                        &lt;NA&gt;                         929.6
+69                        &lt;NA&gt;                         78.99
+70                        &lt;NA&gt;                        81.87 
+71                        &lt;NA&gt;                         80.28
+72                        &lt;NA&gt;                          &lt;NA&gt;
+73                        &lt;NA&gt;                         88.91
+74                        &lt;NA&gt;                         86.96
+75                        &lt;NA&gt;                          &lt;NA&gt;
+76                        &lt;NA&gt;                         86.05
+77                        &lt;NA&gt;                         99.76
+78                        &lt;NA&gt;                         99.44
+79                        &lt;NA&gt;                         86.53
+80                        &lt;NA&gt;                         82.96
+81                        &lt;NA&gt;                          88.5
+82                        &lt;NA&gt;                         99.97
+83                        &lt;NA&gt;                        100.66
+84                        &lt;NA&gt;                         84.44
+   repitencia_primaria repitencia_secundaria reinscripcion_primaria
+1                 0.08                  0.03                      0
+2                 2.68                 14.96                   0.42
+3                 1.83                 10.36                   0.16
+4                  4.2                  7.73                    0.2
+5                 0.57                  9.53                   0.14
+6                0.22                   0.16                   0.06
+7                  3.1                  9.12                   0.62
+8                 1.57                 10.56                   0.14
+9                  2.6                 10.15                   0.56
+10                1.34                 12.37                   0.12
+11                2.45                  8.81                   0.23
+12                2.22                 10.05                   1.42
+13                   1                  2.24                  0.14 
+14               2.79                   8.75                   0.03
+15                3.42                  11.7                      0
+16                0.03                  0.03                   0.05
+17                 1.5                  3.58                      0
+18                3.26                 125.2                   0.15
+19                0.69                  7.89                    0.2
+20                1.63                 11.56                      0
+21                3.06                  6.85                      0
+22                3.55                  &lt;NA&gt;                   1.01
+23                6.02                  8.65                   0.51
+24                4.02                  6.39                   0.45
+25                5.91                  59.9                   0.54
+26                 4.9                  5.91                      0
+27                1.45                 11.03                      0
+28                2.87                 10.79                   0.16
+29                2.08                  &lt;NA&gt;                    0.7
+30                 2.2                  12.7                      0
+31                2.58                  11.5                   0.17
+32                3.65                  12.7                    2.1
+33                4.13                 10.83                    0.1
+34                &lt;NA&gt;                  11.4                      0
+35                29.4                   9.7                   0.29
+36                2.59                  5.6                    0.17
+37                3.89                 13.73                      0
+38                1.5                   &lt;NA&gt;                   0.37
+39                2.14                  8.85                   0.22
+40                &lt;NA&gt;                  6.01                   0.08
+41               2.18                   9.36                   0.01
+42                4.74                  7.73                   &lt;NA&gt;
+43                0.94                   0.1                      0
+44                4.42                 11.83                   0.35
+45                28.2                  4.86                   0.08
+46                0.05                  0.05                   &lt;NA&gt;
+47                4.17                  8.56                   0.31
+48                2.14                 11.31                   0.38
+49                 4.8                  6.82                    0.1
+50                2.67                  1.13                      0
+51                &lt;NA&gt;                  0.48                   &lt;NA&gt;
+52                4.32                 11.28                   0.05
+53                 0.1                     0                   0.05
+54               1.37                  9.69                    0.14
+55                1.39                 11.69                   0.59
+56                1.69                  4.55                   0.42
+57                2.66                  8.72                      0
+58               3.58                   9.07                      0
+59                2.66                  10.2                   0.22
+60                1.99                  33.5                   &lt;NA&gt;
+61                3.42                  9.78                   0.15
+62                1.45                   8.9                   0.13
+63                1.92                  12.4                   0.04
+64                4.26                 14.12                    1.5
+65                &lt;NA&gt;                  6.24                   0.01
+66                1.91                  9.01                   &lt;NA&gt;
+67                2.34                12.12                    0.55
+68                2.17                  3.46                      0
+69                3.04                  9.76                    0.5
+70                2.68                 10.14                   0.13
+71               4.17                  10.43                   0.02
+72                2.79                   6.6                   0.17
+73                1.35                  7.13                   0.22
+74                4.17                  8.56                   0.31
+75                   1                  2.24                  0.14 
+76                1.45                   8.9                   0.13
+77                &lt;NA&gt;                  0.48                   &lt;NA&gt;
+78                0.05                  0.05                   &lt;NA&gt;
+79                6.02                  8.65                   0.51
+80                2.22                 10.05                   1.42
+81                 4.2                  7.73                    0.2
+82                0.08                  0.03                      0
+83                 0.1                     0                   0.05
+84                2.34                12.12                    0.55
+   reinscripcion_secundaria abandono_interanual_primaria
+1                      0.33                         0.18
+2                      2.51                         0.45
+3                      2.36                         0.78
+4                      1.44                        -0.22
+5                      2.45                          0.5
+6                      0.07                         0.03
+7                      1.79                        -0.59
+8                      3.32                        -1.82
+9                      1.86                          1.3
+10                     1.01                         0.37
+11                     0.02                         1.59
+12                      0.5                        -0.86
+13                     0.34                         0.21
+14                     0.22                         1.17
+15                     0.74                         0.78
+16                     0.07                        -0.69
+17                     0.26                        -0.28
+18                     &lt;NA&gt;                         1.25
+19                    0.56                         -0.79
+20                     0.23                        -0.29
+21                     0.58                         0.93
+22                     0.29                          8.1
+23                     0.54                        -0.44
+24                     1.56                         0.15
+25                       0                          &lt;NA&gt;
+26                     0.61                         1.01
+27                     0.29                         -0.5
+28                     0.13                        -0.31
+29                     0.75                         0.11
+30                      1.8                         0.15
+31                     &lt;NA&gt;                         0.75
+32                     0.25                          8.6
+33                     1.62                         0.05
+34                     0.32                          0.5
+35                     1.07                         1.11
+36                     0.89                         0.86
+37                     0.75                         &lt;NA&gt;
+38                     3.21                        -1.12
+39                     1.13                         0.77
+40                      6.8                         0.33
+41                     0.45                        -0.52
+42                     0.36                        -0.66
+43                        0                            0
+44                     2.63                         0.49
+45                    0.45                          1.05
+46                      1.5                         0.31
+47                     1.32                         1.31
+48                     32.5                         0.93
+49                     0.39                         1.98
+50                     1.13                         2.43
+51                     0.24                         4.16
+52                     0.81                        -0.26
+53                     0.33                        -0.48
+54                     1.38                         1.03
+55                     1.78                         &lt;NA&gt;
+56                     1.29                         0.77
+57                     0.33                        -0.53
+58                     0.52                         1.77
+59                     1.12                         0.13
+60                     0.25                         2.03
+61                     1.72                          3.4
+62                      0.5                         &lt;NA&gt;
+63                     1.42                         &lt;NA&gt;
+64                     1.92                        -0.57
+65                     10.2                         3.11
+66                     0.97                         0.92
+67                      5.1                        -2.62
+68                     1.98                         1.36
+69                    0.85                          0.33
+70                     1.38                         0.38
+71                     0.69                         0.88
+72                     0.64                         0.28
+73                    1.11                          0.95
+74                     1.32                         1.31
+75                     0.34                         0.21
+76                      0.5                         &lt;NA&gt;
+77                     0.24                         4.16
+78                      1.5                         0.31
+79                     0.54                        -0.44
+80                      0.5                        -0.86
+81                     1.44                        -0.22
+82                     0.33                         0.18
+83                     0.33                        -0.48
+84                      5.1                        -2.62
+   abandono_interanual_secundaria alumnos_promovidos_primaria
+1                           -0.33                         100
+2                            4.04                       99.67
+3                            6.44                       97.97
+4                            2.33                       96.51
+5                             9.6                       99.33
+6                            0.33                        99.6
+7                            0.53                       97.29
+8                            7.17                       98.22
+9                            21.4                      98.51 
+10                           5.61                       98.39
+11                           4.86                       99.39
+12                           6.49                        99.2
+13                           2.11                       98.37
+14                           25.7                        97.5
+15                           4.43                      98.19 
+16                           0.28                       99.97
+17                           2.07                        99.1
+18                           6.52                        &lt;NA&gt;
+19                          9.44                         99.3
+20                           4.88                       98.55
+21                           5.23                        &lt;NA&gt;
+22                           36.4                      97.78 
+23                           4.29                       97.66
+24                           4.01                       97.97
+25                          6.06                        97.91
+26                           2.86                        98.2
+27                           3.62                       98.74
+28                             55                       96.91
+29                           6.96                        &lt;NA&gt;
+30                           8.42                       99.41
+31                           &lt;NA&gt;                       97.29
+32                          107.3                       96.76
+33                          6.31                       96.75 
+34                           0.77                       97.87
+35                           3.36                       98.14
+36                            3.1                       97.94
+37                           &lt;NA&gt;                       98.82
+38                            3.4                         100
+39                           9.43                       97.95
+40                           2.69                       98.61
+41                           4.68                       97.96
+42                           3.96                         964
+43                           &lt;NA&gt;                         100
+44                           5.23                        96.6
+45                            4.2                       98.12
+46                           0.36                        &lt;NA&gt;
+47                           3.16                       97.37
+48                           2.48                       97.89
+49                           5.33                      98.15 
+50                           4.53                         100
+51                          -0.48                       99.36
+52                           3.48                       97.11
+53                          -0.98                         100
+54                           1.56                      99.31 
+55                           &lt;NA&gt;                        99.1
+56                           6.44                       98.41
+57                          1.66                        97.08
+58                           4.08                       98.55
+59                            2.4                        98.1
+60                           3.87                       98.52
+61                           2.62                       97.74
+62                           4.55                       98.81
+63                           5.97                      98.96 
+64                           8.21                        96.4
+65                           3.22                        97.8
+66                            9.2                       98.17
+67                          -1.65                        96.9
+68                            1.6                       99.18
+69                           10.4                       97.99
+70                           6.61                       96.87
+71                            8.6                       96.82
+72                           1.89                       99.79
+73                           2.85                       99.01
+74                           3.16                       97.37
+75                           2.11                       98.37
+76                           4.55                       98.81
+77                          -0.48                       99.36
+78                           0.36                        &lt;NA&gt;
+79                           4.29                       97.66
+80                           6.49                        99.2
+81                           2.33                       96.51
+82                          -0.33                         100
+83                          -0.98                         100
+84                          -1.65                        96.9
+   alumnos_promovidos_secundaria alumnos_no_promovidos_primaria
+1                          97.69                              0
+2                          74.39                            3.3
+3                          78.04                           2.03
+4                          84.23                           3.49
+5                          81.68                           0.67
+6                          97.06                            0.4
+7                          84.29                           2.71
+8                          79.57                           1.78
+9                           &lt;NA&gt;                           1.49
+10                         82.81                           1.61
+11                         91.71                           0.61
+12                         81.43                            0.8
+13                         96.21                           1.63
+14                         86.18                            2.5
+15                         87.21                          1.81 
+16                          98.4                           0.03
+17                         92.93                            0.9
+18                         806.1                           1.79
+19                         84.96                            0.7
+20                         83.89                           1.45
+21                         83.31                           3.07
+22                         88.02                           2.22
+23                         826.3                           2.34
+24                         90.09                           2.03
+25                         894.5                           2.09
+26                         93.34                            1.8
+27                         76.43                           1.26
+28                         76.47                           3.09
+29                         80.05                           1.82
+30                         78.54                            5.9
+31                         79.28                           2.71
+32                         79.54                          3.24 
+33                         80.07                           3.25
+34                         84.56                           2.13
+35                         84.23                           1.86
+36                          &lt;NA&gt;                           2.06
+37                         771.9                           11.8
+38                         91.88                              0
+39                         78.69                           2.05
+40                         87.36                           1.39
+41                         83.19                           2.04
+42                         83.03                            3.6
+43                           100                              0
+44                         78.94                            3.4
+45                         89.58                           1.88
+46                         97.68                           0.06
+47                         83.92                           2.63
+48                         80.17                           2.11
+49                          89.5                           1.85
+50                        85.39                               0
+51                           100                           0.64
+52                         77.53                           2.89
+53                         99.42                              0
+54                         935.1                           0.69
+55                         88.47                           0.9 
+56                         87.34                           1.59
+57                         85.29                           2.92
+58                         82.75                           1.45
+59                         84.97                            1.9
+60                         92.74                           1.48
+61                         79.94                           22.6
+62                         85.87                           1.19
+63                         78.95                           1.04
+64                          78.4                            3.6
+65                         89.61                            2.2
+66                          79.6                           1.83
+67                         82.09                            3.1
+68                         95.57                           0.82
+69                         79.94                           20.1
+70                         82.78                           3.13
+71                         82.59                           3.18
+72                         91.77                           0.21
+73                         89.25                           0.99
+74                         83.92                           2.63
+75                         96.21                           1.63
+76                         85.87                           1.19
+77                           100                           0.64
+78                         97.68                           0.06
+79                         826.3                           2.34
+80                         81.43                            0.8
+81                         84.23                           3.49
+82                         97.69                              0
+83                         99.42                              0
+84                         82.09                            3.1
+   alumnos_no_promovidos_secundaria salidos_sin_pase_primaria
+1                              23.1                      0.01
+2                             25.61                         0
+3                             21.96                      0.26
+4                             15.77                      &lt;NA&gt;
+5                             18.32                       0.9
+6                              2.94                         0
+7                             15.71                         0
+8                             20.43                      &lt;NA&gt;
+9                             10.72                         0
+10                           17.19                       &lt;NA&gt;
+11                             8.29                      0.04
+12                            18.57                     0.02 
+13                             3.79                        0 
+14                            13.82                      0.02
+15                             &lt;NA&gt;                         0
+16                              1.6                      0.03
+17                             7.07                      &lt;NA&gt;
+18                            19.39                      0.14
+19                            15.04                         0
+20                            16.11                         0
+21                            16.69                      0.09
+22                            11.98                      0.19
+23                            17.37                      0.02
+24                             99.1                      0.07
+25                            10.55                      0.07
+26                             6.66                         0
+27                             &lt;NA&gt;                      &lt;NA&gt;
+28                            23.53                      0.08
+29                            19.95                      0.17
+30                             &lt;NA&gt;                      0.06
+31                            20.72                      &lt;NA&gt;
+32                            20.46                         1
+33                            19.93                      0.28
+34                            15.44                      0.14
+35                            15.77                      0.27
+36                            10.31                      0.02
+37                            22.81                      0.12
+38                             8.12                         0
+39                            21.31                      &lt;NA&gt;
+40                            12.64                      0.04
+41                            16.81                      0.14
+42                             &lt;NA&gt;                      0.09
+43                                0                         0
+44                            21.06                      0.24
+45                            10.42                      0.03
+46                             2.32                      0.13
+47                            16.08                      0.04
+48                            19.83                         0
+49                             10.5                      0.02
+50                            14.61                      0.89
+51                                0                         0
+52                            22.47                      0.04
+53                             0.58                         0
+54                             &lt;NA&gt;                         0
+55                            11.53                      0.61
+56                            12.66                      0.62
+57                            14.71                         0
+58                            17.25                      0.25
+59                            15.03                      0.12
+60                             7.26                      0.02
+61                             &lt;NA&gt;                      0.25
+62                            14.13                         0
+63                            21.05                      0.06
+64                             21.6                      0.04
+65                            10.39                         0
+66                              204                      0.62
+67                            17.91                        0 
+68                             4.43                         0
+69                            20.06                       0.1
+70                            17.22                      0.25
+71                            17.41                      0.16
+72                             8.23                      0.03
+73                            10.75                      0.06
+74                            16.08                      0.04
+75                             3.79                        0 
+76                            14.13                         0
+77                                0                         0
+78                             2.32                      0.13
+79                            17.37                      0.02
+80                            18.57                     0.02 
+81                            15.77                      &lt;NA&gt;
+82                             23.1                      0.01
+83                             0.58                         0
+84                            17.91                        0 
+   salidos_sin_pase_secundaria salidos_con_pase_primaria
+1                         0.16                      3.42
+2                         2.82                         1
+3                            1                      3.14
+4                         0.45                      2.86
+5                          0.5                      41.4
+6                        0.23                       2.89
+7                         0.29                      3.95
+8                         1.32                      3.88
+9                         1.28                      4.6 
+10                        2.68                      4.79
+11                        0.48                      47.2
+12                        0.19                      3.09
+13                       0.34                       1.01
+14                        0.03                      2.82
+15                         1.3                      5.11
+16                        0.13                      3.27
+17                         0.2                      1.71
+18                        0.82                      4.13
+19                        5.43                      5.44
+20                        3.85                       6.1
+21                         3.5                      3.23
+22                        0.09                      4.32
+23                        0.32                      &lt;NA&gt;
+24                        1.88                      3.43
+25                        &lt;NA&gt;                      3.49
+26                        1.79                       3.2
+27                        0.91                      5.01
+28                         2.1                      4.37
+29                        1.47                      &lt;NA&gt;
+30                        &lt;NA&gt;                      4.92
+31                        1.36                      4.14
+32                        4.41                      4.88
+33                        1.04                      &lt;NA&gt;
+34                        1.34                      4.29
+35                        0.59                      3.01
+36                        0.27                       3.3
+37                         1.2                     2.65 
+38                         1.1                     5.59 
+39                        1.65                      &lt;NA&gt;
+40                        0.12                      2.71
+41                        1.14                      3.53
+42                         4.7                       4.2
+43                           0                      4.48
+44                        0.68                      3.01
+45                        0.25                      1.51
+46                        0.22                      4.54
+47                        1.31                      3.69
+48                        3.09                      2.61
+49                        2.99                      2.88
+50                        1.37                      5.14
+51                           0                      1.52
+52                        0.69                      4.28
+53                           0                       2.7
+54                        0.31                       3.9
+55                        3.63                      3.97
+56                        3.99                      4.04
+57                        &lt;NA&gt;                      4.33
+58                        2.83                      2.72
+59                        0.64                      &lt;NA&gt;
+60                        0.16                       1.7
+61                        0.64                      29.4
+62                        0.28                      3.33
+63                        0.16                      3.59
+64                        &lt;NA&gt;                       3.6
+65                        0.46                      3.44
+66                        1.07                      36.7
+67                        6.91                      5.04
+68                        1.09                      5.75
+69                        3.71                      4.49
+70                        1.71                      3.46
+71                        1.54                      3.13
+72                        0.25                      1.28
+73                        0.43                      2.37
+74                        1.31                      3.69
+75                       0.34                       1.01
+76                        0.28                      3.33
+77                           0                      1.52
+78                        0.22                      4.54
+79                        0.32                      &lt;NA&gt;
+80                        0.19                      3.09
+81                        0.45                      2.86
+82                        0.16                      3.42
+83                           0                       2.7
+84                        6.91                      5.04
+   salidos_con_pase_secundaria sobreedad_primaria sobreedad_secundaria
+1                          2.6               5.67                23.19
+2                         3.22               5.56               30.55 
+3                         3.22              11.82                35.81
+4                         1.84               7.84                25.29
+5                         5.09               &lt;NA&gt;                23.12
+6                         3.68               7.48                32.49
+7                         2.26               4.87                19.31
+8                         6.81              13.85                 &lt;NA&gt;
+9                         5.12               8.36                24.86
+10                       2.32                 6.6                21.01
+11                        3.76               4.19                16.48
+12                        5.47               9.55                36.44
+13                        2.09               2.87                13.81
+14                        2.37               3.42                25.76
+15                        5.42               5.15                26.05
+16                        2.31               5.07                28.03
+17                        0.62                4.4                23.52
+18                       3.92                6.37               32.69 
+19                         7.5              12.02                29.44
+20                        6.17                9.1                278.9
+21                         9.5               &lt;NA&gt;                249.7
+22                        5.12              10.34                22.41
+23                        36.9              11.01                32.65
+24                        3.03               9.11                17.17
+25                         3.2               5.76                17.96
+26                        4.06               5.81                17.14
+27                        5.46               4.36                24.23
+28                       4.21                9.65                29.29
+29                        3.42              14.02                34.14
+30                        4.36              10.61                31.68
+31                        4.03               6.72                33.48
+32                         7.4               6.87                34.65
+33                        3.36              90.2                 37.31
+34                        7.83               73.2                 26.6
+35                        2.98               &lt;NA&gt;                 &lt;NA&gt;
+36                        2.04              6.19                 22.85
+37                        3.87               7.14               34.59 
+38                       10.37               3.55                42.34
+39                        4.53              14.36                 &lt;NA&gt;
+40                        2.29               &lt;NA&gt;                20.12
+41                        2.35               &lt;NA&gt;                27.78
+42                        3.02               5.21                26.47
+43                        2.64               5.53                12.16
+44                        &lt;NA&gt;               8.11                339.3
+45                       1.16                 5.1                24.94
+46                        3.67               8.42                26.41
+47                        3.21              7.43                 33.91
+48                        &lt;NA&gt;              11.17                 &lt;NA&gt;
+49                        4.49               8.25               26.68 
+50                         4.1               5.34                18.41
+51                       0.25                1.25                14.76
+52                         5.2                6.3                33.02
+53                        3.37                0.5                22.96
+54                         1.5               3.57                21.56
+55                        3.18               8.78                32.13
+56                        5.44              12.87                27.92
+57                        3.01               6.51                20.86
+58                        2.39               5.78                26.78
+59                         3.3                 67                25.7 
+60                        1.49               4.23                 &lt;NA&gt;
+61                        2.83               6.95               297.7 
+62                        2.24               4.21                23.09
+63                        4.03              12.96                35.78
+64                        4.02              9.59                 34.47
+65                          37               5.17                20.66
+66                        3.48              13.63                35.39
+67                        6.46              16.55                40.22
+68                         4.1               5.71                32.72
+69                         5.8               9.85                30.57
+70                        3.96              12.66                 33.6
+71                        2.71               8.04                31.97
+72                        0.66                4.5                27.81
+73                         2.7               4.23                23.78
+74                        3.21              7.43                 33.91
+75                        2.09               2.87                13.81
+76                        2.24               4.21                23.09
+77                       0.25                1.25                14.76
+78                        3.67               8.42                26.41
+79                        36.9              11.01                32.65
+80                        5.47               9.55                36.44
+81                        1.84               7.84                25.29
+82                         2.6               5.67                23.19
+83                        3.37                0.5                22.96
+84                        6.46              16.55                40.22
+   sobreedad_avanzada_primaria sobreedad_avanzada_secundaria    id
+1                        1.36                           8.04    31
+2                         0.61                         14.93    43
+3                        3.21                          15.61    46
+4                        1.41                           9.48    55
+5                         0.57                          7.18    91
+6                         1.27                         11.62   141
+7                         0.47                          5.49   143
+8                         &lt;NA&gt;                          15.7   178
+9                         0.74                         10.52   215
+10                        0.61                          5.61   233
+11                        0.39                          4.72   249
+12                        1.73                          &lt;NA&gt;   255
+13                       0.14                           &lt;NA&gt;   296
+14                       0.54                           9.59   314
+15                        0.67                          9.36   335
+16                        0.91                         11.01   372
+17                        0.85                          92.2   373
+18                        1.43                         14.69  &lt;NA&gt;
+19                        1.18                         10.67   419
+20                        0.48                          11.9   420
+21                        0.28                          8.48   422
+22                        2.03                          &lt;NA&gt;  429 
+23                        2.85                         132.4   435
+24                        1.85                          4.83   454
+25                        0.77                          &lt;NA&gt;  456 
+26                        0.23                          5.21   458
+27                        0.67                          9.87   499
+28                        2.55                          12.5   521
+29                        3.84                         14.13  552 
+30                        2.11                          &lt;NA&gt;   596
+31                        1.01                         147.6   598
+32                        1.72                         13.44   632
+33                        2.06                          &lt;NA&gt;   666
+34                        1.06                          9.82   689
+35                        1.35                         11.46   711
+36                        1.12                          8.34   737
+37                        1.22                         16.06   752
+38                        0.19                          9.64   772
+39                        4.17                         17.12   815
+40                        0.7                           6.85   825
+41                        1.72                         10.88   829
+42                        &lt;NA&gt;                          9.37   841
+43                        0.28                          &lt;NA&gt;   856
+44                        1.88                        13.87    863
+45                        0.95                          8.75   868
+46                         2.2                          9.41   944
+47                        1.14                         12.92   996
+48                        2.17                          15.5  1004
+49                         1.3                         10.73  1020
+50                        0.97                          7.37  1049
+51                           0                             5  1055
+52                        1.48                         13.73  1085
+53                        0.18                          9.5   1131
+54                        0.55                          7.31  1144
+55                         1.9                          &lt;NA&gt;  1158
+56                        3.45                         13.66  1167
+57                           0                          9.05  1210
+58                        1.18                        10.28   1238
+59                        1.18                         10.67  1262
+60                        0.71                           6.7  1264
+61                        1.66                         11.96  1282
+62                        0.53                          9.25  1309
+63                        4.04                          &lt;NA&gt;  1312
+64                        2.45                         13.56  1314
+65                        &lt;NA&gt;                          6.48  &lt;NA&gt;
+66                        3.57                         14.68  1354
+67                        2.21                         18.18  &lt;NA&gt;
+68                        0.41                         12.72  1427
+69                        1.98                          12.1  1431
+70                        3.54                         15.45 1475 
+71                        2.37                         13.52  1479
+72                        0.89                         11.15  1484
+73                        0.75                          9.11  &lt;NA&gt;
+74                        1.14                         12.92   996
+75                       0.14                           &lt;NA&gt;   296
+76                        0.53                          9.25  1309
+77                           0                             5  1055
+78                         2.2                          9.41   944
+79                        2.85                         132.4   435
+80                        1.73                          &lt;NA&gt;   255
+81                       1.41                           9.48    55
+82                       1.36                           8.04    31
+83                        0.18                          9.5   1131
+84                        2.21                         18.18  &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>¿En qué columnas encontraste valores faltantes? ¿Qué posibles razones podrían explicar la presencia de estos valores faltantes en un dataset de indicadores educativos?</p>
+</section>
+<section id="identificación-y-eliminación-de-duplicados" class="level2">
+<h2 class="anchored" data-anchor-id="identificación-y-eliminación-de-duplicados">3. Identificación y Eliminación de Duplicados 👯</h2>
+<p>La función <code>ensuciar()</code> también introdujo algunos registros duplicados. Vamos a identificarlos y eliminarlos utilizando la columna <code>id</code> que se creó para este propósito.</p>
+<ul>
+<li>Utiliza la función <code>duplicated()</code> para identificar las filas duplicadas en <code>trayectorias_limpio_nombres</code> basándote en la columna <code>id</code>.</li>
+</ul>
+<!-- -->
+<ul>
+<li>Creá un nuevo data frame llamado <code>trayectorias_sin_duplicados</code> que contenga solo las filas únicas del dataset <code>trayectorias_limpio_nombres</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código para identificar filas duplicadas usando la columna 'id':</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>duplicados <span class="ot">&lt;-</span> <span class="fu">duplicated</span>(trayectorias_limpio_nombres<span class="sc">$</span>id)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(duplicados) <span class="co"># ¿Cuántos duplicados encontramos?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 224</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código para crear un data frame sin duplicados:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>trayectorias_sin_duplicados <span class="ot">&lt;-</span> trayectorias_limpio_nombres <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(id))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verifica la cantidad de filas en el dataset original y en el dataset sin duplicados:</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(trayectorias_limpio_nombres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1633</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(trayectorias_sin_duplicados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1409</code></pre>
+</div>
+</div>
+</section>
+<section id="validación-de-datos-con-validate" class="level2">
+<h2 class="anchored" data-anchor-id="validación-de-datos-con-validate">4. Validación de Datos con <code>validate</code> ✅</h2>
+<p>Vamos a usar el paquete <code>validate</code> para definir algunas reglas básicas sobre los rangos esperados de algunos indicadores.</p>
+<p>Definí las siguientes reglas de validación para el data frame <code>trayectorias_sin_duplicados</code>:</p>
+<ul>
+<li><p>La columna <code>anio</code> debe tener valores entre 2012 y 2022 (inclusive).</p></li>
+<li><p>La columna <code>promocion_efectiva_primaria</code> debería tener valores entre 0 y 100.</p></li>
+<li><p>La columna <code>repitencia_primaria</code> debería tener valores entre 0 y 100.</p></li>
+</ul>
+<p>Luego, confronta el dataset limpio con estas reglas y mostrá un resumen de los resultados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código para definir las reglas de validación:</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>reglas_trayectorias <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">anio_rango =</span> anio <span class="sc">%in%</span> <span class="fu">factor</span>(<span class="dv">2012</span><span class="sc">:</span><span class="dv">2022</span>),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">promocion_primaria_rango =</span> promocion_efectiva_primaria <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> promocion_efectiva_primaria <span class="sc">&lt;=</span> <span class="dv">100</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">repitencia_primaria_rango =</span> repitencia_primaria <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> repitencia_primaria <span class="sc">&lt;=</span> <span class="dv">100</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Completa el siguiente código para confrontar el dataset con las reglas:</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>resultado_validacion <span class="ot">&lt;-</span> <span class="fu">confront</span>(trayectorias_sin_duplicados, reglas_trayectorias)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra un resumen de los resultados de la validación:</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resultado_validacion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       name items passes fails nNA error warning
+1                anio_rango  1409   1203   117  89 FALSE   FALSE
+2  promocion_primaria_rango  1409      2  1338  69 FALSE   FALSE
+3 repitencia_primaria_rango  1409    518   816  75 FALSE   FALSE
+                                                             expression
+1                                          anio %vin% factor(2012:2022)
+2 promocion_efectiva_primaria &gt;= 0 &amp; promocion_efectiva_primaria &lt;= 100
+3                 repitencia_primaria &gt;= 0 &amp; repitencia_primaria &lt;= 100</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra un grafico de los resultados de la validación:</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado_validacion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ejercicio_limpieza_normalizacion_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bananas-y-aviones-escalas-y-normalización-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="bananas-y-aviones-escalas-y-normalización-de-datos">Bananas y aviones: Escalas y Normalización de Datos ⚖️</h2>
+<p>En este dataset, la mayoría de las variables numéricas ya están en escalas similares (porcentajes). Sin embargo, en otros datasets, podríamos encontrar variables con rangos muy diferentes, lo que podría afectar algunos análisis.</p>
+<p><strong>Siempre que te encuentres un dataset tene a hacete la siguiente pregunta:</strong></p>
+<p><u>¿Es necesario aplicar alguna técnica de normalización (como escalado min-max o estandarización) antes de realizar análisis comparativos o modelos predictivos? .</u></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
