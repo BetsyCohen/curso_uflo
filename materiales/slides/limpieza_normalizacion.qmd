@@ -3,7 +3,6 @@ title: "Limpieza y Normalización de Datos"
 subtitle: "Análisis de Datos 1"
 author: "Betsy Cohen"
 logo: "images/logo-uflo.png"
-date: "15/05/2025"
 format:
   revealjs:
     width: 1600

@@ -2369,7 +2369,7 @@
     "href": "materiales/slides/introduccion_tidyverse_dplyr.html#crear-columnas-nuevas-con-mutate",
     "title": "Introducción al Tidyverse: El Universo de Herramientas para transformación de datos",
     "section": "3. Crear columnas nuevas con mutate()",
-    "text": "3. Crear columnas nuevas con mutate()\nSupongamos que quisiera saber la edad de todos los entrevistados al dia de hoy\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  mutate(edad_2025 = EDAD+3) |&gt; # crea una nueva columna (edad_2025) que es igual a edad+3 y después\n  sample_n(size = 4) # crea una muestra de 4 casos \n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\nedad_2025\n\n\n\n\n7598\n2022\n33\n30 A 49 ANIOS\n36\n\n\n8814\n2022\n43\n30 A 49 ANIOS\n46\n\n\n8510\n2022\n72\n65 ANIOS Y MAS\n75\n\n\n7634\n2022\n67\n65 ANIOS Y MAS\n70"
+    "text": "3. Crear columnas nuevas con mutate()\nSupongamos que quisiera saber la edad de todos los entrevistados al dia de hoy\n\nencc_serie_hist |&gt; # toma la tabla encc_series_hist y después...\n  select(ID,EDICION,EDAD,GRUPOS_EDAD) |&gt; # selecciona las columnas que te indico, y después\n  filter(EDICION == 2022) |&gt;  # traeme solamente los casos de la edición 2022 y después\n  mutate(edad_2025 = EDAD+3) |&gt; # crea una nueva columna (edad_2025) que es igual a edad+3 y después\n  sample_n(size = 4) # crea una muestra de 4 casos \n\n\n\n\n\nID\nEDICION\nEDAD\nGRUPOS_EDAD\nedad_2025\n\n\n\n\n9278\n2022\n60\n50 A 64 ANIOS\n63\n\n\n7136\n2022\n44\n30 A 49 ANIOS\n47\n\n\n6513\n2022\n69\n65 ANIOS Y MAS\n72\n\n\n9237\n2022\n14\n13 A 17 ANIOS\n17"
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_dplyr.html#summarise-y-group_by",
@@ -2856,5 +2856,103 @@
     "title": "Ejercicio Práctico: Limpieza y Normalización de Datos Educativos",
     "section": "Bananas y aviones: Escalas y Normalización de Datos ⚖️",
     "text": "Bananas y aviones: Escalas y Normalización de Datos ⚖️\nEn este dataset, la mayoría de las variables numéricas ya están en escalas similares (porcentajes). Sin embargo, en otros datasets, podríamos encontrar variables con rangos muy diferentes, lo que podría afectar algunos análisis.\nSiempre que te encuentres un dataset tene a hacete la siguiente pregunta:\n¿Es necesario aplicar alguna técnica de normalización (como escalado min-max o estandarización) antes de realizar análisis comparativos o modelos predictivos? ."
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#respeten-los-rango-gráficos-para-variables-categóricas",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#respeten-los-rango-gráficos-para-variables-categóricas",
+    "title": "Gramatica de gráficos",
+    "section": "Respeten los rango: Gráficos para variables categóricas",
+    "text": "Respeten los rango: Gráficos para variables categóricas\nGráfico de columnas / barras\nDonde vamos a poder mostrar la distribución de una frecuencia para cada categoría. En el gráfico de barras las categorías se indican en el eje X mientras que en el de barras se ubican en el eje Y (dejando el el eje X para los valores de la n distribución)\n\n\n\n\nCode\nstarwars %&gt;%\n  select(name, gender) %&gt;% \n  group_by(gender) %&gt;%\n  summarise(count = n(), .groups = \"drop\") %&gt;%\n  ggplot(aes(x = gender, y = count)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  labs(\n    title = \"Cantidad de personajes por género en peliculas de Starwars\",\n    x = \"Género\",\n    y = \"Cantidad de personajes\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#graficos-de-torta-y-donna",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#graficos-de-torta-y-donna",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "🥧 Graficos de torta y donna",
+    "text": "🥧 Graficos de torta y donna\nLos gráficos de torta y donna también nos permiten ver la distribución de una variable categórica.\n\n\n\n\nCode\nstarwars %&gt;%\n  filter(!is.na(gender)) %&gt;%\n  count(gender, name = \"cantidad\") %&gt;%\n  ggplot(aes(x = \"\", y = cantidad, fill = gender)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  coord_polar(\"y\") +\n  labs(\n    title = \"Personajes de Star Wars por género\",\n    fill = \"Género\"\n  ) \n\n\n\n\n\n\n\n\n\n\n\n\nCode\nstarwars %&gt;%\n  filter(!is.na(gender)) %&gt;%\n  count(gender, name = \"cantidad\") %&gt;%\n  ggplot(aes(x = 2, y = cantidad, fill = gender)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"white\") +\n  coord_polar(\"y\", start = 0) +\n  xlim(0.5, 2.5) +\n  labs(\n    title = \"Personajes de Star Wars por género\",\n    fill = \"Género\"\n  ) +\n  theme(plot.title = element_text(hjust = 0.5))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nLos gráficos de torta son muy criticados en la visualización de datos ya que pueden prestar a la confusión y no podemos tampoco meter más de 5 categorías (sino es ilegible). Usalos con precaución o, mejor aún, utiliza alternativas como gráficos de barras, diagramas de chupetin, diagramas de árbol y otros."
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#algunas-alternativas-a-los-gráficos-de-barra",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#algunas-alternativas-a-los-gráficos-de-barra",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "Algunas alternativas a los gráficos de barra",
+    "text": "Algunas alternativas a los gráficos de barra\n\n\nCode\nstarwars %&gt;%\n  filter(!is.na(eye_color)) %&gt;%\n  count(eye_color, name = \"cantidad\") %&gt;%\n  ggplot(aes(x = reorder(eye_color, cantidad), y = cantidad)) +\n  geom_segment(aes(xend = eye_color, y = 0, yend = cantidad), color = \"gray\") +\n  geom_point(size = 4, color = \"steelblue\") +\n  coord_flip() +\n  labs(\n    title = \"Personajes en Star Wars por color de sus ojos \",\n    x = \"Color de ojos\",\n    y = \"Cantidad\"\n  )"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#respeten-los-rangos-gráficos-para-variables-categóricas",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#respeten-los-rangos-gráficos-para-variables-categóricas",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "Respeten los rangos: Gráficos para variables categóricas",
+    "text": "Respeten los rangos: Gráficos para variables categóricas\nGráfico de columnas / barras\nDonde vamos a poder mostrar la distribución de una frecuencia para cada categoría. En el gráfico de barras las categorías se indican en el eje X mientras que en el de barras se ubican en el eje Y (dejando el el eje X para los valores de la n distribución)\n\n\nCode\nstarwars %&gt;%\n  select(name, gender) %&gt;% \n  group_by(gender) %&gt;%\n  summarise(count = n(), .groups = \"drop\") %&gt;%\n  ggplot(aes(x = gender, y = count)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  labs(\n    title = \"Cantidad de personajes por género en peliculas de Starwars\",\n    x = \"Género\",\n    y = \"Cantidad de personajes\"\n  ) +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#parte-de-un-todo",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#parte-de-un-todo",
+    "title": "Gramatica de gráficos",
+    "section": "Parte de un todo",
+    "text": "Parte de un todo\nCuando queremos mostrar una distribución de una variable de categóricas una buena alternativa son los treemaps y los gráficos de waffles\n\n\n\n\nCode\n# Preparamos los datos\ngeneros &lt;- starwars %&gt;%\n  filter(!is.na(gender)) %&gt;%\n  count(gender, name = \"cantidad\") %&gt;%\n  arrange(desc(cantidad))\n\n# Gráfico waffle\nwaffle::waffle(\n  parts = setNames(generos$cantidad, generos$gender),\n  rows = 10,\n  title = \"Personajes por género\",\n  colors = RColorBrewer::brewer.pal(n = nrow(generos), name = \"Set2\")\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nstarwars %&gt;%\n  filter(!is.na(eye_color)) %&gt;%\n  count(eye_color, name = \"cantidad\") %&gt;%\n  ggplot(aes(area = cantidad, fill = eye_color, label = paste(eye_color, cantidad))) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\", place = \"centre\", grow = TRUE) +\n  labs(\n    title = \"Personajes por color de ojos \",\n    fill = \"Color de ojos\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#parte-de-un-todo-árboles-y-waffles",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#parte-de-un-todo-árboles-y-waffles",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "🌳 Parte de un todo: árboles y waffles",
+    "text": "🌳 Parte de un todo: árboles y waffles\nCuando queremos mostrar una distribución de una variable de categóricas una buena alternativa son los treemaps y los gráficos de waffles\n\n\n\n\nCode\n# Preparamos los datos\ngeneros &lt;- starwars %&gt;%\n  filter(!is.na(gender)) %&gt;%\n  count(gender, name = \"cantidad\") %&gt;%\n  arrange(desc(cantidad))\n\n# Gráfico waffle\nwaffle::waffle(\n  parts = setNames(generos$cantidad, generos$gender),\n  rows = 10,\n  title = \"Personajes por género\",\n  colors = RColorBrewer::brewer.pal(n = nrow(generos), name = \"Set2\")\n)+ theme_uflo()\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nstarwars %&gt;%\n  filter(!is.na(eye_color)) %&gt;%\n  count(eye_color, name = \"cantidad\") %&gt;%\n  ggplot(aes(area = cantidad, fill = eye_color, label = paste(eye_color, cantidad))) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\", place = \"centre\", grow = TRUE) +\n  labs(\n    title = \"Personajes por color de ojos \",\n    fill = \"Color de ojos\"\n  )"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#evolución-en-el-tiempo",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#evolución-en-el-tiempo",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "⏲️ Evolución en el tiempo",
+    "text": "⏲️ Evolución en el tiempo\nCuando queremos ver la evolución de una variable continua en el tiempo, las opciones más habituales son los gráficos de línea\n\n\nCode\nlineas &lt;- get_poverty_lines()\n\nlineas %&gt;%\n  select(-ICE) %&gt;%\n  pivot_longer(cols = c(\"CBA\", \"CBT\"), names_to = \"canasta\", values_to = \"valor\") %&gt;%\n  ggplot() +\n  geom_line(aes(x = periodo, y = valor, col = canasta))+\n  labs(\n    title = \"Canastas basica alimentaria y canasta total\",\n    subtitle = \"Encuesta Permanente de Hogares INDEC\",\n    fill = \"Color de ojos\"\n  )"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html",
+    "href": "materiales/slides/tipos de graficos_ggplot.html",
+    "title": "Gramatica de gráficos",
+    "section": "",
+    "text": "En la clase de hoy, nos adentraremos en el mundo de la visualización de datos con R, una habilidad crucial para explorar patrones, comunicar hallazgos y respaldar nuestros análisis en de datos. Nos enfocaremos en los tipos de gráficos más comunes y en la introducción al potente paquete ggplot2."
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#evolución-en-el-tiempo-1",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#evolución-en-el-tiempo-1",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "⏲️ Evolución en el tiempo",
+    "text": "⏲️ Evolución en el tiempo\nUn ejemplo que combina proporción y evolución temporal es el gráfico de áreas:\n\n\nCode\npop_data &lt;- gapminder::gapminder %&gt;%\n  group_by(year, continent) %&gt;%\n  summarise(total_pop = sum(pop), .groups = \"drop\")\n\nggplot(pop_data, aes(x = year, y = total_pop, fill = continent))+\n  geom_area(alpha = 0.8, color = \"white\")+\n  scale_y_continuous(labels = label_number(scale = 1e-9, suffix = \"B\"))+\n  labs(\n    title = \"Evolucion de la poblacion total por continente\",\n    subtitle = \"Fuente Gapminder\",\n    x = \"Año\",\n    y = \"población (en miles de millones\",\n    fill = \"Continentes\"\n  )"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#apilar-y-agrupar",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#apilar-y-agrupar",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "Apilar y agrupar",
+    "text": "Apilar y agrupar\nUn recurso que también podemos usar es mostrar las barras agrupadas o apiladas en función de una segunda variable categórica esto también nos ayuda a entender la distribución como parte de un todo dentro de esa categoría en particular.\n\n\n\n\nCode\nstarwars %&gt;%\n  select(name, gender, films) %&gt;% \n  unnest(films) %&gt;% \n  group_by(films, gender) %&gt;%\n  summarise(count = n(), .groups = \"drop\") %&gt;%\n  ggplot(aes(x = films, y = count, fill = gender)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  labs(\n    title = \"Personajes de Star Wars por género\",\n    subtitle = \"Barras agrupadas\",\n    x = \"Película\",\n    y = \"Cantidad de personajes\",\n    fill = \"Género\"\n  ) +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(ggplot2)\n\nstarwars %&gt;%\n  select(name, gender, films) %&gt;% \n  unnest(films) %&gt;% \n  group_by(films, gender) %&gt;%\n  summarise(count = n(), .groups = \"drop\") %&gt;%\n  ggplot(aes(x = films, y = count, fill = gender)) +\n  geom_bar(stat = \"identity\") +  # &lt;- apiladas por default\n  labs(\n    title = \"Personajes de Star Wars por género\",\n    subtitle = \"Barras apiladas\",\n    x = \"Película\",\n    y = \"Cantidad de personajes\",\n    fill = \"Género\"\n  ) +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#gráficos-de-distribución",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#gráficos-de-distribución",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "Gráficos de Distribución",
+    "text": "Gráficos de Distribución\n\n📊 Histogramas💠 Gráfico de Densidad📦 Boxplot (Diagrama de Caja y Bigotes):\n\n\nUn histograma se utiliza para mostrar la distribución de frecuencia de una variable numérica. Divide los datos en intervalos (bins) y la altura de cada barra representa la cantidad de observaciones que caen dentro de ese intervalo, permitiendo ver la forma de la distribución.\n\n\nCode\nggplot(gapminder::gapminder, aes(x = lifeExp)) +\n  geom_histogram(binwidth = 5, fill = \"steelblue\", color = \"white\") +\n  labs(\n    title = \"Histograma de la esperanza de vida\",\n    x = \"Esperanza de vida\",\n    y = \"Frecuencia\"\n  )\n\n\n\n\n\n\n\n\n\n\n\nEste gráfico proporciona una estimación suavizada de la función de densidad de probabilidad de una variable numérica. Es útil para visualizar la forma general de la distribución y compararla entre diferentes grupos.\n\n\nCode\nggplot(gapminder::gapminder, aes(x = lifeExp, fill = continent)) +\n  geom_density(alpha = 0.6) +\n  labs(\n    title = \"Densidad de esperanza de vida por continente\",\n    x = \"Esperanza de vida\",\n    y = \"Densidad\",\n    fill = \"Continente\"\n  )\n\n\n\n\n\n\n\n\n\n\n\nUn boxplot resume la distribución de una variable numérica a través de sus cuartiles, la mediana y posibles valores atípicos (outliers). Es especialmente útil para comparar la distribución de una variable entre diferentes grupos o categorías.\n\n\nCode\nggplot(gapminder::gapminder, aes(x = continent, y = gdpPercap, fill = continent)) +\n  geom_boxplot() +\n  scale_y_log10() +  # Escala logarítmica para ver mejor los valores extremos\n  labs(\n    title = \"Distribución del PBI per cápita por continente\",\n    x = \"Continente\",\n    y = \"PBI per cápita (escala log)\"\n  )"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#gráficos-de-correlación",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#gráficos-de-correlación",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "Gráficos de Correlación",
+    "text": "Gráficos de Correlación\n\n🎯 Scatter Plot🌡️ Heatmap🫧 Gráfico de Burbujas\n\n\nUn gráfico de dispersión se utiliza para mostrar la relación entre dos variables numéricas. Cada punto en el gráfico representa una observación, y la posición del punto en los ejes horizontal y vertical indica los valores de las dos variables, permitiendo identificar patrones de correlación (positiva, negativa o sin correlación).\n\n\nCode\nggplot(gapminder::gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point(alpha = 0.6) +\n  scale_x_log10() +\n  labs(\n    title = \"Relación entre PBI per cápita y esperanza de vida\",\n    x = \"PBI per cápita (log)\",\n    y = \"Esperanza de vida\",\n    color = \"Continente\"\n  )\n\n\n\n\n\n\n\n\n\n\n\nUn mapa de calor visualiza la magnitud de una variable como un color en una matriz. Es útil para mostrar patrones de correlación entre múltiples variables (donde la intensidad del color representa la fuerza de la correlación) o para visualizar datos geográficos (donde el color representa la magnitud de una variable en diferentes áreas).\n\n\nCode\nselected_countries &lt;- gapminder::gapminder %&gt;%\n  group_by(country) %&gt;%\n  summarise(mean_lifeExp = mean(lifeExp)) %&gt;%\n  top_n(15, mean_lifeExp) %&gt;%\n  pull(country)\n\ngap_heatmap &lt;- gapminder::gapminder %&gt;%\n  filter(country %in% selected_countries)\n\nggplot(gap_heatmap, aes(x = factor(year), y = country, fill = lifeExp)) +\n  geom_tile() +\n  scale_fill_viridis_c() +\n  labs(\n    title = \"Heatmap de esperanza de vida por país y año\",\n    x = \"Año\",\n    y = \"País\",\n    fill = \"Esperanza de vida\"\n  ) \n\n\n\n\n\n\n\n\n\n\n\nUn gráfico de burbujas extiende el gráfico de dispersión al añadir una tercera variable que se representa mediante el tamaño de las burbujas. Esto permite visualizar la relación entre tres variables simultáneamente.\n\n\nCode\nggplot(gapminder::gapminder %&gt;% filter(year == 2007),\n       aes(x = gdpPercap, y = lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_x_log10() +\n  labs(\n    title = \"Relación entre PBI, esperanza de vida y población (2007)\",\n    x = \"PBI per cápita (log)\",\n    y = \"Esperanza de vida\",\n    size = \"Población\",\n    color = \"Continente\"\n  )"
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#para-ir-resumiendo",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#para-ir-resumiendo",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "Para ir resumiendo",
+    "text": "Para ir resumiendo\nEn esta primera parte, exploramos una variedad de gráficos comunes y sus usos principales en el análisis de datos.\n\nlos gráficos de ranking nos ayudan a comparar magnitudes entre categorías\nlos gráficos de “parte del todo” nos muestran la composición de un total\nlos gráficos de evolución ilustran tendencias a lo largo del tiempo,\nlos gráficos de distribución nos permiten entender la forma en que se distribuyen los datos numéricos\ny los gráficos de correlación nos ayudan a identificar relaciones entre variables."
+  },
+  {
+    "objectID": "materiales/slides/tipos de graficos_ggplot.html#preguntas-para-pensar",
+    "href": "materiales/slides/tipos de graficos_ggplot.html#preguntas-para-pensar",
+    "title": "Tipos de gráficos y sus usos",
+    "section": "🤔 Preguntas para pensar",
+    "text": "🤔 Preguntas para pensar\n\nSi quisieras comparar la cantidad de personas que prefieren diferentes partidos políticos en una encuesta, ¿qué tipo de gráfico sería más apropiado?\n\n\n\n¿Qué gráfico utilizarías para mostrar cómo ha cambiado la tasa de pobreza en un país durante los últimos 20 años?\n\n\n\nImagina que tienes datos sobre el gasto total de un gobierno y quieres mostrar cómo se distribuye ese gasto entre diferentes áreas como educación, salud y defensa. ¿Qué tipo de gráfico sería útil?\n\n\n\n¿Qué tipo de gráfico te permitiría identificar si existe una relación entre el nivel de ingresos de las personas y su nivel de estudios?\n\n\n\nSi tuvieras un texto con las respuestas de una pregunta abierta en una encuesta, ¿qué tipo de visualización te ayudaría a identificar los temas más recurrentes?"
   }
 ]

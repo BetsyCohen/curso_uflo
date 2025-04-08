@@ -5,32 +5,26 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 ## Gráficos
 
 ::: slide-deck
-
 ::: slides
-[Tipos de gráficos y sus usos]()
+[Tipos de gráficos y sus usos](materiales/slides/tipos de graficos_ggplot.qmd)
 :::
-
 
 ::: slides
 [Gramática de gráficos con ggplot2]()
 :::
-
 :::
-
 
 ## Tablas
 
 ::: slide-deck
-
 ::: slides
 [Gramática de Tablas paquetes GT y DT]()
 :::
-
 :::
 
 ## Mapas
-::: slide-deck
 
+::: slide-deck
 ::: slides
 [Tipos de mapas]()
 :::
@@ -38,13 +32,11 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 ::: slides
 [Mapas con leaflet]()
 :::
-
 :::
 
 ## RMarkdown y Quarto
 
 ::: slide-deck
-
 ::: slides
 [Reportes]()
 :::
@@ -56,5 +48,4 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 ::: slides
 [Tableros]()
 :::
-
 :::
