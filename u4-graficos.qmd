@@ -6,7 +6,7 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 
 ::: slide-deck
 ::: slides
-[Tipos de gráficos y sus usos](materiales/slides/tipos de graficos_ggplot.qmd)
+[Tipos de gráficos y sus usos](materiales/slides/tipos%20de%20graficos_ggplot.qmd)
 :::
 
 ::: slides

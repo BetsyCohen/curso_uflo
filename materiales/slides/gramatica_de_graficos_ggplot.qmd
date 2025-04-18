@@ -1,0 +1,356 @@
+---
+title: "Gramática de gráficos con `ggplot`"
+subtitle: "Análisis de Datos 1 - Unidad 4"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+```{r}
+#| context: setup
+#| include: false
+
+library(tidyverse)
+
+library(showtext)
+
+font_add_google("Poppins")
+font_add_google("Montserrat")
+
+showtext_auto()
+
+theme_uflo <- function() {
+  titles_font_family <- "Poppins"
+  base_font_family <- "Montserrat"
+
+  theme_minimal() +
+    theme(
+      # Leyenda
+      legend.position = "left",
+      legend.text = element_text(family = base_font_family),
+      legend.title = element_text(family = titles_font_family),
+
+      # Grid
+      panel.grid.major = element_line(linewidth = 0.25, color = "#F3F3F3"),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.spacing = unit(0.75, "lines"),
+      panel.background = element_rect(fill = "transparent", color = "transparent"),
+
+      # Ejes
+      axis.title = element_text(family = titles_font_family),
+      axis.text = element_text(family = base_font_family),
+
+      # Facetas
+      strip.text = element_text(family = titles_font_family, hjust = 0, color = "white", size = 12),
+      strip.background = element_rect(fill = "black"),
+
+      # Texto
+      text = element_text(family = base_font_family, size = 15, color = "black"),
+
+      # Aspectos principales
+      plot.title = element_text(family = titles_font_family, size = 30),
+      plot.subtitle = element_text(family = titles_font_family, color = "#8a8a8a", size = 15),
+      plot.caption = element_text(family = titles_font_family),
+      plot.background = element_rect(fill = "transparent", color = "transparent")
+    )
+}
+
+```
+
+## Qué es ggplot2
+
+`ggplot2` es una de las librerías que forman parte de `tidyverse` que nos permite crear gráficos, siguiendo una gramática o lógica por capas que se van sumando de manera incremental.
+
+![](https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png){fig-align="center"}
+
+## Preparando los datos de hoy 🧑‍🍳
+
+Vamos a trabajar con un dataset sencillo que contiene información sobre la cantidad de plazas, habitaciones y establecimientos de alojamiento turístico disponibles por provincia en Argentina, elaborado por el equipo del Sistema de Información Turistica de la Argentina (SINTA).
+
+Este dataset nos muestra, para diferentes años (`indice_tiempo`) y provincias (`provincia_nombre`), la cantidad de establecimientos (`establecimientos`), habitaciones (`habitaciones`) y plazas (`plazas`) disponibles.
+
+```{r}
+url_datos <- "https://datos.yvera.gob.ar/dataset/c9dc110e-2a09-4b51-ac0a-a2db2ca76fbb/resource/67727a58-7a43-450d-a685-a9fba9218b20/download/puna_indicadores_provincias.csv"
+df <- read.csv(url_datos, encoding = "latin1") 
+
+
+df <- df %>% 
+  mutate(establecimientos = as.integer(establecimientos)) %>% 
+  filter(indice_tiempo <2024) 
+
+```
+
+Y ya que estamos vamos a filtrar datos de un solo año por ej 2020
+
+```{r}
+df_2020 <- df %>% filter(indice_tiempo == 2020)
+```
+
+## Capa de data y el mapping 🗺️ {.smaller}
+
+El primer paso para crear un gráfico con `ggplot2` es llamar a la función `ggplot()`. Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a `ggplot()` qué datos vamos a usar.
+
+Lo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.
+
+```{r}
+#| output: false
+
+ggplot(data = df)
+```
+
+Si ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él.
+
+Para indicarle **qué** y **dónde** poner los datos tenemos la capa de **mapping** o el `aes` (que viene de aesthetics). En este caso vamos a pedirle a ggplot que coloque en el eje x la cantidad de establecimientos y en el eje y cada una de las provincias.
+
+```{r}
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre))
+```
+
+## Mapeo de otras variables
+
+Además de x e y, podemos mapear otras variables a otras características visuales (estéticas) del gráfico dentro de aes(), como el color (color) o el color de relleno (fill). Esto nos permite visualizar más de una variable a la vez.
+
+Vamos a añadir que el color de relleno de nuestras barras (fill) esté determinado por la variable establecimientos.
+
+```{r}
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre, fill= establecimientos))
+```
+Ahora ggplot2 sabe que queremos usar provincia_nombre para el eje x, plazas para el eje y, ¡y también usar establecimientos para el color de relleno de lo que dibujemos! (Aunque aún no hemos dibujado nada).
+
+## Layers o el gráfico en cuestión
+
+El núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:
+
+-   La **geometría** que determina cómo se muestran los datos, como puntos, líneas o rectángulos.
+-   La **transformación estadística** que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.
+-   El ajuste de **posición** que determina principalmente **dónde** se muestra una pieza de datos.
+
+## Layers o el gráfico en cuestión 📊
+
+Con las funciones `geom_*` y `stat_*` vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo **+**
+
+Volviendo a nuestro ejemplo vamos a probar la función `geom_col()`
+
+```{r}
+#| warning: false
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +
+   geom_col()
+  
+```
+
+##  Scales ⚖️ {.smaller}
+
+::: columns
+::: {.column width="50%"}
+Las "scales" (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).
+:::
+
+::: {.column width="50%"}
+```{r}
+#| warning: false
+
+
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +
+  # Añadimos una capa de barras 
+  geom_col() +
+  scale_x_continuous(
+    limits = c(0,6000),
+    n.breaks = 5)
+```
+:::
+:::
+
+::: callout-note
+::: {callout-tip}
+Dependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo `scale_x_binned()`, `scale_x_date()`, `scale_x_discrete()`
+:::
+:::
+
+## Scales con color 🌡️
+
+Podríamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas: - Decirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes) - Agregar la capa en cuestion indicando el tipo de estilo que queremos
+
+```{r}
+ggplot(data = df, aes(x = establecimientos , 
+                      y = provincia_nombre, 
+                      fill = establecimientos)) + # en los datos le indico que rellene (fill) con el valor de establecimientos
+  geom_col() +
+  scale_x_continuous(
+    labels = label_number(big.mark = ".", decimal.mark = ","), 
+    limits = c(0,25000),
+    n.breaks = 5
+  ) +
+  scale_fill_continuous(type = "gradient") # agrego una capa de color de relleno para variables continuas.
+
+```
+
+## Facetado  ➗
+
+Facets es una capa que nos permite "cortar en rodajas" la información y contar la historia a traves de ese criterio y podemos ver qué paso en cada grupo.
+
+Dependiendo de la situacion podemos usar:
+
+-   `facet_wrap()`: Crea una grilla de gráficos **en una sola dimensión** (usualmente se enrolla en filas o columnas) y ideal para **una sola variable de faceteo o agrupamiento**.
+
+-   `facet_grid()`: Crea una grilla de gráficos **bidimensional** (filas y columnas), ideal para **dos variables de faceteo** (una para filas y otra para columnas).
+
+## Facetado  ➗
+
+En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año
+
+```{r}
+
+#| warning: false
+
+ggplot(data = df, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
+  # Añadimos una capa de barras 
+  geom_col() +
+  scale_x_continuous(labels = label_number(big.mark = ".", decimal.mark = ","), 
+                     limits = c(0,5000),
+                     n.breaks = 5)+
+  facet_wrap(~ indice_tiempo)
+```
+
+## 6. Coordinates: Cambiando la Perspectiva
+
+Si nos imaginamos el gráfico como un mapa podriamos decir que la capa de coordenadas es como el la direccion en que sostenemos ese mapa para interpretarlo.
+
+Si bien se suelen utilizar coordenadas cartesianas, el sistema de coordenadas impulsa la visualización de proyecciones [cartográficas](https://ggplot2-book.org/maps.html) (cuando graficamos mapas) y gráficos [polares](https://ggplot2-book.org/coord.html#polar-coordinates-with-coord_polar).
+
+Si bien no es la capa que más vamos a usar al principio es probable que la función coord_flip te sea de utilidad para voltear los ejes de tu gráfico.
+
+```{r}
+#| warning: false
+
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre, fill = establecimientos)) +
+  # Añadimos una capa de barras 
+  geom_col() +
+  scale_x_continuous(labels = label_number(big.mark = ".", decimal.mark = ","), 
+                     limits = c(0,5000),
+                     n.breaks = 5)+
+  coord_flip() 
+```
+
+## Theme: enchulando el gráfico 🎨
+
+El sistema [de temas](https://ggplot2-book.org/themes) controla casi todos los elementos visuales del gráfico que no están controlados por los datos y, por lo tanto, es importante para su aspecto.
+
+Dentro de la capa `theme` existen muchísimos [elementos](https://ggplot2-book.org/themes#sec-theme-elements) que podemos modificar de manera individual: Por ej. en el gráfico de coordenadas invertidas nos costaba leer las etiquetas con los nombres de las provincias. Para modificarlo vamos a tener que ir al elemento que controla el texto del eje x (axis.text.x ) y usar el seteador de ese elemento (element_text) para indicarlo el angulo y ajuste respecto del eje horizontal.
+
+```{r}
+#| warning: false
+
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre, fill = establecimientos)) +
+  geom_col() +
+  scale_x_continuous(
+    labels = label_number(big.mark = ".", decimal.mark = ","), 
+    limits = c(0, 5000),
+    n.breaks = 5
+  ) +
+  coord_flip() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+    )
+```
+
+## Theme: enchulando el gráfico 🎨 
+
+ggplot2 nos ofrece varios temas predeterminados para enchular nuestros gráficos como `theme_grey() theme_gray() theme_bw() theme_linedraw() theme_light() theme_dark() theme_minimal() theme_classic()`
+
+```{r}
+#| warning: false
+
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
+  geom_col() +
+  scale_x_continuous(
+    labels = label_number(big.mark = ".", decimal.mark = ","), 
+    limits = c(0, 5000),
+    n.breaks = 5
+  ) +
+  coord_flip() +
+  # capa theme 
+  ## elijo el theme light
+  theme_light()+ 
+  # le modifico algunas cositas como...
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1), # angulo del eje
+    panel.border = element_blank(), #  dejo en blanco el borde de la caja interior
+    panel.grid.major = element_blank(),# dejo en blanco el grillado mayor
+  )
+
+```
+
+## Themes personalizados
+
+Obviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos el theme_uflo
+
+```{r}
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
+  geom_col() +
+  scale_x_continuous(
+    labels = label_number(big.mark = ".", decimal.mark = ","), 
+    limits = c(0, 5000),
+    n.breaks = 5
+  ) +
+  coord_flip() +
+  # capa theme 
+  ## elijo el theme light
+  theme_uflo()+ 
+  # le modifico algunas cositas como...
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1), # angulo del eje
+    panel.border = element_blank(), #  dejo en blanco el borde de la caja interior
+    panel.grid.major = element_blank(),# dejo en blanco el grillado mayor
+  )
+```
+
+
+
+## Anotaciones 🗒️ 
+
+Si bien no se la menciona como capa en general las **anotaciones** son muy importantes cuando realizamos un gráfico. Dentro de las anotaciones tenemos varias funciones:
+
+-   `labs():`Para etiquetar elementos del gráfico como `title`, `subtitle`, `caption x`, `y` (de los ejes) `fill`, `color`, `size`, `shape`, etc. (etiquetas especificas de leyendas)
+
+-   `anotate()` Permite **agregar texto, líneas, puntos, rectángulos, etc.** en posiciones específicas del gráfico.
+
+-    `geom_text()` y `geom_label()`También agregan texto al gráfico, pero **basado en los datos**. A diferencia de `annotate()`, estas geométricas se usan como capas regulares.
+
+-   `geom_curve()` y `geom_segment()`Sirven para **dibujar flechas, líneas o curvas** que apunten a algo importante.
+
+```{r}
+#| warning: false
+
+ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
+  geom_col() +
+  scale_x_continuous(
+    labels = label_number(big.mark = ".", decimal.mark = ","), 
+    limits = c(0, 5000),
+    n.breaks = 5
+  ) +
+  coord_flip() +
+  theme_light()+ 
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1), # angulo del eje
+    panel.border = element_blank(), #  dejo en blanco el borde de la caja interior
+    panel.grid.major = element_blank(),# dejo en blanco el grillado mayor
+  ) +
+  labs(x= "Cantidad de establecimientos", y= "",
+       title = "Establecimientos turisticos por provincia",
+       subtitle = "Año 2020",
+       caption = "Fuente: Sistema de Información Turistica de la Argentina", 
+       fill = "Establecimientos")
+
+
+```

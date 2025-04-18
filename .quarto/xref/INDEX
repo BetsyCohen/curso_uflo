@@ -124,5 +124,8 @@
   },
   "materiales/slides/tipos de graficos_ggplot.qmd": {
     "tipos de graficos_ggplot.html": "30e81e1b"
+  },
+  "materiales/slides/gramatica_de_graficos_ggplot.qmd": {
+    "gramatica_de_graficos_ggplot.html": "ff160a99"
   }
 }

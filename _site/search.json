@@ -2954,5 +2954,82 @@
     "title": "Tipos de gráficos y sus usos",
     "section": "🤔 Preguntas para pensar",
     "text": "🤔 Preguntas para pensar\n\nSi quisieras comparar la cantidad de personas que prefieren diferentes partidos políticos en una encuesta, ¿qué tipo de gráfico sería más apropiado?\n\n\n\n¿Qué gráfico utilizarías para mostrar cómo ha cambiado la tasa de pobreza en un país durante los últimos 20 años?\n\n\n\nImagina que tienes datos sobre el gasto total de un gobierno y quieres mostrar cómo se distribuye ese gasto entre diferentes áreas como educación, salud y defensa. ¿Qué tipo de gráfico sería útil?\n\n\n\n¿Qué tipo de gráfico te permitiría identificar si existe una relación entre el nivel de ingresos de las personas y su nivel de estudios?\n\n\n\nSi tuvieras un texto con las respuestas de una pregunta abierta en una encuesta, ¿qué tipo de visualización te ayudaría a identificar los temas más recurrentes?"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#qué-es-ggplot2",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#qué-es-ggplot2",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Qué es ggplot2",
+    "text": "Qué es ggplot2\nggplot2 es una de las librerías que forman parte de tidyverse que nos permite crear gráficos, siguiendo una gramática o lógica por capas que se van sumando de manera incremental."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#veamos-un-ejemplo",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#veamos-un-ejemplo",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Veamos un ejemplo",
+    "text": "Veamos un ejemplo\nVamos a trabajar con un dataset sencillo que contiene información sobre la cantidad de plazas, habitaciones y establecimientos de alojamiento turístico disponibles por provincia en Argentina, elaborado por el equipo del Sistema de Información Turistica de la Argentina (SINTA).\nEste dataset nos muestra, para diferentes años (indice_tiempo) y provincias (provincia_nombre), la cantidad de establecimientos (establecimientos), habitaciones (habitaciones) y plazas (plazas) disponibles.\n\nurl_datos &lt;- \"https://datos.yvera.gob.ar/dataset/c9dc110e-2a09-4b51-ac0a-a2db2ca76fbb/resource/67727a58-7a43-450d-a685-a9fba9218b20/download/puna_indicadores_provincias.csv\"\ndf &lt;- read.csv(url_datos, encoding = \"latin1\") \n\n\ndf &lt;- df %&gt;% \n  mutate(establecimientos = as.integer(establecimientos)) %&gt;% \n  filter(indice_tiempo &lt;2024) \n\nY ya que estamos vamos a filtrar datos de un solo año por ej 2020\n\ndf_2020 &lt;- df %&gt;% filter(indice_tiempo == 2020)"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-.smaller",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-.smaller",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Capa de data {.smaller}",
+    "text": "Capa de data {.smaller}\nEl primer paso para crear un gráfico con ggplot2 es llamar a la función ggplot(). Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a ggplot() qué datos vamos a usar.\nLo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.\n\nggplot(data = df)\n\n\nSi ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-.smaller-background-colorff8c00",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-.smaller-background-colorff8c00",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Capa de data {.smaller, background-color=“#FF8C00”}",
+    "text": "Capa de data {.smaller, background-color=“#FF8C00”}\nEl primer paso para crear un gráfico con ggplot2 es llamar a la función ggplot(). Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a ggplot() qué datos vamos a usar.\nLo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.\n\nggplot(data = df)\n\n\nSi ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Capa de data",
+    "text": "Capa de data\nEl primer paso para crear un gráfico con ggplot2 es llamar a la función ggplot(). Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a ggplot() qué datos vamos a usar.\nLo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.\n\nggplot(data = df)\n\n\nSi ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-y-el-mapping",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-y-el-mapping",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Capa de data y el mapping",
+    "text": "Capa de data y el mapping\nEl primer paso para crear un gráfico con ggplot2 es llamar a la función ggplot(). Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a ggplot() qué datos vamos a usar.\nLo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.\n\nggplot(data = df)\n\nSi ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él.\nPara indicarle qué y dónde poner los datos tenemos la capa de mapping o el aes (que viene de aesthetics). En este caso vamos a pedirle a ggplot que coloque en el eje x la cantidad de establecimientos y en el eje y cada una de las provincias.\n\nggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre))"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-o-el-gráfico-en-cuestión",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-o-el-gráfico-en-cuestión",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers o el gráfico en cuestión",
+    "text": "Layers o el gráfico en cuestión\nEl núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:\n\nLa geometría que determina cómo se muestran los datos, como puntos, líneas o rectángulos.\nLa transformación estadística que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.\nEl ajuste de posición que determina principalmente dónde se muestra una pieza de datos."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-ajustando-los-ejes",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-ajustando-los-ejes",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Scales: ¡Ajustando los Ejes!",
+    "text": "Scales: ¡Ajustando los Ejes!\n\n\nLas “scales” (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).\nPor ej. en este gráfico no me gusta no poder ver el puntito en los miles además de que siento que sale un poco cortado el limite superior.\nEn la capa de escalas voy a usar scale_x_continuous() y allí voy a definir sus etiquetas (en el parámtro label) y los límites (en el parametro limit) con la ayuda d funciones de la librería scales\n\n\n# llamamos a la librería \nlibrary(scales)\n\nggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +\n  # Añadimos una capa de barras \n  geom_col() +\n  scale_x_continuous(labels = label_number(big.mark = \".\", decimal.mark = \",\"), \n                     limits = c(0,6000),\n                     n.breaks = 5)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo scale_x_binned(), scale_x_date(), scale_x_discrete()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-con-color",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-con-color",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Scales con color",
+    "text": "Scales con color\nPodriamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas: - Decirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes) - Agregar la capa en cuestion indicando el tipo de estilo que queremos\n\nggplot(data = df, aes(x = establecimientos , \n                      y = provincia_nombre, \n                      fill = establecimientos)) + # en los datos le indico que rellene (fill) con el valor de establecimientos\n  geom_col() +\n  scale_x_continuous(\n    labels = label_number(big.mark = \".\", decimal.mark = \",\"), \n    limits = c(0,25000),\n    n.breaks = 5\n  ) +\n  scale_fill_continuous(type = \"gradient\") # agrego una capa de color de relleno para variables continuas."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#facets-dividiendo-por-grupos",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#facets-dividiendo-por-grupos",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Facets Dividiendo por Grupos ➗",
+    "text": "Facets Dividiendo por Grupos ➗\nFacets es una capa que nos permite “cortar en rodajas” la información y contar la historia a traves de ese criterio. Podemos ver qué paso en cada grupo.\n\nggplot(data = df, aes(x = establecimientos , y = provincia_nombre)) +\n  # Añadimos una capa de barras \n  geom_col() +\n  scale_x_continuous(labels = label_number(big.mark = \".\", decimal.mark = \",\"), \n                     limits = c(0,5000),\n                     n.breaks = 5)+\n  facet_wrap(~ indice_tiempo,\n             nrow = 2)"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-o-el-gráfico-en-cuestión-1",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-o-el-gráfico-en-cuestión-1",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers o el gráfico en cuestión",
+    "text": "Layers o el gráfico en cuestión\nCon las funciones geom_* y stat_* vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo +\nVolviendo a nuestro ejemplo vamos a probar la función geom_col()\n\nggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +\n   geom_col()"
   }
 ]
