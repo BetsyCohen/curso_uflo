@@ -366,9 +366,7 @@ df %>%
 
 ## Scales ⚖️ {.smaller}
 
-
 Las "scales" (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).
-
 
 ```{r}
 #| warning: false
@@ -388,7 +386,7 @@ Dependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revis
 :::
 :::
 
-## Scales en función de otra variable 🌡️{.smaller}
+## Scales en función de otra variable 🌡️ {.smaller}
 
 Podríamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas:
 
@@ -412,10 +410,9 @@ df %>%
 
 ```
 
-## Scales para cambiar colores de manera manual ️{.smaller}
+## Scales para cambiar colores de manera manual ️ {.smaller}
 
 A veces también usamos en la capa de scales cammbiamos los colores de manera manual con `scale_fill_manual()`
-
 
 ```{r}
 #| warning: false
@@ -429,7 +426,6 @@ df %>%
   scale_fill_manual(values= c("#cf4c4c","#7cccaf"))
 ```
 
-
 ## Facetado ➗
 
 Facets es una capa que nos permite "cortar en rodajas" la información y contar la historia a traves de ese criterio y podemos ver qué paso en cada grupo.
@@ -440,7 +436,7 @@ Dependiendo de la situacion podemos usar:
 
 -   `facet_grid()`: Crea una grilla de gráficos **bidimensional** (filas y columnas), ideal para **dos variables de faceteo** (una para filas y otra para columnas).
 
-## Facetado ➗  {.smaller}
+## Facetado ➗ {.smaller}
 
 En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año
 
@@ -506,9 +502,9 @@ df %>%
 ## Theme: enchulando el gráfico 🎨 {.smaller}
 
 ::: columns
-
 ::: {.column width="50%"}
 ### Antes
+
 ```{r}
 #| warning: false
 #| echo: false
@@ -527,6 +523,7 @@ df %>%
 
 ::: {.column width="50%"}
 ### Después
+
 ```{r}
 #| warning: false
 #| echo: false
@@ -544,9 +541,7 @@ df %>%
   theme_minimal()
 ```
 :::
-
 :::
-
 
 ## Theme: enchulando el gráfico 🎨 {.smaller}
 
@@ -595,7 +590,7 @@ df %>%
   theme_uflo()
 ```
 
-::: {.callout-tip}
+::: callout-tip
 ### Algunas extensiones de themes que podes usar son:
 
 -   [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) tiene temas muy populares que por ej. imitan temas clasicos de graficos de Excel, Google docs, FiveThirtyEigh entre otros
@@ -641,16 +636,14 @@ df %>%
 
 
 ```
+
 ## Resumiendo... {.bigtext}
 
 ggplot es como una cebolla...
 
-.... tiene capas
-![](https://www.ecartelera.com/images/noticias/75400/75480-h3.jpg)
+.... tiene capas ![](https://www.ecartelera.com/images/noticias/75400/75480-h3.jpg)
 
-
-## De datos... {auto-animate="true"} 
-
+## De datos... {auto-animate="true"}
 
 ```{r}
 #| warning: false
@@ -665,8 +658,7 @@ df %>%
   geom_col(position = "stack")
 ```
 
-## ...escalas {auto-animate="true"} 
-
+## ...escalas {auto-animate="true"}
 
 ```{r}
 #| warning: false
@@ -686,8 +678,8 @@ df %>%
   scale_fill_manual(values= c("#cf4c4c","#7cccaf"))
 
 ```
-## ...coordenadas ... {auto-animate="true"} 
 
+## ...coordenadas ... {auto-animate="true"}
 
 ```{r}
 #| warning: false
@@ -710,8 +702,7 @@ df %>%
   coord_flip() 
 ```
 
-
-## ... y hermoseo. {auto-animate="true"} 
+## ... y hermoseo. {auto-animate="true"}
 
 ```{r}
 #| warning: false
@@ -741,6 +732,7 @@ df %>%
        fill = "¿Recibio subsidio?")
 
 ```
+
 ## 🪄 Tuki
 
 ```{r}
@@ -773,14 +765,13 @@ df %>%
 
 ```
 
-
-## Y ahora lo usuarios de ggplot amamos
+## Y ahora lo que todos esperábamos ...
 
 ::: {.r-fit-text}
- Extensiones!!!!
+Extensiones!!!!
 :::
 
-## gganimate
+## gganimate {.smaller}
 
 ```{r}
 
@@ -798,10 +789,9 @@ turismo_no_residente_por_anio_y_medio_trasporte %>%
 
 ```
 
-## patchwork
+## patchwork {.smaller}
 
 ```{r}
-
 library(patchwork)
 
 grafico3 + grafico2 + grafico1 + 
@@ -810,7 +800,8 @@ grafico3 + grafico2 + grafico1 +
 
 
 ```
-## esquisse 
+
+## esquisse {.smaller}
 
 ```{r}
 #| output: false
@@ -828,5 +819,3 @@ grafico3 + grafico2 + grafico1 +
 -   [ggtheme asistance](https://github.com/calligross/ggthemeassist?tab=readme-ov-file) parecido a esquisse pero mucho mas completo respecto del theme
 
 -   [ggplot2](https://ggplot2.tidyverse.org/index.html) documentación oficial incluyendo la preciadas Cheatsheet
-
-

@@ -2544,7 +2544,7 @@
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#otros-tipos-de-join",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Otros tipos de join",
-    "text": "Otros tipos de join\n\n\n\n\n\n\nNote\n\n\nsemi_join Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.\nanti_join Unión ANTI-IZQUIERDA. Mantiene solo las filas de tabla_A que NO tienen coincidencia en la columna_clave en tabla_B. Sirve para filtrar tabla_A y quedarte solo con las filas sin coincidencias en tabla_B."
+    "text": "Otros tipos de join\n\n\n\n\n\n\nNote\n\n\n\nsemi_join Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.\nanti_join Unión ANTI-IZQUIERDA. Mantiene solo las filas de tabla_A que NO tienen coincidencia en la columna_clave en tabla_B. Sirve para filtrar tabla_A y quedarte solo con las filas sin coincidencias en tabla_B."
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#cómo-unimos-tablas-con-dplyr",
@@ -2565,7 +2565,7 @@
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#elegir-el-tipo-de-join-correcto",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Elegir el Tipo de Join Correcto 🧐",
-    "text": "Elegir el Tipo de Join Correcto 🧐\nLa elección del tipo de join depende de lo que quieras lograr en tu análisis.\n\ninner_join(): Cuando necesitas datos completos y solo te interesan las filas que tienen información en ambas tablas. “Intersección”.\nleft_join(): Cuando quieres mantener todos los datos de tu tabla principal (izquierda) y agregar información complementaria de otra tabla (derecha), aunque falte información en la tabla derecha para algunas filas. “Prioriza la tabla izquierda”.\nright_join(): Similar a left_join, pero priorizando la tabla derecha. Menos común en la práctica.\nfull_join(): Cuando quieres mantener todos los datos de ambas tablas, incluso si no hay coincidencias. “Unión completa”.\nsemi_join() y anti_join(): Para filtrar una tabla basándote en la existencia o no existencia de coincidencias en otra tabla. No agregan columnas, solo filtran filas.\n\n\n\n\n\n\n\nTip analógico\n\n\nA veces llegar a una tabla / resultados puede requerir de múltiples uniones y transformaciones en el medio. Dibujar en papel o una pizarra las tablas puede ser de gran ayuda en este proceso."
+    "text": "Elegir el Tipo de Join Correcto 🧐\nLa elección del tipo de join depende de lo que quieras lograr en tu análisis.\n\ninner_join(): Cuando necesitas datos completos y solo te interesan las filas que tienen información en ambas tablas. “Intersección”.\nleft_join(): Cuando quieres mantener todos los datos de tu tabla principal (izquierda) y agregar información complementaria de otra tabla (derecha), aunque falte información en la tabla derecha para algunas filas. “Prioriza la tabla izquierda”.\nright_join(): Similar a left_join, pero priorizando la tabla derecha. Menos común en la práctica.\nfull_join(): Cuando quieres mantener todos los datos de ambas tablas, incluso si no hay coincidencias. “Unión completa”.\nsemi_join() y anti_join(): Para filtrar una tabla basándote en la existencia o no existencia de coincidencias en otra tabla. No agregan columnas, solo filtran filas.\n\n\n\n\n\n\n\nTip analógico\n\n\n\nA veces llegar a una tabla / resultados puede requerir de múltiples uniones y transformaciones en el medio. Dibujar en papel o una pizarra las tablas puede ser de gran ayuda en este proceso."
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#situaciones-que-requieren-cintura",
@@ -2607,7 +2607,7 @@
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#estirar-a-lo-ancho-con-pivot_wider",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Estirar a lo ancho con pivot_wider",
-    "text": "Estirar a lo ancho con pivot_wider\nPivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser\n\nencc_personas_por_genero_region_alargada %&gt;% \n  pivot_wider(\n    # 1. Nombre de la variable que voy a estirar a lo ancho como columnas\n    names_from = \"sexo\", \n    # 2. Qué variable contiene los valores que debo repartir en las columnas\n    values_from = \"personas\") \n\n\n\n\n\nregion\nMujer\nVarón\nNo binario\n\n\n\n\nCABA\n215\n173\nNA\n\n\nCENTRO\n368\n240\nNA\n\n\nCUYO\n246\n185\nNA\n\n\nGBA\n370\n249\n1\n\n\nNEA\n269\n179\nNA\n\n\nNOA\n284\n162\nNA\n\n\nPATAGONIA\n253\n186\nNA\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nSi bien no es una regla, podríamos pensar que pivot_longer() va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider() siempre nos da un formato"
+    "text": "Estirar a lo ancho con pivot_wider\nPivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser\n\nencc_personas_por_genero_region_alargada %&gt;% \n  pivot_wider(\n    # 1. Nombre de la variable que voy a estirar a lo ancho como columnas\n    names_from = \"sexo\", \n    # 2. Qué variable contiene los valores que debo repartir en las columnas\n    values_from = \"personas\") \n\n\n\n\n\nregion\nMujer\nVarón\nNo binario\n\n\n\n\nCABA\n215\n173\nNA\n\n\nCENTRO\n368\n240\nNA\n\n\nCUYO\n246\n185\nNA\n\n\nGBA\n370\n249\n1\n\n\nNEA\n269\n179\nNA\n\n\nNOA\n284\n162\nNA\n\n\nPATAGONIA\n253\n186\nNA\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nSi bien no es una regla, podríamos pensar que pivot_longer() va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider() siempre nos da un formato"
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_dplyr.html#un-flujo-de-trabajo-ordenado-o-tidy-tiene-fases-que-iteran-entre-sí",
@@ -3128,7 +3128,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#nuestro-dataset-de-hoy",
     "title": "Gramática de gráficos con ggplot",
     "section": "Nuestro dataset de hoy 🧑‍🍳",
-    "text": "Nuestro dataset de hoy 🧑‍🍳\n\ndf %&gt;%\n  mutate(across(where(is.character), as.factor)) %&gt;% \n  summary()\n\n indice_tiempo  provincia_codigo                        provincia_nombre\n Min.   :2020   Min.   : 2       Buenos Aires                   : 4     \n 1st Qu.:2021   1st Qu.:25       Catamarca                      : 4     \n Median :2022   Median :48       Chaco                          : 4     \n Mean   :2022   Mean   :48       Chubut                         : 4     \n 3rd Qu.:2022   3rd Qu.:71       Ciudad Autónoma de Buenos Aires: 4     \n Max.   :2023   Max.   :94       Córdoba                        : 4     \n                                 (Other)                        :72     \n establecimientos  habitaciones       plazas                region  \n Min.   :  80.0   Min.   :  191   Min.   :  2454   Buenos Aires: 8  \n 1st Qu.: 315.5   1st Qu.: 2554   1st Qu.:  9007   Centro Cuyo :28  \n Median : 562.0   Median : 5744   Median : 18833   NEA         :16  \n Mean   : 857.7   Mean   :10200   Mean   : 32360   NOA         :24  \n 3rd Qu.: 815.5   3rd Qu.: 8822   3rd Qu.: 28693   Sur         :20  \n Max.   :4832.0   Max.   :74535   Max.   :229442                    \n NA's   :4                                                          \n recibio_subsidio\n No:52           \n Si:44"
+    "text": "Nuestro dataset de hoy 🧑‍🍳\n\ndf %&gt;%\n  mutate(across(where(is.character), as.factor)) %&gt;% \n  summary()\n\n indice_tiempo  provincia_codigo                        provincia_nombre\n Min.   :2020   Min.   : 2       Buenos Aires                   : 4     \n 1st Qu.:2021   1st Qu.:25       Catamarca                      : 4     \n Median :2022   Median :48       Chaco                          : 4     \n Mean   :2022   Mean   :48       Chubut                         : 4     \n 3rd Qu.:2022   3rd Qu.:71       Ciudad Autónoma de Buenos Aires: 4     \n Max.   :2023   Max.   :94       Córdoba                        : 4     \n                                 (Other)                        :72     \n establecimientos  habitaciones       plazas                region  \n Min.   :  80.0   Min.   :  191   Min.   :  2454   Buenos Aires: 8  \n 1st Qu.: 315.5   1st Qu.: 2554   1st Qu.:  9007   Centro Cuyo :28  \n Median : 562.0   Median : 5744   Median : 18833   NEA         :16  \n Mean   : 857.7   Mean   :10200   Mean   : 32360   NOA         :24  \n 3rd Qu.: 815.5   3rd Qu.: 8822   3rd Qu.: 28693   Sur         :20  \n Max.   :4832.0   Max.   :74535   Max.   :229442                    \n NA's   :4                                                          \n recibio_subsidio\n No:53           \n Si:43"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-geom_o-geometria",
@@ -3318,5 +3318,40 @@
     "title": "Gramática de gráficos con ggplot",
     "section": "Otros recursos…",
     "text": "Otros recursos…\n\nThe RGraph Gallery Una guia por todos los tipos de gráficos y como hacerlo\nggtheme asistance parecido a esquisse pero mucho mas completo respecto del theme\nggplot2 documentación oficial incluyendo la preciadas Cheatsheet"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_dplyr.html",
+    "href": "materiales/excercise/ejercicio_dplyr.html",
+    "title": "Ejercicio Dplyr",
+    "section": "",
+    "text": "# Llamar a la librería tidyverse\n# library(tidyverse)\n\n# URL de la base\n# url_data &lt;- \"https://catalogo.datos.gba.gob.ar/dataset/a9384c8f-5b36-494a-9301-1bebdd3f5d8d/resource/d100f776-5796-4095-a60f-96e2da5ff6cb/download/defunciones-maternas-2009_2023.csv\"\n# \n# # Cargar la base de datos\n# df &lt;- read.csv(url_data, sep = \";\")\n\n\n# Pegamos un vistaso a la base\n# glimpse(df)\n\n\n¿Cuantas muertes hubo por año?\n\n\n# df %&gt;% \n#   _______(anio) %&gt;% \n#   ________(suma_cantidad = _____________)\n\n\nSelecciona las columnas CIE10_codigo y CIE10_descripcion ¿Qué representan?\n\n\n# df %&gt;% \n#   ______(CIE10_codigo,CIE10_descripcion)\n\n\nCuales son los tres municipios con mayor cantidad de muertes en 2021\n\n\n# df %&gt;% \n#   _____(anio == _____) %&gt;% \n#   _______(municipio_nombre.) %&gt;% \n#   summarise(muertes_totales = ________) %&gt;% \n#   _________(desc(________))\n\n\nAgrupa la cantidad total de muertes segun clasificación y CIE10_descripcion. ¿Qué significan las categorías “Directa” e “Indirecta” en la variable clasificación? en relación a CIE10_descripcion\n\n\n# df %&gt;% \n#   group_by(_______,CIE10_descripcion) %&gt;% \n#   summarise(muertes_totales = ______________)"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_dplyr.html#import",
+    "href": "materiales/excercise/ejercicio_dplyr.html#import",
+    "title": "Ejercicio Dplyr",
+    "section": "",
+    "text": "# Llamar a la librería tidyverse\n# library(tidyverse)\n\n# URL de la base\n# url_data &lt;- \"https://catalogo.datos.gba.gob.ar/dataset/a9384c8f-5b36-494a-9301-1bebdd3f5d8d/resource/d100f776-5796-4095-a60f-96e2da5ff6cb/download/defunciones-maternas-2009_2023.csv\"\n# \n# # Cargar la base de datos\n# df &lt;- read.csv(url_data, sep = \";\")\n\n\n# Pegamos un vistaso a la base\n# glimpse(df)\n\n\n¿Cuantas muertes hubo por año?\n\n\n# df %&gt;% \n#   _______(anio) %&gt;% \n#   ________(suma_cantidad = _____________)\n\n\nSelecciona las columnas CIE10_codigo y CIE10_descripcion ¿Qué representan?\n\n\n# df %&gt;% \n#   ______(CIE10_codigo,CIE10_descripcion)\n\n\nCuales son los tres municipios con mayor cantidad de muertes en 2021\n\n\n# df %&gt;% \n#   _____(anio == _____) %&gt;% \n#   _______(municipio_nombre.) %&gt;% \n#   summarise(muertes_totales = ________) %&gt;% \n#   _________(desc(________))\n\n\nAgrupa la cantidad total de muertes segun clasificación y CIE10_descripcion. ¿Qué significan las categorías “Directa” e “Indirecta” en la variable clasificación? en relación a CIE10_descripcion\n\n\n# df %&gt;% \n#   group_by(_______,CIE10_descripcion) %&gt;% \n#   summarise(muertes_totales = ______________)"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "",
+    "text": "ggplot2 es una de las librerías que forman parte de tidyverse que nos permite crear gráficos, siguiendo una gramática o lógica por capas que se van sumando de manera incremental."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#y-ahora-lo-que-todos-esperábamos",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#y-ahora-lo-que-todos-esperábamos",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Y ahora lo que todos esperábamos …",
+    "text": "Y ahora lo que todos esperábamos …\n\nExtensiones!!!!"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#esquisse-smaller",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#esquisse-smaller",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "esquisse {smaller}",
+    "text": "esquisse {smaller}\n\n# library(esquisse)\n# esquisser(df_vuelos_asientos_pasajeros)"
   }
 ]

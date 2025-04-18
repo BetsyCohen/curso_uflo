@@ -127,5 +127,8 @@
   },
   "materiales/slides/gramatica_de_graficos_ggplot.qmd": {
     "gramatica_de_graficos_ggplot.html": "ff160a99"
+  },
+  "materiales/excercise/ejercicio_dplyr.qmd": {
+    "ejercicio_dplyr.html": "e1019caa"
   }
 }

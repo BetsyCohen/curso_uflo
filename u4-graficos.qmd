@@ -10,7 +10,7 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 :::
 
 ::: slides
-[Gramática de gráficos con ggplot2]()
+[Gramática de gráficos con ggplot2](materiales/slides/gramatica_de_graficos_ggplot.qmd)
 :::
 :::
 
@@ -18,7 +18,7 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 
 ::: slide-deck
 ::: slides
-[Gramática de Tablas paquetes GT y DT]()
+Gramática de Tablas paquetes GT y DT
 :::
 :::
 
@@ -26,11 +26,11 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 
 ::: slide-deck
 ::: slides
-[Tipos de mapas]()
+Tipos de mapas
 :::
 
 ::: slides
-[Mapas con leaflet]()
+Mapas con leaflet
 :::
 :::
 
@@ -38,14 +38,14 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 
 ::: slide-deck
 ::: slides
-[Reportes]()
+Reportes
 :::
 
 ::: slides
-[Presentaciones]()
+Presentaciones
 :::
 
 ::: slides
-[Tableros]()
+Tableros
 :::
 :::

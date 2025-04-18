@@ -1,0 +1,15 @@
+{
+  "hash": "714d379f8cf88645456067937b46089f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Ejercicio Dplyr\"\nformat: html\neditor: visual\n---\n\n\n## Import\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Llamar a la librería tidyverse\n# library(tidyverse)\n\n# URL de la base\n# url_data <- \"https://catalogo.datos.gba.gob.ar/dataset/a9384c8f-5b36-494a-9301-1bebdd3f5d8d/resource/d100f776-5796-4095-a60f-96e2da5ff6cb/download/defunciones-maternas-2009_2023.csv\"\n# \n# # Cargar la base de datos\n# df <- read.csv(url_data, sep = \";\")\n\n\n# Pegamos un vistaso a la base\n# glimpse(df)\n```\n:::\n\n\n1.  ¿Cuantas muertes hubo por año?\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# df %>% \n#   _______(anio) %>% \n#   ________(suma_cantidad = _____________)\n```\n:::\n\n\n2.  Selecciona las columnas CIE10_codigo y CIE10_descripcion ¿Qué representan?\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# df %>% \n#   ______(CIE10_codigo,CIE10_descripcion)\n```\n:::\n\n\n3.  Cuales son los tres municipios con mayor cantidad de muertes en 2021\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# df %>% \n#   _____(anio == _____) %>% \n#   _______(municipio_nombre.) %>% \n#   summarise(muertes_totales = ________) %>% \n#   _________(desc(________))\n```\n:::\n\n\n4.  Agrupa la cantidad total de muertes segun clasificación y CIE10_descripcion. ¿Qué significan las categorías \"Directa\" e \"Indirecta\" en la variable clasificación? en relación a CIE10_descripcion\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# df %>% \n#   group_by(_______,CIE10_descripcion) %>% \n#   summarise(muertes_totales = ______________) \n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
