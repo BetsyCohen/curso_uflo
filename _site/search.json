@@ -2994,15 +2994,15 @@
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-y-el-mapping",
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-data-y-el-mapping",
     "title": "Gramática de gráficos con ggplot",
-    "section": "Capa de data y el mapping",
-    "text": "Capa de data y el mapping\nEl primer paso para crear un gráfico con ggplot2 es llamar a la función ggplot(). Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a ggplot() qué datos vamos a usar.\nLo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.\n\nggplot(data = df)\n\nSi ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él.\nPara indicarle qué y dónde poner los datos tenemos la capa de mapping o el aes (que viene de aesthetics). En este caso vamos a pedirle a ggplot que coloque en el eje x la cantidad de establecimientos y en el eje y cada una de las provincias.\n\nggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre))"
+    "section": "Capa de data y el mapping 🗺️",
+    "text": "Capa de data y el mapping 🗺️\nEl primer paso para crear un gráfico con ggplot2 es llamar a la función ggplot(). Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a ggplot() qué datos vamos a usar.\nLo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.\n\nggplot(data = df)\n\nSi ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él.\nPara indicarle qué y dónde poner los datos tenemos la capa de mapping o el aes (que viene de aesthetics). En este caso vamos a pedirle a ggplot que coloque en el eje x la cantidad de establecimientos y en el eje y cada una de las provincias.\n\nggplot(data = df, aes(x= region , y = establecimientos))"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-o-el-gráfico-en-cuestión",
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-o-el-gráfico-en-cuestión",
     "title": "Gramática de gráficos con ggplot",
-    "section": "Layers o el gráfico en cuestión",
-    "text": "Layers o el gráfico en cuestión\nEl núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:\n\nLa geometría que determina cómo se muestran los datos, como puntos, líneas o rectángulos.\nLa transformación estadística que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.\nEl ajuste de posición que determina principalmente dónde se muestra una pieza de datos."
+    "section": "Layers o el gráfico en cuestión 📊",
+    "text": "Layers o el gráfico en cuestión 📊\nEl núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:\n\n⏺️ La geometría que determina cómo se muestran los datos, como puntos, líneas o rectángulos.\n🧮 La transformación estadística que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.\n📍 El ajuste de posición que determina principalmente dónde se muestra una pieza de datos."
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-ajustando-los-ejes",
@@ -3031,5 +3031,292 @@
     "title": "Gramática de gráficos con ggplot",
     "section": "Layers o el gráfico en cuestión",
     "text": "Layers o el gráfico en cuestión\nCon las funciones geom_* y stat_* vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo +\nVolviendo a nuestro ejemplo vamos a probar la función geom_col()\n\nggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +\n   geom_col()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#preparando-los-datos-de-hoy",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#preparando-los-datos-de-hoy",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Preparando los datos de hoy 🧑‍🍳",
+    "text": "Preparando los datos de hoy 🧑‍🍳\n\n\nVamos a trabajar con un dataset sencillo que contiene información de establecimientos de alojamiento turístico por provincia elaborado por el Sistema de Información Turistica de la Argentina (SINTA).\nAl dataset le agrego la variable region y recibio_subsidio (una variable ficticia) solo a los fines de entender algunos conceptos de visualización.\n\n\n# importar los datos\nurl_datos &lt;- \"https://datos.yvera.gob.ar/dataset/c9dc110e-2a09-4b51-ac0a-a2db2ca76fbb/resource/67727a58-7a43-450d-a685-a9fba9218b20/download/puna_indicadores_provincias.csv\"\n\n# asignar al dataframe df\ndf &lt;- read.csv(url_datos, encoding = \"latin1\") \n\n# Definir vectores de las regiones y sus provincias\nNOA &lt;- c(\"Catamarca\", \"Jujuy\", \"La Rioja\", \"Salta\", \"Santiago del Estero\", \"Tucumán\")\nNEA &lt;- c(\"Chaco\", \"Corrientes\", \"Formosa\", \"Misiones\")\nCentro_Cuyo &lt;- c(\"Córdoba\", \"La Pampa\", \"Mendoza\", \"San Juan\", \"San Luis\", \"Santa Fe\", \"Entre Ríos\")\nBuenos_Aires &lt;- c(\"Buenos Aires\", \"Ciudad Autónoma de Buenos Aires\")\nSur &lt;- c(\"Chubut\", \"Neuquén\", \"Río Negro\", \"Santa Cruz\", \"Tierra del Fuego\")\n\n# creamos algunas variables para poder jugar en los gráficos \ndf &lt;- df %&gt;%\n  # sacar años locos\n  filter(indice_tiempo &lt; 2024) %&gt;%\n  #\n  mutate(\n  # establecimiento como numerica\n    establecimientos = as.integer(establecimientos),\n  # region para cada provincia\n    region = case_when(\n      provincia_nombre %in% NOA ~ \"NOA\",\n      provincia_nombre %in% NEA ~ \"NEA\",\n      provincia_nombre %in% Centro_Cuyo ~ \"Centro Cuyo\",\n      provincia_nombre %in% Buenos_Aires ~ \"Buenos Aires\",\n      provincia_nombre %in% Sur ~ \"Sur\",\n      TRUE ~ \"Otra\"\n    ),\n  # una variable al azar de asignacion de subsidio\n    recibio_subsidio = sample(c(\"Si\", \"No\"), size = n(), replace = TRUE)\n  )"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#ggplot-es-parte-de-tidyverse",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#ggplot-es-parte-de-tidyverse",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "ggplot es parte de tidyverse",
+    "text": "ggplot es parte de tidyverse\n\n\nComo ggplot es parte de tidyverse el argumento que vimos arriba podemos escribirlo encadenado dentro de una secuencia de pipes. Esto no es muy útil ya que si necesitamos hacer una transformación específica la podemos encadenar en esta secuencia donde ggplot es un paso más. Por ej. si queremos filtrar los datos solo para 2020 Por eso escribimos algo asi:\n\ndf %&gt;% \n  # hago las trasformaciones que necesito\n  filter(indice_tiempo == 2020) %&gt;% \n  #no necesito definir el parámetro data porque los datos ya estan dentro de la cadena\n  ggplot(aes(x= region , y = establecimientos))"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-su-geometria",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-su-geometria",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers: su geometria 📊",
+    "text": "Layers: su geometria 📊\nCon las funciones geom_* y stat_* vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo +\nVolviendo a nuestro ejemplo vamos a una geometría de gráfico de barras geom_col() y voy a usar el parámetro stat = “identity”.\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos)) +\n  geom_col()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-_statsparametro-de-cálculo",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-_statsparametro-de-cálculo",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers: _statsparametro de cálculo",
+    "text": "Layers: _statsparametro de cálculo\nCada geom_*() viene con una función estadística por defecto, llamada stat. Esa función procesa tus datos antes de graficarlos.\n“stat”. Es como decirle a ggplot2: “¿Querés que te dé los datos ya cocinados, o preferís cocinar vos?” Por ej.\nHay dos tipos de gráficos de barras: geom_bar()y geom_col().\n\n\n\ngeom_bar() → usa stat = “count” (por defecto)\nCuenta la cantidad de casos de cada categoría.\nNo necesitás columna y, la calcula automáticamente.\n\npor ej:\n\n\n\ngeom_col() → usa stat = “identity” (por defecto)\nSignifica: “ya tengo la variable Y calculada, usala tal como está”.\nAcá sí necesitás pasar y = en el aes().\n\nSi quisieras usar geom_bar() con datos ya agregados, ahí sí tendrías que forzar stat = “identity”\n\n\nCaso | ¿Tengo los valores listos? | ¿Necesito stat? | ¿Qué geom uso? Quiero contar casos | No | stat = “count” (implícito) | geom_bar() Ya tengo los totales, promedios, etc. | Sí | stat = “identity” (explícito si usás geom_bar()) | geom_col() ✅ más claro"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-parametros-de-posisción",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-parametros-de-posisción",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers: Parametros de posisción",
+    "text": "Layers: Parametros de posisción\nDentro de la capa layer tro parámetro importante es la posición que ocupa una variable. El comportamiento de position va a cambiar según el tipo de gráfico o (para ponerlo en palabras de ggplot), la geometría, en el caso del gráfico de barras podemos mencionar las posiciones:\n\n\ndodge o agrupada\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"dodge\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)\n\n\n\n\n\n\n\n\n\nstack o apilada\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#scales",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Scales ⚖️",
+    "text": "Scales ⚖️\nLas “scales” (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nDependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo scale_y_binned(), scale_y_date(), scale_y_discrete()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-en-función-de-otra-variable",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-en-función-de-otra-variable",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Scales en función de otra variable 🌡️",
+    "text": "Scales en función de otra variable 🌡️\nPodríamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas:\n\nDecirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes)\nAgregar la capa en cuestión indicando el tipo de estilo que queremos\n\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = plazas)) +\n  geom_col()+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  # Capa escala: rellena con gradientes continuos.\n  scale_fill_continuous(type = \"gradient\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#facetado",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#facetado",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Facetado ➗",
+    "text": "Facetado ➗\nFacets es una capa que nos permite “cortar en rodajas” la información y contar la historia a traves de ese criterio y podemos ver qué paso en cada grupo.\nDependiendo de la situacion podemos usar:\n\nfacet_wrap(): Crea una grilla de gráficos en una sola dimensión (usualmente se enrolla en filas o columnas) y ideal para una sola variable de faceteo o agrupamiento.\nfacet_grid(): Crea una grilla de gráficos bidimensional (filas y columnas), ideal para dos variables de faceteo (una para filas y otra para columnas)."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#facetado-1",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#facetado-1",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Facetado ➗",
+    "text": "Facetado ➗\nEn este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año\n\n\ndf %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  facet_wrap(~ indice_tiempo)"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#coordinates-cambiando-la-perspectiva",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#coordinates-cambiando-la-perspectiva",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Coordinates: Cambiando la Perspectiva",
+    "text": "Coordinates: Cambiando la Perspectiva\nSi nos imaginamos el gráfico como un mapa podriamos decir que la capa de coordenadas es como el la direccion en que sostenemos ese mapa para interpretarlo.\nSi bien se suelen utilizar coordenadas cartesianas, el sistema de coordenadas impulsa la visualización de proyecciones cartográficas (cuando graficamos mapas) y gráficos polares.\nSi bien no es la capa que más vamos a usar al principio es probable que la función coord_flip te sea de utilidad para voltear los ejes de tu gráfico.\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  coord_flip()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#theme-enchulando-el-gráfico",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#theme-enchulando-el-gráfico",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Theme: enchulando el gráfico 🎨",
+    "text": "Theme: enchulando el gráfico 🎨\nggplot2 nos ofrece varios temas predeterminados para enchular nuestros gráficos como theme_grey() theme_gray() theme_bw() theme_linedraw() theme_light() theme_dark() theme_minimal() theme_classic()\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip() +\n  ## elijo el theme light\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#themes-personalizados",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#themes-personalizados",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Themes personalizados",
+    "text": "Themes personalizados\nObviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos un theme que preparamos previamente para la ocasión: el theme_uflo\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip() +\n  ## elijo el theme light\n  theme_uflo()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgunas extensiones de themes que podes usar son:\n\n\n\nggthemes tiene temas muy populares que por ej. imitan temas clasicos de graficos de Excel, Google docs, FiveThirtyEigh entre otros\nggdark: temas en modo escuro de los temas predeterminados de ggplot2.\nggtech: proporciona temas inspirados por compañías tecnológicas, como Airbnb, Google, Twitter o Facebook."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#anotaciones",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#anotaciones",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Anotaciones 🗒️",
+    "text": "Anotaciones 🗒️\nSi bien no se la menciona como capa en general las anotaciones son muy importantes cuando realizamos un gráfico. Dentro de las anotaciones tenemos varias funciones:\n\nlabs():Para etiquetar elementos del gráfico como title, subtitle, caption x, y (de los ejes) fill, color, size, shape, etc. (etiquetas especificas de leyendas)\nanotate() Permite agregar texto, líneas, puntos, rectángulos, etc. en posiciones específicas del gráfico.\ngeom_text() y geom_label()También agregan texto al gráfico, pero basado en los datos. A diferencia de annotate(), estas geométricas se usan como capas regulares.\ngeom_curve() y geom_segment()Sirven para dibujar flechas, líneas o curvas que apunten a algo importante."
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#nuestro-dataset-de-hoy",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#nuestro-dataset-de-hoy",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Nuestro dataset de hoy 🧑‍🍳",
+    "text": "Nuestro dataset de hoy 🧑‍🍳\n\ndf %&gt;%\n  mutate(across(where(is.character), as.factor)) %&gt;% \n  summary()\n\n indice_tiempo  provincia_codigo                        provincia_nombre\n Min.   :2020   Min.   : 2       Buenos Aires                   : 4     \n 1st Qu.:2021   1st Qu.:25       Catamarca                      : 4     \n Median :2022   Median :48       Chaco                          : 4     \n Mean   :2022   Mean   :48       Chubut                         : 4     \n 3rd Qu.:2022   3rd Qu.:71       Ciudad Autónoma de Buenos Aires: 4     \n Max.   :2023   Max.   :94       Córdoba                        : 4     \n                                 (Other)                        :72     \n establecimientos  habitaciones       plazas                region  \n Min.   :  80.0   Min.   :  191   Min.   :  2454   Buenos Aires: 8  \n 1st Qu.: 315.5   1st Qu.: 2554   1st Qu.:  9007   Centro Cuyo :28  \n Median : 562.0   Median : 5744   Median : 18833   NEA         :16  \n Mean   : 857.7   Mean   :10200   Mean   : 32360   NOA         :24  \n 3rd Qu.: 815.5   3rd Qu.: 8822   3rd Qu.: 28693   Sur         :20  \n Max.   :4832.0   Max.   :74535   Max.   :229442                    \n NA's   :4                                                          \n recibio_subsidio\n No:52           \n Si:44"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-geom_o-geometria",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-geom_o-geometria",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers: geom_*o geometria 📊",
+    "text": "Layers: geom_*o geometria 📊\nCon las funciones geom_* y stat_* vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo +\nVolviendo a nuestro ejemplo vamos a una geometría de gráfico de barras geom_col() y voy a usar el parámetro stat = “identity”.\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos)) +\n  geom_col()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#otras-geometrias-posibles",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#otras-geometrias-posibles",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Otras geometrias posibles",
+    "text": "Otras geometrias posibles\nObviamente las barras no son la única geometría posibles. Podes consultar todas las geometrías posibles en la documentación sobre capas de ggplot. A grandes razgos podríamos decir que:\n\n usamos geom_density() stat_density() para los gráficos de densidad\n usamos geom_boxplot() stat_boxplot() para los gráficos de cajas o boxplot\n geom_bar() geom_col() stat_count() son para las columnas y barras\n geom_point() para los gráficos de dispersión de puntos"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-para-que-sirve-_stats",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-para-que-sirve-_stats",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Layers: para que sirve _stats",
+    "text": "Layers: para que sirve _stats\nCada geom_*() viene con una función estadística por defecto o _stat. Esa función procesa tus datos antes de graficarlos.\n“stat”. Es como decirle a ggplot2: “¿Querés que te dé los datos ya cocinados, o preferís cocinar vos?”\nUn ejemplo de stat y graficos de barra\nEn ggplot Hay dos tipos de gráficos de barras: geom_bar()y geom_col().\n\n\n\ngeom_bar() → usa stat = “count” (por defecto)\nCuenta la cantidad de casos de cada categoría.\nNo necesitás columna y, la calcula automáticamente.\n\n\nstarwars %&gt;% \n  ggplot(aes(x = gender)) +\n  # cuenta cuántos varones y mujeres hay y ya.\n  geom_bar()  \n\n\n\ngeom_col() → usa stat = “identity” (por defecto)\nSignifica: “ya tengo la variable Y calculada, usala tal como está”.\nAcá sí necesitás pasar y = en el aes().\n\n\nstarwars %&gt;% \n  group_by(gender) %&gt;% \n  summarise(average_height = round(mean(height,na.rm = T))) %&gt;% \n  # tengo dos variables claras\n  ggplot(aes(x = gender, y= average_height )) +\n  # detecta la columna average_height como la que tiene el cálculo\n  geom_col()   \n\nSi quisieras usar geom_bar() con datos ya agregados, ahí sí tendrías que forzar stat = “identity”"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-coordenadas",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#capa-de-coordenadas",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Capa de coordenadas",
+    "text": "Capa de coordenadas\nSi nos imaginamos el gráfico como un mapa podríamos decir que la capa de coordenadas es como el la direccion en que sostenemos ese mapa para interpretarlo.\nSi bien se suelen utilizar coordenadas cartesianas, el sistema de coordenadas impulsa la visualización de proyecciones cartográficas (cuando graficamos mapas) y gráficos polares.\nSi bien no es la capa que más vamos a usar al principio es probable que la función coord_flip te sea de utilidad para voltear los ejes de tu gráfico.\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#theme-enchulando-el-gráfico-1",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#theme-enchulando-el-gráfico-1",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Theme: enchulando el gráfico 🎨",
+    "text": "Theme: enchulando el gráfico 🎨\n\n\nAntes\n\n\n\n\n\n\n\n\n\n\nDespués"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#anotaciones-1",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#anotaciones-1",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Anotaciones 🗒️",
+    "text": "Anotaciones 🗒️\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip() +\n  theme_uflo()+ \n  labs(x= \"\", y= \"Cantidad de establecimientos\",\n       title = \"Percepcion de subsidios al turismo por region\",\n       subtitle = \"Año 2020\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\", \n       fill = \"¿Recibio subsidio?\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-para-cambiar-colores-de-manera-manual",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-para-cambiar-colores-de-manera-manual",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Scales para cambiar colores de manera manual ️",
+    "text": "Scales para cambiar colores de manera manual ️\nA veces también usamos en la capa de scales cammbiamos los colores de manera manual con scale_fill_manual()\n\n\ndf %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Resumiendo…",
+    "text": "Resumiendo…\nggplot es como una cebolla…\n…. tiene capas"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo-1",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo-1",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Resumiendo…",
+    "text": "Resumiendo…\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo-2",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo-2",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Resumiendo…",
+    "text": "Resumiendo…\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo-3",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo-3",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Resumiendo…",
+    "text": "Resumiendo…\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip() +\n  # Capas de tema\n  theme_uflo()+ \n  labs(x= \"\", y= \"Cantidad de establecimientos\",\n       title = \"Percepcion de subsidios al turismo por region\",\n       subtitle = \"Año 2020\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\", \n       fill = \"¿Recibio subsidio?\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#de-datos-auto-animatetrue",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#de-datos-auto-animatetrue",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "De datos {auto-animate=“true”}",
+    "text": "De datos {auto-animate=“true”}\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#escalas-auto-animatetrue",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#escalas-auto-animatetrue",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Escalas {auto-animate=“true”}",
+    "text": "Escalas {auto-animate=“true”}\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#coordenadas-auto-animatetrue",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#coordenadas-auto-animatetrue",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Coordenadas … {auto-animate=“true”}",
+    "text": "Coordenadas … {auto-animate=“true”}\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#y-hermoseo-auto-animatetrue",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#y-hermoseo-auto-animatetrue",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "… y hermoseo {auto-animate=“true”}",
+    "text": "… y hermoseo {auto-animate=“true”}\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip() +\n  # Capas de tema\n  theme_uflo()+ \n  labs(x= \"\", y= \"Cantidad de establecimientos\",\n       title = \"Percepcion de subsidios al turismo por region\",\n       subtitle = \"Año 2020\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\", \n       fill = \"¿Recibio subsidio?\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#de-datos",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#de-datos",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "De datos…",
+    "text": "De datos…\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#escalas",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#escalas",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "…escalas",
+    "text": "…escalas\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#coordenadas",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#coordenadas",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "…coordenadas …",
+    "text": "…coordenadas …\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#y-hermoseo",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#y-hermoseo",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "… y hermoseo",
+    "text": "… y hermoseo\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip() +\n  # Capas de tema\n  theme_uflo()+ \n  labs(x= \"\", y= \"Cantidad de establecimientos\",\n       title = \"Percepcion de subsidios al turismo por region\",\n       subtitle = \"Año 2020\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\", \n       fill = \"¿Recibio subsidio?\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#theme-enchulando-el-gráfico-2",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#theme-enchulando-el-gráfico-2",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Theme: enchulando el gráfico 🎨",
+    "text": "Theme: enchulando el gráfico 🎨\nSi quiero cambiar algo específico (un elemento) del theme simplemente vuelvo a abrir theme y modifico el elemento específico.\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip() +\n  theme_minimal()+\n  # agrego más capas al theme\n  theme(\n    # cambio el angulo del texto en eje x\n    axis.text.x = element_text(angle = 45, hjust = 1), \n  )"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#tuki",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#tuki",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "🪄 Tuki",
+    "text": "🪄 Tuki"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#y-hermoseo.",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#y-hermoseo.",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "… y hermoseo.",
+    "text": "… y hermoseo.\n\n\ndf %&gt;% \n  # Transformo mis datos \n  filter(indice_tiempo == 2020) %&gt;% \n  # Capa de mapeo\n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  # Capa de geometria\n  geom_col(position = \"stack\")+\n  # Capas de escalas\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  # Capas de coordenadas\n  coord_flip() +\n  # Capas de tema\n  theme_uflo()+ \n  labs(x= \"\", y= \"Cantidad de establecimientos\",\n       title = \"Percepcion de subsidios al turismo por region\",\n       subtitle = \"Año 2020\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\", \n       fill = \"¿Recibio subsidio?\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#y-ahora-lo-usuarios-de-ggplot-amamos",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#y-ahora-lo-usuarios-de-ggplot-amamos",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Y ahora lo usuarios de ggplot amamos",
+    "text": "Y ahora lo usuarios de ggplot amamos\n\nExtensiones!!!!"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#gganimate",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#gganimate",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "gganimate",
+    "text": "gganimate\n\nlibrary(gganimate)\n\nturismo_no_residente_por_anio_y_medio_trasporte %&gt;%\n  ggplot(aes(x = medio_de_transporte, y = viajes, fill = medio_de_transporte)) +\n  geom_col(show.legend = FALSE) +\n  labs(title = \"Viajes en año: {as.integer(frame_time)}\",\n       x = \"Medio de transporte\",\n       y = \"Cantidad de viajes\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\") +\n  transition_time(indice_tiempo_anio) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#patchwork",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#patchwork",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "patchwork",
+    "text": "patchwork\n\nlibrary(patchwork)\n\ngrafico3 + grafico2 + grafico1 + \n  guide_area() +\n  plot_layout(guides = \"collect\")"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#esquisse",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#esquisse",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "esquisse",
+    "text": "esquisse\n\n# library(esquisse)\n# esquisser(df_vuelos_asientos_pasajeros)"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#otros-recursos",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#otros-recursos",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "Otros recursos…",
+    "text": "Otros recursos…\n\nThe RGraph Gallery Una guia por todos los tipos de gráficos y como hacerlo\nggtheme asistance parecido a esquisse pero mucho mas completo respecto del theme\nggplot2 documentación oficial incluyendo la preciadas Cheatsheet"
   }
 ]

@@ -408,81 +408,255 @@ Betsy Cohen
 <p><code>ggplot2</code> es una de las librerías que forman parte de <code>tidyverse</code> que nos permite crear gráficos, siguiendo una gramática o lógica por capas que se van sumando de manera incremental.</p>
 
 <img data-src="https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="veamos-un-ejemplo" class="slide level2">
-<h2>Veamos un ejemplo</h2>
-<p>Vamos a trabajar con un dataset sencillo que contiene información sobre la cantidad de plazas, habitaciones y establecimientos de alojamiento turístico disponibles por provincia en Argentina, elaborado por el equipo del Sistema de Información Turistica de la Argentina (SINTA).</p>
-<p>Este dataset nos muestra, para diferentes años (<code>indice_tiempo</code>) y provincias (<code>provincia_nombre</code>), la cantidad de establecimientos (<code>establecimientos</code>), habitaciones (<code>habitaciones</code>) y plazas (<code>plazas</code>) disponibles.</p>
+<section id="preparando-los-datos-de-hoy" class="slide level2 smaller">
+<h2>Preparando los datos de hoy 🧑‍🍳</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>Vamos a trabajar con un dataset sencillo que contiene información de establecimientos de alojamiento turístico por provincia elaborado por el <a href="https://datos.yvera.gob.ar/">Sistema de Información Turistica de la Argentina (SINTA)</a>.</p>
+<p>Al dataset le agrego la variable <code>region</code> y <code>recibio_subsidio</code> (una variable ficticia) solo a los fines de entender algunos conceptos de visualización.</p>
+</div><div class="column" style="width:70%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>url_datos <span class="ot">&lt;-</span> <span class="st">"https://datos.yvera.gob.ar/dataset/c9dc110e-2a09-4b51-ac0a-a2db2ca76fbb/resource/67727a58-7a43-450d-a685-a9fba9218b20/download/puna_indicadores_provincias.csv"</span></span>
-<span id="cb1-2"><a></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url_datos, <span class="at">encoding =</span> <span class="st">"latin1"</span>) </span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># importar los datos</span></span>
+<span id="cb1-2"><a></a>url_datos <span class="ot">&lt;-</span> <span class="st">"https://datos.yvera.gob.ar/dataset/c9dc110e-2a09-4b51-ac0a-a2db2ca76fbb/resource/67727a58-7a43-450d-a685-a9fba9218b20/download/puna_indicadores_provincias.csv"</span></span>
 <span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a></span>
-<span id="cb1-5"><a></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb1-6"><a></a>  <span class="fu">mutate</span>(<span class="at">establecimientos =</span> <span class="fu">as.integer</span>(establecimientos)) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-7"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">&lt;</span><span class="dv">2024</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a></a><span class="co"># asignar al dataframe df</span></span>
+<span id="cb1-5"><a></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url_datos, <span class="at">encoding =</span> <span class="st">"latin1"</span>) </span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a><span class="co"># Definir vectores de las regiones y sus provincias</span></span>
+<span id="cb1-8"><a></a>NOA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Catamarca"</span>, <span class="st">"Jujuy"</span>, <span class="st">"La Rioja"</span>, <span class="st">"Salta"</span>, <span class="st">"Santiago del Estero"</span>, <span class="st">"Tucumán"</span>)</span>
+<span id="cb1-9"><a></a>NEA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Chaco"</span>, <span class="st">"Corrientes"</span>, <span class="st">"Formosa"</span>, <span class="st">"Misiones"</span>)</span>
+<span id="cb1-10"><a></a>Centro_Cuyo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Córdoba"</span>, <span class="st">"La Pampa"</span>, <span class="st">"Mendoza"</span>, <span class="st">"San Juan"</span>, <span class="st">"San Luis"</span>, <span class="st">"Santa Fe"</span>, <span class="st">"Entre Ríos"</span>)</span>
+<span id="cb1-11"><a></a>Buenos_Aires <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Buenos Aires"</span>, <span class="st">"Ciudad Autónoma de Buenos Aires"</span>)</span>
+<span id="cb1-12"><a></a>Sur <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Chubut"</span>, <span class="st">"Neuquén"</span>, <span class="st">"Río Negro"</span>, <span class="st">"Santa Cruz"</span>, <span class="st">"Tierra del Fuego"</span>)</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a><span class="co"># creamos algunas variables para poder jugar en los gráficos </span></span>
+<span id="cb1-15"><a></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a></a>  <span class="co"># sacar años locos</span></span>
+<span id="cb1-17"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">&lt;</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a></a>  <span class="co">#</span></span>
+<span id="cb1-19"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-20"><a></a>  <span class="co"># establecimiento como numerica</span></span>
+<span id="cb1-21"><a></a>    <span class="at">establecimientos =</span> <span class="fu">as.integer</span>(establecimientos),</span>
+<span id="cb1-22"><a></a>  <span class="co"># region para cada provincia</span></span>
+<span id="cb1-23"><a></a>    <span class="at">region =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-24"><a></a>      provincia_nombre <span class="sc">%in%</span> NOA <span class="sc">~</span> <span class="st">"NOA"</span>,</span>
+<span id="cb1-25"><a></a>      provincia_nombre <span class="sc">%in%</span> NEA <span class="sc">~</span> <span class="st">"NEA"</span>,</span>
+<span id="cb1-26"><a></a>      provincia_nombre <span class="sc">%in%</span> Centro_Cuyo <span class="sc">~</span> <span class="st">"Centro Cuyo"</span>,</span>
+<span id="cb1-27"><a></a>      provincia_nombre <span class="sc">%in%</span> Buenos_Aires <span class="sc">~</span> <span class="st">"Buenos Aires"</span>,</span>
+<span id="cb1-28"><a></a>      provincia_nombre <span class="sc">%in%</span> Sur <span class="sc">~</span> <span class="st">"Sur"</span>,</span>
+<span id="cb1-29"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Otra"</span></span>
+<span id="cb1-30"><a></a>    ),</span>
+<span id="cb1-31"><a></a>  <span class="co"># una variable al azar de asignacion de subsidio</span></span>
+<span id="cb1-32"><a></a>    <span class="at">recibio_subsidio =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Si"</span>, <span class="st">"No"</span>), <span class="at">size =</span> <span class="fu">n</span>(), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-33"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Y ya que estamos vamos a filtrar datos de un solo año por ej 2020</p>
+</div>
+</div>
+</section>
+<section id="nuestro-dataset-de-hoy" class="slide level2 smaller">
+<h2>Nuestro dataset de hoy 🧑‍🍳</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>df_2020 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> indice_tiempo  provincia_codigo                        provincia_nombre
+ Min.   :2020   Min.   : 2       Buenos Aires                   : 4     
+ 1st Qu.:2021   1st Qu.:25       Catamarca                      : 4     
+ Median :2022   Median :48       Chaco                          : 4     
+ Mean   :2022   Mean   :48       Chubut                         : 4     
+ 3rd Qu.:2022   3rd Qu.:71       Ciudad Autónoma de Buenos Aires: 4     
+ Max.   :2023   Max.   :94       Córdoba                        : 4     
+                                 (Other)                        :72     
+ establecimientos  habitaciones       plazas                region  
+ Min.   :  80.0   Min.   :  191   Min.   :  2454   Buenos Aires: 8  
+ 1st Qu.: 315.5   1st Qu.: 2554   1st Qu.:  9007   Centro Cuyo :28  
+ Median : 562.0   Median : 5744   Median : 18833   NEA         :16  
+ Mean   : 857.7   Mean   :10200   Mean   : 32360   NOA         :24  
+ 3rd Qu.: 815.5   3rd Qu.: 8822   3rd Qu.: 28693   Sur         :20  
+ Max.   :4832.0   Max.   :74535   Max.   :229442                    
+ NA's   :4                                                          
+ recibio_subsidio
+ No:52           
+ Si:44           
+                 
+                 
+                 
+                 
+                 </code></pre>
+</div>
 </div>
 </section>
 <section id="capa-de-data-y-el-mapping" class="slide level2 smaller">
-<h2>Capa de data y el mapping</h2>
+<h2>Capa de data y el mapping 🗺️</h2>
 <p>El primer paso para crear un gráfico con <code>ggplot2</code> es llamar a la función <code>ggplot()</code>. Esta función crea el lienzo en blanco sobre el cual vamos a dibujar. Necesitamos decirle a <code>ggplot()</code> qué datos vamos a usar.</p>
 <p>Lo primero que le indicamos a ggplot es cual es la tabla de donde estamos sacando los datos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado el lienzo, pero aún no le hemos dicho qué queremos dibujar sobre él.</p>
 <p>Para indicarle <strong>qué</strong> y <strong>dónde</strong> poner los datos tenemos la capa de <strong>mapping</strong> o el <code>aes</code> (que viene de aesthetics). En este caso vamos a pedirle a ggplot que coloque en el eje x la cantidad de establecimientos y en el eje y cada una de las provincias.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_2020, <span class="fu">aes</span>(<span class="at">x =</span> establecimientos , <span class="at">y =</span> provincia_nombre))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="ggplot-es-parte-de-tidyverse" class="slide level2 smaller">
+<h2>ggplot es parte de tidyverse</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Como ggplot es parte de tidyverse el argumento que vimos arriba podemos escribirlo encadenado dentro de una secuencia de pipes. Esto no es muy útil ya que si necesitamos hacer una transformación específica la podemos encadenar en esta secuencia donde ggplot es un paso más. Por ej. si queremos filtrar los datos solo para 2020 Por eso escribimos algo asi:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a></a>  <span class="co"># hago las trasformaciones que necesito</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a></a>  <span class="co">#no necesito definir el parámetro data porque los datos ya estan dentro de la cadena</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><img data-src="https://www.business-science.io/assets/2020-10-15-must-know-tidyverse-features/tidyverse-icons.png"></p>
+</div>
+</div>
+</section>
 <section id="layers-o-el-gráfico-en-cuestión" class="slide level2">
-<h2>Layers o el gráfico en cuestión</h2>
+<h2>Layers o el gráfico en cuestión 📊</h2>
 <p>El núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:</p>
 <ul>
-<li>La <strong>geometría</strong> que determina cómo se muestran los datos, como puntos, líneas o rectángulos.</li>
-<li>La <strong>transformación estadística</strong> que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.</li>
-<li>El ajuste de <strong>posición</strong> que determina principalmente <strong>dónde</strong> se muestra una pieza de datos.</li>
+<li><p>⏺️ La <strong>geometría</strong> que determina cómo se muestran los datos, como puntos, líneas o rectángulos.</p></li>
+<li><p>🧮 La <strong>transformación estadística</strong> que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.</p></li>
+<li><p>📍 El ajuste de <strong>posición</strong> que determina principalmente <strong>dónde</strong> se muestra una pieza de datos.</p></li>
 </ul>
 </section>
-<section id="layers-o-el-gráfico-en-cuestión-1" class="slide level2">
-<h2>Layers o el gráfico en cuestión</h2>
+<section id="layers-geom_o-geometria" class="slide level2 smaller">
+<h2>Layers: <code>geom_*</code>o geometria 📊</h2>
 <p>Con las funciones <code>geom_*</code> y <code>stat_*</code> vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo <strong>+</strong></p>
-<p>Volviendo a nuestro ejemplo vamos a probar la función <code>geom_col()</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_2020, <span class="fu">aes</span>(<span class="at">x =</span> establecimientos , <span class="at">y =</span> provincia_nombre)) <span class="sc">+</span></span>
-<span id="cb5-2"><a></a>   <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="scales-ajustando-los-ejes" class="slide level2 smaller">
-<h2>Scales: ¡Ajustando los Ejes!</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Las “scales” (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).</p>
-<p>Por ej. en este gráfico no me gusta no poder ver el puntito en los miles además de que siento que sale un poco cortado el limite superior.</p>
-<p>En la capa de escalas voy a usar scale_x_continuous() y allí voy a definir sus etiquetas (en el parámtro label) y los límites (en el parametro limit) con la ayuda d funciones de la librería <code>scales</code></p>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># llamamos a la librería </span></span>
-<span id="cb6-2"><a></a><span class="fu">library</span>(scales)</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_2020, <span class="fu">aes</span>(<span class="at">x =</span> establecimientos , <span class="at">y =</span> provincia_nombre)) <span class="sc">+</span></span>
-<span id="cb6-5"><a></a>  <span class="co"># Añadimos una capa de barras </span></span>
-<span id="cb6-6"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb6-7"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>), </span>
-<span id="cb6-8"><a></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6000</span>),</span>
-<span id="cb6-9"><a></a>                     <span class="at">n.breaks =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Volviendo a nuestro ejemplo vamos a una geometría de gráfico de barras <code>geom_col()</code> y voy a usar el parámetro stat = “identity”.</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos)) <span class="sc">+</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
 <p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
 </figure>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="otras-geometrias-posibles" class="slide level2 smaller">
+<h2>Otras geometrias posibles</h2>
+<p>Obviamente las barras no son la única geometría posibles. Podes consultar todas las geometrías posibles en la <a href="https://ggplot2.tidyverse.org/reference/index.html#layers">documentación sobre capas de ggplot</a>. A grandes razgos podríamos decir que:</p>
+<ul>
+<li><p><img data-src="https://ggplot2.tidyverse.org/reference/icons/geom_density.png"> usamos <code>geom_density()</code> <code>stat_density()</code> para los gráficos de <strong>densidad</strong></p></li>
+<li><p><img data-src="https://ggplot2.tidyverse.org/reference/icons/geom_boxplot.png"> usamos <code>geom_boxplot()</code> <code>stat_boxplot()</code> para los gráficos de cajas o <strong>boxplot</strong></p></li>
+<li><p><img data-src="https://ggplot2.tidyverse.org/reference/icons/geom_bar.png"> <code>geom_bar()</code> <code>geom_col()</code> <code>stat_count()</code> son para las <strong>columnas</strong> y <strong>barras</strong></p></li>
+<li><p><img data-src="https://ggplot2.tidyverse.org/reference/icons/geom_point.png"> <code>geom_point()</code> para los gráficos de <strong>dispersión</strong> de puntos</p></li>
+</ul>
+</section>
+<section id="layers-para-que-sirve-_stats" class="slide level2 smaller">
+<h2>Layers: para que sirve <code>_stats</code></h2>
+<p>Cada geom_*() viene con una función estadística por defecto o <code>_stat</code>. Esa función procesa tus datos antes de graficarlos.</p>
+<p>“stat”. Es como decirle a ggplot2: “¿Querés que te dé los datos ya cocinados, o preferís cocinar vos?”</p>
+<h3 id="un-ejemplo-de-stat-y-graficos-de-barra">Un ejemplo de stat y graficos de barra</h3>
+<p>En ggplot Hay dos tipos de gráficos de barras: <code>geom_bar()</code>y <code>geom_col()</code>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>geom_bar() → usa stat = “count” (por defecto)</li>
+<li>Cuenta la cantidad de casos de cada categoría.</li>
+<li>No necesitás columna y, la calcula automáticamente.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gender)) <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>  <span class="co"># cuenta cuántos varones y mujeres hay y ya.</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">geom_bar</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>geom_col() → usa stat = “identity” (por defecto)</li>
+<li>Significa: “ya tengo la variable Y calculada, usala tal como está”.</li>
+<li>Acá sí necesitás pasar y = en el aes().</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a></a>  <span class="fu">summarise</span>(<span class="at">average_height =</span> <span class="fu">round</span>(<span class="fu">mean</span>(height,<span class="at">na.rm =</span> T))) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a></a>  <span class="co"># tengo dos variables claras</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y=</span> average_height )) <span class="sc">+</span></span>
+<span id="cb9-6"><a></a>  <span class="co"># detecta la columna average_height como la que tiene el cálculo</span></span>
+<span id="cb9-7"><a></a>  <span class="fu">geom_col</span>()   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si quisieras usar geom_bar() con datos ya agregados, ahí sí tendrías que forzar stat = “identity”</p>
+</div>
+</div>
+</section>
+<section id="layers-parametros-de-posisción" class="slide level2 smaller">
+<h2>Layers: Parametros de posisción</h2>
+<p>Dentro de la capa layer tro parámetro importante es la <strong>posición</strong> que ocupa una variable. El comportamiento de <code>position</code> va a cambiar según el tipo de gráfico o (para ponerlo en palabras de ggplot), la geometría, en el caso del gráfico de barras podemos mencionar las posiciones:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>dodge o agrupada</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)<span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb10-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb10-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>stack o apilada</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb11-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb11-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="scales" class="slide level2 smaller">
+<h2>Scales ⚖️</h2>
+<p>Las “scales” (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb12-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb12-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -497,52 +671,469 @@ Betsy Cohen
 </div>
 <div class="callout-content">
 <div class="{callout-tip}">
-<p>Dependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo scale_x_binned(), scale_x_date(), scale_x_discrete()</p>
+<p>Dependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo <code>scale_y_binned()</code>, <code>scale_y_date()</code>, <code>scale_y_discrete()</code></p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="scales-con-color" class="slide level2">
-<h2>Scales con color</h2>
-<p>Podriamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas: - Decirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes) - Agregar la capa en cuestion indicando el tipo de estilo que queremos</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> establecimientos , </span>
-<span id="cb7-2"><a></a>                      <span class="at">y =</span> provincia_nombre, </span>
-<span id="cb7-3"><a></a>                      <span class="at">fill =</span> establecimientos)) <span class="sc">+</span> <span class="co"># en los datos le indico que rellene (fill) con el valor de establecimientos</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb7-5"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb7-6"><a></a>    <span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>), </span>
-<span id="cb7-7"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">25000</span>),</span>
-<span id="cb7-8"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span></span>
-<span id="cb7-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb7-10"><a></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>) <span class="co"># agrego una capa de color de relleno para variables continuas.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="facets-dividiendo-por-grupos" class="slide level2">
-<h2>Facets Dividiendo por Grupos ➗</h2>
-<p>Facets es una capa que nos permite “cortar en rodajas” la información y contar la historia a traves de ese criterio. Podemos ver qué paso en cada grupo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> establecimientos , <span class="at">y =</span> provincia_nombre)) <span class="sc">+</span></span>
-<span id="cb8-2"><a></a>  <span class="co"># Añadimos una capa de barras </span></span>
-<span id="cb8-3"><a></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>), </span>
-<span id="cb8-5"><a></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5000</span>),</span>
-<span id="cb8-6"><a></a>                     <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
-<span id="cb8-7"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> indice_tiempo,</span>
-<span id="cb8-8"><a></a>             <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="scales-en-función-de-otra-variable" class="slide level2 smaller">
+<h2>Scales en función de otra variable 🌡️</h2>
+<p>Podríamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas:</p>
+<ul>
+<li><p>Decirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes)</p></li>
+<li><p>Agregar la capa en cuestión indicando el tipo de estilo que queremos</p></li>
+</ul>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos, <span class="at">fill =</span> plazas)) <span class="sc">+</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb13-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb13-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a></a>  <span class="co"># Capa escala: rellena con gradientes continuos.</span></span>
+<span id="cb13-9"><a></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="scales-para-cambiar-colores-de-manera-manual" class="slide level2 smaller">
+<h2>Scales para cambiar colores de manera manual ️</h2>
+<p>A veces también usamos en la capa de scales cammbiamos los colores de manera manual con <code>scale_fill_manual()</code></p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb14-5"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb14-6"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="facetado" class="slide level2">
+<h2>Facetado ➗</h2>
+<p>Facets es una capa que nos permite “cortar en rodajas” la información y contar la historia a traves de ese criterio y podemos ver qué paso en cada grupo.</p>
+<p>Dependiendo de la situacion podemos usar:</p>
+<ul>
+<li><p><code>facet_wrap()</code>: Crea una grilla de gráficos <strong>en una sola dimensión</strong> (usualmente se enrolla en filas o columnas) y ideal para <strong>una sola variable de faceteo o agrupamiento</strong>.</p></li>
+<li><p><code>facet_grid()</code>: Crea una grilla de gráficos <strong>bidimensional</strong> (filas y columnas), ideal para <strong>dos variables de faceteo</strong> (una para filas y otra para columnas).</p></li>
+</ul>
+</section>
+<section id="facetado-1" class="slide level2 smaller">
+<h2>Facetado ➗</h2>
+<p>En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb15-5"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb15-6"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> indice_tiempo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="capa-de-coordenadas" class="slide level2 smaller">
+<h2>Capa de coordenadas</h2>
+<p>Si nos imaginamos el gráfico como un mapa podríamos decir que la capa de coordenadas es como el la direccion en que sostenemos ese mapa para interpretarlo.</p>
+<p>Si bien se suelen utilizar coordenadas cartesianas, el sistema de coordenadas impulsa la visualización de proyecciones&nbsp;<a href="https://ggplot2-book.org/maps.html">cartográficas</a> (cuando graficamos mapas)&nbsp;y gráficos&nbsp;<a href="https://ggplot2-book.org/coord.html#polar-coordinates-with-coord_polar">polares</a>.</p>
+<p>Si bien no es la capa que más vamos a usar al principio es probable que la función coord_flip te sea de utilidad para voltear los ejes de tu gráfico.</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb16-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb16-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb16-8"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb16-9"><a></a>  <span class="fu">coord_flip</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-enchulando-el-gráfico" class="slide level2 smaller">
+<h2>Theme: enchulando el gráfico 🎨</h2>
+<p><code>ggplot2</code> nos ofrece varios temas predeterminados para enchular nuestros gráficos como <code>theme_grey() theme_gray() theme_bw() theme_linedraw() theme_light() theme_dark() theme_minimal() theme_classic()</code></p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb17-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb17-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb17-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb17-8"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb17-9"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb17-10"><a></a>  <span class="do">## elijo el theme light</span></span>
+<span id="cb17-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-enchulando-el-gráfico-1" class="slide level2 smaller">
+<h2>Theme: enchulando el gráfico 🎨</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="antes">Antes</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<h3 id="después">Después</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-enchulando-el-gráfico-2" class="slide level2 smaller">
+<h2>Theme: enchulando el gráfico 🎨</h2>
+<p>Si quiero cambiar algo específico (un elemento) del theme simplemente vuelvo a abrir theme y modifico el elemento específico.</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb18-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb18-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb18-8"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb18-9"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb18-10"><a></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb18-11"><a></a>  <span class="co"># agrego más capas al theme</span></span>
+<span id="cb18-12"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-13"><a></a>    <span class="co"># cambio el angulo del texto en eje x</span></span>
+<span id="cb18-14"><a></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>), </span>
+<span id="cb18-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="themes-personalizados" class="slide level2 smaller">
+<h2>Themes personalizados</h2>
+<p>Obviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos un theme que preparamos previamente para la ocasión: el theme_uflo</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb19-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb19-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb19-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb19-8"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb19-9"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb19-10"><a></a>  <span class="do">## elijo el theme light</span></span>
+<span id="cb19-11"><a></a>  <span class="fu">theme_uflo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Algunas extensiones de themes que podes usar son:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p><a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">ggthemes</a> tiene temas muy populares que por ej. imitan temas clasicos de graficos de Excel, Google docs, FiveThirtyEigh entre otros</p></li>
+<li><p><a href="https://github.com/nsgrantham/ggdark/tree/master">ggdark</a>: temas en modo escuro de los temas predeterminados de ggplot2.</p></li>
+<li><p><a href="https://exts.ggplot2.tidyverse.org/ggtech.html">ggtech</a>: proporciona temas inspirados por compañías tecnológicas, como Airbnb, Google, Twitter o Facebook.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="anotaciones" class="slide level2 smaller">
+<h2>Anotaciones 🗒️</h2>
+<p>Si bien no se la menciona como capa en general las <strong>anotaciones</strong> son muy importantes cuando realizamos un gráfico. Dentro de las anotaciones tenemos varias funciones:</p>
+<ul>
+<li><p><code>labs():</code>Para etiquetar elementos del gráfico como <code>title</code>, <code>subtitle</code>, <code>caption x</code>, <code>y</code> (de los ejes) <code>fill</code>, <code>color</code>, <code>size</code>, <code>shape</code>, etc. (etiquetas especificas de leyendas)</p></li>
+<li><p><code>anotate()</code> Permite <strong>agregar texto, líneas, puntos, rectángulos, etc.</strong> en posiciones específicas del gráfico.</p></li>
+<li><p><code>geom_text()</code> y <code>geom_label()</code>También agregan texto al gráfico, pero <strong>basado en los datos</strong>. A diferencia de <code>annotate()</code>, estas geométricas se usan como capas regulares.</p></li>
+<li><p><code>geom_curve()</code> y <code>geom_segment()</code>Sirven para <strong>dibujar flechas, líneas o curvas</strong> que apunten a algo importante.</p></li>
+</ul>
+</section>
+<section id="anotaciones-1" class="slide level2 smaller">
+<h2>Anotaciones 🗒️</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb20-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb20-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb20-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb20-8"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb20-9"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-10"><a></a>  <span class="fu">theme_uflo</span>()<span class="sc">+</span> </span>
+<span id="cb20-11"><a></a>  <span class="fu">labs</span>(<span class="at">x=</span> <span class="st">""</span>, <span class="at">y=</span> <span class="st">"Cantidad de establecimientos"</span>,</span>
+<span id="cb20-12"><a></a>       <span class="at">title =</span> <span class="st">"Percepcion de subsidios al turismo por region"</span>,</span>
+<span id="cb20-13"><a></a>       <span class="at">subtitle =</span> <span class="st">"Año 2020"</span>,</span>
+<span id="cb20-14"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>, </span>
+<span id="cb20-15"><a></a>       <span class="at">fill =</span> <span class="st">"¿Recibio subsidio?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="resumiendo" class="slide level2 bigtext">
+<h2>Resumiendo…</h2>
+<p>ggplot es como una cebolla…</p>
+<p>…. tiene capas <img data-src="https://www.ecartelera.com/images/noticias/75400/75480-h3.jpg"></p>
+</section>
+<section id="de-datos" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">De datos…</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb21-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
+<span id="cb21-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
+<span id="cb21-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb21-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
+<span id="cb21-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="escalas" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">…escalas</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb22-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
+<span id="cb22-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
+<span id="cb22-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb22-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
+<span id="cb22-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb22-8" class="hljs-ln-code"><a></a>  <span class="co"># Capas de escalas</span></span>
+<span id="cb22-9" class="hljs-ln-code"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb22-10" class="hljs-ln-code"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb22-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb22-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="coordenadas" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">…coordenadas …</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb23-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
+<span id="cb23-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
+<span id="cb23-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb23-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
+<span id="cb23-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb23-8" class="hljs-ln-code"><a></a>  <span class="co"># Capas de escalas</span></span>
+<span id="cb23-9" class="hljs-ln-code"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb23-10" class="hljs-ln-code"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb23-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb23-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb23-13" class="hljs-ln-code"><a></a>  <span class="co"># Capas de coordenadas</span></span>
+<span id="cb23-14" class="hljs-ln-code"><a></a>  <span class="fu">coord_flip</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="y-hermoseo." class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">… y hermoseo.</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb24-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
+<span id="cb24-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
+<span id="cb24-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb24-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
+<span id="cb24-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb24-8" class="hljs-ln-code"><a></a>  <span class="co"># Capas de escalas</span></span>
+<span id="cb24-9" class="hljs-ln-code"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb24-10" class="hljs-ln-code"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb24-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb24-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb24-13" class="hljs-ln-code"><a></a>  <span class="co"># Capas de coordenadas</span></span>
+<span id="cb24-14" class="hljs-ln-code"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb24-15" class="hljs-ln-code"><a></a>  <span class="co"># Capas de tema</span></span>
+<span id="cb24-16" class="hljs-ln-code"><a></a>  <span class="fu">theme_uflo</span>()<span class="sc">+</span> </span>
+<span id="cb24-17" class="hljs-ln-code"><a></a>  <span class="fu">labs</span>(<span class="at">x=</span> <span class="st">""</span>, <span class="at">y=</span> <span class="st">"Cantidad de establecimientos"</span>,</span>
+<span id="cb24-18" class="hljs-ln-code"><a></a>       <span class="at">title =</span> <span class="st">"Percepcion de subsidios al turismo por region"</span>,</span>
+<span id="cb24-19" class="hljs-ln-code"><a></a>       <span class="at">subtitle =</span> <span class="st">"Año 2020"</span>,</span>
+<span id="cb24-20" class="hljs-ln-code"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>, </span>
+<span id="cb24-21" class="hljs-ln-code"><a></a>       <span class="at">fill =</span> <span class="st">"¿Recibio subsidio?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuki" class="slide level2">
+<h2>🪄 Tuki</h2>
 
-<p><img src="images/logo-uflo.png" class="slide-logo"></p>
-<div class="footer footer-default">
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
+<section id="y-ahora-lo-usuarios-de-ggplot-amamos" class="slide level2">
+<h2>Y ahora lo usuarios de ggplot amamos</h2>
+<div class="r-fit-text">
+<p>Extensiones!!!!</p>
+</div>
+</section>
+<section id="gganimate" class="slide level2">
+<h2>gganimate</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb25-2"><a></a></span>
+<span id="cb25-3"><a></a>turismo_no_residente_por_anio_y_medio_trasporte <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> medio_de_transporte, <span class="at">y =</span> viajes, <span class="at">fill =</span> medio_de_transporte)) <span class="sc">+</span></span>
+<span id="cb25-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Viajes en año: {as.integer(frame_time)}"</span>,</span>
+<span id="cb25-7"><a></a>       <span class="at">x =</span> <span class="st">"Medio de transporte"</span>,</span>
+<span id="cb25-8"><a></a>       <span class="at">y =</span> <span class="st">"Cantidad de viajes"</span>,</span>
+<span id="cb25-9"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a></a>  <span class="fu">transition_time</span>(indice_tiempo_anio) <span class="sc">+</span></span>
+<span id="cb25-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-29-1.gif" class="r-stretch"></section>
+<section id="patchwork" class="slide level2">
+<h2>patchwork</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a>grafico3 <span class="sc">+</span> grafico2 <span class="sc">+</span> grafico1 <span class="sc">+</span> </span>
+<span id="cb26-4"><a></a>  <span class="fu">guide_area</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
+<section id="esquisse" class="slide level2">
+<h2>esquisse</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># library(esquisse)</span></span>
+<span id="cb27-2"><a></a><span class="co"># esquisser(df_vuelos_asientos_pasajeros)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<img data-src="images/esquisse.gif" class="r-stretch"></section>
+<section id="otros-recursos" class="slide level2">
+<h2>Otros recursos…</h2>
+<ul>
+<li><p><a href="https://r-graph-gallery.com/">The RGraph Gallery</a> Una guia por todos los tipos de gráficos y como hacerlo</p></li>
+<li><p><a href="https://github.com/calligross/ggthemeassist?tab=readme-ov-file">ggtheme asistance</a> parecido a esquisse pero mucho mas completo respecto del theme</p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/index.html">ggplot2</a> documentación oficial incluyendo la preciadas Cheatsheet</p></li>
+</ul>
+
+
+<img src="images/logo-uflo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section>

@@ -36,7 +36,7 @@ theme_uflo <- function() {
   theme_minimal() +
     theme(
       # Leyenda
-      legend.position = "left",
+      legend.position = "bottom",
       legend.text = element_text(family = base_font_family),
       legend.title = element_text(family = titles_font_family),
 
@@ -66,6 +66,59 @@ theme_uflo <- function() {
     )
 }
 
+
+## Datasets para otros ejemplos
+
+### Ejemplo gganimate
+
+url_turismo_receptivo<- ("https://datos.yvera.gob.ar/dataset/4cbf7d4a-702a-4911-8c1e-717a45214902/resource/fdfe0ae4-4acc-4421-aa48-6149a02bc615/download/turistas-no-residentes-serie.csv")
+
+df_turismo_receptivo <- read.csv(url_turismo_receptivo) 
+
+df_turismo_receptivo <- df_turismo_receptivo %>% 
+  mutate(indice_tiempo_anio = year(as.Date(indice_tiempo)))
+
+turismo_no_residente_por_anio_y_medio_trasporte <- df_turismo_receptivo %>%
+  group_by(indice_tiempo_anio, medio_de_transporte) %>%
+  summarise(viajes = sum(viajes_de_turistas_no_residentes, na.rm = TRUE), .groups = 'drop')
+
+
+### Ejemplo patchwork
+
+df_vuelos_asientos_pasajeros <- read.csv("https://datos.yvera.gob.ar/dataset/c0e7bc3d-553c-405c-8b32-79282b28ffd5/resource/03b4176f-a065-450a-b411-101d2a884720/download/vuelos_asientos_pasajeros.csv")
+
+df_vuelos_asientos_pasajeros <- df_vuelos_asientos_pasajeros %>% 
+  mutate(
+    indice_tiempo = as.Date(indice_tiempo),
+    anio = year(indice_tiempo),
+    mes = month(indice_tiempo, label = TRUE),
+    dia = day(indice_tiempo)
+  )
+
+grafico1 <- df_vuelos_asientos_pasajeros %>%
+  group_by(anio, mes) %>%
+  summarise(pasajeros = sum(pasajeros, na.rm = TRUE)) %>%
+  ggplot(aes(x = mes, y = pasajeros, fill = as.factor(anio))) +
+  geom_col(position = "dodge") +
+  labs(title = "Pasajeros por mes y año", x = "Mes", y = "Pasajeros", fill = "Año") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+grafico2 <- df_vuelos_asientos_pasajeros %>%
+  group_by(anio, clasificacion_vuelo) %>%
+  summarise(vuelos = sum(vuelos, na.rm = TRUE)) %>%
+  ggplot(aes(x = as.factor(anio), y = vuelos, fill = as.factor(anio))) +  
+  geom_col(position = "dodge") +
+  labs(title = "Vuelos por tipo y año", x = "Año", y = "Vuelos", fill = "Año") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+grafico3 <- df_vuelos_asientos_pasajeros %>%
+  ggplot(aes(x = asientos, y = pasajeros, color = as.factor(anio))) +  
+  geom_point(alpha = 0.5, show.legend = FALSE) + 
+  labs(title = "Relación entre asientos y pasajeros", x = "Asientos", y = "Pasajeros", color = "Año") +
+  theme_minimal()
+
 ```
 
 ## Qué es ggplot2
@@ -74,27 +127,62 @@ theme_uflo <- function() {
 
 ![](https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png){fig-align="center"}
 
-## Preparando los datos de hoy 🧑‍🍳
+## Preparando los datos de hoy 🧑‍🍳 {.smaller}
 
-Vamos a trabajar con un dataset sencillo que contiene información sobre la cantidad de plazas, habitaciones y establecimientos de alojamiento turístico disponibles por provincia en Argentina, elaborado por el equipo del Sistema de Información Turistica de la Argentina (SINTA).
+::: columns
+::: {.column width="30%"}
+Vamos a trabajar con un dataset sencillo que contiene información de establecimientos de alojamiento turístico por provincia elaborado por el [Sistema de Información Turistica de la Argentina (SINTA)](https://datos.yvera.gob.ar/).
 
-Este dataset nos muestra, para diferentes años (`indice_tiempo`) y provincias (`provincia_nombre`), la cantidad de establecimientos (`establecimientos`), habitaciones (`habitaciones`) y plazas (`plazas`) disponibles.
+Al dataset le agrego la variable `region` y `recibio_subsidio` (una variable ficticia) solo a los fines de entender algunos conceptos de visualización.
+:::
 
+::: {.column width="70%"}
 ```{r}
+#| warning: false
+
+# importar los datos
 url_datos <- "https://datos.yvera.gob.ar/dataset/c9dc110e-2a09-4b51-ac0a-a2db2ca76fbb/resource/67727a58-7a43-450d-a685-a9fba9218b20/download/puna_indicadores_provincias.csv"
+
+# asignar al dataframe df
 df <- read.csv(url_datos, encoding = "latin1") 
 
+# Definir vectores de las regiones y sus provincias
+NOA <- c("Catamarca", "Jujuy", "La Rioja", "Salta", "Santiago del Estero", "Tucumán")
+NEA <- c("Chaco", "Corrientes", "Formosa", "Misiones")
+Centro_Cuyo <- c("Córdoba", "La Pampa", "Mendoza", "San Juan", "San Luis", "Santa Fe", "Entre Ríos")
+Buenos_Aires <- c("Buenos Aires", "Ciudad Autónoma de Buenos Aires")
+Sur <- c("Chubut", "Neuquén", "Río Negro", "Santa Cruz", "Tierra del Fuego")
 
-df <- df %>% 
-  mutate(establecimientos = as.integer(establecimientos)) %>% 
-  filter(indice_tiempo <2024) 
-
+# creamos algunas variables para poder jugar en los gráficos 
+df <- df %>%
+  # sacar años locos
+  filter(indice_tiempo < 2024) %>%
+  #
+  mutate(
+  # establecimiento como numerica
+    establecimientos = as.integer(establecimientos),
+  # region para cada provincia
+    region = case_when(
+      provincia_nombre %in% NOA ~ "NOA",
+      provincia_nombre %in% NEA ~ "NEA",
+      provincia_nombre %in% Centro_Cuyo ~ "Centro Cuyo",
+      provincia_nombre %in% Buenos_Aires ~ "Buenos Aires",
+      provincia_nombre %in% Sur ~ "Sur",
+      TRUE ~ "Otra"
+    ),
+  # una variable al azar de asignacion de subsidio
+    recibio_subsidio = sample(c("Si", "No"), size = n(), replace = TRUE)
+  )
 ```
+:::
+:::
 
-Y ya que estamos vamos a filtrar datos de un solo año por ej 2020
+## Nuestro dataset de hoy 🧑‍🍳 {.smaller}
 
 ```{r}
-df_2020 <- df %>% filter(indice_tiempo == 2020)
+df %>%
+  mutate(across(where(is.character), as.factor)) %>% 
+  summary()
 ```
 
 ## Capa de data y el mapping 🗺️ {.smaller}
@@ -114,88 +202,235 @@ Si ejecutas este código, ¡no vas a ver nada! Esto es porque solo hemos creado 
 Para indicarle **qué** y **dónde** poner los datos tenemos la capa de **mapping** o el `aes` (que viene de aesthetics). En este caso vamos a pedirle a ggplot que coloque en el eje x la cantidad de establecimientos y en el eje y cada una de las provincias.
 
 ```{r}
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre))
+ggplot(data = df, aes(x= region , y = establecimientos))
 ```
 
-## Mapeo de otras variables
+## ggplot es parte de tidyverse {.smaller}
 
-Además de x e y, podemos mapear otras variables a otras características visuales (estéticas) del gráfico dentro de aes(), como el color (color) o el color de relleno (fill). Esto nos permite visualizar más de una variable a la vez.
-
-Vamos a añadir que el color de relleno de nuestras barras (fill) esté determinado por la variable establecimientos.
+::: columns
+::: {.column width="70%"}
+Como ggplot es parte de tidyverse el argumento que vimos arriba podemos escribirlo encadenado dentro de una secuencia de pipes. Esto no es muy útil ya que si necesitamos hacer una transformación específica la podemos encadenar en esta secuencia donde ggplot es un paso más. Por ej. si queremos filtrar los datos solo para 2020 Por eso escribimos algo asi:
 
 ```{r}
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre, fill= establecimientos))
+#| output: false
+
+df %>% 
+  # hago las trasformaciones que necesito
+  filter(indice_tiempo == 2020) %>% 
+  #no necesito definir el parámetro data porque los datos ya estan dentro de la cadena
+  ggplot(aes(x= region , y = establecimientos)) 
+
 ```
-Ahora ggplot2 sabe que queremos usar provincia_nombre para el eje x, plazas para el eje y, ¡y también usar establecimientos para el color de relleno de lo que dibujemos! (Aunque aún no hemos dibujado nada).
+:::
 
-## Layers o el gráfico en cuestión
-
-El núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:
-
--   La **geometría** que determina cómo se muestran los datos, como puntos, líneas o rectángulos.
--   La **transformación estadística** que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.
--   El ajuste de **posición** que determina principalmente **dónde** se muestra una pieza de datos.
+::: {.column width="30%"}
+![](https://www.business-science.io/assets/2020-10-15-must-know-tidyverse-features/tidyverse-icons.png)
+:::
+:::
 
 ## Layers o el gráfico en cuestión 📊
 
+El núcleo de cualquier gráfico son las capas . Estas toman los datos mapeados y los muestran de forma comprensible para los humanos como una representación de los datos. Cada capa consta de tres partes importantes:
+
+-   ⏺️ La **geometría** que determina cómo se muestran los datos, como puntos, líneas o rectángulos.
+
+-   🧮 La **transformación estadística** que puede calcular nuevas variables a partir de los datos y afectar qué datos se muestran.
+
+-   📍 El ajuste de **posición** que determina principalmente **dónde** se muestra una pieza de datos.
+
+## Layers: `geom_*`o geometria 📊 {.smaller}
+
 Con las funciones `geom_*` y `stat_*` vamos a ir modelando estos aspectos. Y vamos a ir uniendo cada una de las capas con el símbolo **+**
 
-Volviendo a nuestro ejemplo vamos a probar la función `geom_col()`
+Volviendo a nuestro ejemplo vamos a una geometría de gráfico de barras `geom_col()` y voy a usar el parámetro stat = "identity".
 
 ```{r}
 #| warning: false
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +
-   geom_col()
+#| output-location: column
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos)) +
+  geom_col()
   
 ```
 
-##  Scales ⚖️ {.smaller}
+## Otras geometrias posibles {.smaller}
+
+Obviamente las barras no son la única geometría posibles. Podes consultar todas las geometrías posibles en la [documentación sobre capas de ggplot](https://ggplot2.tidyverse.org/reference/index.html#layers). A grandes razgos podríamos decir que:
+
+-   ![](https://ggplot2.tidyverse.org/reference/icons/geom_density.png) usamos `geom_density()` `stat_density()` para los gráficos de **densidad**
+
+-   ![](https://ggplot2.tidyverse.org/reference/icons/geom_boxplot.png) usamos `geom_boxplot()` `stat_boxplot()` para los gráficos de cajas o **boxplot**
+
+-   ![](https://ggplot2.tidyverse.org/reference/icons/geom_bar.png) `geom_bar()` `geom_col()` `stat_count()` son para las **columnas** y **barras**
+
+-   ![](https://ggplot2.tidyverse.org/reference/icons/geom_point.png) `geom_point()` para los gráficos de **dispersión** de puntos
+
+## Layers: para que sirve `_stats` {.smaller}
+
+Cada geom\_\*() viene con una función estadística por defecto o `_stat`. Esa función procesa tus datos antes de graficarlos.
+
+"stat". Es como decirle a ggplot2: "¿Querés que te dé los datos ya cocinados, o preferís cocinar vos?"
+
+### Un ejemplo de stat y graficos de barra
+
+En ggplot Hay dos tipos de gráficos de barras: `geom_bar()`y `geom_col()`.
 
 ::: columns
 ::: {.column width="50%"}
-Las "scales" (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).
+-   geom_bar() → usa stat = "count" (por defecto)
+-   Cuenta la cantidad de casos de cada categoría.
+-   No necesitás columna y, la calcula automáticamente.
+
+```{r}
+#| output: false
+starwars %>% 
+  ggplot(aes(x = gender)) +
+  # cuenta cuántos varones y mujeres hay y ya.
+  geom_bar()  
+
+```
 :::
 
 ::: {.column width="50%"}
+-   geom_col() → usa stat = "identity" (por defecto)
+-   Significa: "ya tengo la variable Y calculada, usala tal como está".
+-   Acá sí necesitás pasar y = en el aes().
+
+```{r}
+#| output: false
+starwars %>% 
+  group_by(gender) %>% 
+  summarise(average_height = round(mean(height,na.rm = T))) %>% 
+  # tengo dos variables claras
+  ggplot(aes(x = gender, y= average_height )) +
+  # detecta la columna average_height como la que tiene el cálculo
+  geom_col()   
+```
+
+Si quisieras usar geom_bar() con datos ya agregados, ahí sí tendrías que forzar stat = "identity"
+
+```{r}
+#| include: false
+#| warning: false
+#| output: false
+
+starwars %>% 
+  group_by(gender) %>% 
+  summarise(average_height = round(mean(height,na.rm = T))) %>% 
+  ggplot(aes(x = gender, y= average_height )) +
+  # lo fuerzo a detectar el valor numerico y que lo tome "como está"
+  geom_bar(stat = "identity")  
+```
+:::
+:::
+
+## Layers: Parametros de posisción {.smaller}
+
+Dentro de la capa layer tro parámetro importante es la **posición** que ocupa una variable. El comportamiento de `position` va a cambiar según el tipo de gráfico o (para ponerlo en palabras de ggplot), la geometría, en el caso del gráfico de barras podemos mencionar las posiciones:
+
+::: columns
+::: {.column width="50%"}
+**dodge o agrupada**
+
 ```{r}
 #| warning: false
 
 
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre)) +
-  # Añadimos una capa de barras 
-  geom_col() +
-  scale_x_continuous(
-    limits = c(0,6000),
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "dodge")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)
+```
+:::
+
+::: {.column width="50%"}
+**stack o apilada**
+
+```{r}
+#| warning: false
+
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
     n.breaks = 5)
 ```
 :::
 :::
 
-::: callout-note
-::: {callout-tip}
-Dependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo `scale_x_binned()`, `scale_x_date()`, `scale_x_discrete()`
-:::
-:::
+## Scales ⚖️ {.smaller}
 
-## Scales con color 🌡️
 
-Podríamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas: - Decirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes) - Agregar la capa en cuestion indicando el tipo de estilo que queremos
+Las "scales" (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).
+
 
 ```{r}
-ggplot(data = df, aes(x = establecimientos , 
-                      y = provincia_nombre, 
-                      fill = establecimientos)) + # en los datos le indico que rellene (fill) con el valor de establecimientos
-  geom_col() +
-  scale_x_continuous(
-    labels = label_number(big.mark = ".", decimal.mark = ","), 
-    limits = c(0,25000),
-    n.breaks = 5
-  ) +
-  scale_fill_continuous(type = "gradient") # agrego una capa de color de relleno para variables continuas.
+#| warning: false
+#| output-location: column
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)
+```
+
+::: callout-note
+::: {callout-tip}
+Dependiendo del tipo de escala vamos a usar diferentes tipos de funciones. Revisa la documentación de ggplot para conocer que tipo `scale_y_binned()`, `scale_y_date()`, `scale_y_discrete()`
+:::
+:::
+
+## Scales en función de otra variable 🌡️{.smaller}
+
+Podríamos seguir trabajando sobre la capa de escalas pero esta vez manipulando su color y usarlo como un termómetro. Para eso vamos a tener que hacer dos cosas:
+
+-   Decirle a ggplot qué variable queremos que use de relleno para el color (uno de los datos dentro del aes)
+
+-   Agregar la capa en cuestión indicando el tipo de estilo que queremos
+
+```{r}
+#| warning: false
+#| output-location: column
+
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region , y = establecimientos, fill = plazas)) +
+  geom_col()+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5) +
+  # Capa escala: rellena con gradientes continuos.
+  scale_fill_continuous(type = "gradient") 
 
 ```
 
-## Facetado  ➗
+## Scales para cambiar colores de manera manual ️{.smaller}
+
+A veces también usamos en la capa de scales cammbiamos los colores de manera manual con `scale_fill_manual()`
+
+
+```{r}
+#| warning: false
+#| output-location: column
+df %>% 
+  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5) +
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))
+```
+
+
+## Facetado ➗
 
 Facets es una capa que nos permite "cortar en rodajas" la información y contar la historia a traves de ese criterio y podemos ver qué paso en cada grupo.
 
@@ -205,26 +440,28 @@ Dependiendo de la situacion podemos usar:
 
 -   `facet_grid()`: Crea una grilla de gráficos **bidimensional** (filas y columnas), ideal para **dos variables de faceteo** (una para filas y otra para columnas).
 
-## Facetado  ➗
+## Facetado ➗  {.smaller}
 
 En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año
 
 ```{r}
-
 #| warning: false
+#| output-location: column
 
-ggplot(data = df, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
-  # Añadimos una capa de barras 
-  geom_col() +
-  scale_x_continuous(labels = label_number(big.mark = ".", decimal.mark = ","), 
-                     limits = c(0,5000),
-                     n.breaks = 5)+
+
+df %>% 
+  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5) +
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
   facet_wrap(~ indice_tiempo)
 ```
 
-## 6. Coordinates: Cambiando la Perspectiva
+## Capa de coordenadas {.smaller}
 
-Si nos imaginamos el gráfico como un mapa podriamos decir que la capa de coordenadas es como el la direccion en que sostenemos ese mapa para interpretarlo.
+Si nos imaginamos el gráfico como un mapa podríamos decir que la capa de coordenadas es como el la direccion en que sostenemos ese mapa para interpretarlo.
 
 Si bien se suelen utilizar coordenadas cartesianas, el sistema de coordenadas impulsa la visualización de proyecciones [cartográficas](https://ggplot2-book.org/maps.html) (cuando graficamos mapas) y gráficos [polares](https://ggplot2-book.org/coord.html#polar-coordinates-with-coord_polar).
 
@@ -232,92 +469,143 @@ Si bien no es la capa que más vamos a usar al principio es probable que la func
 
 ```{r}
 #| warning: false
+#| output-location: column
 
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre, fill = establecimientos)) +
-  # Añadimos una capa de barras 
-  geom_col() +
-  scale_x_continuous(labels = label_number(big.mark = ".", decimal.mark = ","), 
-                     limits = c(0,5000),
-                     n.breaks = 5)+
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
   coord_flip() 
 ```
 
-## Theme: enchulando el gráfico 🎨
+## Theme: enchulando el gráfico 🎨 {.smaller}
 
-El sistema [de temas](https://ggplot2-book.org/themes) controla casi todos los elementos visuales del gráfico que no están controlados por los datos y, por lo tanto, es importante para su aspecto.
-
-Dentro de la capa `theme` existen muchísimos [elementos](https://ggplot2-book.org/themes#sec-theme-elements) que podemos modificar de manera individual: Por ej. en el gráfico de coordenadas invertidas nos costaba leer las etiquetas con los nombres de las provincias. Para modificarlo vamos a tener que ir al elemento que controla el texto del eje x (axis.text.x ) y usar el seteador de ese elemento (element_text) para indicarlo el angulo y ajuste respecto del eje horizontal.
+`ggplot2` nos ofrece varios temas predeterminados para enchular nuestros gráficos como `theme_grey() theme_gray() theme_bw() theme_linedraw() theme_light() theme_dark() theme_minimal() theme_classic()`
 
 ```{r}
 #| warning: false
+#| output-location: column
 
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre, fill = establecimientos)) +
-  geom_col() +
-  scale_x_continuous(
-    labels = label_number(big.mark = ".", decimal.mark = ","), 
-    limits = c(0, 5000),
-    n.breaks = 5
-  ) +
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
   coord_flip() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1)
-    )
+  ## elijo el theme light
+  theme_minimal()
 ```
 
-## Theme: enchulando el gráfico 🎨 
+## Theme: enchulando el gráfico 🎨 {.smaller}
 
-ggplot2 nos ofrece varios temas predeterminados para enchular nuestros gráficos como `theme_grey() theme_gray() theme_bw() theme_linedraw() theme_light() theme_dark() theme_minimal() theme_classic()`
+::: columns
+
+::: {.column width="50%"}
+### Antes
+```{r}
+#| warning: false
+#| echo: false
+
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
+  coord_flip() 
+```
+:::
+
+::: {.column width="50%"}
+### Después
+```{r}
+#| warning: false
+#| echo: false
+
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
+  coord_flip() +
+  ## elijo el theme light
+  theme_minimal()
+```
+:::
+
+:::
+
+
+## Theme: enchulando el gráfico 🎨 {.smaller}
+
+Si quiero cambiar algo específico (un elemento) del theme simplemente vuelvo a abrir theme y modifico el elemento específico.
 
 ```{r}
 #| warning: false
+#| output-location: column
 
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
-  geom_col() +
-  scale_x_continuous(
-    labels = label_number(big.mark = ".", decimal.mark = ","), 
-    limits = c(0, 5000),
-    n.breaks = 5
-  ) +
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
   coord_flip() +
-  # capa theme 
-  ## elijo el theme light
-  theme_light()+ 
-  # le modifico algunas cositas como...
+  theme_minimal()+
+  # agrego más capas al theme
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1), # angulo del eje
-    panel.border = element_blank(), #  dejo en blanco el borde de la caja interior
-    panel.grid.major = element_blank(),# dejo en blanco el grillado mayor
+    # cambio el angulo del texto en eje x
+    axis.text.x = element_text(angle = 45, hjust = 1), 
   )
 
 ```
 
-## Themes personalizados
+## Themes personalizados {.smaller}
 
-Obviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos el theme_uflo
+Obviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos un theme que preparamos previamente para la ocasión: el theme_uflo
 
 ```{r}
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
-  geom_col() +
-  scale_x_continuous(
-    labels = label_number(big.mark = ".", decimal.mark = ","), 
-    limits = c(0, 5000),
-    n.breaks = 5
-  ) +
+#| warning: false
+#| output-location: column
+
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
   coord_flip() +
-  # capa theme 
   ## elijo el theme light
-  theme_uflo()+ 
-  # le modifico algunas cositas como...
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1), # angulo del eje
-    panel.border = element_blank(), #  dejo en blanco el borde de la caja interior
-    panel.grid.major = element_blank(),# dejo en blanco el grillado mayor
-  )
+  theme_uflo()
 ```
 
+::: {.callout-tip}
+### Algunas extensiones de themes que podes usar son:
 
+-   [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) tiene temas muy populares que por ej. imitan temas clasicos de graficos de Excel, Google docs, FiveThirtyEigh entre otros
 
-## Anotaciones 🗒️ 
+-   [ggdark](https://github.com/nsgrantham/ggdark/tree/master): temas en modo escuro de los temas predeterminados de ggplot2.
+
+-   [ggtech](https://exts.ggplot2.tidyverse.org/ggtech.html): proporciona temas inspirados por compañías tecnológicas, como Airbnb, Google, Twitter o Facebook.
+:::
+
+## Anotaciones 🗒️ {.smaller}
 
 Si bien no se la menciona como capa en general las **anotaciones** son muy importantes cuando realizamos un gráfico. Dentro de las anotaciones tenemos varias funciones:
 
@@ -325,32 +613,220 @@ Si bien no se la menciona como capa en general las **anotaciones** son muy impor
 
 -   `anotate()` Permite **agregar texto, líneas, puntos, rectángulos, etc.** en posiciones específicas del gráfico.
 
--    `geom_text()` y `geom_label()`También agregan texto al gráfico, pero **basado en los datos**. A diferencia de `annotate()`, estas geométricas se usan como capas regulares.
+-   `geom_text()` y `geom_label()`También agregan texto al gráfico, pero **basado en los datos**. A diferencia de `annotate()`, estas geométricas se usan como capas regulares.
 
 -   `geom_curve()` y `geom_segment()`Sirven para **dibujar flechas, líneas o curvas** que apunten a algo importante.
 
+## Anotaciones 🗒️ {.smaller}
+
 ```{r}
 #| warning: false
+#| output-location: column
 
-ggplot(data = df_2020, aes(x = establecimientos , y = provincia_nombre,fill = establecimientos)) +
-  geom_col() +
-  scale_x_continuous(
-    labels = label_number(big.mark = ".", decimal.mark = ","), 
-    limits = c(0, 5000),
-    n.breaks = 5
-  ) +
+df %>% 
+  filter(indice_tiempo == 2020) %>% 
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  geom_col(position = "stack")+
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
   coord_flip() +
-  theme_light()+ 
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1), # angulo del eje
-    panel.border = element_blank(), #  dejo en blanco el borde de la caja interior
-    panel.grid.major = element_blank(),# dejo en blanco el grillado mayor
-  ) +
-  labs(x= "Cantidad de establecimientos", y= "",
-       title = "Establecimientos turisticos por provincia",
+  theme_uflo()+ 
+  labs(x= "", y= "Cantidad de establecimientos",
+       title = "Percepcion de subsidios al turismo por region",
        subtitle = "Año 2020",
        caption = "Fuente: Sistema de Información Turistica de la Argentina", 
-       fill = "Establecimientos")
+       fill = "¿Recibio subsidio?")
 
 
 ```
+## Resumiendo... {.bigtext}
+
+ggplot es como una cebolla...
+
+.... tiene capas
+![](https://www.ecartelera.com/images/noticias/75400/75480-h3.jpg)
+
+
+## De datos... {auto-animate="true"} 
+
+
+```{r}
+#| warning: false
+#| output-location: column
+
+df %>% 
+  # Transformo mis datos 
+  filter(indice_tiempo == 2020) %>% 
+  # Capa de mapeo
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  # Capa de geometria
+  geom_col(position = "stack")
+```
+
+## ...escalas {auto-animate="true"} 
+
+
+```{r}
+#| warning: false
+#| output-location: column
+
+df %>% 
+  # Transformo mis datos 
+  filter(indice_tiempo == 2020) %>% 
+  # Capa de mapeo
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  # Capa de geometria
+  geom_col(position = "stack")+
+  # Capas de escalas
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))
+
+```
+## ...coordenadas ... {auto-animate="true"} 
+
+
+```{r}
+#| warning: false
+#| output-location: column
+
+
+df %>% 
+  # Transformo mis datos 
+  filter(indice_tiempo == 2020) %>% 
+  # Capa de mapeo
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  # Capa de geometria
+  geom_col(position = "stack")+
+  # Capas de escalas
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
+  # Capas de coordenadas
+  coord_flip() 
+```
+
+
+## ... y hermoseo. {auto-animate="true"} 
+
+```{r}
+#| warning: false
+#| output-location: column
+
+
+df %>% 
+  # Transformo mis datos 
+  filter(indice_tiempo == 2020) %>% 
+  # Capa de mapeo
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  # Capa de geometria
+  geom_col(position = "stack")+
+  # Capas de escalas
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
+  # Capas de coordenadas
+  coord_flip() +
+  # Capas de tema
+  theme_uflo()+ 
+  labs(x= "", y= "Cantidad de establecimientos",
+       title = "Percepcion de subsidios al turismo por region",
+       subtitle = "Año 2020",
+       caption = "Fuente: Sistema de Información Turistica de la Argentina", 
+       fill = "¿Recibio subsidio?")
+
+```
+## 🪄 Tuki
+
+```{r}
+#| warning: false
+#| output-location: column
+#| echo: false
+
+
+df %>% 
+  # Transformo mis datos 
+  filter(indice_tiempo == 2020) %>% 
+  # Capa de mapeo
+  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +
+  # Capa de geometria
+  geom_col(position = "stack")+
+  # Capas de escalas
+  scale_y_continuous(
+    limits = c(0,10000),
+    n.breaks = 5)+
+  scale_fill_manual(values= c("#cf4c4c","#7cccaf"))+
+  # Capas de coordenadas
+  coord_flip() +
+  # Capas de tema
+  theme_uflo()+ 
+  labs(x= "", y= "Cantidad de establecimientos",
+       title = "Percepcion de subsidios al turismo por region",
+       subtitle = "Año 2020",
+       caption = "Fuente: Sistema de Información Turistica de la Argentina", 
+       fill = "¿Recibio subsidio?")
+
+```
+
+
+## Y ahora lo usuarios de ggplot amamos
+
+::: {.r-fit-text}
+ Extensiones!!!!
+:::
+
+## gganimate
+
+```{r}
+
+library(gganimate)
+
+turismo_no_residente_por_anio_y_medio_trasporte %>%
+  ggplot(aes(x = medio_de_transporte, y = viajes, fill = medio_de_transporte)) +
+  geom_col(show.legend = FALSE) +
+  labs(title = "Viajes en año: {as.integer(frame_time)}",
+       x = "Medio de transporte",
+       y = "Cantidad de viajes",
+       caption = "Fuente: Sistema de Información Turistica de la Argentina") +
+  transition_time(indice_tiempo_anio) +
+  theme_minimal()
+
+```
+
+## patchwork
+
+```{r}
+
+library(patchwork)
+
+grafico3 + grafico2 + grafico1 + 
+  guide_area() +
+  plot_layout(guides = "collect") 
+
+
+```
+## esquisse 
+
+```{r}
+#| output: false
+
+# library(esquisse)
+# esquisser(df_vuelos_asientos_pasajeros)
+```
+
+![](images/esquisse.gif)
+
+## Otros recursos...
+
+-   [The RGraph Gallery](https://r-graph-gallery.com/) Una guia por todos los tipos de gráficos y como hacerlo
+
+-   [ggtheme asistance](https://github.com/calligross/ggthemeassist?tab=readme-ov-file) parecido a esquisse pero mucho mas completo respecto del theme
+
+-   [ggplot2](https://ggplot2.tidyverse.org/index.html) documentación oficial incluyendo la preciadas Cheatsheet
+
+
