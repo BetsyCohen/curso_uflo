@@ -477,8 +477,8 @@ Betsy Cohen
  Max.   :4832.0   Max.   :74535   Max.   :229442                    
  NA's   :4                                                          
  recibio_subsidio
- No:53           
- Si:43           
+ No:50           
+ Si:46           
                  
                  
                  
@@ -533,7 +533,7 @@ Betsy Cohen
 <p>Volviendo a nuestro ejemplo vamos a una geometría de gráfico de barras <code>geom_col()</code> y voy a usar el parámetro stat = “identity”.</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb7-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos)) <span class="sc">+</span></span>
 <span id="cb7-4"><a></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -603,13 +603,10 @@ Betsy Cohen
 <div class="column" style="width:50%;">
 <p><strong>dodge o agrupada</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb10-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
-<span id="cb10-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)<span class="sc">+</span></span>
-<span id="cb10-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb10-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
-<span id="cb10-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -621,13 +618,10 @@ Betsy Cohen
 </div><div class="column" style="width:50%;">
 <p><strong>stack o apilada</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb11-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb11-5"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb11-6"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
-<span id="cb11-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -644,7 +638,7 @@ Betsy Cohen
 <p>Las “scales” (escalas) controlan cómo se interpretan y muestran los valores de nuestros datos en los ejes y otras estéticas (como el color o el tamaño).</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="5,6,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb12-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
@@ -686,7 +680,7 @@ Betsy Cohen
 </ul>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="8,9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos, <span class="at">fill =</span> plazas)) <span class="sc">+</span></span>
 <span id="cb13-4"><a></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
@@ -708,10 +702,11 @@ Betsy Cohen
 </section>
 <section id="scales-para-cambiar-colores-de-manera-manual" class="slide level2 smaller">
 <h2>Scales para cambiar colores de manera manual ️</h2>
-<p>A veces también usamos en la capa de scales cammbiamos los colores de manera manual con <code>scale_fill_manual()</code></p>
+<p>A veces también usamos en la capa de scales para setear los colores de manera manual con <code>scale_fill_manual()</code> o <code>scale_color_manual()</code></p>
+<p><code>fill</code> hace referencia al relleno de la geometría (lo vas a usar por ej. con columnas, cajas…) <code>color</code> hace referencia al color de la línea que rodea a la geometría</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb14-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
 <span id="cb14-4"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
@@ -740,10 +735,10 @@ Betsy Cohen
 </section>
 <section id="facetado-1" class="slide level2 smaller">
 <h2>Facetado ➗</h2>
-<p>En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año</p>
+<p>En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año (se indica con el <strong>~</strong>)</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region , <span class="at">y =</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb15-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
 <span id="cb15-4"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
@@ -769,7 +764,7 @@ Betsy Cohen
 <p>Si bien no es la capa que más vamos a usar al principio es probable que la función coord_flip te sea de utilidad para voltear los ejes de tu gráfico.</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb16-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb16-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
@@ -794,7 +789,7 @@ Betsy Cohen
 <p><code>ggplot2</code> nos ofrece varios temas predeterminados para enchular nuestros gráficos como <code>theme_grey() theme_gray() theme_bw() theme_linedraw() theme_light() theme_dark() theme_minimal() theme_classic()</code></p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="10,11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb17-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
@@ -849,7 +844,7 @@ Betsy Cohen
 <p>Si quiero cambiar algo específico (un elemento) del theme simplemente vuelvo a abrir theme y modifico el elemento específico.</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="12-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb18-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb18-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
@@ -880,7 +875,7 @@ Betsy Cohen
 <p>Obviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos un theme que preparamos previamente para la ocasión: el theme_uflo</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="10,11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb19-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb19-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb19-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
@@ -889,7 +884,7 @@ Betsy Cohen
 <span id="cb19-7"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
 <span id="cb19-8"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
 <span id="cb19-9"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb19-10"><a></a>  <span class="do">## elijo el theme light</span></span>
+<span id="cb19-10"><a></a>  <span class="do">## pongo mi tema</span></span>
 <span id="cb19-11"><a></a>  <span class="fu">theme_uflo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
@@ -933,7 +928,7 @@ Betsy Cohen
 <h2>Anotaciones 🗒️</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="11-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb20-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb20-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
 <span id="cb20-4"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
@@ -959,6 +954,45 @@ Betsy Cohen
 </div>
 </div>
 </section>
+<section id="las-etiquetas-con-valores-no-son-anotaciones" class="slide level2 smaller">
+<h2>🩴 Las etiquetas con valores no son Anotaciones ️</h2>
+<p>geom_text() y geom_label() nos geometrias especificas que te permiten dibujar texto “arriba” del grafico que estas haciendo y es justamente el concepto de capas el que te permite ir agregando un gráfico o geometria arriba de otro.</p>
+<p>Notá en este ejemplo como agregamos una capa con la etiqueta y tenemos que volver a indicarle nuevamente el aes() porque es un gráfico nuevo, una nueva capa que se suma.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="3,4,5,7,8,21,22,23,24,25,26,27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a></a>  <span class="co"># hago el calculo explicito el calculo de la agrupación y cálculo para "ahorrar explicaciones a cada geom"</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">group_by</span>(region, recibio_subsidio) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a></a>  <span class="fu">summarise</span>(<span class="at">establecimientos =</span> <span class="fu">sum</span>(establecimientos, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb21-7"><a></a>  <span class="co"># dibujo la columna</span></span>
+<span id="cb21-8"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10000</span>), <span class="at">n.breaks =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb21-10"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>, <span class="st">"#7cccaf"</span>)) <span class="sc">+</span></span>
+<span id="cb21-11"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb21-12"><a></a>  <span class="fu">theme_uflo</span>() <span class="sc">+</span> </span>
+<span id="cb21-13"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-14"><a></a>    <span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb21-15"><a></a>    <span class="at">y =</span> <span class="st">"Cantidad de establecimientos"</span>,</span>
+<span id="cb21-16"><a></a>    <span class="at">title =</span> <span class="st">"Percepción de subsidios al turismo por región"</span>,</span>
+<span id="cb21-17"><a></a>    <span class="at">subtitle =</span> <span class="st">"Año 2020"</span>,</span>
+<span id="cb21-18"><a></a>    <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turística de la Argentina"</span>, </span>
+<span id="cb21-19"><a></a>    <span class="at">fill =</span> <span class="st">"¿Recibió subsidio?"</span></span>
+<span id="cb21-20"><a></a>  )<span class="sc">+</span></span>
+<span id="cb21-21"><a></a>  <span class="co"># dibujo los textos</span></span>
+<span id="cb21-22"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb21-23"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> establecimientos), </span>
+<span id="cb21-24"><a></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb21-25"><a></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb21-26"><a></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb21-27"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="las-etiquetas-con-valores-no-son-anotaciones-1" class="slide level2 smaller">
+<h2>🩴 Las etiquetas con valores no son Anotaciones ️</h2>
+<p>Y la salida luce así</p>
+
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
 <section id="resumiendo" class="slide level2 bigtext">
 <h2>Resumiendo…</h2>
 <p>ggplot es como una cebolla…</p>
@@ -968,18 +1002,18 @@ Betsy Cohen
 <h2 data-id="quarto-animate-title">De datos…</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb21-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
-<span id="cb21-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
-<span id="cb21-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
-<span id="cb21-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
-<span id="cb21-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb22-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
+<span id="cb22-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
+<span id="cb22-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb22-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
+<span id="cb22-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -988,33 +1022,6 @@ Betsy Cohen
 </section>
 <section id="escalas" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">…escalas</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb22-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
-<span id="cb22-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
-<span id="cb22-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
-<span id="cb22-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
-<span id="cb22-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb22-8" class="hljs-ln-code"><a></a>  <span class="co"># Capas de escalas</span></span>
-<span id="cb22-9" class="hljs-ln-code"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb22-10" class="hljs-ln-code"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
-<span id="cb22-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
-<span id="cb22-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="coordenadas" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">…coordenadas …</h2>
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb23-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
@@ -1028,22 +1035,20 @@ Betsy Cohen
 <span id="cb23-9" class="hljs-ln-code"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
 <span id="cb23-10" class="hljs-ln-code"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
 <span id="cb23-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
-<span id="cb23-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
-<span id="cb23-13" class="hljs-ln-code"><a></a>  <span class="co"># Capas de coordenadas</span></span>
-<span id="cb23-14" class="hljs-ln-code"><a></a>  <span class="fu">coord_flip</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="y-hermoseo." class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">… y hermoseo.</h2>
+<section id="coordenadas" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">…coordenadas …</h2>
 <div class="cell columns column-output-location">
 <div class="column">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb24-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
@@ -1059,19 +1064,48 @@ Betsy Cohen
 <span id="cb24-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
 <span id="cb24-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
 <span id="cb24-13" class="hljs-ln-code"><a></a>  <span class="co"># Capas de coordenadas</span></span>
-<span id="cb24-14" class="hljs-ln-code"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb24-15" class="hljs-ln-code"><a></a>  <span class="co"># Capas de tema</span></span>
-<span id="cb24-16" class="hljs-ln-code"><a></a>  <span class="fu">theme_uflo</span>()<span class="sc">+</span> </span>
-<span id="cb24-17" class="hljs-ln-code"><a></a>  <span class="fu">labs</span>(<span class="at">x=</span> <span class="st">""</span>, <span class="at">y=</span> <span class="st">"Cantidad de establecimientos"</span>,</span>
-<span id="cb24-18" class="hljs-ln-code"><a></a>       <span class="at">title =</span> <span class="st">"Percepcion de subsidios al turismo por region"</span>,</span>
-<span id="cb24-19" class="hljs-ln-code"><a></a>       <span class="at">subtitle =</span> <span class="st">"Año 2020"</span>,</span>
-<span id="cb24-20" class="hljs-ln-code"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>, </span>
-<span id="cb24-21" class="hljs-ln-code"><a></a>       <span class="at">fill =</span> <span class="st">"¿Recibio subsidio?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-14" class="hljs-ln-code"><a></a>  <span class="fu">coord_flip</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="y-hermoseo." class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">… y hermoseo.</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb25-1" class="hljs-ln-code"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2" class="hljs-ln-code"><a></a>  <span class="co"># Transformo mis datos </span></span>
+<span id="cb25-3" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(indice_tiempo <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4" class="hljs-ln-code"><a></a>  <span class="co"># Capa de mapeo</span></span>
+<span id="cb25-5" class="hljs-ln-code"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> region, <span class="at">y=</span> establecimientos, <span class="at">fill =</span> recibio_subsidio)) <span class="sc">+</span></span>
+<span id="cb25-6" class="hljs-ln-code"><a></a>  <span class="co"># Capa de geometria</span></span>
+<span id="cb25-7" class="hljs-ln-code"><a></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
+<span id="cb25-8" class="hljs-ln-code"><a></a>  <span class="co"># Capas de escalas</span></span>
+<span id="cb25-9" class="hljs-ln-code"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb25-10" class="hljs-ln-code"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>),</span>
+<span id="cb25-11" class="hljs-ln-code"><a></a>    <span class="at">n.breaks =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb25-12" class="hljs-ln-code"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#cf4c4c"</span>,<span class="st">"#7cccaf"</span>))<span class="sc">+</span></span>
+<span id="cb25-13" class="hljs-ln-code"><a></a>  <span class="co"># Capas de coordenadas</span></span>
+<span id="cb25-14" class="hljs-ln-code"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb25-15" class="hljs-ln-code"><a></a>  <span class="co"># Capas de tema</span></span>
+<span id="cb25-16" class="hljs-ln-code"><a></a>  <span class="fu">theme_uflo</span>()<span class="sc">+</span> </span>
+<span id="cb25-17" class="hljs-ln-code"><a></a>  <span class="fu">labs</span>(<span class="at">x=</span> <span class="st">""</span>, <span class="at">y=</span> <span class="st">"Cantidad de establecimientos"</span>,</span>
+<span id="cb25-18" class="hljs-ln-code"><a></a>       <span class="at">title =</span> <span class="st">"Percepcion de subsidios al turismo por region"</span>,</span>
+<span id="cb25-19" class="hljs-ln-code"><a></a>       <span class="at">subtitle =</span> <span class="st">"Año 2020"</span>,</span>
+<span id="cb25-20" class="hljs-ln-code"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>, </span>
+<span id="cb25-21" class="hljs-ln-code"><a></a>       <span class="at">fill =</span> <span class="st">"¿Recibio subsidio?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1081,7 +1115,7 @@ Betsy Cohen
 <section id="tuki" class="slide level2">
 <h2>🪄 Tuki</h2>
 
-<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
 <section id="y-ahora-lo-que-todos-esperábamos" class="slide level2">
 <h2>Y ahora lo que todos esperábamos …</h2>
 <div class="r-fit-text">
@@ -1091,36 +1125,37 @@ Betsy Cohen
 <section id="gganimate" class="slide level2 smaller">
 <h2>gganimate</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb25-2"><a></a></span>
-<span id="cb25-3"><a></a>turismo_no_residente_por_anio_y_medio_trasporte <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> medio_de_transporte, <span class="at">y =</span> viajes, <span class="at">fill =</span> medio_de_transporte)) <span class="sc">+</span></span>
-<span id="cb25-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb25-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Viajes en año: {as.integer(frame_time)}"</span>,</span>
-<span id="cb25-7"><a></a>       <span class="at">x =</span> <span class="st">"Medio de transporte"</span>,</span>
-<span id="cb25-8"><a></a>       <span class="at">y =</span> <span class="st">"Cantidad de viajes"</span>,</span>
-<span id="cb25-9"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>) <span class="sc">+</span></span>
-<span id="cb25-10"><a></a>  <span class="fu">transition_time</span>(indice_tiempo_anio) <span class="sc">+</span></span>
-<span id="cb25-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a>turismo_no_residente_por_anio_y_medio_trasporte <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> medio_de_transporte, <span class="at">y =</span> viajes, <span class="at">fill =</span> medio_de_transporte)) <span class="sc">+</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">scale =</span> <span class="fl">1e-6</span>, <span class="at">suffix =</span> <span class="st">"M"</span>))<span class="sc">+</span></span>
+<span id="cb26-7"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Viajes en año: {as.integer(frame_time)}"</span>,</span>
+<span id="cb26-8"><a></a>       <span class="at">x =</span> <span class="st">"Medio de transporte"</span>,</span>
+<span id="cb26-9"><a></a>       <span class="at">y =</span> <span class="st">"Cantidad de viajes"</span>,</span>
+<span id="cb26-10"><a></a>       <span class="at">caption =</span> <span class="st">"Fuente: Sistema de Información Turistica de la Argentina"</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a></a>  <span class="fu">transition_time</span>(indice_tiempo_anio) <span class="sc">+</span></span>
+<span id="cb26-12"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-29-1.gif" class="r-stretch"></section>
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-31-1.gif" class="r-stretch"></section>
 <section id="patchwork" class="slide level2 smaller">
 <h2>patchwork</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb26-2"><a></a></span>
-<span id="cb26-3"><a></a>grafico3 <span class="sc">+</span> grafico2 <span class="sc">+</span> grafico1 <span class="sc">+</span> </span>
-<span id="cb26-4"><a></a>  <span class="fu">guide_area</span>() <span class="sc">+</span></span>
-<span id="cb26-5"><a></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb27-2"><a></a></span>
+<span id="cb27-3"><a></a>grafico3 <span class="sc">+</span> grafico2 <span class="sc">+</span> grafico1 <span class="sc">+</span> </span>
+<span id="cb27-4"><a></a>  <span class="fu">guide_area</span>() <span class="sc">+</span></span>
+<span id="cb27-5"><a></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
+<img data-src="gramatica_de_graficos_ggplot_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
 <section id="esquisse" class="slide level2 smaller">
 <h2>esquisse</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># library(esquisse)</span></span>
-<span id="cb27-2"><a></a><span class="co"># esquisser(df_vuelos_asientos_pasajeros)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># library(esquisse)</span></span>
+<span id="cb28-2"><a></a><span class="co"># esquisser(df_vuelos_asientos_pasajeros)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="images/esquisse.gif" class="r-stretch"></section>
@@ -1131,6 +1166,12 @@ Betsy Cohen
 <li><p><a href="https://github.com/calligross/ggthemeassist?tab=readme-ov-file">ggtheme asistance</a> parecido a esquisse pero mucho mas completo respecto del theme</p></li>
 <li><p><a href="https://ggplot2.tidyverse.org/index.html">ggplot2</a> documentación oficial incluyendo la preciadas Cheatsheet</p></li>
 </ul>
+</section>
+<section id="a-practicar" class="slide level2">
+<h2>¡🦾 A practicar!</h2>
+<div class="r-fit-text">
+<p>Ya podes ir a completar la <a href="materiales/excercise/ejercicio_ggplot.qmd">actividad Integradora</a></p>
+</div>
 
 
 <img src="images/logo-uflo.png" class="slide-logo r-stretch"><div class="footer footer-default">

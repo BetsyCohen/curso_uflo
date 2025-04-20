@@ -130,5 +130,8 @@
   },
   "materiales/excercise/ejercicio_dplyr.qmd": {
     "ejercicio_dplyr.html": "e1019caa"
+  },
+  "materiales/excercise/ejercicio_ggplot.qmd": {
+    "ejercicio_ggplot.html": "2129a6bb"
   }
 }

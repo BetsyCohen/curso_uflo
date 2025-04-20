@@ -156,7 +156,7 @@
     "href": "u4-graficos.html",
     "title": "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto",
     "section": "",
-    "text": "Tipos de gráficos y sus usos\n\n\nGramática de gráficos con ggplot2",
+    "text": "Tipos de gráficos y sus usos\n\n\nGramática de gráficos con ggplot2\n\n\n\nActividad Integradora",
     "crumbs": [
       "Materiales",
       "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
@@ -2660,7 +2660,7 @@
     "href": "u4-graficos.html#gráficos",
     "title": "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto",
     "section": "",
-    "text": "Tipos de gráficos y sus usos\n\n\nGramática de gráficos con ggplot2",
+    "text": "Tipos de gráficos y sus usos\n\n\nGramática de gráficos con ggplot2\n\n\n\nActividad Integradora",
     "crumbs": [
       "Materiales",
       "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
@@ -3065,7 +3065,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-parametros-de-posisción",
     "title": "Gramática de gráficos con ggplot",
     "section": "Layers: Parametros de posisción",
-    "text": "Layers: Parametros de posisción\nDentro de la capa layer tro parámetro importante es la posición que ocupa una variable. El comportamiento de position va a cambiar según el tipo de gráfico o (para ponerlo en palabras de ggplot), la geometría, en el caso del gráfico de barras podemos mencionar las posiciones:\n\n\ndodge o agrupada\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"dodge\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)\n\n\n\n\n\n\n\n\n\nstack o apilada\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)"
+    "text": "Layers: Parametros de posisción\nDentro de la capa layer tro parámetro importante es la posición que ocupa una variable. El comportamiento de position va a cambiar según el tipo de gráfico o (para ponerlo en palabras de ggplot), la geometría, en el caso del gráfico de barras podemos mencionar las posiciones:\n\n\ndodge o agrupada\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"dodge\")\n\n\n\n\n\n\n\n\n\nstack o apilada\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#scales",
@@ -3093,7 +3093,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#facetado-1",
     "title": "Gramática de gráficos con ggplot",
     "section": "Facetado ➗",
-    "text": "Facetado ➗\nEn este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año\n\n\ndf %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  facet_wrap(~ indice_tiempo)"
+    "text": "Facetado ➗\nEn este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año (se indica con el ~)\n\n\ndf %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  facet_wrap(~ indice_tiempo)"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#coordinates-cambiando-la-perspectiva",
@@ -3114,7 +3114,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#themes-personalizados",
     "title": "Gramática de gráficos con ggplot",
     "section": "Themes personalizados",
-    "text": "Themes personalizados\nObviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos un theme que preparamos previamente para la ocasión: el theme_uflo\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip() +\n  ## elijo el theme light\n  theme_uflo()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgunas extensiones de themes que podes usar son:\n\n\n\nggthemes tiene temas muy populares que por ej. imitan temas clasicos de graficos de Excel, Google docs, FiveThirtyEigh entre otros\nggdark: temas en modo escuro de los temas predeterminados de ggplot2.\nggtech: proporciona temas inspirados por compañías tecnológicas, como Airbnb, Google, Twitter o Facebook."
+    "text": "Themes personalizados\nObviamente también podemos personalizar y crear nuestros propios themes como por ej acá lucimos un theme que preparamos previamente para la ocasión: el theme_uflo\n\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  ggplot(aes(x= region, y= establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5)+\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))+\n  coord_flip() +\n  ## pongo mi tema\n  theme_uflo()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgunas extensiones de themes que podes usar son:\n\n\n\nggthemes tiene temas muy populares que por ej. imitan temas clasicos de graficos de Excel, Google docs, FiveThirtyEigh entre otros\nggdark: temas en modo escuro de los temas predeterminados de ggplot2.\nggtech: proporciona temas inspirados por compañías tecnológicas, como Airbnb, Google, Twitter o Facebook."
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#anotaciones",
@@ -3128,7 +3128,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#nuestro-dataset-de-hoy",
     "title": "Gramática de gráficos con ggplot",
     "section": "Nuestro dataset de hoy 🧑‍🍳",
-    "text": "Nuestro dataset de hoy 🧑‍🍳\n\ndf %&gt;%\n  mutate(across(where(is.character), as.factor)) %&gt;% \n  summary()\n\n indice_tiempo  provincia_codigo                        provincia_nombre\n Min.   :2020   Min.   : 2       Buenos Aires                   : 4     \n 1st Qu.:2021   1st Qu.:25       Catamarca                      : 4     \n Median :2022   Median :48       Chaco                          : 4     \n Mean   :2022   Mean   :48       Chubut                         : 4     \n 3rd Qu.:2022   3rd Qu.:71       Ciudad Autónoma de Buenos Aires: 4     \n Max.   :2023   Max.   :94       Córdoba                        : 4     \n                                 (Other)                        :72     \n establecimientos  habitaciones       plazas                region  \n Min.   :  80.0   Min.   :  191   Min.   :  2454   Buenos Aires: 8  \n 1st Qu.: 315.5   1st Qu.: 2554   1st Qu.:  9007   Centro Cuyo :28  \n Median : 562.0   Median : 5744   Median : 18833   NEA         :16  \n Mean   : 857.7   Mean   :10200   Mean   : 32360   NOA         :24  \n 3rd Qu.: 815.5   3rd Qu.: 8822   3rd Qu.: 28693   Sur         :20  \n Max.   :4832.0   Max.   :74535   Max.   :229442                    \n NA's   :4                                                          \n recibio_subsidio\n No:53           \n Si:43"
+    "text": "Nuestro dataset de hoy 🧑‍🍳\n\ndf %&gt;%\n  mutate(across(where(is.character), as.factor)) %&gt;% \n  summary()\n\n indice_tiempo  provincia_codigo                        provincia_nombre\n Min.   :2020   Min.   : 2       Buenos Aires                   : 4     \n 1st Qu.:2021   1st Qu.:25       Catamarca                      : 4     \n Median :2022   Median :48       Chaco                          : 4     \n Mean   :2022   Mean   :48       Chubut                         : 4     \n 3rd Qu.:2022   3rd Qu.:71       Ciudad Autónoma de Buenos Aires: 4     \n Max.   :2023   Max.   :94       Córdoba                        : 4     \n                                 (Other)                        :72     \n establecimientos  habitaciones       plazas                region  \n Min.   :  80.0   Min.   :  191   Min.   :  2454   Buenos Aires: 8  \n 1st Qu.: 315.5   1st Qu.: 2554   1st Qu.:  9007   Centro Cuyo :28  \n Median : 562.0   Median : 5744   Median : 18833   NEA         :16  \n Mean   : 857.7   Mean   :10200   Mean   : 32360   NOA         :24  \n 3rd Qu.: 815.5   3rd Qu.: 8822   3rd Qu.: 28693   Sur         :20  \n Max.   :4832.0   Max.   :74535   Max.   :229442                    \n NA's   :4                                                          \n recibio_subsidio\n No:50           \n Si:46"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#layers-geom_o-geometria",
@@ -3177,7 +3177,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#scales-para-cambiar-colores-de-manera-manual",
     "title": "Gramática de gráficos con ggplot",
     "section": "Scales para cambiar colores de manera manual ️",
-    "text": "Scales para cambiar colores de manera manual ️\nA veces también usamos en la capa de scales cammbiamos los colores de manera manual con scale_fill_manual()\n\n\ndf %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))"
+    "text": "Scales para cambiar colores de manera manual ️\nA veces también usamos en la capa de scales para setear los colores de manera manual con scale_fill_manual() o scale_color_manual()\nfill hace referencia al relleno de la geometría (lo vas a usar por ej. con columnas, cajas…) color hace referencia al color de la línea que rodea a la geometría\n\n\ndf %&gt;% \n  ggplot(aes(x= region , y = establecimientos, fill = recibio_subsidio)) +\n  geom_col(position = \"stack\")+\n  scale_y_continuous(\n    limits = c(0,10000),\n    n.breaks = 5) +\n  scale_fill_manual(values= c(\"#cf4c4c\",\"#7cccaf\"))"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#resumiendo",
@@ -3296,7 +3296,7 @@
     "href": "materiales/slides/gramatica_de_graficos_ggplot.html#gganimate",
     "title": "Gramática de gráficos con ggplot",
     "section": "gganimate",
-    "text": "gganimate\n\nlibrary(gganimate)\n\nturismo_no_residente_por_anio_y_medio_trasporte %&gt;%\n  ggplot(aes(x = medio_de_transporte, y = viajes, fill = medio_de_transporte)) +\n  geom_col(show.legend = FALSE) +\n  labs(title = \"Viajes en año: {as.integer(frame_time)}\",\n       x = \"Medio de transporte\",\n       y = \"Cantidad de viajes\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\") +\n  transition_time(indice_tiempo_anio) +\n  theme_minimal()"
+    "text": "gganimate\n\nlibrary(gganimate)\n\nturismo_no_residente_por_anio_y_medio_trasporte %&gt;%\n  ggplot(aes(x = medio_de_transporte, y = viajes, fill = medio_de_transporte)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = \"M\"))+\n  labs(title = \"Viajes en año: {as.integer(frame_time)}\",\n       x = \"Medio de transporte\",\n       y = \"Cantidad de viajes\",\n       caption = \"Fuente: Sistema de Información Turistica de la Argentina\") +\n  transition_time(indice_tiempo_anio) +\n  theme_minimal()"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#patchwork",
@@ -3353,5 +3353,96 @@
     "title": "Gramática de gráficos con ggplot",
     "section": "esquisse {smaller}",
     "text": "esquisse {smaller}\n\n# library(esquisse)\n# esquisser(df_vuelos_asientos_pasajeros)"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html",
+    "href": "materiales/excercise/ejercicio_ggplot.html",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "",
+    "text": "En este ejercicio vamos a trabajar en la visualización de Patrones de Movilidad y Gasto en el Turismo Receptivo usando dos datasets del Sistema de Información Turística de la Argentina (SINTA)\n\nGastos de Turistas No Residentes: Información trimestral sobre el gasto promedio según el paso fronterizo de ingreso.\nVuelos, Asientos y Pasajeros: Datos diarios sobre el movimiento aéreo (cabotaje e internacional)."
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#visualizando-patrones-de-movilidad-y-gasto-en-el-turismo-receptivo",
+    "href": "materiales/excercise/ejercicio_ggplot.html#visualizando-patrones-de-movilidad-y-gasto-en-el-turismo-receptivo",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "",
+    "text": "En este ejercicio vamos a trabajar en la visualización de Patrones de Movilidad y Gasto en el Turismo Receptivo usando dos datasets del Sistema de Información Turística de la Argentina (SINTA)\n\nGastos de Turistas No Residentes: Información trimestral sobre el gasto promedio según el paso fronterizo de ingreso.\nVuelos, Asientos y Pasajeros: Datos diarios sobre el movimiento aéreo (cabotaje e internacional)."
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#carga-las-librerias-y-los-dataset",
+    "href": "materiales/excercise/ejercicio_ggplot.html#carga-las-librerias-y-los-dataset",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "Carga las librerias y los dataset",
+    "text": "Carga las librerias y los dataset\n\n# cargar librerías ----\n\nlibrary(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.2.3\n\n\nWarning: package 'tibble' was built under R version 4.2.3\n\n\nWarning: package 'purrr' was built under R version 4.2.3\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\nWarning: package 'forcats' was built under R version 4.2.3\n\n\nWarning: package 'lubridate' was built under R version 4.2.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(scales) # Para formatear la capa de ejes\n\nWarning: package 'scales' was built under R version 4.2.3\n\n\n\nAttaching package: 'scales'\n\nThe following object is masked from 'package:purrr':\n\n    discard\n\nThe following object is masked from 'package:readr':\n\n    col_factor\n\nlibrary(ggthemes) # Para formatear la capa de temas\n\n# cargar datasets -----\n\n## df_gastos_no_residentes ----\nurl_gastos &lt;- (\"https://datos.yvera.gob.ar/dataset/78b880c1-50d5-4a0c-9c87-7350e70548c2/resource/9a2c43e4-8037-4cf3-8559-bdab2a37ca94/download/gasto_total_promedio_diario_por_turista_en_usd_turistas_no_residentes_trimestral_segun_paso.csv\")\n\ndf_gastos_no_residentes &lt;- read.csv(url_gastos)\n\n\n## df_vuelos_asientos_pasajeros ----\nurl_vuelos &lt;- \"https://datos.yvera.gob.ar/dataset/c0e7bc3d-553c-405c-8b32-79282b28ffd5/resource/03b4176f-a065-450a-b411-101d2a884720/download/vuelos_asientos_pasajeros.csv\"\n\ndf_vuelos_asientos_pasajeros &lt;- read.csv(url_vuelos)"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#preparación-de-datos",
+    "href": "materiales/excercise/ejercicio_ggplot.html#preparación-de-datos",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "👩‍🍳 Preparación de datos",
+    "text": "👩‍🍳 Preparación de datos\nAgregamos en ambas bases variables de resumen de fecha anio y cuatrimestre usando las funciones year() y quarter() de la librería lubridate que forma parte de tidyverse.\n\ndf_gastos_no_residentes &lt;- df_gastos_no_residentes %&gt;%\n  mutate(\n    # creamos variables para el año y el cuatrimestre\n    anio = year(as_date(indice_tiempo)),\n    cuatrimestre = quarter(as_date(indice_tiempo) )\n  ) \n\n\ndf_vuelos_asientos_pasajeros &lt;- df_vuelos_asientos_pasajeros %&gt;%\n  mutate(\n    # creamos variables para el año y el cuatrimestre\n    anio = year(as_date(indice_tiempo)),\n    cuatrimestre = quarter(as_date(indice_tiempo) )\n  )"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#setup-cargá-las-librerias-y-los-dataset",
+    "href": "materiales/excercise/ejercicio_ggplot.html#setup-cargá-las-librerias-y-los-dataset",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "📦 Setup: Cargá las librerias y los dataset",
+    "text": "📦 Setup: Cargá las librerias y los dataset\n\n# cargar librerías ----\n\nlibrary(tidyverse)\nlibrary(scales) # Para formatear la capa de ejes\nlibrary(ggthemes) # Para formatear la capa de temas\n\n# cargar datasets -----\n\n## df_gastos_no_residentes ----\nurl_gastos &lt;- (\"https://datos.yvera.gob.ar/dataset/78b880c1-50d5-4a0c-9c87-7350e70548c2/resource/9a2c43e4-8037-4cf3-8559-bdab2a37ca94/download/gasto_total_promedio_diario_por_turista_en_usd_turistas_no_residentes_trimestral_segun_paso.csv\")\n\ndf_gastos_no_residentes &lt;- read.csv(url_gastos)\n\n\n## df_vuelos_asientos_pasajeros ----\nurl_vuelos &lt;- \"https://datos.yvera.gob.ar/dataset/c0e7bc3d-553c-405c-8b32-79282b28ffd5/resource/03b4176f-a065-450a-b411-101d2a884720/download/vuelos_asientos_pasajeros.csv\"\n\ndf_vuelos_asientos_pasajeros &lt;- read.csv(url_vuelos)"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#pegamos-un-vistazo-a-los-datos",
+    "href": "materiales/excercise/ejercicio_ggplot.html#pegamos-un-vistazo-a-los-datos",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "👓 Pegamos un vistazo a los datos",
+    "text": "👓 Pegamos un vistazo a los datos\n\nglimpse(df_gastos_no_residentes)\n\nRows: 200\nColumns: 6\n$ indice_tiempo                              &lt;chr&gt; \"2015-01-01\", \"2015-01-01\",…\n$ paso                                       &lt;chr&gt; \"Ezeiza y Aeroparque\", \"Aep…\n$ gasto_total_en_usd_no_residentes           &lt;dbl&gt; 841534824, 12268210, NA, 23…\n$ gasto_promedio_diario_en_usd_no_residentes &lt;dbl&gt; 92.5, 87.5, NA, 89.8, NA, 9…\n$ gasto_en_usd_por_turista_no_residente      &lt;dbl&gt; 1313.5, 1110.4, NA, 464.7, …\n$ observaciones                              &lt;chr&gt; \"\", \"\", \"Paso que comenzó a…\n\nglimpse(df_vuelos_asientos_pasajeros)\n\nRows: 5,841\nColumns: 5\n$ indice_tiempo       &lt;chr&gt; \"2017-01-01\", \"2017-01-01\", \"2017-01-02\", \"2017-01…\n$ clasificacion_vuelo &lt;chr&gt; \"Cabotaje\", \"Internacional\", \"Cabotaje\", \"Internac…\n$ pasajeros           &lt;int&gt; 25537, 31493, 37248, 41810, 34772, 39480, 36692, 3…\n$ asientos            &lt;int&gt; 37239, 46696, 46026, 51495, 42174, 49184, 44499, 4…\n$ vuelos              &lt;int&gt; 285, 247, 359, 254, 330, 245, 346, 242, 359, 249, …"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#las-etiquetas-con-valores-no-son-anotaciones",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#las-etiquetas-con-valores-no-son-anotaciones",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "🩴 Las etiquetas con valores no son Anotaciones ️",
+    "text": "🩴 Las etiquetas con valores no son Anotaciones ️\ngeom_text() y geom_label() nos geometrias especificas que te permiten dibujar texto “arriba” del grafico que estas haciendo y es justamente el concepto de capas el que te permite ir agregando un gráfico o geometria arriba de otro.\nNotá en este ejemplo como agregamos una capa con la etiqueta y tenemos que volver a indicarle nuevamente el aes() porque es un gráfico nuevo, una nueva capa que se suma.\n\ndf %&gt;% \n  filter(indice_tiempo == 2020) %&gt;% \n  # hago el calculo explicito el calculo de la agrupación y cálculo para \"ahorrar explicaciones a cada geom\"\n  group_by(region, recibio_subsidio) %&gt;% \n  summarise(establecimientos = sum(establecimientos, na.rm = TRUE), .groups = \"drop\") %&gt;%\n  ggplot(aes(x = region, y = establecimientos, fill = recibio_subsidio)) +\n  # dibujo la columna\n  geom_col(position = \"stack\") +\n  scale_y_continuous(limits = c(0, 10000), n.breaks = 5) +\n  scale_fill_manual(values = c(\"#cf4c4c\", \"#7cccaf\")) +\n  coord_flip() +\n  theme_uflo() + \n  labs(\n    x = \"\", \n    y = \"Cantidad de establecimientos\",\n    title = \"Percepción de subsidios al turismo por región\",\n    subtitle = \"Año 2020\",\n    caption = \"Fuente: Sistema de Información Turística de la Argentina\", \n    fill = \"¿Recibió subsidio?\"\n  )+\n  # dibujo los textos\n  geom_text(\n    aes(label = establecimientos), \n    position = position_stack(vjust = 0.5),\n    color = \"white\",\n    size = 3\n  )"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#las-etiquetas-con-valores-no-son-anotaciones-1",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#las-etiquetas-con-valores-no-son-anotaciones-1",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "🩴 Las etiquetas con valores no son Anotaciones ️",
+    "text": "🩴 Las etiquetas con valores no son Anotaciones ️\nY la salida luce así"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#qué-vamos-a-aprender-con-este-ejercicio",
+    "href": "materiales/excercise/ejercicio_ggplot.html#qué-vamos-a-aprender-con-este-ejercicio",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "¿Qué vamos a aprender con este ejercicio?",
+    "text": "¿Qué vamos a aprender con este ejercicio?\nAdemás de poner en práctica de manera integrada las transformaciones de dplyr agregamos algunas funciones muy útiles de otros paquetes que forman parte del tiduverso o son complementarios a él.\n\nFormateo de etiquetas de las escalas: dentro de la capa de escalas tenemos un parámetro llamado labels. El paquete scales nos brinda varias funciones que nos permiten setear las etiquetas de los valores que vemos en los ejes para que sean más legibles. Vamos a usar tres de ellas label_number(), label_currency() ,label_percent()\nFormatear fechas: lubridate es una librería de la familia tidyverse que nos facilita para trabajar con fechas. En este ejercicio mostramos el uso de year() en conjunto con as_date() que permite que extraer el año de una fecha cuya variable tiene formato character.\nFactores ordenados forcats es otra librería del tidyverso que facilita el trabajo con variables de tipo factor. En este ejercicio nos vamos a familiarizar con una de sus funciones: fct_reorder()"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#ejercicio-1",
+    "href": "materiales/excercise/ejercicio_ggplot.html#ejercicio-1",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "👉 Ejercicio 1",
+    "text": "👉 Ejercicio 1\n¿Cuantos pasajeros ingresaron por año en vuelos de cabotaje y vuelos internacionales?\nCrea un gráfico de columnas apiladas y escribí una breve lectura del mismo.\nComo la suma de pasajeros supera los millones podes usar el siguiente código en tu capa de escalas usando la función label_number() de la librería scales de esta manera:\nscale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = \"M\"))\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nDividí tu trabajo en pasos encadenados:\n1 Hace las transformaciones agrupando por año y clasificación del vuelo y calculando la suma de pasajeros. No olvides setear el parámetro na.rm= TRUE en la suma para que no te de error en caso que haya datos nulos.\n2 Llama a ggplot y diseña la capa de mapeo de datos poniendo en la x el año y en la y tu suma de pasajeros, usa como variable de relleno o fill la clasificación del tipo de vuelo.\n3 Elegí la geometría de columnas y si te copas setea la posición como barras apiladas.\n4 Facilita la lectura de los datos de cantidad de pasajeros con la capa de escalas.\n5 Un gráfico siempre se lee mejor si le ponemos una capa de anotaciones indicando etiquetas (labs) para el título ejes y categorías de la variable de relleno.\n6 Lindo es mejor que feo: Proba distintos estilos de theme que te ofrece el paquete ggthemes.\n\n\n\n\n\n\n\n\n\nRespuesta\n\n\n\n\n\n\ndf_vuelos_asientos_pasajeros %&gt;%\n  group_by(anio, clasificacion_vuelo) %&gt;%\n  summarise(pasajeros = sum(pasajeros, na.rm = TRUE), .groups = \"drop\") %&gt;%\n  ggplot(aes(x = as.factor(anio), y = pasajeros, fill = clasificacion_vuelo)) +\n  geom_col(position = \"stack\") +\n  scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = \"M\")) +\n  scale_x_discrete(drop = FALSE)+\n  scale_fill_manual(values = c(\"Cabotaje\" = \"#00A7E1\",\"Internacional\" = \"#cf5151\"))+\n  labs(\n    title = \"Pasajeros por tipo de vuelo y año\",\n    x = \"Cuatrimestre\",\n    y = \"Pasajeros (en millones)\",\n    fill = \"Tipo de vuelo\",\n    caption = \"Fuente = SINTA\"\n  )+\n  # geometria de texto para agregar \"los valores.\"etiquetas\" a los valores\n  geom_text(\n    aes(label = scales::label_number(scale = 1e-6, suffix = \"M\")(pasajeros)),\n    position = position_stack(vjust = 0.5),\n    color = \"white\",\n    size = 3\n  ) + \n  ggthemes::theme_hc()"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#ejercicio-2",
+    "href": "materiales/excercise/ejercicio_ggplot.html#ejercicio-2",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "👉 Ejercicio 2",
+    "text": "👉 Ejercicio 2\n¿Qué tan llenos venían los vuelos de cabotaje e internacionales en cada año?\nRealiza un gráfico con geometría de líneas (geom_line) para comparar ambos tipos de vuelos.\nPara poder indicar el color de las lineas (correspondiente a las categorías en tipo de vuelo) utiliza el parametro color de dentro de la capa de mapeo de los datos\nPara expresar la relación entre pasajeros y asientos con una etiqueta de porcentaje usar el siguiente código en tu capa de escalas usando la función label_number() de la librería scales de esta manera:\nscale_y_continuous(labels = scales::label_percent(accuracy = 1))\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nDividí tu trabajo en pasos encadenados:\n1 Hace las transformaciones agrupando por año y clasificación del vuelo. Para obtener la tasa de ocupacios vas a teener que crear una nueva variable que divida la suma de pasajeros por la suma de asientos. No olvides setear el parámetro na.rm= TRUE en la suma para que no te de error en caso que haya datos nulos.\n2 Llama a ggplot y diseña la capa de mapeo de datos poniendo en la x el año y en la y la tasa de ocupación, usa como variable de color para las lineas la clasificación del tipo de vuelo.\n3 Elegí la geometría de lineas.\n4 Facilita la lectura de los datos de cantidad de la tasa de ocupacxion usando la capa de escalas.\n5 Un gráfico siempre se lee mejor si le ponemos una capa de anotaciones indicando etiquetas (labs) para el título ejes y categorías de la variable de relleno.\n6 Lindo es mejor que feo: Proba distintos estilos de theme que te ofrece el paquete ggthemes.\n\n\n\n\n\n\n\n\n\nRespuesta\n\n\n\n\n\n\ndf_vuelos_asientos_pasajeros %&gt;% \n  group_by(anio = anio, clasificacion_vuelo) %&gt;% \n  summarise(asientos = sum(asientos,na.rm = T),\n            pasajeros = sum(pasajeros,na.rm = T),\n            .groups = \"drop\") %&gt;% \n  mutate(completitud = pasajeros/asientos) %&gt;% \n  ggplot(aes(x = anio, y = completitud, color = clasificacion_vuelo)) +\n  geom_line() +\n  scale_y_continuous(labels = scales::label_percent(accuracy = 1)) +\n  scale_x_continuous(breaks = unique(df_vuelos_asientos_pasajeros$anio))+ # breakes label para cada año explicito\n  scale_color_manual(values = c(\"Cabotaje\" = \"#00A7E1\",\"Internacional\" = \"#cf5151\"))+\n  labs(\n    title = \"Ocupación de vuelos por tipo y año\",\n    x = \"Año\", \n    y = \"Completitud (%)\",\n    color = \"Tipo de vuelo\",\n    caption = \"Fuente = SINTA\") +\n  geom_text(\n    aes(label = scales::label_percent(accuracy = 1)(completitud)),\n    color = \"black\",\n    size = 3\n  )+\n  ggthemes::theme_hc()"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_ggplot.html#ejercicio-3",
+    "href": "materiales/excercise/ejercicio_ggplot.html#ejercicio-3",
+    "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
+    "section": "👉 Ejercicio 3",
+    "text": "👉 Ejercicio 3\n¿Por qué paso entraron los turistas que tuvieron un gasto promedio mayor en 2024? Hace un gráfico de barras que muestre el ranking por paso. Para ordenar la variable por ranking vas a tener que convertir la variable paso en factor ordenado usando la función fct_reorder() que es parte de la librería forcats que como ya te estás imaginando…. pertenece a tidyverse. Lo hacemos así:\nmutate(paso = fct_reorder(paso, gasto_promedio_diario_en_usd_no_residentes))\nAdemás si tenes ganas de representar los dolares como moneda podes usar label_currency() de scales de la siguiente manera:\nscale_y_continuous(labels = scales::label_currency(prefix = \"USD \", accuracy = 1))\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nDividí tu trabajo en pasos encadenados:\n1 Hace las transformaciones filtrando por año y agrupando por paso. Luego hace el promedio de gasto_promedio_diario_en_usd_no_residentes)\nEl truco para que luego ggplot entienda que tiene que ordenar los pasos fronterizos por gasto_promedio_diario_en_usd_no_residentes es usar la función fct_reorder()\n2 Llama a ggplot y diseña la capa de mapeo de datos poniendo en la x el los pasos y en la y el gasto promedio.\n3 Elegí la geometría de columnas y gira las coordenadas con coord_flip() para que los pasos queden como una listita\n4 Ahora solo algunas cuestiones de hermoseo:\nsetea la escala para que muestre el simbolo como moneda scale_y_continuous(labels = scales::label_currency(prefix = “USD”, accuracy = 1))\nAgrega los títulos con labs y si te animas una gemotría de texto\nPodes elegir el tema que más te guste para finalizarlo\n\n\n\n\n\n\n\n\n\nRespuesta\n\n\n\n\n\n\ndf_gastos_no_residentes %&gt;% \n  filter(anio == 2024) %&gt;% \n  group_by(paso) %&gt;% \n  summarise(gasto_promedio_diario_en_usd_no_residentes = mean(gasto_promedio_diario_en_usd_no_residentes, na.rm = TRUE),.groups = \"drop\") %&gt;% \n  mutate(paso = fct_reorder(paso, gasto_promedio_diario_en_usd_no_residentes)) %&gt;% \n  ggplot(aes(\n    x = paso,\n    y = gasto_promedio_diario_en_usd_no_residentes\n  )) +\n  geom_col() +\n  coord_flip()+\n  scale_y_continuous(labels = scales::label_currency(prefix = \"USD \", accuracy = 1)) +\n  labs( \n    title = \"Gasto promedio diario según paso fronterizo\",\n    subtitle = \"Año 2024 - Turistas no residentes\",\n    x = \"\", y = \"Gasto promedio diario (USD)\",\n    caption = \"Fuente: SINTA\") +\n  geom_text(\n    aes(label = scales::label_currency(prefix = \"USD \", accuracy = 1)(gasto_promedio_diario_en_usd_no_residentes)),\n    position = position_stack(vjust = 0.5),\n    color = \"#45a35d\",\n    fontface = \"bold\"\n  )+\n  ggthemes::theme_hc()"
+  },
+  {
+    "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#a-practicar",
+    "href": "materiales/slides/gramatica_de_graficos_ggplot.html#a-practicar",
+    "title": "Gramática de gráficos con ggplot",
+    "section": "¡🦾 A practicar!",
+    "text": "¡🦾 A practicar!\n\nYa podes ir a completar la actividad Integradora"
   }
 ]
