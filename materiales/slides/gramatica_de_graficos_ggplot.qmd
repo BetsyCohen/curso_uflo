@@ -915,5 +915,5 @@ grafico3 + grafico2 + grafico1 +
 ## ¡🦾 A practicar!
 
 ::: r-fit-text
-Ya podes ir a completar la [actividad Integradora](materiales/excercise/ejercicio_ggplot.qmd)
+Ya podes ir a completar la [actividad Integradora](https://curso-analisis-datos-1-sociologia.netlify.app/materiales/excercise/ejercicio_ggplot)
 :::
