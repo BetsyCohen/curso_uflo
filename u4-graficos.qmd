@@ -22,7 +22,7 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 
 ::: slide-deck
 ::: slides
-Gramática de Tablas paquetes GT y DT
+[Gramática de Tablas con `GT`](materiales/slides/gramatica_de_tablas.qmd)
 :::
 :::
 

@@ -133,5 +133,8 @@
   },
   "materiales/excercise/ejercicio_ggplot.qmd": {
     "ejercicio_ggplot.html": "2129a6bb"
+  },
+  "materiales/slides/gramatica_de_tablas.qmd": {
+    "gramatica_de_tablas.html": "66624e48"
   }
 }
