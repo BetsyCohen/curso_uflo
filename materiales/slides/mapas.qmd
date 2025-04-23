@@ -207,15 +207,34 @@ En este caso nosotros estamos escogiendo la capa Polígono de límites de Provin
 Escogimos descargarlo en formato csv pero también se encuentran disponibles los Shapefiles,
 KML y GeoJSON.
 
+Cargamos la geodesia
+
 ```{r}
 library(tidyverse)
 library(sf)
 
-provincias <- read.csv("bases/provincia.csv")
+
+summary(provincias)
+```
+
+
+```{r}
+bibliotecas <- read.csv("https://datos.cultura.gob.ar/dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/bibliotecas-populares.csv")
+
+bibliotecas_con_geo <- bibliotecas %>%
+  left_join(provincias, by = c("id_provincia" = "in1")) 
+
+summary(bibliotecas_con_geo)
 ```
 
 
 
+```{r}
+
+bibliotecas_con_geo %>% 
+  ggplot() 
+ggplot() + geom_sf(data = bibliotecas_con_geo)
+```
 
 
 hoy vamos a trabajar
@@ -223,7 +242,7 @@ hoy vamos a trabajar
 ```{r}
 # library(tidyverse)
 
-# bibliotecas <- read.csv("https://datos.cultura.gob.ar/dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/bibliotecas-populares.csv")
+
 
 ```
 
