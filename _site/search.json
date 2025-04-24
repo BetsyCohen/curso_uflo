@@ -2544,14 +2544,14 @@
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#otros-tipos-de-join",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Otros tipos de join",
-    "text": "Otros tipos de join\n\n\n\n\n\n\nNote\n\n\n\nsemi_join Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.\nanti_join Unión ANTI-IZQUIERDA. Mantiene solo las filas de tabla_A que NO tienen coincidencia en la columna_clave en tabla_B. Sirve para filtrar tabla_A y quedarte solo con las filas sin coincidencias en tabla_B."
+    "text": "Otros tipos de join\n\n\n\n\n\n\nNote\n\n\nsemi_join Unión SEMI-IZQUIERDA. Mantiene solo las filas de tabla_A que tienen coincidencia en la columna_clave en tabla_B, pero NO agrega las columnas de tabla_B. Sirve para filtrar tabla_A basándose en la presencia de coincidencias en tabla_B.\nanti_join Unión ANTI-IZQUIERDA. Mantiene solo las filas de tabla_A que NO tienen coincidencia en la columna_clave en tabla_B. Sirve para filtrar tabla_A y quedarte solo con las filas sin coincidencias en tabla_B."
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#cómo-unimos-tablas-con-dplyr",
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#cómo-unimos-tablas-con-dplyr",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "¿Cómo Unimos Tablas con dplyr? 🛠️",
-    "text": "¿Cómo Unimos Tablas con dplyr? 🛠️\nTodas las funciones *_join() de dplyr comparten una sintaxis similar:\nnueva_tabla_unida &lt;- tabla_A %&gt;%\ntipo_de_join(tabla_B, by = \"columna_clave\")\n\ntabla_A %\\&gt;% tipo_de_join(tabla_B, ...): Siempre empezamos con la tabla “izquierda” (tabla_A) y la “pipeamos” a la función tipo_de_join().\ntabla_B: Es la tabla “derecha” que queremos unir a tabla_A.\nby = \"columna_clave\": CLAVE DE UNIÓN. Especificamos qué columna (o columnas) se utilizan para encontrar las coincidencias entre las filas de tabla_A y tabla_B. Las tablas se unirán basándose en los valores compartidos en esta columna. El nombre de la columna clave debe ser el mismo en ambas tablas, o podemos usar by = c(\"columna_A\" = \"columna_B\") si tienen nombres diferentes."
+    "text": "¿Cómo Unimos Tablas con dplyr? 🛠️\nTodas las funciones *_join() de dplyr comparten una sintaxis similar:\nnueva_tabla_unida &lt;- tabla_A %&gt;%\ntipo_de_join(tabla_B, by = \"columna_clave\")\n\ntabla_A %&gt;% tipo_de_join(tabla_B, ...): Siempre empezamos con la tabla “izquierda” (tabla_A) y la “pipeamos” a la función tipo_de_join().\ntabla_B: Es la tabla “derecha” que queremos unir a tabla_A.\nby = \"columna_clave\": CLAVE DE UNIÓN. Especificamos qué columna (o columnas) se utilizan para encontrar las coincidencias entre las filas de tabla_A y tabla_B. Las tablas se unirán basándose en los valores compartidos en esta columna. El nombre de la columna clave debe ser el mismo en ambas tablas, o podemos usar by = c(\"columna_A\" = \"columna_B\") si tienen nombres diferentes."
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#ejemplo-de-left_join",
@@ -2565,7 +2565,7 @@
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#elegir-el-tipo-de-join-correcto",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Elegir el Tipo de Join Correcto 🧐",
-    "text": "Elegir el Tipo de Join Correcto 🧐\nLa elección del tipo de join depende de lo que quieras lograr en tu análisis.\n\ninner_join(): Cuando necesitas datos completos y solo te interesan las filas que tienen información en ambas tablas. “Intersección”.\nleft_join(): Cuando quieres mantener todos los datos de tu tabla principal (izquierda) y agregar información complementaria de otra tabla (derecha), aunque falte información en la tabla derecha para algunas filas. “Prioriza la tabla izquierda”.\nright_join(): Similar a left_join, pero priorizando la tabla derecha. Menos común en la práctica.\nfull_join(): Cuando quieres mantener todos los datos de ambas tablas, incluso si no hay coincidencias. “Unión completa”.\nsemi_join() y anti_join(): Para filtrar una tabla basándote en la existencia o no existencia de coincidencias en otra tabla. No agregan columnas, solo filtran filas.\n\n\n\n\n\n\n\nTip analógico\n\n\n\nA veces llegar a una tabla / resultados puede requerir de múltiples uniones y transformaciones en el medio. Dibujar en papel o una pizarra las tablas puede ser de gran ayuda en este proceso."
+    "text": "Elegir el Tipo de Join Correcto 🧐\nLa elección del tipo de join depende de lo que quieras lograr en tu análisis.\n\ninner_join(): Cuando necesitas datos completos y solo te interesan las filas que tienen información en ambas tablas. “Intersección”.\nleft_join(): Cuando quieres mantener todos los datos de tu tabla principal (izquierda) y agregar información complementaria de otra tabla (derecha), aunque falte información en la tabla derecha para algunas filas. “Prioriza la tabla izquierda”.\nright_join(): Similar a left_join, pero priorizando la tabla derecha. Menos común en la práctica.\nfull_join(): Cuando quieres mantener todos los datos de ambas tablas, incluso si no hay coincidencias. “Unión completa”.\nsemi_join() y anti_join(): Para filtrar una tabla basándote en la existencia o no existencia de coincidencias en otra tabla. No agregan columnas, solo filtran filas.\n\n\n\n\n\n\n\nTip analógico\n\n\nA veces llegar a una tabla / resultados puede requerir de múltiples uniones y transformaciones en el medio. Dibujar en papel o una pizarra las tablas puede ser de gran ayuda en este proceso."
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#situaciones-que-requieren-cintura",
@@ -2607,7 +2607,7 @@
     "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#estirar-a-lo-ancho-con-pivot_wider",
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Estirar a lo ancho con pivot_wider",
-    "text": "Estirar a lo ancho con pivot_wider\nPivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser\n\nencc_personas_por_genero_region_alargada %&gt;% \n  pivot_wider(\n    # 1. Nombre de la variable que voy a estirar a lo ancho como columnas\n    names_from = \"sexo\", \n    # 2. Qué variable contiene los valores que debo repartir en las columnas\n    values_from = \"personas\") \n\n\n\n\n\nregion\nMujer\nVarón\nNo binario\n\n\n\n\nCABA\n215\n173\nNA\n\n\nCENTRO\n368\n240\nNA\n\n\nCUYO\n246\n185\nNA\n\n\nGBA\n370\n249\n1\n\n\nNEA\n269\n179\nNA\n\n\nNOA\n284\n162\nNA\n\n\nPATAGONIA\n253\n186\nNA\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nSi bien no es una regla, podríamos pensar que pivot_longer() va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider() siempre nos da un formato"
+    "text": "Estirar a lo ancho con pivot_wider\nPivot wider es (como ya te estaras imaginando) la operación inversa. Los argumentos de esta función entonces van a ser\n\nencc_personas_por_genero_region_alargada %&gt;% \n  pivot_wider(\n    # 1. Nombre de la variable que voy a estirar a lo ancho como columnas\n    names_from = \"sexo\", \n    # 2. Qué variable contiene los valores que debo repartir en las columnas\n    values_from = \"personas\") \n\n\n\n\n\nregion\nMujer\nVarón\nNo binario\n\n\n\n\nCABA\n215\n173\nNA\n\n\nCENTRO\n368\n240\nNA\n\n\nCUYO\n246\n185\nNA\n\n\nGBA\n370\n249\n1\n\n\nNEA\n269\n179\nNA\n\n\nNOA\n284\n162\nNA\n\n\nPATAGONIA\n253\n186\nNA\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nSi bien no es una regla, podríamos pensar que pivot_longer() va a transformar los datos de manera entendible para una máquina o para el trabajo con ellos como tablas de manera tidy, mientras que pivot_wider() siempre nos da un formato"
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_dplyr.html#un-flujo-de-trabajo-ordenado-o-tidy-tiene-fases-que-iteran-entre-sí",
@@ -3654,5 +3654,40 @@
     "title": "Mapas",
     "section": "Mapas de conexiones y mapas de flujos",
     "text": "Mapas de conexiones y mapas de flujos\n\n\nLos mapas de conexión se dibujan conectando puntos colocados en un mapa mediante líneas rectas o curvas.\nSi bien los mapas de conexión son excelentes para mostrar conexiones y relaciones geográficamente, también pueden usarse para mostrar rutas a través de una sola cadena de enlaces. Además, pueden ser útiles para revelar patrones espaciales mediante la distribución de conexiones o su concentración en un mapa.\n\nLos mapas de flujo son parecidos a los mapas de conexiones pero incluyen además una tercera dimensión de magnitud.\nNormalmente, se utilizan para mostrar datos sobre la migración de personas, animales y productos. La magnitud o cantidad de migración en una sola línea de flujo se representa mediante su grosor. Esto ayuda a mostrar cómo se distribuye geográficamente la migración."
+  },
+  {
+    "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#clase-de-hoy-más-allá-de-los-verbos-básicos",
+    "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#clase-de-hoy-más-allá-de-los-verbos-básicos",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Clase de Hoy: Más Allá de los Verbos Básicos 🚀",
+    "text": "Clase de Hoy: Más Allá de los Verbos Básicos 🚀\nEn la clase anterior, nos familiarizamos con los verbos esenciales del dplyr y cómo combinarlos con pipes para transformar datos.\nAhora, vamos a expandir nuestro arsenal de herramientas del tidyverse explorando dos operaciones fundamentales:\n\nUnión de Tablas (Joins): Combinar datos de múltiples tablas relacionadas.\nPivoteo de Tablas (Pivoting): Reorganizar la estructura de las tablas para facilitar el análisis.\n\nEstas operaciones son clave para trabajar con conjuntos de datos complejos y cuando quieras darte cuenta van a ser parte de tu trabajo diario con datos."
+  },
+  {
+    "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#que-las-tablas-sean-unidas-porque-esa-es-la-ley-primera",
+    "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#que-las-tablas-sean-unidas-porque-esa-es-la-ley-primera",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Que las tablas sean unidas porque esa es la ley primera",
+    "text": "Que las tablas sean unidas porque esa es la ley primera\nConociendo la familia de funciones join()"
+  },
+  {
+    "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#yo-soy-al-derecho-dado-vuelta-estas-vos",
+    "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#yo-soy-al-derecho-dado-vuelta-estas-vos",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Yo soy al derecho dado vuelta estas vos",
+    "text": "Yo soy al derecho dado vuelta estas vos\nLas funciones pivot_longer() y pivot_wider()"
+  },
+  {
+    "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#qué-aprendimos-hasta-acá",
+    "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#qué-aprendimos-hasta-acá",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "¿Qué aprendimos hasta acá?",
+    "text": "¿Qué aprendimos hasta acá?\n\nConocimos algunos de los beneficios de la comunidad de R\nNos zambullimos en R y recorrimos los básicos del IDE RStudio\nAprendimos convenciones y elementos básicos y a importar tablas para trabajar con ellas.\nHicimos nuestro primer viaje al tidyverso con los verbos centrales dplyr() y los conjugamos entre sí con pipes\nUnimos tablas y las hicimos girar sobre sí mismas para poder manipularlas."
+  },
+  {
+    "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#ahora-a-practicar",
+    "href": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#ahora-a-practicar",
+    "title": "Introducción a Tidyverse: union y pivoteo de tablas",
+    "section": "Ahora a practicar!",
+    "text": "Ahora a practicar!\nAhora ya estamos podemos completar nuestro primer trabajo práctico integrador."
   }
 ]
