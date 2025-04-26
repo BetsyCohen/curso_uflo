@@ -3576,7 +3576,7 @@
     "href": "materiales/slides/mapas.html#formatos-de-archivos-georreferenciados",
     "title": "Mapas",
     "section": "Formatos de archivos georreferenciados",
-    "text": "Formatos de archivos georreferenciados\n\nshapefile: creado por ESRI (creadores de ArcGIS) tiene varios archivos que por lo general vienen combinados en un zip los nombres de las variables tienen que tener 10 caracteres o menos (la gente se pone creativa con las abreviaturas)\nGeoJSON:una alteranriva más feliz y de código abierto que corrige estos problemas\nKML/KMZ: el formato que usa Google Earth\ncsv: representando solamente lat y longitud (por lo cual solo podremos diubujar puntos y líneas)"
+    "text": "Formatos de archivos georreferenciados\n\nshapefile: creado por ESRI (creadores de ArcGIS) tiene varios archivos que por lo general vienen combinados en un zip los nombres de las variables tienen que tener 10 caracteres o menos (la gente se pone creativa con las abreviaturas)\nGeoJSON:una alteranriva más feliz y de código abierto que corrige estos problemas\nKML/KMZ: el formato que usa Google Earth\ncsv: representando puntos de latitud y longitud (por lo cual solo podremos dibujar puntos y líneas)"
   },
   {
     "objectID": "materiales/slides/mapas.html#tipos-de-mapas",
@@ -3611,7 +3611,7 @@
     "href": "materiales/slides/mapas.html#coropletas",
     "title": "Mapas",
     "section": "Coropletas",
-    "text": "Coropletas\n\n\nUn mapa de coropletas es un tipo de mapa donde diferentes áreas geográficas se colorean en base a una variable asociada a esas áreas. Este tipo de gráfico proporciona de manera intuitiva cómo una determinada variable (la población, los ingresos, …) varían entre las diferentes áreas."
+    "text": "Coropletas\n\n\nEn los mapas de coropletas diferentes áreas geográficas se colorean en base a una variable asociada a esas áreas.\nEste tipo de gráfico proporciona de manera intuitiva cómo una determinada variable (la población, los ingresos, …) varían entre las diferentes áreas."
   },
   {
     "objectID": "materiales/slides/mapas.html#graficos-de-burbujas-en-mapa",
@@ -3625,7 +3625,7 @@
     "href": "materiales/slides/mapas.html#cartogramas",
     "title": "Mapas",
     "section": "Cartogramas",
-    "text": "Cartogramas\n\n\nUn cartograma es un tipo de mapa donde diferentes áreas geográficas son modificadas en base a una variable asociada a esas áreas. Aunque los cartogramas pueden ser visualmente atractivos, requieren un conocimiento previo de la geografía representada, ya que los tamaños y los límites de las geografías son alterados."
+    "text": "Cartogramas\n\n\nUn cartograma es un tipo de mapa donde diferentes áreas geográficas son modificadas en base a una variable asociada a esas áreas.\nAunque los cartogramas pueden ser visualmente atractivos, requieren un conocimiento previo de la geografía representada, ya que los tamaños y los límites de las geografías son alterados."
   },
   {
     "objectID": "materiales/slides/mapas.html#mapas-de-conexiones",
@@ -3639,21 +3639,21 @@
     "href": "materiales/slides/mapas.html#mapa-de-puntos",
     "title": "Mapas",
     "section": "Mapa de puntos",
-    "text": "Mapa de puntos\n\n\nLos mapas de puntos son una forma de detectar patrones espaciales o la distribución de datos en una región geográfica, colocando puntos de igual tamaño sobre una región geográfica.\nHay dos tipos de mapas de puntos: uno a uno (un punto representa un único recuento u objeto) y uno a muchos (un punto representa una unidad particular, por ejemplo, 1 punto = 10 árboles).\nLos mapas de puntos son ideales para visualizar la distribución de los elementos en una región relevando patrones."
+    "text": "Mapa de puntos\n\n\nLos mapas de puntos son una forma de detectar patrones espaciales o la distribución de datos en una región geográfica, colocando puntos de igual tamaño sobre una región geográfica.\nHay dos tipos de mapas de puntos: uno a uno (un punto representa un único recuento u objeto) y uno a muchos (un punto representa una unidad particular, por ejemplo, 1 punto = 10 árboles)."
   },
   {
     "objectID": "materiales/slides/mapas.html#mapa-de-burbujas",
     "href": "materiales/slides/mapas.html#mapa-de-burbujas",
     "title": "Mapas",
     "section": "Mapa de burbujas",
-    "text": "Mapa de burbujas\n\n\nUn mapa de burbujas usa símbolos proporcionales para representar cómo una variable varía sobre diferentes áreas geográficas. El símbolo usado es por lo general un círculo, cuyo diámetro depende del valor de la variable de interés.\nSon una buena alternativa a los mapas coropleticos pero una falla importante es que las burbujas demasiado grandes pueden superponerse a otras burbujas y regiones del mapa, por lo que esto debe tenerse en cuenta, ya que a veces podemos resolverlo con transparencias y a veces no."
+    "text": "Mapa de burbujas\n\n\nEl mapa de burbujas usa símbolos proporcionales para representar cómo una variable varía sobre diferentes áreas geográficas. El símbolo usado es por lo general un círculo, cuyo diámetro depende del valor de la variable de interés.\nSon una alternativa a las coropletas con un poquito más de complejidad ya que necesitamos calcular el centroide de cada región.\nUna contra es que las burbujas demasiado grandes pueden superponerse a otras burbujas y regiones del mapa, por lo que esto debe tenerse en cuenta, ya que a veces podemos resolverlo con transparencias y a veces no."
   },
   {
     "objectID": "materiales/slides/mapas.html#mapas-de-conexiones-y-mapas-de-flujos",
     "href": "materiales/slides/mapas.html#mapas-de-conexiones-y-mapas-de-flujos",
     "title": "Mapas",
     "section": "Mapas de conexiones y mapas de flujos",
-    "text": "Mapas de conexiones y mapas de flujos\n\n\nLos mapas de conexión se dibujan conectando puntos colocados en un mapa mediante líneas rectas o curvas.\nSi bien los mapas de conexión son excelentes para mostrar conexiones y relaciones geográficamente, también pueden usarse para mostrar rutas a través de una sola cadena de enlaces. Además, pueden ser útiles para revelar patrones espaciales mediante la distribución de conexiones o su concentración en un mapa.\n\nLos mapas de flujo son parecidos a los mapas de conexiones pero incluyen además una tercera dimensión de magnitud.\nNormalmente, se utilizan para mostrar datos sobre la migración de personas, animales y productos. La magnitud o cantidad de migración en una sola línea de flujo se representa mediante su grosor. Esto ayuda a mostrar cómo se distribuye geográficamente la migración."
+    "text": "Mapas de conexiones y mapas de flujos\n\n\nLos mapas de conexión se dibujan conectando puntos colocados en un mapa mediante líneas rectas o curvas.\nPueden usarse para mostrar rutas de una sola cadena de enlaces. Además, pueden ser útiles para revelar patrones espaciales mediante la distribución de conexiones o su concentración en un punto del mapa.\n\nLos mapas de flujo son parecidos a los mapas de conexiones pero incluyen además una tercera dimensión de magnitud.\nPor lo general, se utilizan para mostrar datos sobre la migración de personas o productos.\nLa magnitud o cantidad de migración en una sola línea de flujo se representa mediante su grosor. Esto ayuda a mostrar cómo se distribuye geográficamente la migración."
   },
   {
     "objectID": "materiales/slides/introduccion_tidyverse_union_pivoteo.html#clase-de-hoy-más-allá-de-los-verbos-básicos",
@@ -3689,5 +3689,222 @@
     "title": "Introducción a Tidyverse: union y pivoteo de tablas",
     "section": "Ahora a practicar!",
     "text": "Ahora a practicar!\nAhora ya estamos podemos completar nuestro primer trabajo práctico integrador."
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#existen-muchos-tipos-de-mapas-los-más-comunes-son",
+    "href": "materiales/slides/mapas.html#existen-muchos-tipos-de-mapas-los-más-comunes-son",
+    "title": "Mapas",
+    "section": "Existen muchos tipos de mapas los más comunes son …",
+    "text": "Existen muchos tipos de mapas los más comunes son …"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#geodesias-y-polígonos-de-argentina",
+    "href": "materiales/slides/mapas.html#geodesias-y-polígonos-de-argentina",
+    "title": "Mapas",
+    "section": "Geodesias y polígonos de Argentina",
+    "text": "Geodesias y polígonos de Argentina\nPara dibujar mapas de áreas (como provincias), necesitamos archivos que definan la geometría (los bordes) de esas áreas. Estos archivos suelen ser GeoJSON, Shapefiles, etc.\nEl Instituto Geográfico Nacional nos provee en su web los archivos para dibujar la forma de nuestro país. Todas las capas GIS podes encontrarlas en https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG.\n\n\n\n\n\n\nLas librerías del día:\n\n\nExisten muchas librerías para hacer mapas hoy vamos a usar tres\n\nsf{}(simple shapes): que nos ayuda en la interpretación geométrica del multi-poligono\ngglot que nos va a servir para hacer mapas estáticos\nleaflet para hacer gráficos dinámicos en java"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#veamos-la-estructura-del-geojson",
+    "href": "materiales/slides/mapas.html#veamos-la-estructura-del-geojson",
+    "title": "Mapas",
+    "section": "Veamos la estructura del GeoJSON",
+    "text": "Veamos la estructura del GeoJSON\nAhora veamos un poco este objeto sf que tiene las siguientes características\nSimple feature collection with 6 features and 9 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -69.63497 ymin: -36.00118 xmax: -58.33515 ymax: -25.16831\nGeodetic CRS:  WGS 84\nTenemos Simple feature collection with 6 features and 9 fields: Cargamos una colección de \"simple features\" (entidades geométricas).\n\ngeometry type: MULTIPOLYGON: los archivos con información geográfica contienen colecciones de puntos, de líneas, o de polígonos. En éste caso son polígonos; tiene sentido para la información que esperamos, que es la de la superficie de Argentina dividida en sus provincias.\ndimension: XY: la información es \"plana\", en dos dimensiones X e Y. No incluye información de alturas, que estaría en la dimensión Z. (cosa que casi nunca trabajamos)\nBounding box:  xmin: -69.63497 ymin: -36.00118 xmax: -58.33515 ymax: -25.16831: nos da cuatro valores que forman la \"caja\" que contiene a los datos. Estos valores son la latitud mínima, la longitud mínima, la latitud máxima y la longitud máxima. Esto es para cuando estamos un poco más cancheros y tenemos una referencia de los lugares por sus coordenadas.\nGeodetic CRS:  WGS 84 Hace referencia al sistema de coordenadas que sua nuestro mapa. El WSG 84 es un sistema global (WSG) global basado en latitud y longitud (grados decimales). Este sistema también lo conocemos como EPSG 4326. Es el mismo sistema GPS que usa Google Maps, y la mayoría de las apps.\n\n\n\n\n\n\nChequear siempre nuestro sistema de coordenadas\n\n\nEs importante prestar atención al sistemas de coordenadas, o CRS, ya que para comparar datos geográficos de distintas fuentes todas deben usar el mismo."
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#geom_sf-para-obtener-la-geometría",
+    "href": "materiales/slides/mapas.html#geom_sf-para-obtener-la-geometría",
+    "title": "Mapas",
+    "section": "´geom_sf()´ para obtener la geometría",
+    "text": "´geom_sf()´ para obtener la geometría\nggplot nos ofrece la posibilidad de dibujar objetos sf utilizando la capa de geometría geom_sf\n\n\nggplot()+\n  geom_sf(data = provincias_sf)"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#ajustando-las-coordenadas",
+    "href": "materiales/slides/mapas.html#ajustando-las-coordenadas",
+    "title": "Mapas",
+    "section": "Ajustando las coordenadas",
+    "text": "Ajustando las coordenadas\nPara hacer “zoom” sobre las coordenadas de Argentina continental vamos a usar la función coord_sf() de (capa de coordenadas) de nuestro mapa en ggplot. Vamos a concentrarnos entre los gracos -75 y -54 (Este y Oeste) y -56 y -21 (Norte y Sur).\nEstas coordenadas nos permiten concentrarnos en la parte continental sin perder de vistas a nuestras Malvinas Argentinas.\n\n\nggplot()+\n  geom_sf(data = provincias_sf)+\n  coord_sf(xlim = c(-75, -54), ylim = c(-56, -21))"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#cargando-nuestro-dataset-de-bibliotecas",
+    "href": "materiales/slides/mapas.html#cargando-nuestro-dataset-de-bibliotecas",
+    "title": "Mapas",
+    "section": "Cargando nuestro dataset de bibliotecas",
+    "text": "Cargando nuestro dataset de bibliotecas\nLa Comisión Nacional de Bibliotecas Populares (CONABIP) La Comisión Nacional Protectora de Bibliotecas Populares (CONABIP) es un organismo creado en 1870 por Sarmiento (hoy dependiente de la Secretaría de Cultura) que apoya y fomenta el desarrollo de bibliotecas populares en todo el territorio de la República Argentina.\nEn este set de datos que forma parte del acervo de datos.cultura.gob.ar vamos a descargar la ubicación de cada biblioteca para ver todos los rincones del país a los que llega.\n\n\n## Decagar los datos\n\nurl_bibliotecas &lt;- \"https://datos.cultura.gob.ar/dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/bibliotecas-populares.csv\"\n\n\nbibliotecas &lt;- read.csv(url_bibliotecas)\n\nsummary(bibliotecas)\n\n\n cod_localidad       id_provincia   id_departamento observacion   \n Min.   : 2000010   Min.   : 2.00   Min.   : 2000   Mode:logical  \n 1st Qu.: 6791050   1st Qu.: 6.00   1st Qu.: 6791   NA's:1902     \n Median :30084160   Median :30.00   Median :30084                 \n Mean   :38885907   Mean   :38.72   Mean   :38886                 \n 3rd Qu.:66152288   3rd Qu.:66.00   3rd Qu.:66152                 \n Max.   :94014020   Max.   :94.00   Max.   :94014                 \n                                                                  \n  categoria         subcategoria    provincia         departamento      \n Length:1902        Mode:logical   Length:1902        Length:1902       \n Class :character   NA's:1902      Class :character   Class :character  \n Mode  :character                  Mode  :character   Mode  :character  \n                                                                        \n                                                                        \n                                                                        \n                                                                        \n  localidad            nombre           domicilio           piso        \n Length:1902        Length:1902        Length:1902        Mode:logical  \n Class :character   Class :character   Class :character   NA's:1902     \n Mode  :character   Mode  :character   Mode  :character                 \n                                                                        \n                                                                        \n                                                                        \n                                                                        \n      cp               cod_tel        telefono             mail          \n Length:1902        Min.   :   0   Min.   :0.000e+00   Length:1902       \n Class :character   1st Qu.: 294   1st Qu.:4.600e+05   Class :character  \n Mode  :character   Median :2302   Median :4.984e+05   Mode  :character  \n                    Mean   :1841   Mean   :1.977e+07                     \n                    3rd Qu.:3447   3rd Qu.:4.664e+06                     \n                    Max.   :4948   Max.   :1.560e+09                     \n                    NA's   :165    NA's   :165                           \n   web          informacion_adicional    latitud          longitud     \n Mode:logical   Mode:logical          Min.   :-54.82   Min.   :-72.89  \n NA's:1902      NA's:1902             1st Qu.:-34.98   1st Qu.:-65.29  \n                                      Median :-33.13   Median :-61.89  \n                                      Mean   :-33.07   Mean   :-62.49  \n                                      3rd Qu.:-30.22   3rd Qu.:-58.93  \n                                      Max.   :-22.05   Max.   :-53.73  \n                                                                       \n tipo_latitud_longitud    fuente          fecha_fundacion     nro_conabip  \n Length:1902           Length:1902        Length:1902        Min.   :  11  \n Class :character      Class :character   Class :character   1st Qu.:1997  \n Mode  :character      Mode  :character   Mode  :character   Median :3288  \n                                                             Mean   :2867  \n                                                             3rd Qu.:3905  \n                                                             Max.   :4398  \n                                                                           \n anio_actualizacion\n Min.   :2023      \n 1st Qu.:2023      \n Median :2023      \n Mean   :2023      \n 3rd Qu.:2023      \n Max.   :2023      \n                   \n\n\n\n\n\n\n\n\n\nLatitud y longitud\n\n\nLas variables lat y long nos están indicando la ubicación de cada biblioteca. Si miramos los máximos y mínimos ¿Coinciden con los valores que habíamos establecido como límites en coord_sf para ver Argentina continental?"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#poniendo-puntos-en-el-mapa",
+    "href": "materiales/slides/mapas.html#poniendo-puntos-en-el-mapa",
+    "title": "Mapas",
+    "section": "Poniendo puntos en el mapa",
+    "text": "Poniendo puntos en el mapa\nAhora vamos a agergar a la bibliotecas como una nueva capa de nuestro mapa usando una geometria de puntos\n\n\nggplot()+\n  # modifico los colores de relleno para que no sea vea tan pesado respecto de los puntos\n  geom_sf(data = provincias_sf)+\n  # agrego un gráfico de puntos usando como data bibliotecas\n  geom_point(data = bibliotecas, aes(x = longitud, y = latitud), color = \"steelblue\", alpha = 0.6, size = 1)"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#estilizando-nuestro-mapa",
+    "href": "materiales/slides/mapas.html#estilizando-nuestro-mapa",
+    "title": "Mapas",
+    "section": "Estilizando nuestro mapa",
+    "text": "Estilizando nuestro mapa\nAhora simplemente vamos a agregar algunos títulos y etiquetas\n\n\nggplot()+\n  # modifico los colores de las lineas y del relleno para que se vea menos pesado\n  geom_sf(data = provincias_sf, fill = \"grey90\", color = \"white\")+\n  geom_point(data = bibliotecas, aes(x = longitud, y = latitud), color = \"steelblue\", alpha = 0.6, size = 1) +\n  # Títulos y etiquetas\n  labs(title = \"Bibliotecas Populares en Argentina\",\n       subtitle = \"Año 2023\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  # Elimino ejes y panel de fondo para un mapa más limpio\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#cargando-la-geometría-como-sf",
+    "href": "materiales/slides/mapas.html#cargando-la-geometría-como-sf",
+    "title": "Mapas",
+    "section": "Cargando la geometría como sf()",
+    "text": "Cargando la geometría como sf()\nVamos a cargar como un objeto sf o Simple Features. Simple Features (oficialmente Simple Feature Access ) es un conjunto de estándares que especifica un modelo común de almacenamiento y acceso de características geográficas , compuesto principalmente por geometrías bi dimensionales (punto, línea, polígono, multipunto, multilínea, etc.) y que está formalizado por el consorcio de Geoespacial abierto (OGC por sus siglas en inglés) y las normas ISO.\n\n# ---  Cargamos las librerías que vamos a usar ---\nlibrary(tidyverse) # que me trae entre ellos ggplot el cual usaremos para mapas estáticos\nlibrary(sf) # Para trabajar con datos geoespaciales\nlibrary(leaflet) # Para mapas interactivos\n\n# --- Cargamos el GeoJSON de provincias argentinas del IGN ---\n# Esta URL puede cambiar, si falla, habrá que buscar una alternativa actualizada.\nurl_provincias_geojson &lt;- \"https://wms.ign.gob.ar/geoserver/ign/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ign%3Aprovincia&outputFormat=application%2Fjson\"\n\n# ---Asignamos el archivo GeoJSON al objeto provincias_sf \nprovincias_sf &lt;- read_sf(url_provincias_geojson)"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#ggplot-y-another-coronación-de-gloria",
+    "href": "materiales/slides/mapas.html#ggplot-y-another-coronación-de-gloria",
+    "title": "Mapas",
+    "section": "ggplot y another coronación de gloria",
+    "text": "ggplot y another coronación de gloria"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#veamos-la-estructura-del-sf",
+    "href": "materiales/slides/mapas.html#veamos-la-estructura-del-sf",
+    "title": "Mapas",
+    "section": "Veamos la estructura del sf()",
+    "text": "Veamos la estructura del sf()\nAhora veamos un poco este objeto sf que tiene las siguientes características\nSimple feature collection with 24 features and 2 fields\nGeometry type: MULTIPOLYGON\nDimension:     XYBounding box:  xmin: -73.57219 ymin: -55.05803 xmax: -53.64276 ymax: -21.74531\nGeodetic CRS:  WGS 84\n¿Qué significa todo esto?"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#veamos-la-estructura-del-sf-1",
+    "href": "materiales/slides/mapas.html#veamos-la-estructura-del-sf-1",
+    "title": "Mapas",
+    "section": "Veamos la estructura del sf()",
+    "text": "Veamos la estructura del sf()\nTenemos Simple feature collection with 24 features and 2 fields: Cargamos una colección de “simple features” (entidades geométricas) que tiene 24 filas y dos variables.\n\ngeometry type: MULTIPOLYGON: los archivos con información geográfica contienen colecciones de puntos, de líneas, o de polígonos. En éste caso son polígonos; tiene sentido para la información que esperamos, que es la de la superficie de Argentina dividida en sus provincias.\ndimension: XY: la información es “plana”, en dos dimensiones X e Y. No incluye información de alturas, que estaría en la dimensión Z. (cosa que casi nunca trabajamos)\nBounding box:  xmin: -73.57219 ymin: -55.05803 xmax: -53.64276 ymax: -21.74531: nos da cuatro valores que forman la “caja” que contiene a los datos. Estos valores son la latitud mínima, la longitud mínima, la latitud máxima y la longitud máxima. Esto es para cuando estamos un poco más cancheros y tenemos una referencia de los lugares por sus coordenadas.\nGeodetic CRS:  WGS 84 Hace referencia al sistema de coordenadas que sua nuestro mapa. El WSG 84 es un sistema global (WSG) global basado en latitud y longitud (grados decimales). Este sistema también lo conocemos como EPSG 4326. Es el mismo sistema GPS que usa Google Maps, y la mayoría de las apps.\n\n\n\n\n\n\nChequear siempre nuestro sistema de coordenadas\n\n\nEs importante prestar atención al sistemas de coordenadas, o CRS, ya que para comparar datos geográficos de distintas fuentes todas deben usar el mismo."
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#concentración-de-bibliotecas-por-provincia",
+    "href": "materiales/slides/mapas.html#concentración-de-bibliotecas-por-provincia",
+    "title": "Mapas",
+    "section": "Concentración de bibliotecas por provincia",
+    "text": "Concentración de bibliotecas por provincia\nAhora vamos a ver la concentración por provincia usando un mapa de coropletas. Para eso vamos a necesitar primero crear una tabla que resuma este valor (recuento de bibliotecas por provincia) Y después vamos a agregar este dato a nuestro objeto sf en donde cada linea representa la geometría de esa provincia\n\n# creamos la tabla\nbiblios_prov &lt;- bibliotecas %&gt;% \n  group_by(id_provincia) %&gt;% \n  summarise(suma_biblio_prov = n_distinct(nro_conabip)) \n  \nhead(biblios_prov)\n\n\n\n\n\nid_provincia\nsuma_biblio_prov\n\n\n\n\n2\n43\n\n\n6\n497\n\n\n10\n37\n\n\n14\n158\n\n\n18\n55\n\n\n22\n69"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#concentración-de-bibliotecas-por-provincia-1",
+    "href": "materiales/slides/mapas.html#concentración-de-bibliotecas-por-provincia-1",
+    "title": "Mapas",
+    "section": "Concentración de bibliotecas por provincia",
+    "text": "Concentración de bibliotecas por provincia\n\n\nprovincias_sf %&gt;% \n  # convierto el tipo de variable para unir\n  mutate(id_provincia = as.integer(in1)) %&gt;% \n  # unimos la tabla de resumen a la geometrias de provincias\n  left_join(biblios_prov, by = \"id_provincia\") %&gt;% \n  ggplot()+\n  # usamos el valor de resumen como relleno para cada geometria\n  geom_sf(aes(fill = suma_biblio_prov ))+\n  coord_sf(xlim = c(-75, -54), ylim = c(-56, -21))+\n  labs(title = \"Concentración de Bibliotecas Populares por provincia\",\n       subtitle = \"Año 2023\",\n       fill = \"Cantidad de bibliotecas\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#coropletas-concentración-de-bibliotecas-por-provincia",
+    "href": "materiales/slides/mapas.html#coropletas-concentración-de-bibliotecas-por-provincia",
+    "title": "Mapas",
+    "section": "Coropletas: Concentración de bibliotecas por provincia",
+    "text": "Coropletas: Concentración de bibliotecas por provincia\nAhora vamos a ver la concentración por provincia usando un mapa de coropletas. Para eso vamos a necesitar primero crear una tabla que resuma este valor (recuento de bibliotecas por provincia) Y después vamos a agregar este dato a nuestro objeto sf en donde cada linea representa la geometría de esa provincia\n\n# creamos la tabla\nbiblios_prov &lt;- bibliotecas %&gt;% \n  group_by(id_provincia) %&gt;% \n  summarise(suma_biblio_prov = n_distinct(nro_conabip)) \n  \nhead(biblios_prov)\n\n\n\n\n\nid_provincia\nsuma_biblio_prov\n\n\n\n\n2\n43\n\n\n6\n497\n\n\n10\n37\n\n\n14\n158\n\n\n18\n55\n\n\n22\n69"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#coropletas-concentración-de-bibliotecas-por-provincia-1",
+    "href": "materiales/slides/mapas.html#coropletas-concentración-de-bibliotecas-por-provincia-1",
+    "title": "Mapas",
+    "section": "Coropletas: Concentración de bibliotecas por provincia",
+    "text": "Coropletas: Concentración de bibliotecas por provincia\n\n\nprovincias_sf %&gt;% \n  # convierto el tipo de variable ya que en una es chr y en otra integer\n  mutate(codprov_censo = as.integer(codprov_censo)) %&gt;% \n  # unimos la tabla de resumen a la geometrias de provincias\n  left_join(biblios_prov, by = c(\"codprov_censo\" = \"id_provincia\")) %&gt;% \n  ggplot()+\n  # usamos el valor de resumen como relleno para cada geometria\n  geom_sf(aes(fill = suma_biblio_prov ))+\n  labs(title = \"Concentración de Bibliotecas Populares por provincia\",\n       subtitle = \"Año 2023\",\n       fill = \"Cantidad de bibliotecas\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#mapa-de-burbujas-1",
+    "href": "materiales/slides/mapas.html#mapa-de-burbujas-1",
+    "title": "Mapas",
+    "section": "Mapa de burbujas",
+    "text": "Mapa de burbujas\nPara el mapa de burbujas debemos calcular además los centroides y (determinando su lat y long) y luego al graficar los retomamos y usamos la variable de resumen dentro del parámetro size\n\n# Calcular el centroide de cada provincia ---\nprovincias_burbujas &lt;- provincias_sf %&gt;%\n  # convierto el tipo de variable ya que en una es chr y en otra integer\n  mutate(codprov_censo = as.integer(codprov_censo)) %&gt;% \n  # unimos la tabla de resumen a la geometrias de provincias\n  left_join(biblios_prov, by = c(\"codprov_censo\" = \"id_provincia\")) %&gt;% \n  # validar la geomtria (hay una que viene trota en el GeoJSON)\n  st_make_valid() %&gt;%\n  # calcular el centroide\n  mutate(centroid = st_centroid(geometry)) %&gt;%\n  # volver a convertir en sf\n  st_as_sf()\n\n# Extraer coordenadas de cada centroide para geom_point ----------\nprovincias_burbujas_coords &lt;- provincias_burbujas %&gt;%\n  mutate(lon = st_coordinates(centroid)[, 1],\n         lat = st_coordinates(centroid)[, 2])\n\n# Mapa con burbujas ----- \nggplot() +\n  geom_sf(data = provincias_sf, fill = \"gray90\", color = \"white\") +\n  # agregarmos al geom_point el size en base al recuento de biblios \n  geom_point(data = provincias_burbujas_coords, \n             aes(x = lon, y = lat, size = suma_biblio_prov),\n             color = \"steelblue\", alpha = 0.7) +\n  coord_sf(xlim = c(-75, -54), ylim = c(-56, -21)) +\n  labs(title = \"Distribución de Bibliotecas Populares por provincia\",\n       subtitle = \"Año 2023\",\n       size = \"Cantidad de bibliotecas\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#mapa-de-burbujas-1-output",
+    "href": "materiales/slides/mapas.html#mapa-de-burbujas-1-output",
+    "title": "Mapas",
+    "section": "Mapa de burbujas",
+    "text": "Mapa de burbujas"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#mapa-de-puntos-con-leaflet",
+    "href": "materiales/slides/mapas.html#mapa-de-puntos-con-leaflet",
+    "title": "Mapas",
+    "section": "Mapa de Puntos con leaflet",
+    "text": "Mapa de Puntos con leaflet\nMostraremos la ubicación de las bibliotecas con marcadores interactivos.\n\n# Crear mapa leaflet\nleaflet(data = bibliotecas) %&gt;%\n  addPolygons(data = provincias_sf) %&gt;% # Añade un mapa base (OpenStreetMap por defecto)\n  addCircleMarkers( # Añade marcadores circulares para cada biblioteca\n    lng = ~longitud, # Mapea longitud a la coordenada x\n    lat = ~latitud,  # Mapea latitud a la coordenada y\n    radius = 2, # Tamaño pequeño del círculo\n    stroke = FALSE, # Sin borde\n    fillOpacity = 0.8, # Opacidad del relleno\n    color = \"steelblue\", # Color de los puntos\n    popup = ~paste(\"&lt;b&gt;\", nombre, \"&lt;/b&gt;&lt;br&gt;\", domicilio, \"&lt;br&gt;\", localidad, \", \", provincia) # Información al hacer clic\n  ) %&gt;% \n  # Opcional: Ajustar la vista inicial\n  setView(lng = -64, lat = -34, zoom = 4) # Centrar en Argentina"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#mapa-de-coropletas-con-leaflet",
+    "href": "materiales/slides/mapas.html#mapa-de-coropletas-con-leaflet",
+    "title": "Mapas",
+    "section": "Mapa de Coropletas con leaflet",
+    "text": "Mapa de Coropletas con leaflet\nCrearemos un mapa interactivo donde las provincias se colorean por la cantidad de bibliotecas.\n\n# Unimos los datos de conteo de bibliotecas al objeto espacial de provincias para Leaflet\n# Replicamos la unión hecha previamente\nprovincias_con_datos_leaflet &lt;- provincias_sf %&gt;%\n# convierto el tipo de variable para unir\n  mutate(id_provincia = as.integer(codprov_censo)) %&gt;%\n# unimos la tabla de resumen a la geometrias de provincias\n  left_join(biblios_prov, by = \"id_provincia\") %&gt;%\n# Rellenar con 0 la cantidad de bibliotecas en provincias donde no hay registros\n  mutate(suma_biblio_prov = replace_na(suma_biblio_prov, 0))\n\n\n# Creamos una paleta de colores para el mapa interactivo de coropletas\npal_leaflet &lt;- colorNumeric(\n  # Hay varias podes elegir otra paleta si prefieres, consulta ?colorNumeric\n  palette = \"YlGnBu\", # Por ejemplo, Yellow-Green-Blue\n  domain = provincias_con_datos_leaflet$suma_biblio_prov # El rango de valores a colorear\n)\n\n# Crear mapa leaflet\nleaflet(data = provincias_con_datos_leaflet) %&gt;%\n  addPolygons( # Añade los polígonos de las provincias\n    fillColor = ~pal_leaflet(suma_biblio_prov), # Rellena usando la paleta y la cantidad de bibliotecas\n    fillOpacity = 0.8, # Opacidad del relleno\n    color = \"white\", # Color del borde de los polígonos\n    weight = 1, # Grosor del borde\n    # Información al pasar el mouse (etiquetas)\n    label = ~paste0(name_iso, \": \", suma_biblio_prov, \" bibliotecas\"),\n    # Opcional: Información al hacer clic (popup)\n    # popup = ~paste(\"&lt;b&gt;\", name, \"&lt;/b&gt;&lt;br&gt;Bibliotecas: \", suma_biblio_prov)\n  ) %&gt;%\n  # Añade la leyenda de color\n  addLegend(pal = pal_leaflet, values = ~suma_biblio_prov, title = \"Cant. Bibliotecas\") %&gt;%\n    # Opcional: Ajustar la vista inicial\n  setView(lng = -64, lat = -34, zoom = 4) # Centrar en Argentina"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#contando-historias-con-mapas",
+    "href": "materiales/slides/mapas.html#contando-historias-con-mapas",
+    "title": "Mapas",
+    "section": "Contando historias con mapas",
+    "text": "Contando historias con mapas\nComo hemos visto, R ofrece herramientas poderosas como sf, ggplot2 y leaflet para trabajar con datos georreferenciados y crear una variedad de mapas. Desde mapas estáticos detallados hasta mapas interactivos exploratorios, la visualización espacial es clave para entender el “dónde” de los fenómenos sociales.\nAdemás nos dimos el lujo de introducir algo de nuestra producción nacional con geoAr mostrando la contribución de nuestros compatriotas a la comunidad de R\n¡La práctica es clave para dominar estas herramientas! Explora otros datasets con información geográfica y experimenta con diferentes tipos de mapas y capas en el ejercicio integrador"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#mapa-de-puntos-con-leaflet-output",
+    "href": "materiales/slides/mapas.html#mapa-de-puntos-con-leaflet-output",
+    "title": "Mapas",
+    "section": "Mapa de Puntos con leaflet",
+    "text": "Mapa de Puntos con leaflet"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#mapa-de-coropletas-con-leaflet-output",
+    "href": "materiales/slides/mapas.html#mapa-de-coropletas-con-leaflet-output",
+    "title": "Mapas",
+    "section": "Mapa de Coropletas con leaflet",
+    "text": "Mapa de Coropletas con leaflet"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#geo_ar-nuestra-librería-invitada-de-hoy",
+    "href": "materiales/slides/mapas.html#geo_ar-nuestra-librería-invitada-de-hoy",
+    "title": "Mapas",
+    "section": "geo_ar: nuestra librería invitada de hoy",
+    "text": "geo_ar: nuestra librería invitada de hoy\ngeoAr brinda herramientas que facilitan el acceso y el trabajo con datos espaciales de Argentina desde R y es parte del del universo de paquetes polAr desarrollado por un equipo de desarrolladores de R argentinos: Juan Pablo Ruiz Nicolini, Patricio Del Boca y Juan Gabriel Juara."
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#cargando-la-geometría-de-las-provincias-argentinas",
+    "href": "materiales/slides/mapas.html#cargando-la-geometría-de-las-provincias-argentinas",
+    "title": "Mapas",
+    "section": "Cargando la geometría de las provincias argentinas",
+    "text": "Cargando la geometría de las provincias argentinas\nVamos a cargar como un objeto sf o Simple Features, ayudandonos con la librería geo_ar\nSimple Features (oficialmente Simple Feature Access ) es un conjunto de estándares que especifica un modelo común de almacenamiento y acceso de características geográficas , compuesto principalmente por geometrías bi dimensionales (punto, línea, polígono, multipunto, multilínea, etc.) y que está formalizado por el consorcio de Geoespacial abierto (OGC por sus siglas en inglés) y las normas ISO.\n\n# ---  Cargamos las librerías que vamos a usar ---\nlibrary(tidyverse) \nlibrary(sf) # Para trabajar con datos geoespaciales\nlibrary(geoAr)\n\n## Carga poligonos geográficos de provincias argentinas\nprovincias_sf &lt;- get_geo(geo = \"ARGENTINA\", level = \"provincia\")\n\n## Cargar los nombres de las provincias\netiquetas_provincias &lt;- show_arg_codes(nivel = \"provincias\") %&gt;% \n  select(codprov_censo , name_iso)\n\n## unir nombres a df de poligonos\nprovincias_sf &lt;- provincias_sf %&gt;% \n  left_join(etiquetas_provincias, by = \"codprov_censo\")"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#características-generales",
+    "href": "materiales/slides/mapas.html#características-generales",
+    "title": "Mapas",
+    "section": "Características generales",
+    "text": "Características generales\nLa interctividad va a estar más que nada dada por:\n\nPanorámica/zoom interactivo\nComponer mapas utilizando combinaciones arbitrarias de: Mosaicos de mapas Marcadores Polígonos Pauta Ventanas emergentes GeoJSON\nIncrustar mapas en documentos RMarkdown/Quarto apps tipo Shiny\nRepresenta fácilmente objetos espaciales de sf (como el que vimos en el ejemplo de ggplot) o dataframes con columnas de latitud/longitud\nNos permite agregar algunos de los pluginsque ya son parte de la lilbrería de Leaflet"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#instalación-y-usos-básicos",
+    "href": "materiales/slides/mapas.html#instalación-y-usos-básicos",
+    "title": "Mapas",
+    "section": "Instalación y usos básicos",
+    "text": "Instalación y usos básicos\nLeaflet se encuentra dentro de CRAN por lo que podemos instalarlo de igual manera que cualquier otro paquete\n\n# install.packages('leaflet')\n\nPara crear un mapa tenemos 4 pasos básicos\n\nLlamamos al widget leaflet().\nAgrar capas (es decir, entidades) al mapa mediante funciones de capa (por ejemplo, addTiles, addMarkers, addPolygons) para modificar el widget del mapa.\nRepitimos el paso 2 según la cantidad de capas que necesitemos.\nImprimimos el widget de mapa para mostrarlo.\n\n\n\n\n\n\n\nDocumentación del paquete Leaflet\n\n\nPara más info podes encontrar toda la documentación del paquete en:\nhttps://rstudio.github.io/leaflet/"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#capa-de-base-del-mapa",
+    "href": "materiales/slides/mapas.html#capa-de-base-del-mapa",
+    "title": "Mapas",
+    "section": "Capa de base del mapa",
+    "text": "Capa de base del mapa\nTenemos dos formas de hacer la primera capa de base de nuestro mapa:\nCon addTiles donde agregas el mapa base que viene por defecto y que nos trae la capa de OpenStreetMap. Con la función setView() lo podemos centrar para que no nos muestre todo el mapa mundial.\nSin embargo (como en muchas cosas) si hacemos zoom vamos a ver un sesgo político importante\n\nlibrary(leaflet)\n\nleaflet() %&gt;%\n  addTiles() %&gt;%\n  setView(lng = -64, lat = -34, zoom = 3) # Centrar en Argentina"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#y-puede-resultar-en-situaciones-como-esta",
+    "href": "materiales/slides/mapas.html#y-puede-resultar-en-situaciones-como-esta",
+    "title": "Mapas",
+    "section": "…y puede resultar en situaciones como esta",
+    "text": "…y puede resultar en situaciones como esta"
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#addpolygons",
+    "href": "materiales/slides/mapas.html#addpolygons",
+    "title": "Mapas",
+    "section": "addPolygons",
+    "text": "addPolygons\nAlternativamente podemos crear un mapa base utilizando nuestros polígonos que si bien no estará mostrando capas más enriquecidas.\nUna forma de resolverlo (en caso que lo necesitemos) es utilizando el servicio de Argenmap v2 tal cual lo sugiere la bióloga Natalia Morandeiro en este post que sin quererlo sobrevuela también el problema de la soberanía y el sesgo de nuestros datos."
+  },
+  {
+    "objectID": "materiales/slides/mapas.html#capa-de-base-del-mapa-output",
+    "href": "materiales/slides/mapas.html#capa-de-base-del-mapa-output",
+    "title": "Mapas",
+    "section": "Capa de base del mapa",
+    "text": "Capa de base del mapa"
   }
 ]

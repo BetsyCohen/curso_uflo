@@ -6,6 +6,7 @@ logo: "images/logo-uflo.png"
 date: "04/10/2025"
 format:
   revealjs:
+    chalkboard: true
     width: 1600
     height: 900
     theme: slides.scss

@@ -264,11 +264,10 @@ Funciones clave de gt:
 -   tab_style(): Aplicar estilos a celdas o grupos de celdas.
 -   tab_options(): Modificar opciones generales de la tabla.
 
-::: {.callout-tip}
+::: callout-tip
 ### Explora la documentación de gt y su página web
-Hay dos funciones súper útiles de gt()
-[`tab_spanner()`](https://gt.rstudio.com/reference/tab_spanner.html) y [`summary_rows()`](https://gt.rstudio.com/articles/creating-summary-lines.html?q=summary_rows()#using-multiple-calls-of-summary_rows) ¿Qué función cumple cada una? 
 
+Hay dos funciones súper útiles de gt() [`tab_spanner()`](https://gt.rstudio.com/reference/tab_spanner.html) y [`summary_rows()`](https://gt.rstudio.com/articles/creating-summary-lines.html?q=summary_rows()#using-multiple-calls-of-summary_rows) ¿Qué función cumple cada una?
 :::
 
 ## La yapa: gtExtras {.smaller}
