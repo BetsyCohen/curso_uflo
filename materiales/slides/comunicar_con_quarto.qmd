@@ -1,0 +1,58 @@
+---
+title: "Comunicar con Quarto"
+subtitle: "Análisis de Datos 1 - Unidad 4"
+author: "Betsy Cohen"
+logo: "images/logo-uflo.png"
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    theme: slides.scss
+    highlight-style: a11y
+    transition: fade
+    slide-number: true
+execute:
+  echo: true
+df-print: kable
+---
+
+
+## Comunicar es una parte fundamental del porceso de análisis de datos y construcción de conocimiento. {.r-fit-text}
+
+## Quarto para todxs
+
+-   Un sistema de publicación de código abierto técnico y científico.
+
+-   Unifica y facilita el proceso de creación y colaboración entre varios lenguajes (Python, Observable, Julia, R...) y nos permite crear múltiples productos en múltiples formatos (HTML, pdf, Word, ppt)
+
+## ¿Qué podemos hacer con Quarto?
+
+::: incremental
+
+-   Artículos académicos (PDF) / Reportes HTML
+
+-   Presentaciones (como la que estas viendo o en PDF)
+
+-   Dashbords (estáticos o sobre shiny)
+
+-   Sitios web/ blog
+
+-   Libros
+
+-   Documentos interactivos (Jupyter/Shiny)
+
+:::
+
+## Instalar Quarto
+
+Para instalar Quasrto simplemente vamos a ir a  ![https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/) y vamos a descargar la versión correspondiente a nuestrp sistema operativo
+
+![](images/instalar-quarto.png)
+::: callout-tip
+
+Si bien nosotros vamos a usarlo desde RStudio está bueno que sepas que podemos usar Quarto desde otras plataformas como **VS Code**, **Jupyter**.
+
+:::
+
+
+## Archivos `.qmd`

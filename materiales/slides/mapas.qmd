@@ -451,7 +451,7 @@ La interctividad va a estar más que nada dada por:
 
 -   Nos permite agregar algunos de los [plugins](https://leafletjs.com/plugins)que ya son parte de la lilbrería de Leaflet
 
-## Instalación y usos básicos  {.smaller}
+## Instalación y usos básicos {.smaller}
 
 Leaflet se encuentra dentro de CRAN por lo que podemos instalarlo de igual manera que cualquier otro paquete
 
@@ -478,7 +478,7 @@ Para más info podes encontrar toda la documentación del paquete en:
 https://rstudio.github.io/leaflet/
 :::
 
-## Capa de base del mapa  {.smaller}
+## Capa de base del mapa {.smaller}
 
 Tenemos dos formas de hacer la primera capa de base de nuestro mapa:
 
@@ -504,7 +504,6 @@ leaflet() %>%
 Alternativamente podemos crear un mapa base utilizando nuestros polígonos que si bien no estará mostrando capas más enriquecidas.
 
 Una forma de resolverlo (en caso que lo necesitemos) es utilizando el servicio de Argenmap v2 tal cual lo sugiere la bióloga Natalia Morandeiro en [este post](https://nmorandeira.netlify.app/post/2020-08-02-representar-islas-malvinas-en-r-y-qgis/) que sin quererlo sobrevuela también el problema de la soberanía y el sesgo de nuestros datos.
-
 
 ## Mapa de Puntos con leaflet
 
