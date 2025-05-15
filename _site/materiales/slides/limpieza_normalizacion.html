@@ -454,21 +454,23 @@ Betsy Cohen
 <section id="detección-de-valores-faltantes" class="title-slide slide level1 smaller center">
 <h1>2. Detección de valores faltantes</h1>
 <p>Es importante identificar si hay datos faltantes en nuestro conjunto de datos. Podemos hacerlo con <code>is.na()</code> y algunas funciones de <code>dplyr</code>.</p>
+<div class="columns">
+<div class="column">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Introducimos algunos valores faltantes</span></span>
-<span id="cb4-2"><a></a>df<span class="sc">$</span>ingreso_mensual[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Contar valores faltantes por variable</span></span>
-<span id="cb5-2"><a></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a></a>df<span class="sc">$</span>ingreso_mensual[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="co"># Contar valores faltantes por variable</span></span>
+<span id="cb4-5"><a></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      codigo_id nombre_completo ingreso_mensual 
               0               0               1 </code></pre>
 </div>
 </div>
+</div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Filtrar registros con datos faltantes</span></span>
-<span id="cb7-2"><a></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(ingreso_mensual))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Filtrar registros con datos faltantes</span></span>
+<span id="cb6-2"><a></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(ingreso_mensual))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -490,14 +492,18 @@ Betsy Cohen
 </div>
 </div>
 </div>
+</div>
+</div>
 </section>
 
-<section id="identificación-de-valores-únicos-y-duplicados" class="title-slide slide level1 smaller center">
-<h1>3. Identificación de valores únicos y duplicados</h1>
-<p>Podemos analizar los valores únicos y detectar duplicados con <code>distinct()</code> y <code>duplicated()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Ver valores únicos</span></span>
-<span id="cb8-2"><a></a><span class="fu">distinct</span>(df, nombre_completo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="identificación-de-valores-únicos" class="title-slide slide level1 smaller center">
+<h1>3. Identificación de valores únicos</h1>
+<p>Podemos analizar los valores únicos y detectar duplicados con <code>distinct()</code>.</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Ver valores únicos</span></span>
+<span id="cb7-2"><a></a><span class="fu">distinct</span>(df, nombre_completo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -520,28 +526,45 @@ Betsy Cohen
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Detectar duplicados</span></span>
-<span id="cb9-2"><a></a>df[<span class="fu">duplicated</span>(df<span class="sc">$</span>nombre_completo), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+
+<section id="identificación-de-valores-únicos-y-duplicados" class="title-slide slide level1 smaller center">
+<h1>3. Identificación de valores únicos y duplicados</h1>
+<p>También podemos usar <code>get_dupes()</code> de <code>janitor()</code></p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a></a>  janitor<span class="sc">::</span><span class="fu">get_dupes</span>(nombre_completo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">codigo_id</th>
 <th style="text-align: left;">nombre_completo</th>
+<th style="text-align: right;">dupe_count</th>
+<th style="text-align: right;">codigo_id</th>
 <th style="text-align: right;">ingreso_mensual</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">4</td>
-<td style="text-align: right;">4</td>
 <td style="text-align: left;">Ana Pérez</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">30000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ana Pérez</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: right;">30000</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -585,17 +608,17 @@ Betsy Cohen
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># reglas para dataset de autos</span></span>
-<span id="cb10-2"><a></a>reglas <span class="ot">&lt;-</span> <span class="fu">validator</span>(speed <span class="sc">&gt;=</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a></a>                 , dist <span class="sc">&gt;=</span> <span class="dv">0</span></span>
-<span id="cb10-4"><a></a>                 , speed<span class="sc">/</span>dist <span class="sc">&lt;=</span> <span class="fl">1.5</span></span>
-<span id="cb10-5"><a></a>                 , <span class="fu">cor</span>(speed, dist)<span class="sc">&gt;=</span><span class="fl">0.2</span>)</span>
-<span id="cb10-6"><a></a></span>
-<span id="cb10-7"><a></a>resultado   <span class="ot">&lt;-</span> <span class="fu">confront</span>(cars, reglas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># reglas para dataset de autos</span></span>
+<span id="cb9-2"><a></a>reglas <span class="ot">&lt;-</span> <span class="fu">validator</span>(speed <span class="sc">&gt;=</span> <span class="dv">0</span></span>
+<span id="cb9-3"><a></a>                 , dist <span class="sc">&gt;=</span> <span class="dv">0</span></span>
+<span id="cb9-4"><a></a>                 , speed<span class="sc">/</span>dist <span class="sc">&lt;=</span> <span class="fl">1.5</span></span>
+<span id="cb9-5"><a></a>                 , <span class="fu">cor</span>(speed, dist)<span class="sc">&gt;=</span><span class="fl">0.2</span>)</span>
+<span id="cb9-6"><a></a></span>
+<span id="cb9-7"><a></a>resultado   <span class="ot">&lt;-</span> <span class="fu">confront</span>(cars, reglas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summary</span>(resultado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">summary</span>(resultado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -674,7 +697,7 @@ Betsy Cohen
 <h2>Interpretando los resultados</h2>
 <p>La misma información se puede resumir gráficamente de la siguiente manera, donde cada barra horizontal indica el porcentaje de casos de Reprobado, Aprobado y Omitido.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot</span>(resultado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">plot</span>(resultado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="limpieza_normalizacion_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><p>Siguiendo los criterios de <strong>Integridad</strong>, <strong>Completitud</strong>, <strong>Consistencia</strong> y <strong>Exatitud</strong> que mencionámos veamos algunos ejemplos de cómo podemos usar <code>validate</code> para revisar nuestra base</p>
@@ -684,14 +707,14 @@ Betsy Cohen
 <p>Usaremos la base de datos penguins_raw del paquete palmerpenguins, que contiene errores comunes como valores faltantes, nombres inconsistentes y datos mal ingresados.</p>
 <p>¿Qué cosas ya le ves de entrada que estan mal?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co">#install.packages("palmerpenguins")</span></span>
-<span id="cb13-2"><a></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb13-3"><a></a></span>
-<span id="cb13-4"><a></a><span class="co"># Cargamos la base de datos cruda de pingüinos</span></span>
-<span id="cb13-5"><a></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins_raw</span>
-<span id="cb13-6"><a></a></span>
-<span id="cb13-7"><a></a><span class="co"># Revisamos los primeros registros</span></span>
-<span id="cb13-8"><a></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#install.packages("palmerpenguins")</span></span>
+<span id="cb12-2"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="co"># Cargamos la base de datos cruda de pingüinos</span></span>
+<span id="cb12-5"><a></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins_raw</span>
+<span id="cb12-6"><a></a></span>
+<span id="cb12-7"><a></a><span class="co"># Revisamos los primeros registros</span></span>
+<span id="cb12-8"><a></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -860,13 +883,13 @@ Betsy Cohen
 <h2>Validación de Completitud</h2>
 <p>Vamos a empezar por la completitud. ¿Qué tan “completo” está penguins_raw?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Generamos reglas </span></span>
-<span id="cb14-2"><a></a>reglas_completitud_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(<span class="at">sin_faltantes_raw =</span> <span class="fu">is_complete</span>(df)) <span class="co"># Regla general de completitud para </span><span class="al">TODO</span><span class="co"> el dataset</span></span>
-<span id="cb14-3"><a></a></span>
-<span id="cb14-4"><a></a><span class="co"># Confrontamos df con las reglas</span></span>
-<span id="cb14-5"><a></a>resultado_completitud_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_completitud_raw)</span>
-<span id="cb14-6"><a></a></span>
-<span id="cb14-7"><a></a><span class="fu">summary</span>(resultado_completitud_raw) <span class="co"># Imprimir resultados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Generamos reglas </span></span>
+<span id="cb13-2"><a></a>reglas_completitud_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(<span class="at">sin_faltantes_raw =</span> <span class="fu">is_complete</span>(df)) <span class="co"># Regla general de completitud para </span><span class="al">TODO</span><span class="co"> el dataset</span></span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="co"># Confrontamos df con las reglas</span></span>
+<span id="cb13-5"><a></a>resultado_completitud_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_completitud_raw)</span>
+<span id="cb13-6"><a></a></span>
+<span id="cb13-7"><a></a><span class="fu">summary</span>(resultado_completitud_raw) <span class="co"># Imprimir resultados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -908,8 +931,9 @@ Betsy Cohen
 </div>
 </div>
 </div>
-<p>Ese summary lo leemos así: - <em>name</em>: El nombre de la regla.</p>
+<p>Ese summary lo leemos así:</p>
 <ul>
+<li><p><em>name</em>: El nombre de la regla.</p></li>
 <li><p><em>items</em>: El dataset tiene 344 elementos que se están evaluando.</p></li>
 <li><p><em>passes</em>: De esos 344 elementos, 310 cumplen con la regla, es decir, no tienen valores faltantes.</p></li>
 <li><p><em>fails:</em> ego 34 no la pasaron.</p></li>
@@ -923,16 +947,16 @@ Betsy Cohen
 <h2>Validación de Integridad</h2>
 <p>Vamos a verificar si hay filas duplicadas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Reglas de integridad para penguins_raw (df)</span></span>
-<span id="cb15-2"><a></a>reglas_integridad_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
-<span id="cb15-3"><a></a>    <span class="at">sin_faltantes_raw =</span> <span class="fu">is_complete</span>(df), <span class="co"># (General - no relevante aquí)</span></span>
-<span id="cb15-4"><a></a>    <span class="at">sin_duplicados_raw =</span> <span class="fu">is_unique</span>(df) <span class="co"># Regla de integridad: registros únicos</span></span>
-<span id="cb15-5"><a></a>)</span>
-<span id="cb15-6"><a></a></span>
-<span id="cb15-7"><a></a><span class="co"># Confrontamos penguins_raw (df) con las reglas de integridad</span></span>
-<span id="cb15-8"><a></a>resultado_integridad_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_integridad_raw)</span>
-<span id="cb15-9"><a></a></span>
-<span id="cb15-10"><a></a><span class="fu">summary</span>(resultado_integridad_raw) <span class="co"># Imprimir resultados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Reglas de integridad para penguins_raw (df)</span></span>
+<span id="cb14-2"><a></a>reglas_integridad_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
+<span id="cb14-3"><a></a>    <span class="at">sin_faltantes_raw =</span> <span class="fu">is_complete</span>(df), <span class="co"># (General - no relevante aquí)</span></span>
+<span id="cb14-4"><a></a>    <span class="at">sin_duplicados_raw =</span> <span class="fu">is_unique</span>(df) <span class="co"># Regla de integridad: registros únicos</span></span>
+<span id="cb14-5"><a></a>)</span>
+<span id="cb14-6"><a></a></span>
+<span id="cb14-7"><a></a><span class="co"># Confrontamos penguins_raw (df) con las reglas de integridad</span></span>
+<span id="cb14-8"><a></a>resultado_integridad_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_integridad_raw)</span>
+<span id="cb14-9"><a></a></span>
+<span id="cb14-10"><a></a><span class="fu">summary</span>(resultado_integridad_raw) <span class="co"># Imprimir resultados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -988,27 +1012,27 @@ Betsy Cohen
 <section id="validación-de-exactitud" class="slide level2 smaller scrollable">
 <h2>Validación de Exactitud</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>reglas_exactitud_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a>    <span class="at">sin_faltantes_dataset_raw =</span> <span class="fu">is_complete</span>(df), <span class="co"># (General)</span></span>
-<span id="cb16-4"><a></a>    <span class="at">sin_duplicados_raw =</span> <span class="fu">is_unique</span>(df), <span class="co"># (Integridad)</span></span>
-<span id="cb16-5"><a></a></span>
-<span id="cb16-6"><a></a>    <span class="co"># Reglas de completitud:</span></span>
-<span id="cb16-7"><a></a>    <span class="at">culmen_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="co"># </span></span>
-<span id="cb16-8"><a></a>    <span class="at">culmen_depth_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Depth (mm)</span><span class="st">`</span>),</span>
-<span id="cb16-9"><a></a>    <span class="at">flipper_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>),</span>
-<span id="cb16-10"><a></a>    <span class="at">body_mass_g_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>),</span>
-<span id="cb16-11"><a></a>    <span class="at">sex_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex), <span class="co"># Completitud para 'Sex'</span></span>
-<span id="cb16-12"><a></a></span>
-<span id="cb16-13"><a></a>    <span class="co"># Reglas de Categorías Válidas (Consistencia de Categorías):</span></span>
-<span id="cb16-14"><a></a>    <span class="at">categorias_especie_raw =</span> Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie Penguin (Pygoscelis adeliae)"</span>, <span class="st">"Chinstrap penguin (Pygoscelis antarctica)"</span>, <span class="st">"Gentoo penguin (Pygoscelis papua)"</span>), <span class="co"># Categorías válidas para 'Species'</span></span>
-<span id="cb16-15"><a></a>    <span class="at">categorias_isla_raw =</span> Island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>), <span class="co"># Categorías válidas para 'Island'</span></span>
-<span id="cb16-16"><a></a>    <span class="at">categorias_sexo_raw =</span> Sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MALE"</span>, <span class="st">"FEMALE"</span>, <span class="st">"."</span>) <span class="co"># Categorías válidas para 'Sex' (¡incluimos "."!)</span></span>
-<span id="cb16-17"><a></a>)</span>
-<span id="cb16-18"><a></a></span>
-<span id="cb16-19"><a></a><span class="co"># Confrontar penguins_raw (df) con las reglas de exactitud</span></span>
-<span id="cb16-20"><a></a>resultado_exactitud_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_exactitud_raw)</span>
-<span id="cb16-21"><a></a><span class="fu">summary</span>(resultado_exactitud_raw) <span class="co"># Imprimir resultado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>reglas_exactitud_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a>    <span class="at">sin_faltantes_dataset_raw =</span> <span class="fu">is_complete</span>(df), <span class="co"># (General)</span></span>
+<span id="cb15-4"><a></a>    <span class="at">sin_duplicados_raw =</span> <span class="fu">is_unique</span>(df), <span class="co"># (Integridad)</span></span>
+<span id="cb15-5"><a></a></span>
+<span id="cb15-6"><a></a>    <span class="co"># Reglas de completitud:</span></span>
+<span id="cb15-7"><a></a>    <span class="at">culmen_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="co"># </span></span>
+<span id="cb15-8"><a></a>    <span class="at">culmen_depth_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Depth (mm)</span><span class="st">`</span>),</span>
+<span id="cb15-9"><a></a>    <span class="at">flipper_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>),</span>
+<span id="cb15-10"><a></a>    <span class="at">body_mass_g_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>),</span>
+<span id="cb15-11"><a></a>    <span class="at">sex_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex), <span class="co"># Completitud para 'Sex'</span></span>
+<span id="cb15-12"><a></a></span>
+<span id="cb15-13"><a></a>    <span class="co"># Reglas de Categorías Válidas (Consistencia de Categorías):</span></span>
+<span id="cb15-14"><a></a>    <span class="at">categorias_especie_raw =</span> Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie Penguin (Pygoscelis adeliae)"</span>, <span class="st">"Chinstrap penguin (Pygoscelis antarctica)"</span>, <span class="st">"Gentoo penguin (Pygoscelis papua)"</span>), <span class="co"># Categorías válidas para 'Species'</span></span>
+<span id="cb15-15"><a></a>    <span class="at">categorias_isla_raw =</span> Island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>), <span class="co"># Categorías válidas para 'Island'</span></span>
+<span id="cb15-16"><a></a>    <span class="at">categorias_sexo_raw =</span> Sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MALE"</span>, <span class="st">"FEMALE"</span>, <span class="st">"."</span>) <span class="co"># Categorías válidas para 'Sex' (¡incluimos "."!)</span></span>
+<span id="cb15-17"><a></a>)</span>
+<span id="cb15-18"><a></a></span>
+<span id="cb15-19"><a></a><span class="co"># Confrontar penguins_raw (df) con las reglas de exactitud</span></span>
+<span id="cb15-20"><a></a>resultado_exactitud_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_exactitud_raw)</span>
+<span id="cb15-21"><a></a><span class="fu">summary</span>(resultado_exactitud_raw) <span class="co"># Imprimir resultado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
@@ -1145,32 +1169,32 @@ Betsy Cohen
 <h2>Validación de Consistencia</h2>
 <p>Finalmente, vamos a verificar la consistencia de tipos de datos en penguins_raw. Ya vimos con glimpse() que muchas columnas numéricas se importaron como character. Vamos a usar validate para confirmar y cuantificar este problema de consistencia de tipo de datos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>reglas_consistencia_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
-<span id="cb17-2"><a></a></span>
-<span id="cb17-3"><a></a>    <span class="at">sin_faltantes_dataset_raw =</span> <span class="fu">is_complete</span>(df), <span class="co"># (General - no foco)</span></span>
-<span id="cb17-4"><a></a>    <span class="at">sin_duplicados_raw =</span> <span class="fu">is_unique</span>(df), <span class="co"># (Integridad - no foco)</span></span>
-<span id="cb17-5"><a></a>    <span class="at">culmen_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="co"># (Exactitud - no foco ahora)</span></span>
-<span id="cb17-6"><a></a>    <span class="at">culmen_depth_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Depth (mm)</span><span class="st">`</span>),</span>
-<span id="cb17-7"><a></a>    <span class="at">flipper_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>),</span>
-<span id="cb17-8"><a></a>    <span class="at">body_mass_g_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>),</span>
-<span id="cb17-9"><a></a>    <span class="at">sex_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex),</span>
-<span id="cb17-10"><a></a>    <span class="at">categorias_especie_raw =</span> Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie Penguin (Pygoscelis adeliae)"</span>, <span class="st">"Chinstrap penguin (Pygoscelis antarctica)"</span>, <span class="st">"Gentoo penguin (Pygoscelis papua)"</span>),</span>
-<span id="cb17-11"><a></a>    <span class="at">categorias_isla_raw =</span> Island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>),</span>
-<span id="cb17-12"><a></a>    <span class="at">categorias_sexo_raw =</span> Sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MALE"</span>, <span class="st">"FEMALE"</span>, <span class="st">"."</span>),</span>
-<span id="cb17-13"><a></a></span>
-<span id="cb17-14"><a></a>    <span class="co"># Reglas de Consistencia de TIPO DE DATOS (¡Aquí está el foco!):</span></span>
-<span id="cb17-15"><a></a>    <span class="at">culmen_length_mm_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="co"># ¡Consistencia de tipo para 'Culmen Length (mm)'!</span></span>
-<span id="cb17-16"><a></a>    <span class="at">culmen_depth_mm_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Culmen Depth (mm)</span><span class="st">`</span>),</span>
-<span id="cb17-17"><a></a>    <span class="at">flipper_length_mm_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>),</span>
-<span id="cb17-18"><a></a>    <span class="at">body_mass_g_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>),</span>
-<span id="cb17-19"><a></a>    <span class="at">sex_es_factor_raw =</span> <span class="fu">is.factor</span>(Sex), <span class="co"># Verificar si 'Sex' es factor (¡debería ser categórica!)</span></span>
-<span id="cb17-20"><a></a>    <span class="at">species_es_factor_raw =</span> <span class="fu">is.factor</span>(Species), <span class="co"># Verificar si 'Species' es factor</span></span>
-<span id="cb17-21"><a></a>    <span class="at">island_es_factor_raw =</span> <span class="fu">is.factor</span>(Island) <span class="co"># Verificar si 'Island' es factor</span></span>
-<span id="cb17-22"><a></a>)</span>
-<span id="cb17-23"><a></a></span>
-<span id="cb17-24"><a></a>salida_consistencia_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_consistencia_raw)</span>
-<span id="cb17-25"><a></a></span>
-<span id="cb17-26"><a></a><span class="fu">summary</span>(salida_consistencia_raw) <span class="co"># Resumen del resultado de consistencia de tipos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>reglas_consistencia_raw <span class="ot">&lt;-</span> <span class="fu">validator</span>(</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>    <span class="at">sin_faltantes_dataset_raw =</span> <span class="fu">is_complete</span>(df), <span class="co"># (General - no foco)</span></span>
+<span id="cb16-4"><a></a>    <span class="at">sin_duplicados_raw =</span> <span class="fu">is_unique</span>(df), <span class="co"># (Integridad - no foco)</span></span>
+<span id="cb16-5"><a></a>    <span class="at">culmen_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="co"># (Exactitud - no foco ahora)</span></span>
+<span id="cb16-6"><a></a>    <span class="at">culmen_depth_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Culmen Depth (mm)</span><span class="st">`</span>),</span>
+<span id="cb16-7"><a></a>    <span class="at">flipper_length_mm_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>),</span>
+<span id="cb16-8"><a></a>    <span class="at">body_mass_g_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>),</span>
+<span id="cb16-9"><a></a>    <span class="at">sex_no_na_raw =</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex),</span>
+<span id="cb16-10"><a></a>    <span class="at">categorias_especie_raw =</span> Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie Penguin (Pygoscelis adeliae)"</span>, <span class="st">"Chinstrap penguin (Pygoscelis antarctica)"</span>, <span class="st">"Gentoo penguin (Pygoscelis papua)"</span>),</span>
+<span id="cb16-11"><a></a>    <span class="at">categorias_isla_raw =</span> Island <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>),</span>
+<span id="cb16-12"><a></a>    <span class="at">categorias_sexo_raw =</span> Sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MALE"</span>, <span class="st">"FEMALE"</span>, <span class="st">"."</span>),</span>
+<span id="cb16-13"><a></a></span>
+<span id="cb16-14"><a></a>    <span class="co"># Reglas de Consistencia de TIPO DE DATOS (¡Aquí está el foco!):</span></span>
+<span id="cb16-15"><a></a>    <span class="at">culmen_length_mm_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Culmen Length (mm)</span><span class="st">`</span>), <span class="co"># ¡Consistencia de tipo para 'Culmen Length (mm)'!</span></span>
+<span id="cb16-16"><a></a>    <span class="at">culmen_depth_mm_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Culmen Depth (mm)</span><span class="st">`</span>),</span>
+<span id="cb16-17"><a></a>    <span class="at">flipper_length_mm_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span>),</span>
+<span id="cb16-18"><a></a>    <span class="at">body_mass_g_es_numerico_raw =</span> <span class="fu">is.numeric</span>(<span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>),</span>
+<span id="cb16-19"><a></a>    <span class="at">sex_es_factor_raw =</span> <span class="fu">is.factor</span>(Sex), <span class="co"># Verificar si 'Sex' es factor (¡debería ser categórica!)</span></span>
+<span id="cb16-20"><a></a>    <span class="at">species_es_factor_raw =</span> <span class="fu">is.factor</span>(Species), <span class="co"># Verificar si 'Species' es factor</span></span>
+<span id="cb16-21"><a></a>    <span class="at">island_es_factor_raw =</span> <span class="fu">is.factor</span>(Island) <span class="co"># Verificar si 'Island' es factor</span></span>
+<span id="cb16-22"><a></a>)</span>
+<span id="cb16-23"><a></a></span>
+<span id="cb16-24"><a></a>salida_consistencia_raw <span class="ot">&lt;-</span> <span class="fu">confront</span>(df, reglas_consistencia_raw)</span>
+<span id="cb16-25"><a></a></span>
+<span id="cb16-26"><a></a><span class="fu">summary</span>(salida_consistencia_raw) <span class="co"># Resumen del resultado de consistencia de tipos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table>

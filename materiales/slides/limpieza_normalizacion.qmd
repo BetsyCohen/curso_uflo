@@ -79,31 +79,46 @@ names(df)
 
 Es importante identificar si hay datos faltantes en nuestro conjunto de datos. Podemos hacerlo con `is.na()` y algunas funciones de `dplyr`.
 
+::: columns
+::: column
+
 ```{r}
 # Introducimos algunos valores faltantes
 df$ingreso_mensual[2] <- NA
-```
 
-```{r}
 # Contar valores faltantes por variable
 colSums(is.na(df))
 ```
-
+:::
+::: column
 ```{r}
 # Filtrar registros con datos faltantes
 df %>% filter(is.na(ingreso_mensual))
 ```
+:::
+:::
 
-# 3. Identificación de valores únicos y duplicados {.smaller}
+# 3. Identificación de valores únicos {.smaller}
 
-Podemos analizar los valores únicos y detectar duplicados con `distinct()` y `duplicated()`.
+Podemos analizar los valores únicos y detectar duplicados con `distinct()`.
 
 ```{r}
+#| output-location: column
 # Ver valores únicos
 distinct(df, nombre_completo)
 
-# Detectar duplicados
-df[duplicated(df$nombre_completo), ]
+```
+
+# 3. Identificación de valores únicos y duplicados {.smaller}
+
+También podemos usar `get_dupes()` de `janitor()`
+
+```{r}
+#| output-location: column
+
+df %>% 
+  janitor::get_dupes(nombre_completo)
+
 ```
 
 # 4. Validaciones estructuradas con `validate`
@@ -201,7 +216,9 @@ resultado_completitud_raw <- confront(df, reglas_completitud_raw)
 summary(resultado_completitud_raw) # Imprimir resultados
 ```
 
-Ese summary lo leemos así: - *name*: El nombre de la regla.
+Ese summary lo leemos así:
+
+-   *name*: El nombre de la regla.
 
 -   *items*: El dataset tiene 344 elementos que se están evaluando.
 
