@@ -141,7 +141,7 @@ Podes leer más sobre validate y los tipos de validación que te permite hacer e
 
 ## Un ejemplo sencillo {.smaller}
 
-las primeras tres reglas son comprobaciones de registros: cada registro arrojará una respuesta. En la última regla, comprobamos si la velocidad y la distancia están correlacionadas positivamente; esto arrojará una única respuesta `TRUE`o `FALSE`para todo el conjunto de datos.
+Las primeras tres reglas son comprobaciones de registros: cada registro arrojará una respuesta. En la última regla, comprobamos si la velocidad y la distancia están correlacionadas positivamente; esto arrojará una única respuesta `TRUE`o `FALSE`para todo el conjunto de datos.
 
 El dataframe de resultado con una línea de información para cada regla `V1`, `V2`, `V3`y `V4`. Para ser precisos:
 
@@ -234,7 +234,7 @@ Ese summary lo leemos así:
 
 -   *expression*: is_complete(df): La expresión que se utilizó para la validación, que en este caso verifica la completitud del dataset sin faltantes.
 
-## Validación de Integridad
+## Validación de Integridad {.smaller .scrollable}
 
 Vamos a verificar si hay filas duplicadas.
 

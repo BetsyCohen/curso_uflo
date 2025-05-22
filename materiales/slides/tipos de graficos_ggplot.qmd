@@ -315,7 +315,7 @@ ggplot(pop_data, aes(x = year, y = total_pop, fill = continent))+
 
 ```
 
-## Gráficos de Distribución
+## Gráficos de Distribución {.smaller}
 
 ::: panel-tabset
 ### 📊 Histogramas
@@ -367,7 +367,7 @@ ggplot(gapminder::gapminder, aes(x = continent, y = gdpPercap, fill = continent)
 ```
 :::
 
-## Gráficos de Correlación
+## Gráficos de Correlación {.smaller}
 
 ::: panel-tabset
 ### 🎯 Scatter Plot
