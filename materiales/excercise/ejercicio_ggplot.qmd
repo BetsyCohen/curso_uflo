@@ -13,23 +13,15 @@ En este ejercicio vamos a trabajar en la visualización de Patrones de Movilidad
 1.  **Gastos de Turistas No Residentes:** Información trimestral sobre el gasto promedio según el paso fronterizo de ingreso.
 2.  **Vuelos, Asientos y Pasajeros:** Datos diarios sobre el movimiento aéreo (cabotaje e internacional).
 
-
 ## ¿Qué vamos a aprender con este ejercicio?
-
 
 Además de poner en práctica de manera integrada las transformaciones de dplyr agregamos algunas funciones muy útiles de otros paquetes que forman parte del tiduverso o son complementarios a él.
 
+-   **Formateo de etiquetas de las escalas**: dentro de la capa de escalas tenemos un parámetro llamado labels. El paquete [`scales`](https://scales.r-lib.org/) nos brinda varias funciones que nos permiten setear las etiquetas de los valores que vemos en los ejes para que sean más legibles. Vamos a usar tres de ellas [`label_number()`](https://scales.r-lib.org/reference/label_number.html), [`label_currency()`](https://scales.r-lib.org/reference/label_currency.html) ,[`label_percent()`](https://scales.r-lib.org/reference/label_percent.html)
 
-*   **Formateo de etiquetas de las escalas**: dentro de la capa de escalas tenemos un parámetro llamado labels. El paquete [`scales`](https://scales.r-lib.org/) nos brinda varias funciones que nos permiten setear las etiquetas de los valores que vemos en los ejes para que sean más legibles. Vamos a usar tres de ellas [`label_number()`](https://scales.r-lib.org/reference/label_number.html), [`label_currency()`](https://scales.r-lib.org/reference/label_currency.html) ,[`label_percent()`](https://scales.r-lib.org/reference/label_percent.html)
+-   **Formatear fechas**: [`lubridate`](https://lubridate.tidyverse.org/index.html) es una librería de la familia `tidyverse` que nos facilita para trabajar con fechas. En este ejercicio mostramos el uso de [`year()`](https://lubridate.tidyverse.org/reference/year.html) en conjunto con [`as_date()`](https://lubridate.tidyverse.org/reference/as_date.html) que permite que extraer el año de una fecha cuya variable tiene formato character.
 
-
-*   **Formatear fechas**: [`lubridate`](https://lubridate.tidyverse.org/index.html) es una librería de la familia `tidyverse` que nos facilita para trabajar con fechas. En este ejercicio mostramos el uso de [`year()`](https://lubridate.tidyverse.org/reference/year.html) en conjunto con [`as_date()`](https://lubridate.tidyverse.org/reference/as_date.html) que permite que extraer el año de una fecha cuya variable tiene formato character. 
-
-
-*   **Factores ordenados** [`forcats`](https://forcats.tidyverse.org/index.html) es otra librería del tidyverso que facilita el trabajo con variables de tipo factor. En este ejercicio nos vamos a familiarizar con una de sus funciones: [`fct_reorder()`](https://forcats.tidyverse.org/reference/fct_reorder.html)
-
-
-
+-   **Factores ordenados** [`forcats`](https://forcats.tidyverse.org/index.html) es otra librería del tidyverso que facilita el trabajo con variables de tipo factor. En este ejercicio nos vamos a familiarizar con una de sus funciones: [`fct_reorder()`](https://forcats.tidyverse.org/reference/fct_reorder.html)
 
 ## 📦 Setup: Cargá las librerias y los dataset
 
@@ -96,7 +88,6 @@ Como la suma de pasajeros supera los millones podes usar el siguiente código en
 **`scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = "M"))`**
 
 ::: {.callout-tip collapse="true"}
-
 ### Ayuda
 
 Dividí tu trabajo en pasos encadenados:
@@ -115,7 +106,6 @@ Dividí tu trabajo en pasos encadenados:
 :::
 
 ::: {.callout-note collapse="true"}
-
 ### Respuesta
 
 ```{r}
@@ -157,11 +147,7 @@ Para expresar la relación entre pasajeros y asientos con una etiqueta de porcen
 
 **`scale_y_continuous(labels = scales::label_percent(accuracy = 1))`**
 
-
-
-
 ::: {.callout-tip collapse="true"}
-
 ### Ayuda
 
 Dividí tu trabajo en pasos encadenados:
@@ -180,7 +166,6 @@ Dividí tu trabajo en pasos encadenados:
 :::
 
 ::: {.callout-note collapse="true"}
-
 ### Respuesta
 
 ```{r}
@@ -210,13 +195,9 @@ df_vuelos_asientos_pasajeros %>%
 ```
 :::
 
-
 ## 👉 Ejercicio 3
 
-¿Por qué paso entraron los turistas que tuvieron un gasto promedio mayor en 2024?
-Hace un gráfico de barras que muestre el ranking por paso. 
-Para ordenar la variable por ranking vas a tener que convertir la variable paso en factor ordenado usando la función `fct_reorder()` que es parte de la librería `forcats` que como ya te estás imaginando.... pertenece a tidyverse.
-Lo hacemos así:
+¿Por qué paso entraron los turistas que tuvieron un gasto promedio mayor en 2024? Hace un gráfico de barras que muestre el ranking por paso. Para ordenar la variable por ranking vas a tener que convertir la variable paso en factor ordenado usando la función `fct_reorder()` que es parte de la librería `forcats` que como ya te estás imaginando.... pertenece a tidyverse. Lo hacemos así:
 
 **`mutate(paso = fct_reorder(paso, gasto_promedio_diario_en_usd_no_residentes))`**
 
@@ -224,9 +205,7 @@ Además si tenes ganas de representar los dolares como moneda podes usar `label_
 
 **`scale_y_continuous(labels = scales::label_currency(prefix = "USD ", accuracy = 1))`**
 
-
 ::: {.callout-tip collapse="true"}
-
 ### Ayuda
 
 Dividí tu trabajo en pasos encadenados:
@@ -241,20 +220,14 @@ El truco para que luego ggplot entienda que tiene que ordenar los pasos fronteri
 
 4 Ahora solo algunas cuestiones de hermoseo:
 
-setea la escala para que muestre el simbolo como moneda  scale_y_continuous(labels = scales::label_currency(prefix = "USD ", accuracy = 1))
+setea la escala para que muestre el simbolo como moneda scale_y_continuous(labels = scales::label_currency(prefix = "USD", accuracy = 1))
 
-Agrega los títulos con labs y si te animas una gemotría de texto 
-
+Agrega los títulos con labs y si te animas una gemotría de texto
 
 Podes elegir el tema que más te guste para finalizarlo
-
-
-
 :::
 
-
 ::: {.callout-note collapse="true"}
-
 ### Respuesta
 
 ```{r}

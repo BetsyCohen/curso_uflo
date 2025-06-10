@@ -139,5 +139,21 @@
   },
   "materiales/slides/mapas.qmd": {
     "mapas.html": "607563be"
+  },
+  "materiales/slides/comunicar_con_quarto.qmd": {
+    "comunicar_con_quarto.html": "c5db415b"
+  },
+  "materiales/slides/quarto_demo_gapminder_1.qmd": {
+    "quarto_demo_gapminder_1.html": "62052e50"
+  },
+  "materiales/slides/quarto_demo_gapminder_2.qmd": {
+    "quarto_demo_gapminder_2.html": "479a8f5b",
+    "quarto_demo_gapminder_2.tex": "f322686b"
+  },
+  "materiales/excercise/ejercicio_quarto.qmd": {
+    "ejercicio_quarto.html": "136ab2fc"
+  },
+  "materiales/slides/quarto_demo_gapminder.qmd": {
+    "quarto_demo_gapminder.html": "4d628a70"
   }
 }

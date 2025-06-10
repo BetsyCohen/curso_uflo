@@ -1,0 +1,72 @@
+---
+title: "Informe Gapmider demo"
+author: "Tu nombre"
+format: 
+  html:
+    code-fold: true
+  pdf: default
+editor: source
+---
+
+# Introducción (es un encabezado de nivel 1)
+
+Este es un texto de introducción a mi informe. Esto es un texto en **negrita** y este es en *cursiva*. Esto es un link [enlace a la página](https://www.gapminder.org/)
+
+## Objetivos (es un encabezado de nivel 2)
+
+Me gusta enumerar mis objetivos usando bullets que los escribo así
+
+-   Objetivo 1
+-   Objetivo 2
+-   Objetivo 3
+-   Objetivo 4
+-   Esto es un objetivo especifico
+-   Esto es otro objetivo especifico
+
+## Acerca de la base (es un encabezado de nivel 2)
+
+En mi investigación estoy trabajando con datos de [Gapmider](https://www.gapminder.org/) un proyecto que reune datos socioeconómicos a nivel mundial.
+
+Ahora voy a poner un chunck de r con el shortcut alt+cntrl+i
+
+```{r}
+#| label: "llamar librerias y resumen de base"
+#| echo: true
+#| warning: false
+
+# llamo a mis librerías
+library(tidyverse) # para tidyeo de datos
+library(ggplot2) # para hacer graficos
+library(gapminder) # libreria con datos varios
+
+
+summary(gapminder)
+
+```
+
+## Relación de población por continente entre PBI per capita y esperanza de vida
+
+A continuación vemos un gráfico
+
+```{r}
+#| label: "grafico de burbujas"
+#| echo: true
+#| warning: false
+gapminder %>% 
+  mutate(pop = pop/1000000) %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +
+  geom_point(alpha = 0.7) +
+  scale_size(range = c(2, 12)) +
+  labs(title = "PBI per capita según Esperanza de vida y tamaño deblación",
+       subtitle = "Año 2007",
+       x = "PBI per capita",
+       y = "Esperanza de vida",
+       size = "Millones de habitantes",
+       color = "Continente")+
+  theme_minimal()
+
+
+```
+
+

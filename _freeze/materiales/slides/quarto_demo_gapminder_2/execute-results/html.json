@@ -1,0 +1,17 @@
+{
+  "hash": "b5d9ccd16f429070d61670358c976e4a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Informe sobre cositas\"\nauthor: \"Lic. Betsy Cohen\"\nformat: \n  html:\n    code-fold: true\n  pdf: default\neditor: source\n---\n\n\n# Introducción (es un encabezado de nivel 1)\n\nEste es un texto de introducción a mi informe. Esto es un texto en **negrita** y este es en *cursiva*. Esto es un link [enlace a la página](https://www.gapminder.org/)\n\n## Objetivos (es un encabezado de nivel 2)\n\nMe gusta enumerar mis objetivos usando bullets que los escribo así\n\n-   Objetivo 1\n-   Objetivo 2\n-   Objetivo 3\n-   Objetivo 4\n-   Esto es un objetivo especifico\n-   Esto es otro objetivo especifico\n\n## Acerca de la base (es un encabezado de nivel 2)\n\nEn mi investigación estoy trabajando con datos de [Gapmider](https://www.gapminder.org/) un proyecto que reune datos socioeconómicos a nivel mundial.\n\nAhora voy a poner un chunck de r con el shortcut alt+cntrl+i\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# llamo a mis librerías\nlibrary(tidyverse) # para tidyeo de datos\nlibrary(ggplot2) # para hacer graficos\nlibrary(gapminder) # libreria con datos varios\n\n\nsummary(gapminder)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n        country        continent        year         lifeExp     \n Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  \n Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  \n Algeria    :  12   Asia    :396   Median :1980   Median :60.71  \n Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  \n Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  \n Australia  :  12                  Max.   :2007   Max.   :82.60  \n (Other)    :1632                                                \n      pop              gdpPercap       \n Min.   :6.001e+04   Min.   :   241.2  \n 1st Qu.:2.794e+06   1st Qu.:  1202.1  \n Median :7.024e+06   Median :  3531.8  \n Mean   :2.960e+07   Mean   :  7215.3  \n 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  \n Max.   :1.319e+09   Max.   :113523.1  \n                                       \n```\n\n\n:::\n:::\n\n\n## Relación de población por continente entre PBI per capita y esperanza de vida\n\nA continuación vemos un gráfico\n\n\n::: {.cell}\n\n```{.r .cell-code}\ngapminder %>% \n  mutate(pop = pop/1000000) %>% \n  filter(year == 2007) %>% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](quarto_demo_gapminder_2_files/figure-html/grafico de burbujas-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "quarto_demo_gapminder_2_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

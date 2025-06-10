@@ -1,0 +1,17 @@
+{
+  "hash": "f21fe01e66dcbb591ab926e9bc89f8a9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: \n  html:\n    fig-width: 8\n    fig-height: 4\n    code-fold: true\n---\n\n\n## Esperanza de vida y PBI per capita\n\n@fig-pbilifexp Explora la relación entre esperanza de vida y PBI per capita en 2007.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(gapminder)\n\ngapminder %>% \n  mutate(pop = pop/1000000) %>% \n  filter(year == 2007) %>% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![Esperanza de vida y PBI per capita.](quarto_demo_gapminder_1_files/figure-html/fig-pbilifexp-1.png){#fig-pbilifexp width=768}\n:::\n:::\n",
+    "supporting": [
+      "quarto_demo_gapminder_1_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

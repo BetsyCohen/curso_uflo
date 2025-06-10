@@ -2693,7 +2693,7 @@
     "href": "u4-graficos.html#rmarkdown-y-quarto",
     "title": "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto",
     "section": "RMarkdown y Quarto",
-    "text": "RMarkdown y Quarto\n\n\nReportes\n\n\nPresentaciones\n\n\nTableros",
+    "text": "RMarkdown y Quarto\n\n\nComunicar con Quarto\n\n\n\nEjercicio Quarto",
     "crumbs": [
       "Materiales",
       "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
@@ -3394,7 +3394,7 @@
     "href": "materiales/excercise/ejercicio_ggplot.html#pegamos-un-vistazo-a-los-datos",
     "title": "Ejercicio Práctico: Visualizando Movilidad y Gasto Turístico con ggplot2",
     "section": "👓 Pegamos un vistazo a los datos",
-    "text": "👓 Pegamos un vistazo a los datos\n\nglimpse(df_gastos_no_residentes)\n\nRows: 200\nColumns: 6\n$ indice_tiempo                              &lt;chr&gt; \"2015-01-01\", \"2015-01-01\",…\n$ paso                                       &lt;chr&gt; \"Ezeiza y Aeroparque\", \"Aep…\n$ gasto_total_en_usd_no_residentes           &lt;dbl&gt; 841534824, 12268210, NA, 23…\n$ gasto_promedio_diario_en_usd_no_residentes &lt;dbl&gt; 92.5, 87.5, NA, 89.8, NA, 9…\n$ gasto_en_usd_por_turista_no_residente      &lt;dbl&gt; 1313.5, 1110.4, NA, 464.7, …\n$ observaciones                              &lt;chr&gt; \"\", \"\", \"Paso que comenzó a…\n\nglimpse(df_vuelos_asientos_pasajeros)\n\nRows: 5,841\nColumns: 5\n$ indice_tiempo       &lt;chr&gt; \"2017-01-01\", \"2017-01-01\", \"2017-01-02\", \"2017-01…\n$ clasificacion_vuelo &lt;chr&gt; \"Cabotaje\", \"Internacional\", \"Cabotaje\", \"Internac…\n$ pasajeros           &lt;int&gt; 25537, 31493, 37248, 41810, 34772, 39480, 36692, 3…\n$ asientos            &lt;int&gt; 37239, 46696, 46026, 51495, 42174, 49184, 44499, 4…\n$ vuelos              &lt;int&gt; 285, 247, 359, 254, 330, 245, 346, 242, 359, 249, …"
+    "text": "👓 Pegamos un vistazo a los datos\n\nglimpse(df_gastos_no_residentes)\n\nRows: 205\nColumns: 6\n$ indice_tiempo                              &lt;chr&gt; \"2015-01-01\", \"2015-01-01\",…\n$ paso                                       &lt;chr&gt; \"Ezeiza y Aeroparque\", \"Aep…\n$ gasto_total_en_usd_no_residentes           &lt;dbl&gt; 841534824, 12268210, NA, 23…\n$ gasto_promedio_diario_en_usd_no_residentes &lt;dbl&gt; 92.5, 87.5, NA, 89.8, NA, 9…\n$ gasto_en_usd_por_turista_no_residente      &lt;dbl&gt; 1313.5, 1110.4, NA, 464.7, …\n$ observaciones                              &lt;chr&gt; \"\", \"\", \"Paso que comenzó a…\n\nglimpse(df_vuelos_asientos_pasajeros)\n\nRows: 5,903\nColumns: 5\n$ indice_tiempo       &lt;chr&gt; \"2017-01-01\", \"2017-01-01\", \"2017-01-02\", \"2017-01…\n$ clasificacion_vuelo &lt;chr&gt; \"Cabotaje\", \"Internacional\", \"Cabotaje\", \"Internac…\n$ pasajeros           &lt;int&gt; 25537, 31493, 37248, 41810, 34772, 39480, 36692, 3…\n$ asientos            &lt;int&gt; 37239, 46696, 46026, 51495, 42174, 49184, 44499, 4…\n$ vuelos              &lt;int&gt; 285, 247, 359, 254, 330, 245, 346, 242, 359, 249, …"
   },
   {
     "objectID": "materiales/slides/gramatica_de_graficos_ggplot.html#las-etiquetas-con-valores-no-son-anotaciones",
@@ -3547,15 +3547,15 @@
     "objectID": "materiales/slides/mapas.html#el-factor-socio-territorial",
     "href": "materiales/slides/mapas.html#el-factor-socio-territorial",
     "title": "Mapas",
-    "section": "El factor socio-territorial",
-    "text": "El factor socio-territorial\nCuando analizamos procesos sociales la pregunta del donde es clave, lo cual hace de los mapas una herramienta fundamental. Algunos de los usos que podemos pensar en sociología son:\n\nSocio urbana: Planificación gestión / usos del suelo / análisis de circulación\nSocio política: Estudios electorales\nDemografía\nSocio económica\nGestión socio ambiental\nAnálisis de mercado/ de competencia\nSociología de la salud: análisis epidemiológico, asistencia\n\nEn R contamos con varios paquetes para la manipulación de datos espaciales"
+    "section": "",
+    "text": "Cuando analizamos procesos sociales la pregunta del donde es clave, lo cual hace de los mapas una herramienta fundamental. Algunos de los usos que podemos pensar en sociología son:\n\nSocio urbana: Planificación gestión / usos del suelo / análisis de circulación\nSocio política: Estudios electorales\nDemografía\nSocio económica\nGestión socio ambiental\nAnálisis de mercado/ de competencia\nSociología de la salud: análisis epidemiológico, asistencia\n\nEn R contamos con varios paquetes para la manipulación de datos espaciales"
   },
   {
     "objectID": "materiales/slides/mapas.html#representar-sobre-un-plano-la-tierra-y-su-superficie-irregular",
     "href": "materiales/slides/mapas.html#representar-sobre-un-plano-la-tierra-y-su-superficie-irregular",
     "title": "Mapas",
-    "section": "Representar sobre un plano la Tierra y su superficie (irregular)",
-    "text": "Representar sobre un plano la Tierra y su superficie (irregular)\n\n\n\nSistemas de coordenadas de referencia (CRS) (el más conocido lat-long)\nProyecciones cartográficas, instrucciones para traducir a un plano la disposición de puntos ubicados en la esfera terrestre.\nEn toda proyección (como en cualquier traducción), los mapas, inevitablemente, son una versión distorsionada ya que no podemos pasar de la esfera al plano sin desformar la superficie, distancia.\n\n\n\n\n\n\nLa proyección más famosa es la Mercator, diseñada para asistir la navegación marítima y en uso desde el siglo XVI. Su fuerte es que no distorsiona las direcciones, por lo que permite fijar el rumbo de navegación consultando el mapa. Su principal problema es que produce una distorsión notable en las áreas cercanas a los polos: Groenlandia aparenta el mismo tamaño que toda África, cuando en realidad tiene sólo un quinceavo de su superficie. Por esa razón perdió la proyección popularidad en el siglo XX cuando comenzaron a preferirse proyecciones que respetan las áreas. Sin embargo, en el siglo XXI la proyección Mercator recuperó protagonismo. Google la eligió para sus mapas en línea, y por razones de compatibilidad otros proveedores de mapas digitales la adoptaron también. Así, y para inconsolable irritación de los geógrafos, Mercator se convirtió en el estándar de facto para aplicaciones geográficas en la web.\nEn la práctica, si trabajamos en forma frecuente con archivos georreferenciados vamos a sufrir tarde o temprano de problemas de coordenadas o proyección. El más común de ellos: tener una fuentes de datos geográficos que no podemos comparar con otras, porque desconocemos el sistema de coordenadas que se usó para crearla; es decir, no podemos saber a que posición sobre el planeta corresponde cada observación en los datos."
+    "section": "",
+    "text": "Sistemas de coordenadas de referencia (CRS) (el más conocido lat-long)\nProyecciones cartográficas, instrucciones para traducir a un plano la disposición de puntos ubicados en la esfera terrestre.\nEn toda proyección (como en cualquier traducción), los mapas, inevitablemente, son una versión distorsionada ya que no podemos pasar de la esfera al plano sin desformar la superficie, distancia.\n\n\n\n\n\n\nLa proyección más famosa es la Mercator, diseñada para asistir la navegación marítima y en uso desde el siglo XVI. Su fuerte es que no distorsiona las direcciones, por lo que permite fijar el rumbo de navegación consultando el mapa. Su principal problema es que produce una distorsión notable en las áreas cercanas a los polos: Groenlandia aparenta el mismo tamaño que toda África, cuando en realidad tiene sólo un quinceavo de su superficie. Por esa razón perdió la proyección popularidad en el siglo XX cuando comenzaron a preferirse proyecciones que respetan las áreas. Sin embargo, en el siglo XXI la proyección Mercator recuperó protagonismo. Google la eligió para sus mapas en línea, y por razones de compatibilidad otros proveedores de mapas digitales la adoptaron también. Así, y para inconsolable irritación de los geógrafos, Mercator se convirtió en el estándar de facto para aplicaciones geográficas en la web.\nEn la práctica, si trabajamos en forma frecuente con archivos georreferenciados vamos a sufrir tarde o temprano de problemas de coordenadas o proyección. El más común de ellos: tener una fuentes de datos geográficos que no podemos comparar con otras, porque desconocemos el sistema de coordenadas que se usó para crearla; es decir, no podemos saber a que posición sobre el planeta corresponde cada observación en los datos."
   },
   {
     "objectID": "materiales/slides/mapas.html#tipo-de-datos",
@@ -3575,8 +3575,8 @@
     "objectID": "materiales/slides/mapas.html#formatos-de-archivos-georreferenciados",
     "href": "materiales/slides/mapas.html#formatos-de-archivos-georreferenciados",
     "title": "Mapas",
-    "section": "Formatos de archivos georreferenciados",
-    "text": "Formatos de archivos georreferenciados\n\nshapefile: creado por ESRI (creadores de ArcGIS) tiene varios archivos que por lo general vienen combinados en un zip los nombres de las variables tienen que tener 10 caracteres o menos (la gente se pone creativa con las abreviaturas)\nGeoJSON:una alteranriva más feliz y de código abierto que corrige estos problemas\nKML/KMZ: el formato que usa Google Earth\ncsv: representando puntos de latitud y longitud (por lo cual solo podremos dibujar puntos y líneas)"
+    "section": "",
+    "text": "shapefile: creado por ESRI (creadores de ArcGIS) tiene varios archivos que por lo general vienen combinados en un zip los nombres de las variables tienen que tener 10 caracteres o menos (la gente se pone creativa con las abreviaturas)\nGeoJSON:una alteranriva más feliz y de código abierto que corrige estos problemas\nKML/KMZ: el formato que usa Google Earth\ncsv: representando puntos de latitud y longitud (por lo cual solo podremos dibujar puntos y líneas)"
   },
   {
     "objectID": "materiales/slides/mapas.html#tipos-de-mapas",
@@ -3702,7 +3702,7 @@
     "href": "materiales/slides/mapas.html#geodesias-y-polígonos-de-argentina",
     "title": "Mapas",
     "section": "Geodesias y polígonos de Argentina",
-    "text": "Geodesias y polígonos de Argentina\nPara dibujar mapas de áreas (como provincias), necesitamos archivos que definan la geometría (los bordes) de esas áreas. Estos archivos suelen ser GeoJSON, Shapefiles, etc.\nEl Instituto Geográfico Nacional nos provee en su web los archivos para dibujar la forma de nuestro país. Todas las capas GIS podes encontrarlas en https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG.\n\n\n\n\n\n\nLas librerías del día:\n\n\nExisten muchas librerías para hacer mapas hoy vamos a usar tres\n\nsf{}(simple shapes): que nos ayuda en la interpretación geométrica del multi-poligono\ngglot que nos va a servir para hacer mapas estáticos\nleaflet para hacer gráficos dinámicos en java"
+    "text": "Geodesias y polígonos de Argentina\nPara dibujar mapas de áreas (como provincias), necesitamos archivos que definan la geometría (los bordes) de esas áreas. Estos archivos suelen ser GeoJSON, Shapefiles, etc.\nEl Instituto Geográfico Nacional nos provee en su web los archivos para dibujar la forma de nuestro país. Todas las capas GIS podes encontrarlas en https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG.\n\n\n\n\n\n\nLas librerías del día:\n\n\n\nExisten muchas librerías para hacer mapas hoy vamos a usar tres\n\nsf{}(simple shapes): que nos ayuda en la interpretación geométrica del multi-poligono\ngglot que nos va a servir para hacer mapas estáticos\nleaflet para hacer gráficos dinámicos en java"
   },
   {
     "objectID": "materiales/slides/mapas.html#veamos-la-estructura-del-geojson",
@@ -3716,7 +3716,7 @@
     "href": "materiales/slides/mapas.html#geom_sf-para-obtener-la-geometría",
     "title": "Mapas",
     "section": "´geom_sf()´ para obtener la geometría",
-    "text": "´geom_sf()´ para obtener la geometría\nggplot nos ofrece la posibilidad de dibujar objetos sf utilizando la capa de geometría geom_sf\n\n\nggplot()+\n  geom_sf(data = provincias_sf)"
+    "text": "´geom_sf()´ para obtener la geometría\nggplot nos ofrece la posibilidad de dibujar objetos sf utilizando la capa de geometría geom_sf\n\nggplot()+\n  geom_sf(data = provincias_sf)"
   },
   {
     "objectID": "materiales/slides/mapas.html#ajustando-las-coordenadas",
@@ -3730,21 +3730,21 @@
     "href": "materiales/slides/mapas.html#cargando-nuestro-dataset-de-bibliotecas",
     "title": "Mapas",
     "section": "Cargando nuestro dataset de bibliotecas",
-    "text": "Cargando nuestro dataset de bibliotecas\nLa Comisión Nacional de Bibliotecas Populares (CONABIP) La Comisión Nacional Protectora de Bibliotecas Populares (CONABIP) es un organismo creado en 1870 por Sarmiento (hoy dependiente de la Secretaría de Cultura) que apoya y fomenta el desarrollo de bibliotecas populares en todo el territorio de la República Argentina.\nEn este set de datos que forma parte del acervo de datos.cultura.gob.ar vamos a descargar la ubicación de cada biblioteca para ver todos los rincones del país a los que llega.\n\n\n## Decagar los datos\n\nurl_bibliotecas &lt;- \"https://datos.cultura.gob.ar/dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/bibliotecas-populares.csv\"\n\n\nbibliotecas &lt;- read.csv(url_bibliotecas)\n\nsummary(bibliotecas)\n\n\n cod_localidad       id_provincia   id_departamento observacion   \n Min.   : 2000010   Min.   : 2.00   Min.   : 2000   Mode:logical  \n 1st Qu.: 6791050   1st Qu.: 6.00   1st Qu.: 6791   NA's:1902     \n Median :30084160   Median :30.00   Median :30084                 \n Mean   :38885907   Mean   :38.72   Mean   :38886                 \n 3rd Qu.:66152288   3rd Qu.:66.00   3rd Qu.:66152                 \n Max.   :94014020   Max.   :94.00   Max.   :94014                 \n                                                                  \n  categoria         subcategoria    provincia         departamento      \n Length:1902        Mode:logical   Length:1902        Length:1902       \n Class :character   NA's:1902      Class :character   Class :character  \n Mode  :character                  Mode  :character   Mode  :character  \n                                                                        \n                                                                        \n                                                                        \n                                                                        \n  localidad            nombre           domicilio           piso        \n Length:1902        Length:1902        Length:1902        Mode:logical  \n Class :character   Class :character   Class :character   NA's:1902     \n Mode  :character   Mode  :character   Mode  :character                 \n                                                                        \n                                                                        \n                                                                        \n                                                                        \n      cp               cod_tel        telefono             mail          \n Length:1902        Min.   :   0   Min.   :0.000e+00   Length:1902       \n Class :character   1st Qu.: 294   1st Qu.:4.600e+05   Class :character  \n Mode  :character   Median :2302   Median :4.984e+05   Mode  :character  \n                    Mean   :1841   Mean   :1.977e+07                     \n                    3rd Qu.:3447   3rd Qu.:4.664e+06                     \n                    Max.   :4948   Max.   :1.560e+09                     \n                    NA's   :165    NA's   :165                           \n   web          informacion_adicional    latitud          longitud     \n Mode:logical   Mode:logical          Min.   :-54.82   Min.   :-72.89  \n NA's:1902      NA's:1902             1st Qu.:-34.98   1st Qu.:-65.29  \n                                      Median :-33.13   Median :-61.89  \n                                      Mean   :-33.07   Mean   :-62.49  \n                                      3rd Qu.:-30.22   3rd Qu.:-58.93  \n                                      Max.   :-22.05   Max.   :-53.73  \n                                                                       \n tipo_latitud_longitud    fuente          fecha_fundacion     nro_conabip  \n Length:1902           Length:1902        Length:1902        Min.   :  11  \n Class :character      Class :character   Class :character   1st Qu.:1997  \n Mode  :character      Mode  :character   Mode  :character   Median :3288  \n                                                             Mean   :2867  \n                                                             3rd Qu.:3905  \n                                                             Max.   :4398  \n                                                                           \n anio_actualizacion\n Min.   :2023      \n 1st Qu.:2023      \n Median :2023      \n Mean   :2023      \n 3rd Qu.:2023      \n Max.   :2023      \n                   \n\n\n\n\n\n\n\n\n\nLatitud y longitud\n\n\nLas variables lat y long nos están indicando la ubicación de cada biblioteca. Si miramos los máximos y mínimos ¿Coinciden con los valores que habíamos establecido como límites en coord_sf para ver Argentina continental?"
+    "text": "Cargando nuestro dataset de bibliotecas\nLa Comisión Nacional de Bibliotecas Populares (CONABIP) La Comisión Nacional Protectora de Bibliotecas Populares (CONABIP) es un organismo creado en 1870 por Sarmiento (hoy dependiente de la Secretaría de Cultura) que apoya y fomenta el desarrollo de bibliotecas populares en todo el territorio de la República Argentina.\nEn este set de datos que forma parte del acervo de datos.cultura.gob.ar vamos a descargar la ubicación de cada biblioteca para ver todos los rincones del país a los que llega.\n\n## Decagar los datos\n\nurl_bibliotecas &lt;- \"https://datos.cultura.gob.ar/dataset/37305de4-3cce-4d4b-9d9a-fec3ca61d09f/resource/01c6c048-dbeb-44e0-8efa-6944f73715d7/download/bibliotecas-populares.csv\"\n\n\nbibliotecas &lt;- read.csv(url_bibliotecas)\n\nsummary(bibliotecas)\n\n cod_localidad       id_provincia   id_departamento observacion   \n Min.   : 2000010   Min.   : 2.00   Min.   : 2000   Mode:logical  \n 1st Qu.: 6791050   1st Qu.: 6.00   1st Qu.: 6791   NA's:1902     \n Median :30084160   Median :30.00   Median :30084                 \n Mean   :38885907   Mean   :38.72   Mean   :38886                 \n 3rd Qu.:66152288   3rd Qu.:66.00   3rd Qu.:66152                 \n Max.   :94014020   Max.   :94.00   Max.   :94014                 \n                                                                  \n  categoria         subcategoria    provincia         departamento      \n Length:1902        Mode:logical   Length:1902        Length:1902       \n Class :character   NA's:1902      Class :character   Class :character  \n Mode  :character                  Mode  :character   Mode  :character  \n                                                                        \n                                                                        \n                                                                        \n                                                                        \n  localidad            nombre           domicilio           piso        \n Length:1902        Length:1902        Length:1902        Mode:logical  \n Class :character   Class :character   Class :character   NA's:1902     \n Mode  :character   Mode  :character   Mode  :character                 \n                                                                        \n                                                                        \n                                                                        \n                                                                        \n      cp               cod_tel        telefono             mail          \n Length:1902        Min.   :   0   Min.   :0.000e+00   Length:1902       \n Class :character   1st Qu.: 294   1st Qu.:4.600e+05   Class :character  \n Mode  :character   Median :2302   Median :4.984e+05   Mode  :character  \n                    Mean   :1841   Mean   :1.977e+07                     \n                    3rd Qu.:3447   3rd Qu.:4.664e+06                     \n                    Max.   :4948   Max.   :1.560e+09                     \n                    NA's   :165    NA's   :165                           \n   web          informacion_adicional    latitud          longitud     \n Mode:logical   Mode:logical          Min.   :-54.82   Min.   :-72.89  \n NA's:1902      NA's:1902             1st Qu.:-34.98   1st Qu.:-65.29  \n                                      Median :-33.13   Median :-61.89  \n                                      Mean   :-33.07   Mean   :-62.49  \n                                      3rd Qu.:-30.22   3rd Qu.:-58.93  \n                                      Max.   :-22.05   Max.   :-53.73  \n                                                                       \n tipo_latitud_longitud    fuente          fecha_fundacion     nro_conabip  \n Length:1902           Length:1902        Length:1902        Min.   :  11  \n Class :character      Class :character   Class :character   1st Qu.:1997  \n Mode  :character      Mode  :character   Mode  :character   Median :3288  \n                                                             Mean   :2867  \n                                                             3rd Qu.:3905  \n                                                             Max.   :4398  \n                                                                           \n anio_actualizacion\n Min.   :2023      \n 1st Qu.:2023      \n Median :2023      \n Mean   :2023      \n 3rd Qu.:2023      \n Max.   :2023      \n                   \n\n\n\n\n\n\n\n\nLatitud y longitud\n\n\n\nLas variables lat y long nos están indicando la ubicación de cada biblioteca. Si miramos los máximos y mínimos ¿Coinciden con los valores que habíamos establecido como límites en coord_sf para ver Argentina continental?"
   },
   {
     "objectID": "materiales/slides/mapas.html#poniendo-puntos-en-el-mapa",
     "href": "materiales/slides/mapas.html#poniendo-puntos-en-el-mapa",
     "title": "Mapas",
     "section": "Poniendo puntos en el mapa",
-    "text": "Poniendo puntos en el mapa\nAhora vamos a agergar a la bibliotecas como una nueva capa de nuestro mapa usando una geometria de puntos\n\n\nggplot()+\n  # modifico los colores de relleno para que no sea vea tan pesado respecto de los puntos\n  geom_sf(data = provincias_sf)+\n  # agrego un gráfico de puntos usando como data bibliotecas\n  geom_point(data = bibliotecas, aes(x = longitud, y = latitud), color = \"steelblue\", alpha = 0.6, size = 1)"
+    "text": "Poniendo puntos en el mapa\nAhora vamos a agergar a la bibliotecas como una nueva capa de nuestro mapa usando una geometria de puntos\n\nggplot()+\n  # modifico los colores de relleno para que no sea vea tan pesado respecto de los puntos\n  geom_sf(data = provincias_sf)+\n  # agrego un gráfico de puntos usando como data bibliotecas\n  geom_point(data = bibliotecas, aes(x = longitud, y = latitud), color = \"steelblue\", alpha = 0.6, size = 1)"
   },
   {
     "objectID": "materiales/slides/mapas.html#estilizando-nuestro-mapa",
     "href": "materiales/slides/mapas.html#estilizando-nuestro-mapa",
     "title": "Mapas",
     "section": "Estilizando nuestro mapa",
-    "text": "Estilizando nuestro mapa\nAhora simplemente vamos a agregar algunos títulos y etiquetas\n\n\nggplot()+\n  # modifico los colores de las lineas y del relleno para que se vea menos pesado\n  geom_sf(data = provincias_sf, fill = \"grey90\", color = \"white\")+\n  geom_point(data = bibliotecas, aes(x = longitud, y = latitud), color = \"steelblue\", alpha = 0.6, size = 1) +\n  # Títulos y etiquetas\n  labs(title = \"Bibliotecas Populares en Argentina\",\n       subtitle = \"Año 2023\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  # Elimino ejes y panel de fondo para un mapa más limpio\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
+    "text": "Estilizando nuestro mapa\nAhora simplemente vamos a agregar algunos títulos y etiquetas\n\nggplot()+\n  # modifico los colores de las lineas y del relleno para que se vea menos pesado\n  geom_sf(data = provincias_sf, fill = \"grey90\", color = \"white\")+\n  geom_point(data = bibliotecas, aes(x = longitud, y = latitud), color = \"steelblue\", alpha = 0.6, size = 1) +\n  # Títulos y etiquetas\n  labs(title = \"Bibliotecas Populares en Argentina\",\n       subtitle = \"Año 2023\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  # Elimino ejes y panel de fondo para un mapa más limpio\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
   },
   {
     "objectID": "materiales/slides/mapas.html#cargando-la-geometría-como-sf",
@@ -3772,7 +3772,7 @@
     "href": "materiales/slides/mapas.html#veamos-la-estructura-del-sf-1",
     "title": "Mapas",
     "section": "Veamos la estructura del sf()",
-    "text": "Veamos la estructura del sf()\nTenemos Simple feature collection with 24 features and 2 fields: Cargamos una colección de “simple features” (entidades geométricas) que tiene 24 filas y dos variables.\n\ngeometry type: MULTIPOLYGON: los archivos con información geográfica contienen colecciones de puntos, de líneas, o de polígonos. En éste caso son polígonos; tiene sentido para la información que esperamos, que es la de la superficie de Argentina dividida en sus provincias.\ndimension: XY: la información es “plana”, en dos dimensiones X e Y. No incluye información de alturas, que estaría en la dimensión Z. (cosa que casi nunca trabajamos)\nBounding box:  xmin: -73.57219 ymin: -55.05803 xmax: -53.64276 ymax: -21.74531: nos da cuatro valores que forman la “caja” que contiene a los datos. Estos valores son la latitud mínima, la longitud mínima, la latitud máxima y la longitud máxima. Esto es para cuando estamos un poco más cancheros y tenemos una referencia de los lugares por sus coordenadas.\nGeodetic CRS:  WGS 84 Hace referencia al sistema de coordenadas que sua nuestro mapa. El WSG 84 es un sistema global (WSG) global basado en latitud y longitud (grados decimales). Este sistema también lo conocemos como EPSG 4326. Es el mismo sistema GPS que usa Google Maps, y la mayoría de las apps.\n\n\n\n\n\n\nChequear siempre nuestro sistema de coordenadas\n\n\nEs importante prestar atención al sistemas de coordenadas, o CRS, ya que para comparar datos geográficos de distintas fuentes todas deben usar el mismo."
+    "text": "Veamos la estructura del sf()\nTenemos Simple feature collection with 24 features and 2 fields: Cargamos una colección de “simple features” (entidades geométricas) que tiene 24 filas y dos variables.\n\ngeometry type: MULTIPOLYGON: los archivos con información geográfica contienen colecciones de puntos, de líneas, o de polígonos. En éste caso son polígonos; tiene sentido para la información que esperamos, que es la de la superficie de Argentina dividida en sus provincias.\ndimension: XY: la información es “plana”, en dos dimensiones X e Y. No incluye información de alturas, que estaría en la dimensión Z. (cosa que casi nunca trabajamos)\nBounding box:  xmin: -73.57219 ymin: -55.05803 xmax: -53.64276 ymax: -21.74531: nos da cuatro valores que forman la “caja” que contiene a los datos. Estos valores son la latitud mínima, la longitud mínima, la latitud máxima y la longitud máxima. Esto es para cuando estamos un poco más cancheros y tenemos una referencia de los lugares por sus coordenadas.\nGeodetic CRS:  WGS 84 Hace referencia al sistema de coordenadas que sua nuestro mapa. El WSG 84 es un sistema global (WSG) global basado en latitud y longitud (grados decimales). Este sistema también lo conocemos como EPSG 4326. Es el mismo sistema GPS que usa Google Maps, y la mayoría de las apps.\n\n\n\n\n\n\nChequear siempre nuestro sistema de coordenadas\n\n\n\nEs importante prestar atención al sistemas de coordenadas, o CRS, ya que para comparar datos geográficos de distintas fuentes todas deben usar el mismo."
   },
   {
     "objectID": "materiales/slides/mapas.html#concentración-de-bibliotecas-por-provincia",
@@ -3800,7 +3800,7 @@
     "href": "materiales/slides/mapas.html#coropletas-concentración-de-bibliotecas-por-provincia-1",
     "title": "Mapas",
     "section": "Coropletas: Concentración de bibliotecas por provincia",
-    "text": "Coropletas: Concentración de bibliotecas por provincia\n\n\nprovincias_sf %&gt;% \n  # convierto el tipo de variable ya que en una es chr y en otra integer\n  mutate(codprov_censo = as.integer(codprov_censo)) %&gt;% \n  # unimos la tabla de resumen a la geometrias de provincias\n  left_join(biblios_prov, by = c(\"codprov_censo\" = \"id_provincia\")) %&gt;% \n  ggplot()+\n  # usamos el valor de resumen como relleno para cada geometria\n  geom_sf(aes(fill = suma_biblio_prov ))+\n  labs(title = \"Concentración de Bibliotecas Populares por provincia\",\n       subtitle = \"Año 2023\",\n       fill = \"Cantidad de bibliotecas\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
+    "text": "Coropletas: Concentración de bibliotecas por provincia\n\nprovincias_sf %&gt;% \n  # convierto el tipo de variable ya que en una es chr y en otra integer\n  mutate(codprov_censo = as.integer(codprov_censo)) %&gt;% \n  # unimos la tabla de resumen a la geometrias de provincias\n  left_join(biblios_prov, by = c(\"codprov_censo\" = \"id_provincia\")) %&gt;% \n  ggplot()+\n  # usamos el valor de resumen como relleno para cada geometria\n  geom_sf(aes(fill = suma_biblio_prov ))+\n  labs(title = \"Concentración de Bibliotecas Populares por provincia\",\n       subtitle = \"Año 2023\",\n       fill = \"Cantidad de bibliotecas\",\n       caption = \"Fuente: CONABIP. Cartografía: IGN\") +\n  theme_minimal() +\n  theme(axis.title = element_blank(),\n        axis.text = element_blank(),\n        panel.grid.major = element_blank(),\n        panel.background = element_blank())"
   },
   {
     "objectID": "materiales/slides/mapas.html#mapa-de-burbujas-1",
@@ -3863,7 +3863,7 @@
     "href": "materiales/slides/mapas.html#cargando-la-geometría-de-las-provincias-argentinas",
     "title": "Mapas",
     "section": "Cargando la geometría de las provincias argentinas",
-    "text": "Cargando la geometría de las provincias argentinas\nVamos a cargar como un objeto sf o Simple Features, ayudandonos con la librería geo_ar\nSimple Features (oficialmente Simple Feature Access ) es un conjunto de estándares que especifica un modelo común de almacenamiento y acceso de características geográficas , compuesto principalmente por geometrías bi dimensionales (punto, línea, polígono, multipunto, multilínea, etc.) y que está formalizado por el consorcio de Geoespacial abierto (OGC por sus siglas en inglés) y las normas ISO.\n\n# ---  Cargamos las librerías que vamos a usar ---\nlibrary(tidyverse) \nlibrary(sf) # Para trabajar con datos geoespaciales\nlibrary(geoAr)\n\n## Carga poligonos geográficos de provincias argentinas\nprovincias_sf &lt;- get_geo(geo = \"ARGENTINA\", level = \"provincia\")\n\n## Cargar los nombres de las provincias\netiquetas_provincias &lt;- show_arg_codes(nivel = \"provincias\") %&gt;% \n  select(codprov_censo , name_iso)\n\n## unir nombres a df de poligonos\nprovincias_sf &lt;- provincias_sf %&gt;% \n  left_join(etiquetas_provincias, by = \"codprov_censo\")"
+    "text": "Cargando la geometría de las provincias argentinas\nVamos a cargar como un objeto sf o Simple Features, ayudandonos con la librería geo_ar\nSimple Features (oficialmente Simple Feature Access ) es un conjunto de estándares que especifica un modelo común de almacenamiento y acceso de características geográficas , compuesto principalmente por geometrías bi dimensionales (punto, línea, polígono, multipunto, multilínea, etc.) y que está formalizado por el consorcio de Geoespacial abierto (OGC por sus siglas en inglés) y las normas ISO.\n\n# ---  Cargamos las librerías que vamos a usar ---\nlibrary(tidyverse) \n\nWarning: package 'tidyverse' was built under R version 4.2.3\n\n\nWarning: package 'tibble' was built under R version 4.2.3\n\n\nWarning: package 'purrr' was built under R version 4.2.3\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\nWarning: package 'forcats' was built under R version 4.2.3\n\n\nWarning: package 'lubridate' was built under R version 4.2.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(sf) # Para trabajar con datos geoespaciales\n\nWarning: package 'sf' was built under R version 4.2.3\n\n\nLinking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE\n\nlibrary(geoAr)\n\n## Carga poligonos geográficos de provincias argentinas\nprovincias_sf &lt;- get_geo(geo = \"ARGENTINA\", level = \"provincia\")\n\n## Cargar los nombres de las provincias\netiquetas_provincias &lt;- show_arg_codes(nivel = \"provincias\") %&gt;% \n  select(codprov_censo , name_iso)\n\n## unir nombres a df de poligonos\nprovincias_sf &lt;- provincias_sf %&gt;% \n  left_join(etiquetas_provincias, by = \"codprov_censo\")"
   },
   {
     "objectID": "materiales/slides/mapas.html#características-generales",
@@ -3877,14 +3877,14 @@
     "href": "materiales/slides/mapas.html#instalación-y-usos-básicos",
     "title": "Mapas",
     "section": "Instalación y usos básicos",
-    "text": "Instalación y usos básicos\nLeaflet se encuentra dentro de CRAN por lo que podemos instalarlo de igual manera que cualquier otro paquete\n\n# install.packages('leaflet')\n\nPara crear un mapa tenemos 4 pasos básicos\n\nLlamamos al widget leaflet().\nAgrar capas (es decir, entidades) al mapa mediante funciones de capa (por ejemplo, addTiles, addMarkers, addPolygons) para modificar el widget del mapa.\nRepitimos el paso 2 según la cantidad de capas que necesitemos.\nImprimimos el widget de mapa para mostrarlo.\n\n\n\n\n\n\n\nDocumentación del paquete Leaflet\n\n\nPara más info podes encontrar toda la documentación del paquete en:\nhttps://rstudio.github.io/leaflet/"
+    "text": "Instalación y usos básicos\nLeaflet se encuentra dentro de CRAN por lo que podemos instalarlo de igual manera que cualquier otro paquete\n\n# install.packages('leaflet')\n\nPara crear un mapa tenemos 4 pasos básicos\n\nLlamamos al widget leaflet().\nAgrar capas (es decir, entidades) al mapa mediante funciones de capa (por ejemplo, addTiles, addMarkers, addPolygons) para modificar el widget del mapa.\nRepitimos el paso 2 según la cantidad de capas que necesitemos.\nImprimimos el widget de mapa para mostrarlo.\n\n\n\n\n\n\n\nDocumentación del paquete Leaflet\n\n\n\nPara más info podes encontrar toda la documentación del paquete en:\nhttps://rstudio.github.io/leaflet/"
   },
   {
     "objectID": "materiales/slides/mapas.html#capa-de-base-del-mapa",
     "href": "materiales/slides/mapas.html#capa-de-base-del-mapa",
     "title": "Mapas",
     "section": "Capa de base del mapa",
-    "text": "Capa de base del mapa\nTenemos dos formas de hacer la primera capa de base de nuestro mapa:\nCon addTiles donde agregas el mapa base que viene por defecto y que nos trae la capa de OpenStreetMap. Con la función setView() lo podemos centrar para que no nos muestre todo el mapa mundial.\nSin embargo (como en muchas cosas) si hacemos zoom vamos a ver un sesgo político importante\n\nlibrary(leaflet)\n\nleaflet() %&gt;%\n  addTiles() %&gt;%\n  setView(lng = -64, lat = -34, zoom = 3) # Centrar en Argentina"
+    "text": "Capa de base del mapa\nTenemos dos formas de hacer la primera capa de base de nuestro mapa:\nCon addTiles donde agregas el mapa base que viene por defecto y que nos trae la capa de OpenStreetMap. Con la función setView() lo podemos centrar para que no nos muestre todo el mapa mundial.\nSin embargo (como en muchas cosas) si hacemos zoom vamos a ver un sesgo político importante\n\nlibrary(leaflet)\n\nWarning: package 'leaflet' was built under R version 4.2.3\n\nleaflet() %&gt;%\n  addTiles() %&gt;%\n  setView(lng = -64, lat = -34, zoom = 3) # Centrar en Argentina"
   },
   {
     "objectID": "materiales/slides/mapas.html#y-puede-resultar-en-situaciones-como-esta",
@@ -3913,5 +3913,380 @@
     "title": "Gramática de tablas con gt",
     "section": "",
     "text": "Ya sabemos limpiar, transformar, explorar y visualizar datos con ggplot2. Pero a veces, necesitamos presentar datos de forma tabular (en tablas), ¡y queremos que se vean profesionales y legibles!\nAquí es donde entra el paquete gt (grammar of tables). Así como ggplot2 te da una “gramática” para construir gráficos capa a capa, gt te ofrece una forma similar de construir y embellecer tablas.\nVamos a usar un dataset sobre femicidios y homicidios agravados por el género para aprender a usar gt.\n\n\n\n\n\n\nAdvertencia\n\n\n\nEste dataset contiene información sobre un tema sensible y violento. Trabajaremos con él de manera respetuosa, enfocándonos en la estructura y presentación de los datos sin ahondar en detalles explícitos de los hechos."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#comunicar-es-una-parte-fundamental-del-porceso-de-análisis-de-datos-y-construcción-de-conocimiento.",
+    "href": "materiales/slides/comunicar_con_quarto.html#comunicar-es-una-parte-fundamental-del-porceso-de-análisis-de-datos-y-construcción-de-conocimiento.",
+    "title": "Comunicar con Quarto",
+    "section": "Comunicar es una parte fundamental del porceso de análisis de datos y construcción de conocimiento.",
+    "text": "Comunicar es una parte fundamental del porceso de análisis de datos y construcción de conocimiento."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#quarto-para-todxs",
+    "href": "materiales/slides/comunicar_con_quarto.html#quarto-para-todxs",
+    "title": "Comunicar con Quarto",
+    "section": "Quarto para todxs",
+    "text": "Quarto para todxs\n\nEs un sistema de publicación científica y técnica de código abierto. Pensado para crear documentos dinámicos, presentaciones, libros y sitios web a partir de un simple archivo de texto plano.\nUnifica y facilita el proceso de creación y colaboración entre varios lenguajes (Python, Observable, Julia, R…) y nos permite crear múltiples productos en múltiples formatos (HTML, pdf, Word, ppt)\n\n\nImagen de “Hello, Quarto” keynote de Julia Lowndes y Mine Çetinkaya-Rundel, RStudio::Conf(2022)."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#qué-podemos-hacer-con-quarto",
+    "href": "materiales/slides/comunicar_con_quarto.html#qué-podemos-hacer-con-quarto",
+    "title": "Comunicar con Quarto",
+    "section": "¿Qué podemos hacer con Quarto?",
+    "text": "¿Qué podemos hacer con Quarto?\n\n\nArtículos académicos (PDF) / Reportes HTML\nPresentaciones (como la que estas viendo o en PDF)\nDashbords (estáticos o sobre shiny)\nSitios web/ blog\nLibros\nDocumentos interactivos (Jupyter/Shiny)"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#por-qué-quarto",
+    "href": "materiales/slides/comunicar_con_quarto.html#por-qué-quarto",
+    "title": "Comunicar con Quarto",
+    "section": "Por qué Quarto",
+    "text": "Por qué Quarto\n\nReproducibilidad: Tu análisis, el código y los resultados (tablas, gráficos) viven juntos en un solo lugar. ¡Adiós a copiar y pegar!\nFlexibilidad de Formatos: Con un mismo archivo fuente (.qmd), podes generar muchísimos tipos de salida: HTML, PDF, Word, ¡y más!\nProfesionalismo: Crea entregables con una apariencia pulida y profesional sin mucho esfuerzo.\nFlujo de trabajo simple: Escribis tu contenido en Markdown, integras tus bloques de código y ¡renderizas!\n\n\n\n\n\n\n\n¿Quarto vs. R Markdown?\n\n\nQuarto es el sucesor de R Markdown. Si ya conocías R Markdown, Quarto te resultará muy familiar, pero ofrece más funciones, flexibilidad y soporte para otros lenguajes más allá de R."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#instalar-quarto",
+    "href": "materiales/slides/comunicar_con_quarto.html#instalar-quarto",
+    "title": "Comunicar con Quarto",
+    "section": "Instalar Quarto",
+    "text": "Instalar Quarto\nPara instalar Quasrto simplemente vamos a ir a https://quarto.org/docs/get-started y vamos a descargar la versión correspondiente a nuestrp sistema operativo\n\n\n\n\n\n\n\nTip\n\n\nSi bien nosotros vamos a usarlo desde RStudio está bueno que sepas que podemos usar Quarto desde otras plataformas como VS Code, Jupyter."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd-lo-básico",
+    "href": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd-lo-básico",
+    "title": "Comunicar con Quarto",
+    "section": "Anatomía de un Archivo Quarto (.qmd): Lo Básico",
+    "text": "Anatomía de un Archivo Quarto (.qmd): Lo Básico\nRenderizar el Documento\nUna vez que tenes tu archivo .qmd listo, el último paso es renderizarlo para generar el formato de salida deseado.\nPoedes hacerlo de dos maneras:\n\nDesde RStudio: Usa el botón “Render” en la barra de herramientas.\nDesde la Terminal: Ejecuta el comando quarto render nombre_de_tu_archivo.qmd.\n\n¡Y listo! Quarto convertirá tu .qmd en un hermoso documento HTML, PDF, una presentación, etc."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd-lo-básico-1",
+    "href": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd-lo-básico-1",
+    "title": "Comunicar con Quarto",
+    "section": "Anatomía de un Archivo Quarto (.qmd): Lo Básico",
+    "text": "Anatomía de un Archivo Quarto (.qmd): Lo Básico\nRenderizar el Documento\nUna vez que tenes tu archivo .qmd listo, el último paso es renderizarlo para generar el formato de salida deseado.\nPoedes hacerlo de dos maneras:\n\nDesde RStudio: Usa el botón “Render” en la barra de herramientas.\nDesde la Terminal: Ejecuta el comando quarto render nombre_de_tu_archivo.qmd.\n\n¡Y listo! Quarto convertirá tu .qmd en un hermoso documento HTML, PDF, una presentación, etc."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#el-encabezado-yaml----",
+    "href": "materiales/slides/comunicar_con_quarto.html#el-encabezado-yaml----",
+    "title": "Comunicar con Quarto",
+    "section": "1.El Encabezado YAML (---)",
+    "text": "1.El Encabezado YAML (---)\nEs la sección de configuración al inicio del archivo.\n🥪 Se define entre tres guiones (---) al principio y al final como un sanwich\n🎯 Acá le decimos a Quarto:\n\nLos metadatos de nuestro archivo (título, subtitulo, autor, fecha)\nEl / los formatos: html, pdf, wordetc. y características específicas de comportamiento de ese formato\nParámetros de automatización\n\n\n---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: html # Opciones como html, pdf, revealjs, etc.\n---"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#texto-en-markdown",
+    "href": "materiales/slides/comunicar_con_quarto.html#texto-en-markdown",
+    "title": "Comunicar con Quarto",
+    "section": "2.Texto en Markdown",
+    "text": "2.Texto en Markdown\nAcá es donde escribis tu contenido de texto. Markdown es un lenguaje de marcado simple que te permite formatear texto fácilmente:\n\nTítulos: # Título 1, ## Título 2, ### Título 3, etc.\nNegritas: **texto en negrita**\nItálicas: *texto en itálica*\nListas: - Item 1 - Item 2\nEnlaces [Un link](www.ellink.com.ar)\nImágenes ![](ruta_ o enlace de la _de_la_imagen-png)"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#opciones-de-los-chunks",
+    "href": "materiales/slides/comunicar_con_quarto.html#opciones-de-los-chunks",
+    "title": "Comunicar con Quarto",
+    "section": "Opciones de los Chunks (#|)",
+    "text": "Opciones de los Chunks (#|)\nEn la parte superior podemos controlar el comportamiento de cada bloque de código con opciones específicas:\n\n#| echo: false: Oculta el código del output final, mostrando solo los resultados.\n#| eval: false: No ejecuta el código, solo lo muestra.\n#| output-location: slide: Útil en presentaciones para que el output aparezca en una nueva diapositiva.\n#| fig-width: 8, #| fig-height: 6: Controla el tamaño de los gráficos."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd-lo-básico-2",
+    "href": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd-lo-básico-2",
+    "title": "Comunicar con Quarto",
+    "section": "Anatomía de un Archivo Quarto (.qmd): Lo Básico",
+    "text": "Anatomía de un Archivo Quarto (.qmd): Lo Básico\nRenderizar el Documento\nUna vez que tenes tu archivo .qmd listo, el último paso es renderizarlo para generar el formato de salida deseado.\nPoedes hacerlo de dos maneras:\n\nDesde RStudio: Usa el botón “Render” en la barra de herramientas.\nDesde la Terminal: Ejecuta el comando quarto render nombre_de_tu_archivo.qmd.\n\n¡Y listo! Quarto convertirá tu .qmd en un hermoso documento HTML, PDF, una presentación, etc."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#tipos-de-output",
+    "href": "materiales/slides/comunicar_con_quarto.html#tipos-de-output",
+    "title": "Comunicar con Quarto",
+    "section": "Tipos de Output",
+    "text": "Tipos de Output\nCon un mismo archivo .qmd, puedes generar una variedad de formatos.\nFormatos de Salida Comunes\n\nHTML: El formato más versátil. Ideal para compartir en la web, permite interactividad (como mapas de leaflet o tablas de DT).\nPDF: Para documentos formales listos para imprimir. Ideal para informes estáticos.\nPresentaciones (Reveal.js): Como esta clase. Puedes crear diapositivas dinámicas y atractivas. Opciones esenciales de revealjs en el YAML: theme, slide-number, auto-animate.\nDashboards: Quarto te permite construir dashboards interactivos directamente desde tus análisis, combinando código, texto y elementos de interfaz de usuario.\nWord: Para documentos que necesitan ser editados en procesadores de texto."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#controlando-la-salida",
+    "href": "materiales/slides/comunicar_con_quarto.html#controlando-la-salida",
+    "title": "Comunicar con Quarto",
+    "section": "Controlando la Salida",
+    "text": "Controlando la Salida\nPodes controlar cómo se ven y se comportan los elementos en tu documento final seteando dentro del YAML:\n\ndf-print: Define cómo se muestran los data.frames en el output (ej. kable para tablas más bonitas).\nexecute: Controla el comportamiento general de la ejecución del código en todo el documento."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#el-encabezado-yaml-opciones",
+    "href": "materiales/slides/comunicar_con_quarto.html#el-encabezado-yaml-opciones",
+    "title": "Comunicar con Quarto",
+    "section": "1.El Encabezado YAML: opciones",
+    "text": "1.El Encabezado YAML: opciones\nDentro del YAML vamos a tener diferentes opciones. por ej\n\n---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: \n  html:\n    toc: true # hacer una tabla de contenidos\n    toc-location: left # poner la tabla de contenidos a la izq\n    number-sections: true # numerar las secciones\n    code-fold: true # desplegar el código\n    embed-resources: true # un html auto contenido (evitar dependencias).\n---"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#bloques-de-código-code-chunks",
+    "href": "materiales/slides/comunicar_con_quarto.html#bloques-de-código-code-chunks",
+    "title": "Comunicar con Quarto",
+    "section": "3.Bloques de Código (Code Chunks)",
+    "text": "3.Bloques de Código (Code Chunks)\n\nEl chunck donde vamos a poner el código de R (o Python, etc.). Abajo de eso vamos a ir viendo el resultado de esa ejecución.\nLos definimos con los backticks y el nombre de del lenguaje entre llaves.\nShortcuts:\n\nctrl+alt+i\nhaciendo clic en el botón  en la parte superior del Quarto document"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#las-opciones-de-los-chunks",
+    "href": "materiales/slides/comunicar_con_quarto.html#las-opciones-de-los-chunks",
+    "title": "Comunicar con Quarto",
+    "section": "Las opciones de los Chunks (#|)",
+    "text": "Las opciones de los Chunks (#|)\nEn la parte superior de los chuncks podemos controlar el comportamiento de cada bloque de código con opciones específicas. Para usarlas vamos a usar el signo #|:\n\n\n#| echo: false Oculta el código del output final, mostrando solo los resultados.\n#| eval: false No ejecuta el código, solo lo muestra.\n#| warning: false No incluir las advertencias en la salida\n#| include: false para incluir o no la salida\n#| output-location: slide: Útil en presentaciones para que el output aparezca en una nueva diapositiva.\n#| fig-width: y #|fig-height: Controla el tamaño de los gráficos."
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder_1.html",
+    "href": "materiales/slides/quarto_demo_gapminder_1.html",
+    "title": "Informe Gapmider demo",
+    "section": "",
+    "text": "Figure 1 Explora la relación entre esperanza de vida y PBI per capita en 2007.\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(gapminder)\n\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()\n\n\n\n\n\n\n\n\nFigure 1: Esperanza de vida y PBI per capita."
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder_1.html#esperanza-de-vida-y-pbi-per-capita",
+    "href": "materiales/slides/quarto_demo_gapminder_1.html#esperanza-de-vida-y-pbi-per-capita",
+    "title": "Informe Gapmider demo",
+    "section": "",
+    "text": "Figure 1 Explora la relación entre esperanza de vida y PBI per capita en 2007.\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(gapminder)\n\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()\n\n\n\n\n\n\n\n\nFigure 1: Esperanza de vida y PBI per capita."
+  },
+  {
+    "objectID": "materiales/slides/mapas.html",
+    "href": "materiales/slides/mapas.html",
+    "title": "Mapas",
+    "section": "",
+    "text": "Cuando analizamos procesos sociales la pregunta del donde es clave, lo cual hace de los mapas una herramienta fundamental. Algunos de los usos que podemos pensar en sociología son:\n\nSocio urbana: Planificación gestión / usos del suelo / análisis de circulación\nSocio política: Estudios electorales\nDemografía\nSocio económica\nGestión socio ambiental\nAnálisis de mercado/ de competencia\nSociología de la salud: análisis epidemiológico, asistencia\n\nEn R contamos con varios paquetes para la manipulación de datos espaciales\n\n\n\n\n\n\nSistemas de coordenadas de referencia (CRS) (el más conocido lat-long)\nProyecciones cartográficas, instrucciones para traducir a un plano la disposición de puntos ubicados en la esfera terrestre.\nEn toda proyección (como en cualquier traducción), los mapas, inevitablemente, son una versión distorsionada ya que no podemos pasar de la esfera al plano sin desformar la superficie, distancia.\n\n\n\n\n\n\nLa proyección más famosa es la Mercator, diseñada para asistir la navegación marítima y en uso desde el siglo XVI. Su fuerte es que no distorsiona las direcciones, por lo que permite fijar el rumbo de navegación consultando el mapa. Su principal problema es que produce una distorsión notable en las áreas cercanas a los polos: Groenlandia aparenta el mismo tamaño que toda África, cuando en realidad tiene sólo un quinceavo de su superficie. Por esa razón perdió la proyección popularidad en el siglo XX cuando comenzaron a preferirse proyecciones que respetan las áreas. Sin embargo, en el siglo XXI la proyección Mercator recuperó protagonismo. Google la eligió para sus mapas en línea, y por razones de compatibilidad otros proveedores de mapas digitales la adoptaron también. Así, y para inconsolable irritación de los geógrafos, Mercator se convirtió en el estándar de facto para aplicaciones geográficas en la web.\nEn la práctica, si trabajamos en forma frecuente con archivos georreferenciados vamos a sufrir tarde o temprano de problemas de coordenadas o proyección. El más común de ellos: tener una fuentes de datos geográficos que no podemos comparar con otras, porque desconocemos el sistema de coordenadas que se usó para crearla; es decir, no podemos saber a que posición sobre el planeta corresponde cada observación en los datos.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nshapefile: creado por ESRI (creadores de ArcGIS) tiene varios archivos que por lo general vienen combinados en un zip los nombres de las variables tienen que tener 10 caracteres o menos (la gente se pone creativa con las abreviaturas)\nGeoJSON:una alteranriva más feliz y de código abierto que corrige estos problemas\nKML/KMZ: el formato que usa Google Earth\ncsv: representando puntos de latitud y longitud (por lo cual solo podremos dibujar puntos y líneas)"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd",
+    "href": "materiales/slides/comunicar_con_quarto.html#anatomía-de-un-archivo-quarto-.qmd",
+    "title": "Comunicar con Quarto",
+    "section": "Anatomía de un Archivo Quarto (.qmd)",
+    "text": "Anatomía de un Archivo Quarto (.qmd)\nUn archivo Quarto (.qmd) tiene una estructura clara que lo hace fácil de entender:"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#bloques-de-código-code-chunks-1",
+    "href": "materiales/slides/comunicar_con_quarto.html#bloques-de-código-code-chunks-1",
+    "title": "Comunicar con Quarto",
+    "section": "3.Bloques de Código (Code Chunks)",
+    "text": "3.Bloques de Código (Code Chunks)\nPor ejemplo esto es un ejemplo de chuck\n\n\n# Esto es un bloque de código R\n\nlibrary(tidyverse)\n\n\nWarning: package 'tidyverse' was built under R version 4.2.3\n\n\nWarning: package 'tibble' was built under R version 4.2.3\n\n\nWarning: package 'purrr' was built under R version 4.2.3\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\nWarning: package 'forcats' was built under R version 4.2.3\n\n\nWarning: package 'lubridate' was built under R version 4.2.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(gapminder)\n\nWarning: package 'gapminder' was built under R version 4.2.3\n\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#controlando-los-themes.",
+    "href": "materiales/slides/comunicar_con_quarto.html#controlando-los-themes.",
+    "title": "Comunicar con Quarto",
+    "section": "Controlando los themes.",
+    "text": "Controlando los themes.\nDentro de las opciones de YAML podemos elegir diferentes themes. Quarto incluye 25 themes diferentres que vienen del proyecto Bootswatch\n\n---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: \n  html:\n    toc: true # hacer una tabla de contenidos\n    toc-location: left # poner la tabla de contenidos a la izq\n    number-sections: true # numerar las secciones\n    code-fold: true # desplegar el código\n    embed-resources: true # un html auto contenido (evitar dependencias).\n    theme: minty # nos permite controlar el estilo\n---\n\n\n\n\n\n\n\nTu propio estilo\n\n\nTambién podes crear tus propios themes con los colores de tu organización o empresa. Para ello podes usar el paquete brand.yml que se integra al conjunto de los archivos que crees con Quarto. Más info en: https://posit-dev.github.io/brand-yml/"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#renderizar-el-documento",
+    "href": "materiales/slides/comunicar_con_quarto.html#renderizar-el-documento",
+    "title": "Comunicar con Quarto",
+    "section": "4. Renderizar el Documento",
+    "text": "4. Renderizar el Documento\nUna vez que tenes tu archivo .qmd listo, el último paso es renderizarlo para generar el formato de salida deseado.\nPoedes hacerlo de cuatro maneras:\n\n\n Desde botón Render: Usa el botón “Render” en la barra de herramientas.\n✅ Chequeadno la casilla “Render on Save” y que cada vez que guardamos con cntrl+s renderiza los cambios.\nDesde la Terminal: Ejecutando el comando quarto render nombre_de_tu_archivo.qmd.\nCon la función quarto::quarto_render() en la consola o en el script quarto::quarto_render(   input = \"ruta/nombre_de_tu_archivo.qmd\")"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#un-archivo-muchas-salidas-posibles",
+    "href": "materiales/slides/comunicar_con_quarto.html#un-archivo-muchas-salidas-posibles",
+    "title": "Comunicar con Quarto",
+    "section": "Un archivo muchas salidas posibles",
+    "text": "Un archivo muchas salidas posibles\nCon un mismo archivo .qmd, puedes generar una variedad de formatos simplemente haciendo el cambio en el YAML por ej. acá sacando el reporte tanto en html como en pdf lo cual nos va a dar la posibilidad de renderizar diferentes formatos\n\n\n\n---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: \n  html:\n    toc: true # hacer una tabla de contenidos\n    toc-location: left # poner la tabla de contenidos a la izq\n    code-fold: true\n  pdf: default\n---"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#a-practicar",
+    "href": "materiales/slides/comunicar_con_quarto.html#a-practicar",
+    "title": "Comunicar con Quarto",
+    "section": "A Practicar!",
+    "text": "A Practicar!\n\nPaso 1: Documento HTML Básico: Crear un reporte HTML simple que combine texto, código R y sus resultados.\nPaso 2: Tomando el mismo documento cambia el parámetro html por revealjs en tu archivo y probá qué pasa"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#automatizando-nuestros-reportes-con-parámetros",
+    "href": "materiales/slides/comunicar_con_quarto.html#automatizando-nuestros-reportes-con-parámetros",
+    "title": "Comunicar con Quarto",
+    "section": "Automatizando nuestros reportes con parámetros",
+    "text": "Automatizando nuestros reportes con parámetros\nImaginate que necesitas generar un reporte de bibliotecas para cada provincia de Argentina, o un resumen de pingüinos para cada especie. ¡Hacerlo “a mano” sería un embole!\nLos reportes parametrizados en Quarto resuelven esto."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#automatizando-nuestros-reportes-con-parámetros-1",
+    "href": "materiales/slides/comunicar_con_quarto.html#automatizando-nuestros-reportes-con-parámetros-1",
+    "title": "Comunicar con Quarto",
+    "section": "Automatizando nuestros reportes con parámetros",
+    "text": "Automatizando nuestros reportes con parámetros\nLos parámetros son variables (dentro de un objeto especial que llamamos params)\nEl params lo definimos dentro del encabezado YAML de nuestro documento y después lo podemos ir usando a lo largo de nuestro código para que vayan automatizandose cada uno de los gráficos, títulos o elementos que necesitemos ir ajustando.\nQuarto permite cambiar el valor de estos parámetros fácilmente para generar diferentes versiones del reporte y multiplicarlo como panes."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#qué-podemos-parametrizar",
+    "href": "materiales/slides/comunicar_con_quarto.html#qué-podemos-parametrizar",
+    "title": "Comunicar con Quarto",
+    "section": "Qué podemos parametrizar",
+    "text": "Qué podemos parametrizar\n\nStrings\nNúmeros\nvalores dictómicos (booleanos)"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#parametrizando-paso-a-paso-modo-manual",
+    "href": "materiales/slides/comunicar_con_quarto.html#parametrizando-paso-a-paso-modo-manual",
+    "title": "Comunicar con Quarto",
+    "section": "Parametrizando paso a paso (Modo manual)",
+    "text": "Parametrizando paso a paso (Modo manual)\nSiguiendo el ejemplo de las regiones…\n\n\nEscribimos un reporte en Quarto usando como ejemplo una de las regiones (por ej. AMBA) lo renderizamos para ver si no gusta como quedó.\nEn el YAML le indicamos un valor de default en parms\nReemplazamos el valor con la variable paramsa lo largo de nuestro reporte usando find y replace (cnrl+F)\nRendereamos cada uno de los reportes"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder_2.html",
+    "href": "materiales/slides/quarto_demo_gapminder_2.html",
+    "title": "Informe sobre cositas",
+    "section": "",
+    "text": "Este es un texto de introducción a mi informe. Esto es un texto en negrita y este es en cursiva. Esto es un link enlace a la página\n\n\nMe gusta enumerar mis objetivos usando bullets que los escribo así\n\nObjetivo 1\nObjetivo 2\nObjetivo 3\nObjetivo 4\nEsto es un objetivo especifico\nEsto es otro objetivo especifico\n\n\n\n\nEn mi investigación estoy trabajando con datos de Gapmider un proyecto que reune datos socioeconómicos a nivel mundial.\nAhora voy a poner un chunck de r con el shortcut alt+cntrl+i\n\n\nCode\n# llamo a mis librerías\nlibrary(tidyverse) # para tidyeo de datos\nlibrary(ggplot2) # para hacer graficos\nlibrary(gapminder) # libreria con datos varios\n\n\nsummary(gapminder)\n\n\n        country        continent        year         lifeExp     \n Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  \n Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  \n Algeria    :  12   Asia    :396   Median :1980   Median :60.71  \n Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  \n Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  \n Australia  :  12                  Max.   :2007   Max.   :82.60  \n (Other)    :1632                                                \n      pop              gdpPercap       \n Min.   :6.001e+04   Min.   :   241.2  \n 1st Qu.:2.794e+06   1st Qu.:  1202.1  \n Median :7.024e+06   Median :  3531.8  \n Mean   :2.960e+07   Mean   :  7215.3  \n 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  \n Max.   :1.319e+09   Max.   :113523.1  \n                                       \n\n\n\n\n\nA continuación vemos un gráfico\n\n\nCode\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder_2.html#objetivos-es-un-encabezado-de-nivel-2",
+    "href": "materiales/slides/quarto_demo_gapminder_2.html#objetivos-es-un-encabezado-de-nivel-2",
+    "title": "Informe sobre cositas",
+    "section": "",
+    "text": "Me gusta enumerar mis objetivos usando bullets que los escribo así\n\nObjetivo 1\nObjetivo 2\nObjetivo 3\nObjetivo 4\nEsto es un objetivo especifico\nEsto es otro objetivo especifico"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder_2.html#acerca-de-la-base-es-un-encabezado-de-nivel-2",
+    "href": "materiales/slides/quarto_demo_gapminder_2.html#acerca-de-la-base-es-un-encabezado-de-nivel-2",
+    "title": "Informe sobre cositas",
+    "section": "",
+    "text": "En mi investigación estoy trabajando con datos de Gapmider un proyecto que reune datos socioeconómicos a nivel mundial.\nAhora voy a poner un chunck de r con el shortcut alt+cntrl+i\n\n\nCode\n# llamo a mis librerías\nlibrary(tidyverse) # para tidyeo de datos\nlibrary(ggplot2) # para hacer graficos\nlibrary(gapminder) # libreria con datos varios\n\n\nsummary(gapminder)\n\n\n        country        continent        year         lifeExp     \n Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  \n Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  \n Algeria    :  12   Asia    :396   Median :1980   Median :60.71  \n Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  \n Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  \n Australia  :  12                  Max.   :2007   Max.   :82.60  \n (Other)    :1632                                                \n      pop              gdpPercap       \n Min.   :6.001e+04   Min.   :   241.2  \n 1st Qu.:2.794e+06   1st Qu.:  1202.1  \n Median :7.024e+06   Median :  3531.8  \n Mean   :2.960e+07   Mean   :  7215.3  \n 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  \n Max.   :1.319e+09   Max.   :113523.1"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder_2.html#relación-de-población-por-continente-entre-pbi-per-capita-y-esperanza-de-vida",
+    "href": "materiales/slides/quarto_demo_gapminder_2.html#relación-de-población-por-continente-entre-pbi-per-capita-y-esperanza-de-vida",
+    "title": "Informe sobre cositas",
+    "section": "",
+    "text": "A continuación vemos un gráfico\n\n\nCode\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#qué-tipo-de-variables-podemos-parametrizar",
+    "href": "materiales/slides/comunicar_con_quarto.html#qué-tipo-de-variables-podemos-parametrizar",
+    "title": "Comunicar con Quarto",
+    "section": "Qué tipo de variables podemos parametrizar",
+    "text": "Qué tipo de variables podemos parametrizar\n\n\nStrings\nNúmeros\nValores dicotómicos (TRUE FALSE)"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#parametrizando-paso-a-paso-modo-manual-1",
+    "href": "materiales/slides/comunicar_con_quarto.html#parametrizando-paso-a-paso-modo-manual-1",
+    "title": "Comunicar con Quarto",
+    "section": "Parametrizando paso a paso (Modo manual)",
+    "text": "Parametrizando paso a paso (Modo manual)\nSiguiendo con nuestro ejemplo de YAML que vimos al comienzo con la base Gapminder\n\n---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: \n  html:\n    toc: true \n    toc-location: left \n    number-sections: true \n    code-fold: true \n    embed-resources: true \nparams:\n  continent: \"Asia\" # Valor predeterminado\n---"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#seteo-el-parametro-en-el-yaml",
+    "href": "materiales/slides/comunicar_con_quarto.html#seteo-el-parametro-en-el-yaml",
+    "title": "Comunicar con Quarto",
+    "section": "Seteo el parametro en el YAML",
+    "text": "Seteo el parametro en el YAML\nSiguiendo con nuestro ejemplo de YAML que vimos al comienzo con la base Gapminder\n\n---\ntitle: \"Informe Gapmider demo\"\nauthor: \"Betsy Cohen\"\ndate: \"01-06-2025\"\nformat: \n  html:\n    toc: true \n    toc-location: left \n    number-sections: true \n    code-fold: true \n    embed-resources: true \nparams:\n  continent: \"Asia\" # Valor predeterminado\n---"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#acceder-al-parámetro",
+    "href": "materiales/slides/comunicar_con_quarto.html#acceder-al-parámetro",
+    "title": "Comunicar con Quarto",
+    "section": "Acceder al parámetro",
+    "text": "Acceder al parámetro\nLos parámetros son una lista\n\nstr(params)\n\nList of 1   $ continent: chr \"Asia\"\nDe igual manera que cualquier otro objeto de tipo lista accedemos a cada elemento con el signo $\n\nparams$continent\n\n[1] \"Asia\"\nSi lo quiero agregar como texto a lo largo de mi reporte voy encerrar al parametro en una expresión de tipo r.\n\n# En el siguiente gráfico podemos observar los resultados para los países de **`r params$continent`**\n\nEn el siguiente gráfico podemos observar los resultados para los países de Asia"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#uso-el-parámetro-a-lo-largo-de-mi-documento",
+    "href": "materiales/slides/comunicar_con_quarto.html#uso-el-parámetro-a-lo-largo-de-mi-documento",
+    "title": "Comunicar con Quarto",
+    "section": "Uso el parámetro a lo largo de mi documento",
+    "text": "Uso el parámetro a lo largo de mi documento\n\n# Filtrar el dataset de Gapminder usando el Continente\ngapminder %&gt;% \n  filter(continent == params$continent)\n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = country)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = paste(\"PBI per capita según Esperanza de vida y tamaño de población en\", params$continent),\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"País\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#más-sobre-automatización",
+    "href": "materiales/slides/comunicar_con_quarto.html#más-sobre-automatización",
+    "title": "Comunicar con Quarto",
+    "section": "Más sobre automatización",
+    "text": "Más sobre automatización\nSi te interesa aprender más sobre automatización y parametrización podes consultar\n\nRyan, Jadey. 2024. “Parameterized Reports with Quarto: R-Ladies Abuja Workshop.” 21 de Febrero 21 2024. https://jadeyryan.com/talks/2024-02-21_rladies-abuja-quarto-params.\nDocumentación de Quarto Parameters"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#práctica",
+    "href": "materiales/slides/comunicar_con_quarto.html#práctica",
+    "title": "Comunicar con Quarto",
+    "section": "Práctica",
+    "text": "Práctica"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#ahora-a-prácticar",
+    "href": "materiales/slides/comunicar_con_quarto.html#ahora-a-prácticar",
+    "title": "Comunicar con Quarto",
+    "section": "Ahora a Prácticar!",
+    "text": "Ahora a Prácticar!"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_quarto.html",
+    "href": "materiales/excercise/ejercicio_quarto.html",
+    "title": "Ejercicio Quarto",
+    "section": "",
+    "text": "El objetivo de este ejercicio es que apliques los conceptos clave de Quarto vistos en clase, transformando y personalizando un informe ya existente."
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_quarto.html#preparación-del-archivo",
+    "href": "materiales/excercise/ejercicio_quarto.html#preparación-del-archivo",
+    "title": "Ejercicio Quarto",
+    "section": "👩‍🍳Preparación del Archivo",
+    "text": "👩‍🍳Preparación del Archivo\n\nCrea un nuevo archivo Quarto (.qmd) en RStudio (File &gt; New File &gt; Quarto Document...).\n\n\n\nCopia el contenido de este archivo\n\n\n\nGuárdalo con un nombre fácil de recordar, por ejemplo, ejercicio_quarto.qmd.\nEste va a ser nuestro punto de partida"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_quarto.html#personalizando-tu-informe-html",
+    "href": "materiales/excercise/ejercicio_quarto.html#personalizando-tu-informe-html",
+    "title": "Ejercicio Quarto",
+    "section": "Personalizando tu Informe HTML",
+    "text": "Personalizando tu Informe HTML\nVamos a hacer que tu informe HTML tenga una tabla de contenidos y cambie su estilo visual.\n\nAbrí el archivo que creaste\nModificá el encabezado YAML (--- al inicio del archivo) para el formato html y agrega las siguientes opciones (¡ojo con la indentación!):\n\n\nformat:\n  html:\n    toc: true            # Agregá una tabla de contenidos\n    toc-location: left   # Colocá la tabla de contenidos a la izquierda\n    number-sections: true # Numerá automáticamente las secciones\n    theme: cosmo         # Cambiá el tema visual \n\n\n\n\n\n\n\nTip\n\n\n\nFijate cuales son los estilos disponibles en la documentación de Quarto sobre themes\n\n\n\nGuardá los cambios (Ctrl + S o Cmd + S).\nRenderizá el documento (haz clic en el botón “Render” en RStudio)."
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_quarto.html#convertí-tu-informe-en-una-presentación",
+    "href": "materiales/excercise/ejercicio_quarto.html#convertí-tu-informe-en-una-presentación",
+    "title": "Ejercicio Quarto",
+    "section": "Convertí tu informe en una presentación",
+    "text": "Convertí tu informe en una presentación\n\nVolve a tu archivo ejercicio_quarto.qmd.\nModifica el encabezado YAML nuevamente. Donde dice format: html:, cámbialo a format: revealjs:. Elimina o comenta las opciones específicas de HTML (toc, toc-location, number-sections, theme) y agrega estas opciones para revealjs:\n\n\nformat:\n  revealjs:\n    transition: fade     # Estilo de transición entre diapositivas\n    slide-number: true   # Muestra el número de diapositiva\n    theme: slides.scss   # Usa nuestro tema personalizado para presentaciones\n\n\nGuardá y Renderizá"
+  },
+  {
+    "objectID": "materiales/excercise/ejercicio_quarto.html#controlando-los-bloques-de-código-y-el-contenido",
+    "href": "materiales/excercise/ejercicio_quarto.html#controlando-los-bloques-de-código-y-el-contenido",
+    "title": "Ejercicio Quarto",
+    "section": "Controlando los Bloques de Código y el Contenido",
+    "text": "Controlando los Bloques de Código y el Contenido\nAhora vamos a ajustar cómo se muestra el código y el gráfico, y a añadir algo de texto formateado.\n\nEn el bloque de código del summary(gapminder):\n\nAsegúrate de que tenga la opción #| echo: false para que el código no se muestre en el output, solo el resumen.\nAsegúrate de que tenga #| warning: false para evitar mensajes de advertencia.\n\nEn el bloque de código del gráfico de burbujas (ggplot):\n\n-   Agrega las opciones `#| fig-width: 10` y `#| fig-height: 7` para controlar el tamaño del gráfico en la salida.\n\n-   Cambia la opción `#| echo: true` a `#| echo: false` para que el código del gráfico no se muestre en tu presentación o HTML.\n\nAgrega una nueva sección de texto (puedes usar un encabezado ##) después del gráfico, con el siguiente contenido:\n\n\n## Comentarios Finales sobre el Gráfico\n\nEste gráfico es **muy útil** para visualizar la relación entre el PBI per cápita y la esperanza de vida. Además, nos permite observar la distribución de la población (*que está representada por el tamaño de las burbujas*).\n\nMás información en este [enlace de Wikipedia](https://es.wikipedia.org/wiki/Esperanza_de_vida).\n\n\nGuarda y Renderiza en formato HTML o revealjs para ver los cambios."
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder.html",
+    "href": "materiales/slides/quarto_demo_gapminder.html",
+    "title": "Informe Gapmider demo",
+    "section": "",
+    "text": "Este es un texto de introducción a mi informe. Esto es un texto en negrita y este es en cursiva. Esto es un link enlace a la página\n\n\nMe gusta enumerar mis objetivos usando bullets que los escribo así\n\nObjetivo 1\nObjetivo 2\nObjetivo 3\nObjetivo 4\nEsto es un objetivo especifico\nEsto es otro objetivo especifico\n\n\n\n\nEn mi investigación estoy trabajando con datos de Gapmider un proyecto que reune datos socioeconómicos a nivel mundial.\nAhora voy a poner un chunck de r con el shortcut alt+cntrl+i\n\n\nCode\n# llamo a mis librerías\nlibrary(tidyverse) # para tidyeo de datos\nlibrary(ggplot2) # para hacer graficos\nlibrary(gapminder) # libreria con datos varios\n\n\nsummary(gapminder)\n\n\n        country        continent        year         lifeExp     \n Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  \n Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  \n Algeria    :  12   Asia    :396   Median :1980   Median :60.71  \n Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  \n Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  \n Australia  :  12                  Max.   :2007   Max.   :82.60  \n (Other)    :1632                                                \n      pop              gdpPercap       \n Min.   :6.001e+04   Min.   :   241.2  \n 1st Qu.:2.794e+06   1st Qu.:  1202.1  \n Median :7.024e+06   Median :  3531.8  \n Mean   :2.960e+07   Mean   :  7215.3  \n 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  \n Max.   :1.319e+09   Max.   :113523.1  \n                                       \n\n\n\n\n\nA continuación vemos un gráfico\n\n\nCode\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder.html#objetivos-es-un-encabezado-de-nivel-2",
+    "href": "materiales/slides/quarto_demo_gapminder.html#objetivos-es-un-encabezado-de-nivel-2",
+    "title": "Informe Gapmider demo",
+    "section": "",
+    "text": "Me gusta enumerar mis objetivos usando bullets que los escribo así\n\nObjetivo 1\nObjetivo 2\nObjetivo 3\nObjetivo 4\nEsto es un objetivo especifico\nEsto es otro objetivo especifico"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder.html#acerca-de-la-base-es-un-encabezado-de-nivel-2",
+    "href": "materiales/slides/quarto_demo_gapminder.html#acerca-de-la-base-es-un-encabezado-de-nivel-2",
+    "title": "Informe Gapmider demo",
+    "section": "",
+    "text": "En mi investigación estoy trabajando con datos de Gapmider un proyecto que reune datos socioeconómicos a nivel mundial.\nAhora voy a poner un chunck de r con el shortcut alt+cntrl+i\n\n\nCode\n# llamo a mis librerías\nlibrary(tidyverse) # para tidyeo de datos\nlibrary(ggplot2) # para hacer graficos\nlibrary(gapminder) # libreria con datos varios\n\n\nsummary(gapminder)\n\n\n        country        continent        year         lifeExp     \n Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  \n Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  \n Algeria    :  12   Asia    :396   Median :1980   Median :60.71  \n Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  \n Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  \n Australia  :  12                  Max.   :2007   Max.   :82.60  \n (Other)    :1632                                                \n      pop              gdpPercap       \n Min.   :6.001e+04   Min.   :   241.2  \n 1st Qu.:2.794e+06   1st Qu.:  1202.1  \n Median :7.024e+06   Median :  3531.8  \n Mean   :2.960e+07   Mean   :  7215.3  \n 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  \n Max.   :1.319e+09   Max.   :113523.1"
+  },
+  {
+    "objectID": "materiales/slides/quarto_demo_gapminder.html#relación-de-población-por-continente-entre-pbi-per-capita-y-esperanza-de-vida",
+    "href": "materiales/slides/quarto_demo_gapminder.html#relación-de-población-por-continente-entre-pbi-per-capita-y-esperanza-de-vida",
+    "title": "Informe Gapmider demo",
+    "section": "",
+    "text": "A continuación vemos un gráfico\n\n\nCode\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html",
+    "href": "materiales/slides/comunicar_con_quarto.html",
+    "title": "Comunicar con Quarto",
+    "section": "",
+    "text": "Es un sistema de publicación científica y técnica de código abierto. Pensado para crear documentos dinámicos, presentaciones, libros y sitios web a partir de un simple archivo de texto plano.\nUnifica y facilita el proceso de creación y colaboración entre varios lenguajes (Python, Observable, Julia, R…) y nos permite crear múltiples productos en múltiples formatos (HTML, pdf, Word, ppt)\n\n\n\n\nImagen de “Hello, Quarto” keynote de Julia Lowndes y Mine Çetinkaya-Rundel, RStudio::Conf(2022)."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#ahora-a-practicar",
+    "href": "materiales/slides/comunicar_con_quarto.html#ahora-a-practicar",
+    "title": "Comunicar con Quarto",
+    "section": "Ahora a practicar!",
+    "text": "Ahora a practicar!\n\n\n\nArtwork by @allison_horst"
+  },
+  {
+    "objectID": "u4-graficos.html#quarto",
+    "href": "u4-graficos.html#quarto",
+    "title": "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto",
+    "section": "Quarto",
+    "text": "Quarto\n\n\nComunicar con Quarto\n\n\n\nEjercicio Quarto",
+    "crumbs": [
+      "Materiales",
+      "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
+    ]
   }
 ]

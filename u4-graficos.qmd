@@ -34,18 +34,15 @@ title: "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quar
 :::
 :::
 
-## RMarkdown y Quarto
+## Quarto
 
 ::: slide-deck
 ::: slides
-Reportes
+[Comunicar con Quarto](materiales/slides/comunicar_con_quarto.qmd)
+:::
 :::
 
-::: slides
-Presentaciones
+::: exam
+[Ejercicio Quarto](materiales/excercise/ejercicio_quarto.qmd)
 :::
 
-::: slides
-Tableros
-:::
-:::

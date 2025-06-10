@@ -1,0 +1,101 @@
+---
+title: "Ejercicio Quarto"
+format: html
+editor: visual
+---
+
+El objetivo de este ejercicio es que apliques los conceptos clave de Quarto vistos en clase, transformando y personalizando un informe ya existente.
+
+## 👩‍🍳Preparación del Archivo
+
+-   **Crea un nuevo archivo Quarto (`.qmd`)** en RStudio (File \> New File \> Quarto Document\...).
+
+```{=html}
+<!-- -->
+```
+-   **Copia el contenido de este archivo**
+
+```{=html}
+<!-- -->
+```
+-   **Guárdalo** con un nombre fácil de recordar, por ejemplo, `ejercicio_quarto.qmd`.
+
+    Este va a ser nuestro punto de partida
+
+## Personalizando tu Informe HTML
+
+Vamos a hacer que tu informe HTML tenga una tabla de contenidos y cambie su estilo visual.
+
+1.  **Abrí** el archivo que creaste
+2.  **Modificá el encabezado YAML** (`---` al inicio del archivo) para el formato `html` y agrega las siguientes opciones (¡ojo con la indentación!):
+
+```{r}
+#| echo: true
+#| eval: false
+
+format:
+  html:
+    toc: true            # Agregá una tabla de contenidos
+    toc-location: left   # Colocá la tabla de contenidos a la izquierda
+    number-sections: true # Numerá automáticamente las secciones
+    theme: cosmo         # Cambiá el tema visual 
+
+```
+
+::: callout-tip
+Fijate cuales son los estilos disponibles en la [documentación](https://quarto.org/docs/output-formats/html-themes.html) de Quarto sobre themes
+:::
+
+3.  **Guardá los cambios** (`Ctrl + S` o `Cmd + S`).
+4.  **Renderizá el documento** (haz clic en el botón "Render" en RStudio).
+
+## Convertí tu informe en una presentación
+
+1.  **Volve a tu archivo `ejercicio_quarto.qmd`**.
+
+2.  **Modifica el encabezado YAML** nuevamente. Donde dice `format: html:`, **cámbialo a `format: revealjs:`**. Elimina o comenta las opciones específicas de HTML (`toc`, `toc-location`, `number-sections`, `theme`) y agrega estas opciones para `revealjs`:
+
+```{r}
+#| echo: true
+#| eval: false
+
+format:
+  revealjs:
+    transition: fade     # Estilo de transición entre diapositivas
+    slide-number: true   # Muestra el número de diapositiva
+    theme: slides.scss   # Usa nuestro tema personalizado para presentaciones
+```
+
+3.  Guardá y Renderizá
+
+## Controlando los Bloques de Código y el Contenido
+
+Ahora vamos a ajustar cómo se muestra el código y el gráfico, y a añadir algo de texto formateado.
+
+1.  **En el bloque de código del `summary(gapminder)`:**
+
+    -   Asegúrate de que tenga la opción `#| echo: false` para que el código no se muestre en el output, solo el resumen.
+
+    -   Asegúrate de que tenga `#| warning: false` para evitar mensajes de advertencia.
+
+2.   **En el bloque de código del gráfico de burbujas (`ggplot`):**
+
+    -   Agrega las opciones `#| fig-width: 10` y `#| fig-height: 7` para controlar el tamaño del gráfico en la salida.
+
+    -   Cambia la opción `#| echo: true` a `#| echo: false` para que el código del gráfico no se muestre en tu presentación o HTML.
+
+3.   **Agrega una nueva sección de texto** (puedes usar un encabezado `##`) después del gráfico, con el siguiente contenido:
+
+```{r}
+#| echo: true
+#| eval: false
+
+## Comentarios Finales sobre el Gráfico
+
+Este gráfico es **muy útil** para visualizar la relación entre el PBI per cápita y la esperanza de vida. Además, nos permite observar la distribución de la población (*que está representada por el tamaño de las burbujas*).
+
+Más información en este [enlace de Wikipedia](https://es.wikipedia.org/wiki/Esperanza_de_vida).
+
+```
+
+1.  **Guarda y Renderiza** en formato HTML o `revealjs` para ver los cambios.
