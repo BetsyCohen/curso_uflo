@@ -66,6 +66,34 @@ Para instalar Quasrto simplemente vamos a ir a https://quarto.org/docs/get-start
 Si bien nosotros vamos a usarlo desde RStudio está bueno que sepas que podemos usar Quarto desde otras plataformas como **VS Code**, **Jupyter**.
 :::
 
+## Creando un proyecto Quarto
+
+Para crear un nuevo proyecto de Quarto vamos a ir a elegir crearlo desde un nuevo directorio y vamos a elegir el tipo de Quarto Project que querramos crear:
+
+::: columns
+::: {.column width="50%"}
+-   Quarto Project
+
+-   Quarto Website
+
+-   Quarto Blog
+
+-   Quarto Book
+:::
+
+::: {.column width="50%"}
+![](images/new_project_wizard_quarto.png){fig-align="center" width="550"}
+:::
+:::
+
+## Creando un Quarto Project
+
+Cuando creamos el Quarto Project vamos a ver que se crea nuestro proyecto Quarto tiene además del archivo **project** y el el archivo **quarto** en question un "nuevo bicho" yml
+
+![](images/quarto_project_schema.png){fig-align="center"}
+
+Un archivo `.yml` (o `.yaml`) (Yet Anothoer Markup Language) es un archivo de texto legible por nosotros los humanos que sirve para indicarle a Quarto la configuración sus metadatos y opciones de salida, del **conjunto de archivos** que vayan a conformar nuestro proyecto en Quarto.
+
 ## Anatomía de un Archivo Quarto (`.qmd`) {.smaller}
 
 Un archivo Quarto (`.qmd`) tiene una estructura clara que lo hace fácil de entender:
@@ -155,6 +183,12 @@ format:
 
 También podes crear tus propios themes con los colores de tu organización o empresa. Para ello podes usar el paquete `brand.yml` que se integra al conjunto de los archivos que crees con Quarto. Más info en: https://posit-dev.github.io/brand-yml/
 :::
+
+## Modo source y modo visual
+
+Rstudio nos permite trabajar en Quarto tanto en modo visual como source.(Esto es algo que también podemos setear en el deafult de nuestro YAML pero también podes acceder). El modo visual te permite acceder a un montón de opciones de edición de Quarto simplemente presionando la tecla `/` como chguncks, bullets, modo de cita, callouts, emojis ¡y muchos más!
+
+![](images/quarto_visual_mode_options.png){fig-align="center"}
 
 ## 2.Texto en Markdown {.smaller}
 
@@ -277,6 +311,26 @@ Podes controlar cómo se ven y se comportan los elementos en tu documento final 
 -   **df-print:** Define cómo se muestran los data.frames en el output (ej. kable para tablas más bonitas).
 
 -   **execute:** Controla el comportamiento general de la ejecución del código en todo el documento.
+
+## Publicar en línea
+
+Hay muchas formas de publicar nuestros archivos de y proyectos Quarto pero quizas la más sencilla sea hacerlo en **Quarto Pub** una plataforma gratuita y pública que el mismo Quarto nos ofrece.
+
+Para poder publicar nos vamos a dar de alta como en cualquier servicio en <https://quartopub.com/sign-up>
+
+![](images/sign_up_screen_quarto_pub.png){fig-align="center"}
+
+## Publicar en línea
+
+Una vez que ya tenemos nuestra cuenta y terminamos de escribir todo lo que queríamos y estamos listos para compartir nuestro archivo con el mundo vamos a hacer un ultimo **Render** y después en la pestaña de de **Terminal** vamos a escribir
+
+`quarto publish quarto-pub`
+
+La primera vez que lo hagamos seguramente nos pedirá indicarle el correo o **id** de nuestra cuenta
+
+::: callout-note
+Te recomendamos [este video](https://youtu.be/nuYNCPRf8Js?si=8RmgI57Qlh0GPTMB) de menos de dos minutos donde [Melisa Van Bussel](https://www.youtube.com/@ggnot2) nos muestra como publicar un sitio de Quarto desde tu consola en 60 segundo. En su canal además vas a encontrar muchísimos recursos sobre Quarto en los cuales seguir aprendiendo.
+:::
 
 ## A Practicar!
 
@@ -412,4 +466,4 @@ Si te interesa aprender más sobre automatización y parametrización podes cons
 
 ## Ahora a practicar!
 
-[![Artwork by \@allison_horst](images/monsters_allison_horst.png){fig-alt="Three monsters in witch hats (covered in hex stickers for different R packages) work together to brew up a data science report on the banks of a wild river. They are surrounded by equipment for water quality measurements (like a Secchi disk, field journal, sampling bottles, and YSI). The background is a distant snow-covered mountain and pine trees. In the river alongside the witches are a curious turtle, mayflies, a jumping fish, and a dragonfly. Made with Angie Reed and Alena Reynolds for their 2024 Posit Conference Talk."}](https://twitter.com/allison_horst)
+[![Artwork by \@allison_horst](images/monsters_allison_horst.png)](https://twitter.com/allison_horst)

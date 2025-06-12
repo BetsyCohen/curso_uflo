@@ -4059,7 +4059,7 @@
     "href": "materiales/slides/comunicar_con_quarto.html#bloques-de-código-code-chunks-1",
     "title": "Comunicar con Quarto",
     "section": "3.Bloques de Código (Code Chunks)",
-    "text": "3.Bloques de Código (Code Chunks)\nPor ejemplo esto es un ejemplo de chuck\n\n\n# Esto es un bloque de código R\n\nlibrary(tidyverse)\n\n\nWarning: package 'tidyverse' was built under R version 4.2.3\n\n\nWarning: package 'tibble' was built under R version 4.2.3\n\n\nWarning: package 'purrr' was built under R version 4.2.3\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\nWarning: package 'forcats' was built under R version 4.2.3\n\n\nWarning: package 'lubridate' was built under R version 4.2.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(gapminder)\n\nWarning: package 'gapminder' was built under R version 4.2.3\n\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
+    "text": "3.Bloques de Código (Code Chunks)\nPor ejemplo esto es un ejemplo de chuck\n\n\n# Esto es un bloque de código R\n\nlibrary(tidyverse)\nlibrary(gapminder)\n\ngapminder %&gt;% \n  mutate(pop = pop/1000000) %&gt;% \n  filter(year == 2007) %&gt;% \n  ggplot(aes(x = gdpPercap, y= lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_size(range = c(2, 12)) +\n  labs(title = \"PBI per capita según Esperanza de vida y tamaño deblación\",\n       subtitle = \"Año 2007\",\n       x = \"PBI per capita\",\n       y = \"Esperanza de vida\",\n       size = \"Millones de habitantes\",\n       color = \"Continente\")+\n  theme_minimal()"
   },
   {
     "objectID": "materiales/slides/comunicar_con_quarto.html#controlando-los-themes.",
@@ -4288,5 +4288,40 @@
       "Materiales",
       "Unidad 4: Comunicar: gráficos y diferentes salidas de reportes con Quarto"
     ]
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#creando-un-proyecto-quarto",
+    "href": "materiales/slides/comunicar_con_quarto.html#creando-un-proyecto-quarto",
+    "title": "Comunicar con Quarto",
+    "section": "Creando un proyecto Quarto",
+    "text": "Creando un proyecto Quarto\nPara crear un nuevo proyecto de Quarto vamos a ir a elegir crearlo desde un nuevo directorio y vamos a elegir el tipo de Quarto Project que querramos crear:\n\n\n\nQuarto Project\nQuarto Website\nQuarto Blog\nQuarto Book"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#creando-un-quarto-project",
+    "href": "materiales/slides/comunicar_con_quarto.html#creando-un-quarto-project",
+    "title": "Comunicar con Quarto",
+    "section": "Creando un Quarto Project",
+    "text": "Creando un Quarto Project\nCuando creamos el Quarto Project vamos a ver que se crea nuestro proyecto Quarto tiene además del archivo project y el el archivo quarto en question un “nuevo bicho” yml\n\nUn archivo .yml (o .yaml) (Yet Anothoer Markup Language) es un archivo de texto legible por nosotros los humanos que sirve para indicarle a Quarto la configuración sus metadatos y opciones de salida, del conjunto de archivos que vayan a conformar nuestro proyecto en Quarto."
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#publicar-en-línea",
+    "href": "materiales/slides/comunicar_con_quarto.html#publicar-en-línea",
+    "title": "Comunicar con Quarto",
+    "section": "Publicar en línea",
+    "text": "Publicar en línea\nHay muchas formas de publicar nuestros archivos de y proyectos Quarto pero quizas la más sencilla sea hacerlo en Quarto Pub una plataforma gratuita y pública que el mismo Quarto nos ofrece.\nPara poder publicar nos vamos a dar de alta como en cualquier servicio en https://quartopub.com/sign-up"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#modo-source-y-modo-visual",
+    "href": "materiales/slides/comunicar_con_quarto.html#modo-source-y-modo-visual",
+    "title": "Comunicar con Quarto",
+    "section": "Modo source y modo visual",
+    "text": "Modo source y modo visual\nRstudio nos permite trabajar en Quarto tanto en modo visual como source.(Esto es algo que también podemos setear en el deafult de nuestro YAML pero también podes acceder). El modo visual te permite acceder a un montón de opciones de edición de Quarto simplemente presionando la tecla / como chguncks, bullets, modo de cita, callouts, emojis ¡y muchos más!"
+  },
+  {
+    "objectID": "materiales/slides/comunicar_con_quarto.html#publicar-en-línea-1",
+    "href": "materiales/slides/comunicar_con_quarto.html#publicar-en-línea-1",
+    "title": "Comunicar con Quarto",
+    "section": "Publicar en línea",
+    "text": "Publicar en línea\nUna vez que ya tenemos nuestra cuenta y terminamos de escribir todo lo que queríamos y estamos listos para compartir nuestro archivo con el mundo vamos a hacer un ultimo Render y después en la pestaña de de Terminal vamos a escribir\nquarto publish quarto-pub\nLa primera vez que lo hagamos seguramente nos pedirá indicarle el correo o id de nuestra cuenta\n\n\n\n\n\n\nNote\n\n\nTe recomendamos este video de menos de dos minutos donde Melisa Van Bussel nos muestra como publicar un sitio de Quarto desde tu consola en 60 segundo. En su canal además vas a encontrar muchísimos recursos sobre Quarto en los cuales seguir aprendiendo."
   }
 ]
