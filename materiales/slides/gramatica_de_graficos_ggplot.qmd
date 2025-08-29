@@ -417,8 +417,7 @@ df %>%
 
 A veces también usamos en la capa de scales para setear los colores de manera manual con `scale_fill_manual()` o `scale_color_manual()`
 
-`fill` hace referencia al relleno de la geometría (lo vas a usar por ej. con columnas, cajas...)
-`color` hace referencia al color de la línea que rodea a la geometría
+`fill` hace referencia al relleno de la geometría (lo vas a usar por ej. con columnas, cajas...) `color` hace referencia al color de la línea que rodea a la geometría
 
 ```{r}
 #| warning: false
@@ -446,7 +445,7 @@ Dependiendo de la situacion podemos usar:
 
 ## Facetado ➗ {.smaller}
 
-En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año (se indica con el **~**)
+En este ejemplo agregamos una capa de facetado sobre la base completa (df) y facetamos segun el año (se indica con el **\~**)
 
 ```{r}
 #| warning: false
@@ -690,6 +689,7 @@ df %>%
     size = 3
   ) 
 ```
+
 ## 🩴 Las etiquetas con valores no son Anotaciones ️ {.smaller}
 
 Y la salida luce así
@@ -725,7 +725,6 @@ df %>%
     size = 3
   ) 
 ```
-
 
 ## Resumiendo... {.bigtext}
 
@@ -910,7 +909,6 @@ grafico3 + grafico2 + grafico1 +
 -   [ggtheme asistance](https://github.com/calligross/ggthemeassist?tab=readme-ov-file) parecido a esquisse pero mucho mas completo respecto del theme
 
 -   [ggplot2](https://ggplot2.tidyverse.org/index.html) documentación oficial incluyendo la preciadas Cheatsheet
-
 
 ## ¡🦾 A practicar!
 

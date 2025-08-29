@@ -1,0 +1,56 @@
+---
+title: "Presentacin TP Final"
+format: revealjs
+---
+
+## Diapo 1
+
+```{r}
+### Carga de librerías
+library(tidyverse)
+library(gt)
+library(janitor)
+
+## carga de la base
+df_hechos  <- read.csv("https://datos.jus.gob.ar/dataset/27bb9b2c-521b-406c-bdf9-98110ef73f34/resource/583cec9a-3022-4234-8b32-17692a267aac/download/registro-de-femicidios-20200109.csv")
+
+
+## exploración de la base
+glimpse(df_hechos)
+
+
+```
+
+## Diapo 2
+
+```{r}
+ 
+df_hechos_filrtado <- df_hechos %>%
+  # Asegurarnos que la fecha sea Date y extraer el año
+  mutate(anio = year(as.Date(hecho_fecha)),
+         # Limpiar las etiquetas de identidad_genero y ordenar como factor
+         victima_identidad_genero = case_when(
+           victima_identidad_genero == "MUJER" ~"M",
+           victima_identidad_genero == "HOMBRE" ~"V",
+           victima_identidad_genero == "TRANSGENERO" ~"T",
+           victima_identidad_genero == "" ~ "SE"),
+         victima_identidad_genero = factor(
+           victima_identidad_genero,
+           levels = c("M","V","T","SE"),
+           ordered = T)) %>%
+  # filtrar a anios anteriores a 2013
+  filter(anio >= 2013)
+
+df_hechos_filrtado %>% 
+   tabyl(anio,victima_identidad_genero) %>% 
+   adorn_percentages('col') %>% 
+   adorn_pct_formatting()
+```
+
+## Diapo 3: conclusiones
+
+vfdshdhjfdvdhjvdfhhfdvj
+
+fvddsfvdsfvhjfdvhd
+
+💜
